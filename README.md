@@ -1,2 +1,0 @@
-# marielportfolio
-Web Mariel Rosciano
