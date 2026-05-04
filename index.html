@@ -1,2398 +1,811 @@
 <!DOCTYPE html>
-
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mariel Rosciano — Portfolio</title>
-<meta name="description" content="Mariel Rosciano — Actriz, Directora, Productora Ejecutiva, Documentalista y Coach Artística. Más de 20 años de trayectoria en cine, teatro, música y producción cultural.">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #0a0a0f;
-    --surface: #111118;
-    --node-bg: rgba(17,17,24,0.92);
-    --gold: #c9a84c;
-    --gold-light: #e8c97a;
-    --rose: #c9546c;
-    --teal: #4cb8c9;
-    --violet: #9b6bc9;
-    --green: #6bc99b;
-    --orange: #c97b4c;
-    --white: #f0ede8;
-    --muted: #5a5a72;
-    --line: rgba(201,168,76,0.25);
-    --glow: rgba(201,168,76,0.08);
-  }
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-html { scroll-behavior: smooth; }
-
-body {
-background: var(–bg);
-color: var(–white);
-font-family: ‘Cormorant Garamond’, Georgia, serif;
-overflow-x: hidden;
--webkit-font-smoothing: antialiased;
--moz-osx-font-smoothing: grayscale;
-}
-
-/* Custom selection */
-::selection { background: rgba(201,168,76,0.35); color: var(–white); }
-
-/* Custom scrollbar */
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: var(–bg); }
-::-webkit-scrollbar-thumb { background: rgba(201,168,76,0.2); border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(201,168,76,0.4); }
-
-/* Grain texture overlay */
-body::before {
-content: ‘’;
-position: fixed;
-inset: 0;
-pointer-events: none;
-z-index: 1;
-opacity: 0.025;
-background-image: url(“data:image/svg+xml,%3Csvg viewBox=‘0 0 200 200’ xmlns=‘http://www.w3.org/2000/svg’%3E%3Cfilter id=‘n’%3E%3CfeTurbulence type=‘fractalNoise’ baseFrequency=‘0.85’ numOctaves=‘3’ stitchTiles=‘stitch’/%3E%3C/filter%3E%3Crect width=‘100%25’ height=‘100%25’ filter=‘url(%23n)’/%3E%3C/svg%3E”);
-}
-
-/* ── HEADER ── */
-header {
-position: fixed;
-top: 0; left: 0; right: 0;
-z-index: 1000;
-padding: 18px 40px;
-display: flex;
-align-items: center;
-justify-content: space-between;
-background: linear-gradient(to bottom, rgba(10,10,15,0.96) 0%, rgba(10,10,15,0.7) 60%, transparent 100%);
-backdrop-filter: blur(8px);
--webkit-backdrop-filter: blur(8px);
-border-bottom: 1px solid rgba(201,168,76,0.08);
-transition: padding 0.3s ease;
-}
-header.scrolled { padding: 12px 40px; background: rgba(10,10,15,0.92); }
-.logo {
-font-family: ‘Playfair Display’, serif;
-font-size: 1.05rem;
-font-weight: 700;
-letter-spacing: 0.14em;
-color: var(–gold);
-text-transform: uppercase;
-text-decoration: none;
-display: flex;
-align-items: center;
-gap: 10px;
-}
-.logo::before {
-content: ‘’;
-width: 8px; height: 8px;
-border-radius: 50%;
-background: var(–gold);
-box-shadow: 0 0 12px var(–gold);
-animation: pulseDot 2.4s ease-in-out infinite;
-}
-.logo span { color: var(–white); font-weight: 300; letter-spacing: 0.18em; }
-nav { display: flex; gap: 28px; align-items: center; }
-nav a {
-font-family: ‘DM Mono’, monospace;
-font-size: 0.65rem;
-letter-spacing: 0.2em;
-text-transform: uppercase;
-color: var(–muted);
-text-decoration: none;
-transition: color 0.3s;
-position: relative;
-padding: 4px 0;
-}
-nav a::after {
-content: ‘’;
-position: absolute;
-bottom: 0; left: 0;
-width: 0; height: 1px;
-background: currentColor;
-transition: width 0.35s ease;
-}
-nav a:hover::after { width: 100%; }
-nav a.nav-act:hover     { color: var(–rose);   }
-nav a.nav-dir:hover     { color: var(–gold);   }
-nav a.nav-prod:hover    { color: var(–teal);   }
-nav a.nav-doc:hover     { color: var(–violet); }
-nav a.nav-coach:hover   { color: var(–green);  }
-
-/* ── HERO ── */
-.hero {
-min-height: 100vh;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-text-align: center;
-position: relative;
-padding: 120px 40px 60px;
-overflow: hidden;
-}
-.hero-bg {
-position: absolute; inset: 0;
-background:
-radial-gradient(ellipse 80% 60% at 50% 40%, rgba(201,168,76,0.08) 0%, transparent 70%),
-radial-gradient(ellipse 40% 40% at 18% 78%, rgba(155,107,201,0.06) 0%, transparent 60%),
-radial-gradient(ellipse 40% 40% at 82% 22%, rgba(76,184,201,0.06) 0%, transparent 60%),
-radial-gradient(ellipse 30% 30% at 50% 95%, rgba(201,84,108,0.05) 0%, transparent 60%);
-}
-.neural-bg {
-position: absolute; inset: 0;
-opacity: 0.4;
-}
-.hero-eyebrow {
-font-family: ‘DM Mono’, monospace;
-font-size: 0.65rem;
-letter-spacing: 0.32em;
-text-transform: uppercase;
-color: var(–gold);
-margin-bottom: 26px;
-animation: fadeUp 1s ease both;
-display: inline-flex;
-align-items: center;
-gap: 12px;
-position: relative;
-z-index: 2;
-}
-.hero-eyebrow::before, .hero-eyebrow::after {
-content: ‘’;
-width: 28px; height: 1px;
-background: var(–gold);
-opacity: 0.5;
-}
-.hero-name {
-font-family: ‘Playfair Display’, serif;
-font-size: clamp(3.5rem, 9vw, 8rem);
-font-weight: 900;
-line-height: 0.92;
-letter-spacing: -0.025em;
-color: var(–white);
-animation: fadeUp 1s 0.15s ease both;
-position: relative;
-z-index: 2;
-}
-.hero-name em {
-font-style: italic;
-color: var(–gold);
-font-weight: 400;
-background: linear-gradient(135deg, var(–gold) 0%, var(–gold-light) 50%, var(–gold) 100%);
--webkit-background-clip: text;
-background-clip: text;
--webkit-text-fill-color: transparent;
-}
-.hero-subtitle {
-margin-top: 32px;
-font-size: 1.15rem;
-font-weight: 300;
-letter-spacing: 0.02em;
-color: rgba(240,237,232,0.6);
-max-width: 520px;
-line-height: 1.7;
-animation: fadeUp 1s 0.3s ease both;
-position: relative;
-z-index: 2;
-}
-.hero-tags {
-margin-top: 40px;
-display: flex;
-flex-wrap: wrap;
-gap: 10px;
-justify-content: center;
-animation: fadeUp 1s 0.45s ease both;
-position: relative;
-z-index: 2;
-}
-.tag {
-font-family: ‘DM Mono’, monospace;
-font-size: 0.6rem;
-letter-spacing: 0.18em;
-text-transform: uppercase;
-padding: 6px 14px;
-border: 1px solid;
-border-radius: 2px;
-transition: all 0.3s;
-background: rgba(0,0,0,0.2);
-cursor: pointer;
-text-decoration: none;
-}
-.tag:hover { transform: translateY(-2px); }
-.tag-gold  { border-color: var(–gold);   color: var(–gold);   }
-.tag-gold:hover  { background: rgba(201,168,76,0.12); }
-.tag-rose  { border-color: var(–rose);   color: var(–rose);   }
-.tag-rose:hover  { background: rgba(201,84,108,0.12); }
-.tag-teal  { border-color: var(–teal);   color: var(–teal);   }
-.tag-teal:hover  { background: rgba(76,184,201,0.12); }
-.tag-violet{ border-color: var(–violet); color: var(–violet); }
-.tag-violet:hover{ background: rgba(155,107,201,0.12); }
-.tag-green { border-color: var(–green);  color: var(–green);  }
-.tag-green:hover { background: rgba(107,201,155,0.12); }
-.tag-orange{ border-color: var(–orange); color: var(–orange); }
-.tag-orange:hover{ background: rgba(201,123,76,0.12); }
-
-.scroll-hint {
-position: absolute;
-bottom: 36px;
-left: 50%;
-transform: translateX(-50%);
-display: flex;
-flex-direction: column;
-align-items: center;
-gap: 8px;
-font-family: ‘DM Mono’, monospace;
-font-size: 0.55rem;
-letter-spacing: 0.25em;
-text-transform: uppercase;
-color: var(–muted);
-animation: fadeUp 1s 0.7s ease both;
-z-index: 2;
-}
-.scroll-line {
-width: 1px;
-height: 44px;
-background: linear-gradient(to bottom, var(–gold), transparent);
-animation: lineGrow 1.5s 1s ease both, pulse 2s 2.5s ease-in-out infinite;
-}
-
-/* ── NEURAL MAP ── */
-.map-section {
-position: relative;
-padding: 90px 0 110px;
-overflow: hidden;
-}
-.section-label {
-font-family: ‘DM Mono’, monospace;
-font-size: 0.62rem;
-letter-spacing: 0.32em;
-text-transform: uppercase;
-color: var(–gold);
-text-align: center;
-margin-bottom: 50px;
-display: flex;
-align-items: center;
-justify-content: center;
-gap: 16px;
-}
-.section-label::before, .section-label::after {
-content: ‘’;
-width: 36px; height: 1px;
-background: linear-gradient(to right, transparent, var(–gold), transparent);
-}
-
-.neural-network {
-position: relative;
-width: 100%;
-max-width: 1100px;
-margin: 0 auto;
-height: 520px;
-padding: 0 20px;
-}
-
-.neural-svg {
-position: absolute;
-inset: 0;
-width: 100%;
-height: 100%;
-pointer-events: none;
-z-index: 1;
-}
-.neural-svg .conn {
-stroke: rgba(201,168,76,0.18);
-stroke-width: 1;
-fill: none;
-stroke-dasharray: 4 6;
-animation: dashFlow 30s linear infinite;
-}
-.neural-svg .conn-active {
-stroke-width: 1.5;
-opacity: 0.85;
-stroke-dasharray: none;
-animation: connPulse 2.4s ease-in-out infinite;
-}
-
-/* nodes positioned with grid coordinates */
-.nn-node {
-position: absolute;
-transform: translate(-50%, -50%);
-cursor: pointer;
-z-index: 3;
-text-align: center;
-text-decoration: none;
-color: inherit;
-}
-.nn-node-circle {
-width: 110px; height: 110px;
-border-radius: 50%;
-display: flex;
-align-items: center;
-justify-content: center;
-flex-direction: column;
-position: relative;
-transition: transform 0.5s cubic-bezier(0.34,1.56,0.64,1);
-backdrop-filter: blur(4px);
-}
-.nn-node-circle::before {
-content: ‘’;
-position: absolute; inset: -6px;
-border-radius: 50%;
-border: 1px solid currentColor;
-opacity: 0.3;
-animation: rotateSlow 14s linear infinite;
-}
-.nn-node-circle::after {
-content: ‘’;
-position: absolute; inset: -16px;
-border-radius: 50%;
-border: 1px dashed currentColor;
-opacity: 0.12;
-animation: rotateSlow 24s linear infinite reverse;
-}
-.nn-node:hover .nn-node-circle { transform: scale(1.12); }
-.nn-node:hover .nn-node-circle::before { opacity: 0.95; }
-.nn-node:hover .nn-node-circle::after { opacity: 0.4; }
-
-.nn-pulse {
-position: absolute; inset: -22px;
-border-radius: 50%;
-background: radial-gradient(circle, currentColor, transparent 70%);
-opacity: 0;
-animation: pulseRing 3.4s ease-in-out infinite;
-pointer-events: none;
-}
-
-.nn-icon {
-font-size: 1.9rem;
-margin-bottom: 4px;
-filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
-}
-.nn-label {
-font-family: ‘DM Mono’, monospace;
-font-size: 0.52rem;
-letter-spacing: 0.22em;
-text-transform: uppercase;
-line-height: 1.3;
-text-align: center;
-padding: 0 4px;
-color: currentColor;
-}
-.nn-sublabel {
-margin-top: 12px;
-font-family: ‘Cormorant Garamond’, serif;
-font-style: italic;
-font-size: 0.85rem;
-color: rgba(240,237,232,0.5);
-letter-spacing: 0.04em;
-transition: color 0.3s;
-}
-.nn-node:hover .nn-sublabel { color: var(–white); }
-
-/* node theme classes — color is inherited via currentColor */
-.nn-actriz    { color: var(–rose);   }
-.nn-directora { color: var(–gold);   }
-.nn-productora{ color: var(–teal);   }
-.nn-documental{ color: var(–violet); }
-.nn-coach     { color: var(–green);  }
-.nn-center    { color: var(–gold-light); }
-
-.nn-actriz    .nn-node-circle { background: radial-gradient(circle at 35% 35%, rgba(201,84,108,0.32), rgba(201,84,108,0.04)); border: 1.5px solid var(–rose); }
-.nn-directora .nn-node-circle { background: radial-gradient(circle at 35% 35%, rgba(201,168,76,0.32), rgba(201,168,76,0.04)); border: 1.5px solid var(–gold); }
-.nn-productora .nn-node-circle{ background: radial-gradient(circle at 35% 35%, rgba(76,184,201,0.32), rgba(76,184,201,0.04)); border: 1.5px solid var(–teal); }
-.nn-documental .nn-node-circle{ background: radial-gradient(circle at 35% 35%, rgba(155,107,201,0.32), rgba(155,107,201,0.04)); border: 1.5px solid var(–violet); }
-.nn-coach     .nn-node-circle { background: radial-gradient(circle at 35% 35%, rgba(107,201,155,0.32), rgba(107,201,155,0.04)); border: 1.5px solid var(–green); }
-
-/* central node */
-.nn-center .nn-node-circle {
-width: 130px; height: 130px;
-background: radial-gradient(circle at 35% 35%, rgba(232,201,122,0.28), rgba(201,168,76,0.06));
-border: 1.5px solid var(–gold-light);
-box-shadow: 0 0 60px rgba(201,168,76,0.25), inset 0 0 30px rgba(201,168,76,0.1);
-}
-.nn-center .nn-icon { font-size: 0.7rem; letter-spacing: 0.25em; font-family: ‘Playfair Display’, serif; font-style: italic; font-weight: 400; color: var(–gold-light); }
-.nn-center .nn-label-name {
-font-family: ‘Playfair Display’, serif;
-font-style: italic;
-font-size: 1rem;
-color: var(–gold-light);
-line-height: 1.1;
-text-align: center;
-margin-top: 2px;
-}
-
-/* ── SECTION PANELS ── */
-.section-panel {
-padding: 90px 0 80px;
-position: relative;
-}
-.section-panel::before {
-content: ‘’;
-position: absolute;
-left: 50%; transform: translateX(-50%);
-top: 0;
-width: 80%; max-width: 1200px;
-height: 1px;
-background: linear-gradient(to right, transparent, var(–line), transparent);
-}
-.section-inner {
-max-width: 1400px;
-margin: 0 auto;
-padding: 0 40px;
-}
-.section-header {
-display: flex;
-align-items: baseline;
-gap: 24px;
-margin-bottom: 12px;
-}
-.section-title {
-font-family: ‘Playfair Display’, serif;
-font-size: clamp(2.2rem, 4.5vw, 3.6rem);
-font-weight: 700;
-line-height: 1;
-letter-spacing: -0.015em;
-}
-.section-title em {
-font-style: italic;
-font-weight: 400;
-}
-.section-num {
-font-family: ‘DM Mono’, monospace;
-font-size: 0.7rem;
-letter-spacing: 0.25em;
-color: var(–muted);
-}
-.section-intro {
-font-family: ‘Cormorant Garamond’, serif;
-font-style: italic;
-font-size: 1.15rem;
-color: rgba(240,237,232,0.55);
-max-width: 720px;
-line-height: 1.65;
-margin-bottom: 48px;
-}
-.section-subsection {
-font-family: ‘DM Mono’, monospace;
-font-size: 0.65rem;
-letter-spacing: 0.28em;
-text-transform: uppercase;
-margin: 44px 0 20px;
-display: flex;
-align-items: center;
-gap: 14px;
-}
-.section-subsection::before {
-content: ‘’;
-width: 10px; height: 1px;
-background: currentColor;
-flex-shrink: 0;
-}
-.section-subsection::after {
-content: ‘’;
-flex: 1;
-height: 1px;
-background: var(–line);
-}
-
-/* color accents per section */
-.act  .section-title em { color: var(–rose);   }
-.act  .section-subsection { color: var(–rose); }
-.dir  .section-title em { color: var(–gold);   }
-.dir  .section-subsection { color: var(–gold); }
-.prod .section-title em { color: var(–teal);   }
-.prod .section-subsection { color: var(–teal); }
-.doc  .section-title em { color: var(–violet); }
-.doc  .section-subsection { color: var(–violet); }
-.coa  .section-title em { color: var(–green);  }
-.coa  .section-subsection { color: var(–green); }
-
-/* ── GRID OF CARDS ── */
-.cards-grid {
-display: grid;
-grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-gap: 18px;
-}
-.card {
-background: var(–node-bg);
-border: 1px solid rgba(255,255,255,0.06);
-border-radius: 4px;
-overflow: hidden;
-cursor: pointer;
-transition: border-color 0.4s, transform 0.4s, box-shadow 0.4s;
-position: relative;
-animation: cardIn 0.6s ease both;
-text-decoration: none;
-color: inherit;
-display: block;
-}
-.card:hover {
-transform: translateY(-5px);
-box-shadow: 0 24px 60px rgba(0,0,0,0.45);
-}
-.card-accent {
-height: 2px;
-width: 100%;
-transition: height 0.3s;
-}
-.card:hover .card-accent { height: 3px; }
-.card-thumb-wrap {
-position: relative;
-width: 100%;
-aspect-ratio: 16/10;
-overflow: hidden;
-background: rgba(255,255,255,0.02);
-}
-.card-thumb {
-width: 100%;
-height: 100%;
-object-fit: cover;
-display: block;
-transition: transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94), filter 0.5s;
-filter: brightness(0.85);
-}
-.card:hover .card-thumb {
-transform: scale(1.06);
-filter: brightness(1);
-}
-.card-thumb-fallback {
-position: absolute;
-inset: 0;
-display: flex;
-align-items: center;
-justify-content: center;
-font-size: 3rem;
-opacity: 0.3;
-z-index: 0;
-}
-.card-thumb-overlay {
-position: absolute;
-inset: 0;
-background: linear-gradient(180deg, transparent 40%, rgba(10,10,15,0.7) 100%);
-pointer-events: none;
-z-index: 1;
-}
-.card-play-badge {
-position: absolute;
-top: 12px; right: 12px;
-width: 36px; height: 36px;
-border-radius: 50%;
-background: rgba(0,0,0,0.55);
-backdrop-filter: blur(4px);
-border: 1px solid rgba(255,255,255,0.2);
-display: flex;
-align-items: center;
-justify-content: center;
-font-size: 0.7rem;
-color: var(–white);
-z-index: 2;
-transition: all 0.3s;
-}
-.card:hover .card-play-badge {
-background: rgba(255,255,255,0.95);
-color: #000;
-transform: scale(1.1);
-}
-.card-type-badge {
-position: absolute;
-top: 12px; left: 12px;
-font-family: ‘DM Mono’, monospace;
-font-size: 0.5rem;
-letter-spacing: 0.18em;
-text-transform: uppercase;
-padding: 4px 10px;
-background: rgba(0,0,0,0.6);
-backdrop-filter: blur(4px);
-border: 1px solid rgba(255,255,255,0.12);
-border-radius: 2px;
-z-index: 2;
-}
-.card-body {
-padding: 18px 18px 18px;
-}
-.card-title {
-font-family: ‘Playfair Display’, serif;
-font-size: 1.05rem;
-font-weight: 600;
-line-height: 1.3;
-margin-bottom: 6px;
-color: var(–white);
-}
-.card-meta {
-font-family: ‘DM Mono’, monospace;
-font-size: 0.55rem;
-letter-spacing: 0.18em;
-text-transform: uppercase;
-color: var(–muted);
-margin-bottom: 10px;
-}
-.card-desc {
-font-size: 0.85rem;
-line-height: 1.55;
-color: rgba(240,237,232,0.55);
-}
-.card-arrow {
-position: absolute;
-bottom: 16px;
-right: 16px;
-width: 30px; height: 30px;
-border-radius: 50%;
-border: 1px solid rgba(255,255,255,0.12);
-display: flex; align-items: center; justify-content: center;
-font-size: 0.75rem;
-color: var(–muted);
-transition: all 0.3s;
-background: transparent;
-}
-.card:hover .card-arrow {
-border-color: rgba(255,255,255,0.4);
-color: var(–white);
-transform: rotate(-45deg);
-}
-
-/* Press cards (notes/articles) */
-.press-grid {
-display: grid;
-grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-gap: 14px;
-}
-.press-card {
-background: var(–node-bg);
-border: 1px solid rgba(255,255,255,0.06);
-border-radius: 4px;
-overflow: hidden;
-cursor: pointer;
-transition: all 0.4s;
-text-decoration: none;
-color: inherit;
-display: block;
-position: relative;
-animation: cardIn 0.6s ease both;
-}
-.press-card:hover {
-transform: translateY(-4px);
-border-color: rgba(255,255,255,0.18);
-box-shadow: 0 16px 36px rgba(0,0,0,0.32);
-}
-.press-card-thumb-wrap {
-position: relative;
-height: 150px;
-overflow: hidden;
-background: rgba(255,255,255,0.02);
-}
-.press-card-thumb {
-width: 100%;
-height: 100%;
-object-fit: cover;
-display: block;
-transition: transform 0.6s ease;
-filter: brightness(0.9) sepia(0.1);
-}
-.press-card:hover .press-card-thumb { transform: scale(1.05); filter: brightness(1) sepia(0); }
-.press-card-thumb-fallback {
-position: absolute;
-inset: 0;
-display: flex;
-align-items: center;
-justify-content: center;
-font-size: 2.4rem;
-opacity: 0.4;
-}
-.press-card-overlay {
-position: absolute; inset: 0;
-background: linear-gradient(180deg, transparent 40%, rgba(10,10,15,0.85) 100%);
-pointer-events: none;
-}
-.press-card-tag {
-position: absolute;
-top: 10px; left: 10px;
-font-family: ‘DM Mono’, monospace;
-font-size: 0.48rem;
-letter-spacing: 0.18em;
-text-transform: uppercase;
-padding: 3px 8px;
-background: rgba(0,0,0,0.55);
-backdrop-filter: blur(4px);
-border: 1px solid rgba(255,255,255,0.12);
-border-radius: 2px;
-color: var(–white);
-}
-.press-card-body {
-padding: 13px 14px 14px;
-}
-.press-card-title {
-font-family: ‘Playfair Display’, serif;
-font-size: 0.85rem;
-line-height: 1.3;
-color: var(–white);
-margin-bottom: 4px;
-}
-.press-card-source {
-font-family: ‘DM Mono’, monospace;
-font-size: 0.5rem;
-letter-spacing: 0.18em;
-color: var(–muted);
-text-transform: uppercase;
-}
-
-/* Geo labels */
-.geo-label {
-display: inline-flex;
-align-items: center;
-gap: 8px;
-font-family: ‘DM Mono’, monospace;
-font-size: 0.6rem;
-letter-spacing: 0.22em;
-text-transform: uppercase;
-padding: 6px 14px 6px 12px;
-border-radius: 2px;
-margin-bottom: 18px;
-margin-top: 8px;
-}
-.geo-ar { background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.25); color: var(–gold); }
-.geo-py { background: rgba(76,184,201,0.08); border: 1px solid rgba(76,184,201,0.25); color: var(–teal); }
-
-/* note */
-.note {
-font-family: ‘DM Mono’, monospace;
-font-size: 0.6rem;
-color: var(–muted);
-margin-bottom: 20px;
-letter-spacing: 0.08em;
-line-height: 1.6;
-padding: 10px 14px;
-border-left: 2px solid var(–green);
-background: rgba(107,201,155,0.04);
-}
-.note em { color: var(–green); font-style: normal; font-weight: 500; }
-
-/* ── STATS BAR ── */
-.stats-bar {
-background: linear-gradient(180deg, rgba(201,168,76,0.04) 0%, transparent 100%);
-border-top: 1px solid rgba(201,168,76,0.12);
-border-bottom: 1px solid rgba(201,168,76,0.12);
-padding: 50px 40px;
-display: flex;
-justify-content: center;
-gap: 70px;
-flex-wrap: wrap;
-position: relative;
-}
-.stats-bar::before, .stats-bar::after {
-content: ‘’; position: absolute;
-width: 60px; height: 60px;
-border: 1px solid rgba(201,168,76,0.15);
-}
-.stats-bar::before { top: 12px; left: 12px; border-right: none; border-bottom: none; }
-.stats-bar::after  { bottom: 12px; right: 12px; border-left: none; border-top: none; }
-.stat-item {
-text-align: center;
-position: relative;
-}
-.stat-num {
-font-family: ‘Playfair Display’, serif;
-font-size: 3rem;
-font-weight: 900;
-color: var(–gold);
-line-height: 1;
-letter-spacing: -0.02em;
-background: linear-gradient(135deg, var(–gold-light) 0%, var(–gold) 100%);
--webkit-background-clip: text;
-background-clip: text;
--webkit-text-fill-color: transparent;
-}
-.stat-label {
-font-family: ‘DM Mono’, monospace;
-font-size: 0.55rem;
-letter-spacing: 0.22em;
-text-transform: uppercase;
-color: var(–muted);
-margin-top: 8px;
-}
-
-/* ── LIGHTBOX ── */
-.lightbox {
-position: fixed; inset: 0;
-z-index: 9999;
-background: rgba(5,5,10,0.96);
-display: none;
-align-items: center;
-justify-content: center;
-padding: 20px;
-backdrop-filter: blur(14px);
--webkit-backdrop-filter: blur(14px);
-}
-.lightbox.open { display: flex; }
-.lightbox-inner {
-max-width: 980px;
-width: 100%;
-max-height: 92vh;
-overflow-y: auto;
-background: var(–surface);
-border: 1px solid rgba(255,255,255,0.08);
-border-radius: 6px;
-position: relative;
-animation: lbIn 0.4s cubic-bezier(0.34,1.56,0.64,1) both;
-box-shadow: 0 30px 80px rgba(0,0,0,0.6);
-}
-.lightbox-media-wrap {
-width: 100%;
-background: #000;
-position: relative;
-}
-.lightbox-media-wrap iframe,
-.lightbox-media-wrap video,
-.lightbox-media-wrap img {
-width: 100%;
-max-height: 60vh;
-display: block;
-object-fit: contain;
-border: 0;
-}
-.lightbox-body { padding: 28px 34px 32px; }
-.lightbox-meta {
-font-family: ‘DM Mono’, monospace;
-font-size: 0.6rem;
-letter-spacing: 0.22em;
-text-transform: uppercase;
-color: var(–gold);
-margin-bottom: 14px;
-}
-.lightbox-title {
-font-family: ‘Playfair Display’, serif;
-font-size: 1.9rem;
-font-weight: 700;
-margin-bottom: 14px;
-color: var(–white);
-line-height: 1.15;
-}
-.lightbox-desc {
-font-size: 1.05rem;
-line-height: 1.75;
-color: rgba(240,237,232,0.72);
-}
-.lightbox-close {
-position: absolute;
-top: 14px; right: 14px;
-width: 38px; height: 38px;
-border-radius: 50%;
-border: 1px solid rgba(255,255,255,0.18);
-background: rgba(0,0,0,0.5);
-backdrop-filter: blur(6px);
-color: var(–white);
-font-size: 1rem;
-cursor: pointer;
-display: flex; align-items: center; justify-content: center;
-transition: all 0.3s;
-z-index: 10;
-}
-.lightbox-close:hover {
-background: rgba(255,255,255,0.15);
-border-color: rgba(255,255,255,0.5);
-transform: rotate(90deg);
-}
-.lightbox-link {
-display: inline-flex;
-align-items: center;
-gap: 8px;
-margin-top: 20px;
-font-family: ‘DM Mono’, monospace;
-font-size: 0.6rem;
-letter-spacing: 0.18em;
-text-transform: uppercase;
-color: var(–gold);
-text-decoration: none;
-border: 1px solid rgba(201,168,76,0.35);
-padding: 9px 18px;
-border-radius: 2px;
-transition: all 0.3s;
-}
-.lightbox-link:hover {
-background: rgba(201,168,76,0.12);
-border-color: var(–gold);
-transform: translateX(3px);
-}
-
-/* ── FOOTER ── */
-footer {
-padding: 80px 40px 50px;
-text-align: center;
-border-top: 1px solid rgba(255,255,255,0.05);
-position: relative;
-background: linear-gradient(180deg, transparent 0%, rgba(201,168,76,0.03) 100%);
-}
-.footer-name {
-font-family: ‘Playfair Display’, serif;
-font-size: 2.2rem;
-font-weight: 400;
-font-style: italic;
-color: var(–gold);
-margin-bottom: 18px;
-letter-spacing: -0.01em;
-background: linear-gradient(135deg, var(–gold-light) 0%, var(–gold) 100%);
--webkit-background-clip: text;
-background-clip: text;
--webkit-text-fill-color: transparent;
-}
-.footer-roles {
-font-family: ‘DM Mono’, monospace;
-font-size: 0.55rem;
-letter-spacing: 0.25em;
-text-transform: uppercase;
-color: var(–muted);
-margin-bottom: 28px;
-}
-.footer-contact {
-font-family: ‘DM Mono’, monospace;
-font-size: 0.65rem;
-letter-spacing: 0.15em;
-color: rgba(240,237,232,0.55);
-display: flex;
-flex-wrap: wrap;
-justify-content: center;
-gap: 14px 28px;
-align-items: center;
-margin-bottom: 36px;
-}
-.footer-contact a {
-color: rgba(240,237,232,0.7);
-text-decoration: none;
-transition: color 0.3s;
-border-bottom: 1px solid transparent;
-padding-bottom: 1px;
-}
-.footer-contact a:hover {
-color: var(–gold);
-border-bottom-color: var(–gold);
-}
-.footer-divider {
-color: var(–muted);
-opacity: 0.4;
-}
-.footer-credits {
-font-family: ‘DM Mono’, monospace;
-font-size: 0.5rem;
-letter-spacing: 0.22em;
-color: rgba(90,90,114,0.5);
-text-transform: uppercase;
-}
-
-/* ── ANIMATIONS ── */
-@keyframes fadeUp {
-from { opacity: 0; transform: translateY(30px); }
-to   { opacity: 1; transform: translateY(0); }
-}
-@keyframes lineGrow {
-from { transform: scaleY(0); }
-to   { transform: scaleY(1); }
-}
-@keyframes pulse {
-0%, 100% { opacity: 0.3; }
-50% { opacity: 1; }
-}
-@keyframes pulseDot {
-0%, 100% { box-shadow: 0 0 8px var(–gold); transform: scale(1); }
-50% { box-shadow: 0 0 18px var(–gold); transform: scale(1.15); }
-}
-@keyframes rotateSlow {
-from { transform: rotate(0deg); }
-to   { transform: rotate(360deg); }
-}
-@keyframes pulseRing {
-0% { transform: scale(0.85); opacity: 0; }
-50% { opacity: 0.5; }
-100% { transform: scale(1.7); opacity: 0; }
-}
-@keyframes cardIn {
-from { opacity: 0; transform: translateY(20px); }
-to   { opacity: 1; transform: translateY(0); }
-}
-@keyframes lbIn {
-from { opacity: 0; transform: scale(0.94) translateY(20px); }
-to   { opacity: 1; transform: scale(1) translateY(0); }
-}
-@keyframes floatNode {
-0%, 100% { transform: translate(-50%, -50%) translateY(0); }
-50% { transform: translate(-50%, -50%) translateY(-10px); }
-}
-@keyframes dashFlow {
-to { stroke-dashoffset: -300; }
-}
-@keyframes connPulse {
-0%, 100% { opacity: 0.4; }
-50% { opacity: 0.95; }
-}
-
-.accent-rose   { background: var(–rose); }
-.accent-gold   { background: var(–gold); }
-.accent-teal   { background: var(–teal); }
-.accent-violet { background: var(–violet); }
-.accent-green  { background: var(–green); }
-.accent-orange { background: var(–orange); }
-
-/* hover color per section */
-.act  .card:hover  { border-color: rgba(201,84,108,0.45);   box-shadow: 0 24px 60px rgba(201,84,108,0.12); }
-.dir  .card:hover  { border-color: rgba(201,168,76,0.45);   box-shadow: 0 24px 60px rgba(201,168,76,0.12); }
-.prod .card:hover  { border-color: rgba(76,184,201,0.45);   box-shadow: 0 24px 60px rgba(76,184,201,0.12); }
-.doc  .card:hover  { border-color: rgba(155,107,201,0.45);  box-shadow: 0 24px 60px rgba(155,107,201,0.12); }
-.coa  .card:hover  { border-color: rgba(107,201,155,0.45);  box-shadow: 0 24px 60px rgba(107,201,155,0.12); }
-
-.act  .press-card:hover { border-color: rgba(201,84,108,0.35); }
-.dir  .press-card:hover { border-color: rgba(201,168,76,0.35); }
-.prod .press-card:hover { border-color: rgba(76,184,201,0.35); }
-.doc  .press-card:hover { border-color: rgba(155,107,201,0.35); }
-.coa  .press-card:hover { border-color: rgba(107,201,155,0.35); }
-
-/* responsive */
-@media (max-width: 900px) {
-.neural-network { height: 720px; }
-}
-@media (max-width: 768px) {
-header { padding: 14px 20px; }
-nav { display: none; }
-.section-inner { padding: 0 20px; }
-.stats-bar { padding: 32px 20px; gap: 36px; }
-.stat-num { font-size: 2.4rem; }
-.neural-network { height: 760px; max-width: 100%; padding: 0 10px; }
-.nn-node-circle { width: 88px; height: 88px; }
-.nn-center .nn-node-circle { width: 105px; height: 105px; }
-.nn-icon { font-size: 1.5rem; }
-.nn-label { font-size: 0.48rem; }
-.footer-contact { font-size: 0.6rem; }
-}
+:root{--bg:#0a0a0f;--surface:#111118;--node-bg:rgba(17,17,24,.95);--gold:#c9a84c;--rose:#c9546c;--teal:#4cb8c9;--violet:#9b6bc9;--green:#6bc99b;--orange:#c97b4c;--white:#f0ede8;--muted:#5a5a72;--line:rgba(201,168,76,.2)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--white);font-family:'Cormorant Garamond',Georgia,serif;overflow-x:hidden;cursor:crosshair}
+/* HEADER */
+header{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 36px;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(to bottom,rgba(10,10,15,.98),transparent);border-bottom:1px solid rgba(201,168,76,.1)}
+.logo{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;letter-spacing:.12em;color:var(--gold);text-transform:uppercase;cursor:pointer}
+.logo span{color:var(--white);font-weight:300}
+nav{display:flex;gap:5px;flex-wrap:wrap}
+nav a{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:5px 11px;border:1px solid transparent;border-radius:2px;transition:all .22s;cursor:pointer;user-select:none}
+nav a:hover{border-color:rgba(255,255,255,.15);color:var(--white)}
+nav a[data-s="actriz"].on{border-color:var(--rose);color:var(--rose);background:rgba(201,84,108,.06)}
+nav a[data-s="directora"].on{border-color:var(--gold);color:var(--gold);background:rgba(201,168,76,.06)}
+nav a[data-s="productora"].on{border-color:var(--teal);color:var(--teal);background:rgba(76,184,201,.06)}
+nav a[data-s="documental"].on{border-color:var(--violet);color:var(--violet);background:rgba(155,107,201,.06)}
+nav a[data-s="coach"].on{border-color:var(--green);color:var(--green);background:rgba(107,201,155,.06)}
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 40px 60px;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 40%,rgba(201,168,76,.06) 0%,transparent 70%),radial-gradient(ellipse 40% 40% at 20% 80%,rgba(155,107,201,.04) 0%,transparent 60%)}
+.nsvg{position:absolute;inset:0;width:100%;height:100%;opacity:.28;pointer-events:none}
+.eyebrow{font-family:'DM Mono',monospace;font-size:.63rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:22px;animation:fu 1s ease both}
+.hname{font-family:'Playfair Display',serif;font-size:clamp(3.2rem,8vw,7.5rem);font-weight:900;line-height:.93;letter-spacing:-.02em;animation:fu 1s .14s ease both}
+.hname em{font-style:italic;color:var(--gold)}
+.hsub{margin-top:26px;font-size:1rem;font-weight:300;color:rgba(240,237,232,.5);max-width:440px;line-height:1.72;animation:fu 1s .28s ease both}
+.htags{margin-top:32px;display:flex;flex-wrap:wrap;gap:9px;justify-content:center;animation:fu 1s .42s ease both}
+.htag{font-family:'DM Mono',monospace;font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;padding:5px 13px;border:1px solid;border-radius:2px;cursor:pointer;transition:all .22s}
+.htag:hover{transform:translateY(-2px)}
+.tr{border-color:var(--rose);color:var(--rose)}.tr:hover{background:rgba(201,84,108,.1)}
+.tg{border-color:var(--gold);color:var(--gold)}.tg:hover{background:rgba(201,168,76,.1)}
+.tt{border-color:var(--teal);color:var(--teal)}.tt:hover{background:rgba(76,184,201,.1)}
+.tv{border-color:var(--violet);color:var(--violet)}.tv:hover{background:rgba(155,107,201,.1)}
+.tn{border-color:var(--green);color:var(--green)}.tn:hover{background:rgba(107,201,155,.1)}
+.to{border-color:var(--orange);color:var(--orange)}.to:hover{background:rgba(201,123,76,.1)}
+.hint{position:absolute;bottom:32px;display:flex;flex-direction:column;align-items:center;gap:7px;font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);animation:fu 1s .7s ease both}
+.hline{width:1px;height:38px;background:linear-gradient(to bottom,var(--gold),transparent)}
+/* STATS */
+.stats{background:rgba(201,168,76,.03);border-top:1px solid rgba(201,168,76,.1);border-bottom:1px solid rgba(201,168,76,.1);padding:34px 40px;display:flex;justify-content:center;gap:56px;flex-wrap:wrap}
+.sn{text-align:center}.sv{font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:900;color:var(--gold);line-height:1}
+.sl{font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:5px}
+/* NODE MAP */
+.nmap{padding:64px 0;text-align:center}
+.nml{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:46px}
+.nrow{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;padding:0 36px}
+.hub{display:flex;flex-direction:column;align-items:center;gap:10px;cursor:pointer;text-decoration:none;border:none;background:transparent}
+.hcirc{width:80px;height:80px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-direction:column;position:relative;transition:transform .4s cubic-bezier(.34,1.56,.64,1)}
+.hcirc::before{content:'';position:absolute;inset:-4px;border-radius:50%;border:1px solid;opacity:.32;animation:spin 14s linear infinite}
+.hcirc::after{content:'';position:absolute;inset:-11px;border-radius:50%;border:1px dashed;opacity:.11;animation:spin 22s linear infinite reverse}
+.hub:hover .hcirc{transform:scale(1.13)}.hub:hover .hcirc::before{opacity:.8}
+.hicn{font-size:1.4rem;margin-bottom:1px}
+.htxt{font-family:'DM Mono',monospace;font-size:.45rem;letter-spacing:.17em;text-transform:uppercase;line-height:1.3;text-align:center;padding:0 5px}
+.hr{background:radial-gradient(circle at 40% 40%,rgba(201,84,108,.26),rgba(201,84,108,.03));border:1.5px solid var(--rose)}.hr::before,.hr::after{border-color:var(--rose)}.hr .htxt{color:var(--rose)}
+.hg{background:radial-gradient(circle at 40% 40%,rgba(201,168,76,.26),rgba(201,168,76,.03));border:1.5px solid var(--gold)}.hg::before,.hg::after{border-color:var(--gold)}.hg .htxt{color:var(--gold)}
+.ht{background:radial-gradient(circle at 40% 40%,rgba(76,184,201,.26),rgba(76,184,201,.03));border:1.5px solid var(--teal)}.ht::before,.ht::after{border-color:var(--teal)}.ht .htxt{color:var(--teal)}
+.hv{background:radial-gradient(circle at 40% 40%,rgba(155,107,201,.26),rgba(155,107,201,.03));border:1.5px solid var(--violet)}.hv::before,.hv::after{border-color:var(--violet)}.hv .htxt{color:var(--violet)}
+.hk{background:radial-gradient(circle at 40% 40%,rgba(107,201,155,.26),rgba(107,201,155,.03));border:1.5px solid var(--green)}.hk::before,.hk::after{border-color:var(--green)}.hk .htxt{color:var(--green)}
+/* SECTIONS */
+.sec{padding:76px 0;position:relative}
+.sec::before{content:'';position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(to right,transparent,var(--line),transparent)}
+.si{max-width:1380px;margin:0 auto;padding:0 36px}
+.sh{display:flex;align-items:baseline;gap:16px;margin-bottom:40px}
+.snum{font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.2em;color:var(--muted)}
+.stit{font-family:'Playfair Display',serif;font-size:clamp(1.7rem,3.2vw,2.8rem);font-weight:700;line-height:1}
+.sub{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;margin:34px 0 16px;display:flex;align-items:center;gap:11px}
+.sub::after{content:'';flex:1;height:1px;background:var(--line)}
+.sa .stit,.sa .sub{color:var(--rose)}
+.sd .stit,.sd .sub{color:var(--gold)}
+.sp .stit,.sp .sub{color:var(--teal)}
+.sv .stit,.sv .sub{color:var(--violet)}
+.sk .stit,.sk .sub{color:var(--green)}
+/* GEO */
+.geo{display:inline-flex;align-items:center;gap:5px;font-family:'DM Mono',monospace;font-size:.54rem;letter-spacing:.15em;text-transform:uppercase;padding:4px 10px;border-radius:2px;margin-bottom:13px;margin-top:6px}
+.gar{background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.2);color:var(--gold)}
+.gpy{background:rgba(76,184,201,.07);border:1px solid rgba(76,184,201,.2);color:var(--teal)}
+/* GRID */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(224px,1fr));gap:13px}
+/* CARD */
+.card{background:var(--node-bg);border:1px solid rgba(255,255,255,.06);border-radius:4px;overflow:hidden;cursor:pointer;transition:border-color .28s,transform .28s,box-shadow .28s;position:relative;animation:ci .5s ease both}
+.card:hover{transform:translateY(-4px)}
+.sa .card:hover{border-color:rgba(201,84,108,.38);box-shadow:0 16px 42px rgba(201,84,108,.08)}
+.sd .card:hover{border-color:rgba(201,168,76,.38);box-shadow:0 16px 42px rgba(201,168,76,.08)}
+.sp .card:hover{border-color:rgba(76,184,201,.38);box-shadow:0 16px 42px rgba(76,184,201,.08)}
+.sv .card:hover{border-color:rgba(155,107,201,.38);box-shadow:0 16px 42px rgba(155,107,201,.08)}
+.sk .card:hover{border-color:rgba(107,201,155,.38);box-shadow:0 16px 42px rgba(107,201,155,.08)}
+.cs{height:2px;width:100%}
+.cr{background:var(--rose)}.cg{background:var(--gold)}.ct{background:var(--teal)}.cv{background:var(--violet)}.ck{background:var(--green)}
+/* Card thumb – image */
+.cimg{width:100%;aspect-ratio:16/10;object-fit:cover;display:block;background:#000}
+/* Card thumb – video */
+.cvid{position:relative;width:100%;aspect-ratio:16/10;background:#000;overflow:hidden}
+.cvid img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.72);transition:filter .28s}
+.card:hover .cvid img{filter:brightness(.85)}
+.pbt{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:2rem;opacity:.7;transition:opacity .28s}
+.card:hover .pbt{opacity:1}
+.cph{width:100%;aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;font-size:2.6rem;opacity:.18}
+.cbody{padding:13px 15px 26px}
+.cmeta{font-family:'DM Mono',monospace;font-size:.5rem;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.ctit{font-family:'Playfair Display',serif;font-size:.92rem;font-weight:600;line-height:1.28;margin-bottom:4px}
+.cdesc{font-size:.76rem;line-height:1.5;color:rgba(240,237,232,.45)}
+.cex{position:absolute;bottom:10px;right:10px;width:25px;height:25px;border-radius:50%;border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-size:.6rem;color:var(--muted);transition:all .25s}
+.card:hover .cex{border-color:rgba(255,255,255,.32);color:var(--white)}
+/* PRESS */
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:11px}
+.pc{background:var(--node-bg);border:1px solid rgba(255,255,255,.06);border-radius:4px;overflow:hidden;cursor:pointer;transition:all .26s;animation:ci .5s ease both}
+.pc:hover{transform:translateY(-3px);border-color:rgba(255,255,255,.17);box-shadow:0 9px 26px rgba(0,0,0,.28)}
+.pcimg{width:100%;height:115px;object-fit:cover;display:block;background:#0d0d14}
+.pcph{width:100%;height:115px;display:flex;align-items:center;justify-content:center;font-size:2rem;opacity:.15}
+.pcb{padding:10px 12px}
+.pct{font-family:'Playfair Display',serif;font-size:.78rem;line-height:1.3;color:var(--white)}
+.pcs{font-family:'DM Mono',monospace;font-size:.46rem;letter-spacing:.13em;color:var(--muted);margin-top:3px}
+/* NOTE */
+.note{font-family:'DM Mono',monospace;font-size:.56rem;letter-spacing:.07em;color:var(--muted);padding:9px 13px;border-left:2px solid var(--green);background:rgba(107,201,155,.04);border-radius:0 3px 3px 0;margin-bottom:18px;line-height:1.6}
+.note em{color:var(--green);font-style:normal}
+/* LIGHTBOX */
+.lb{position:fixed;inset:0;z-index:9999;background:rgba(5,5,10,.97);display:none;align-items:center;justify-content:center;padding:18px;backdrop-filter:blur(14px)}
+.lb.open{display:flex}
+.lbi{max-width:980px;width:100%;max-height:90vh;overflow-y:auto;background:var(--surface);border:1px solid rgba(255,255,255,.08);border-radius:6px;position:relative;animation:lbi .3s cubic-bezier(.34,1.56,.64,1) both}
+.lbm{width:100%;height:54vh;border:none;display:block;background:#000}
+.lbb{padding:24px 28px}
+.lbtit{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;margin-bottom:5px}
+.lbmet{font-family:'DM Mono',monospace;font-size:.56rem;letter-spacing:.17em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.lbdesc{font-size:.9rem;line-height:1.75;color:rgba(240,237,232,.6)}
+.lbclose{position:absolute;top:13px;right:13px;width:32px;height:32px;border-radius:50%;border:1px solid rgba(255,255,255,.14);background:transparent;color:var(--white);font-size:.85rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .25s}
+.lbclose:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.38)}
+.lblink{display:inline-flex;align-items:center;gap:5px;margin-top:14px;font-family:'DM Mono',monospace;font-size:.55rem;letter-spacing:.13em;text-transform:uppercase;color:var(--gold);text-decoration:none;border:1px solid rgba(201,168,76,.28);padding:6px 14px;border-radius:2px;transition:all .25s}
+.lblink:hover{background:rgba(201,168,76,.08);border-color:var(--gold)}
+/* FOOTER */
+footer{padding:52px 36px;text-align:center;border-top:1px solid rgba(255,255,255,.05)}
+.fn{font-family:'Playfair Display',serif;font-size:1.1rem;font-style:italic;color:var(--gold);margin-bottom:7px}
+.fi{font-family:'DM Mono',monospace;font-size:.55rem;letter-spacing:.12em;color:var(--muted)}
+.fi a{color:var(--muted);text-decoration:none}.fi a:hover{color:var(--gold)}
+/* ANIM */
+@keyframes fu{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
+@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+@keyframes ci{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes lbi{from{opacity:0;transform:scale(.93) translateY(16px)}to{opacity:1;transform:scale(1) translateY(0)}}
+@keyframes fl{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@media(max-width:700px){header{padding:13px 16px}nav{gap:3px}.si{padding:0 16px}.nrow{padding:0 16px}.stats{padding:22px 16px;gap:24px}}
 </style>
-
 </head>
 <body>
 
-<!-- HEADER -->
-
-<header id="header">
-  <a href="#top" class="logo">Mariel <span>Rosciano</span></a>
+<header>
+  <div class="logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">Mariel <span>Rosciano</span></div>
   <nav>
-    <a href="#actriz" class="nav-act">Actriz</a>
-    <a href="#directora" class="nav-dir">Directora</a>
-    <a href="#productora" class="nav-prod">Productora</a>
-    <a href="#documental" class="nav-doc">Documental</a>
-    <a href="#coach" class="nav-coach">Coach</a>
+    <a data-s="actriz"     href="#actriz"     onclick="nav(this)">Actriz</a>
+    <a data-s="directora"  href="#directora"  onclick="nav(this)">Directora</a>
+    <a data-s="productora" href="#productora" onclick="nav(this)">Productora</a>
+    <a data-s="documental" href="#documental" onclick="nav(this)">Documentalista</a>
+    <a data-s="coach"      href="#coach"      onclick="nav(this)">Coach artística</a>
   </nav>
 </header>
 
 <!-- HERO -->
-
-<section class="hero" id="top">
+<section class="hero">
   <div class="hero-bg"></div>
-  <svg class="neural-bg" viewBox="0 0 1400 700" preserveAspectRatio="xMidYMid slice">
-    <defs>
-      <radialGradient id="dotGrad" cx="50%" cy="50%" r="50%">
-        <stop offset="0%" stop-color="rgba(201,168,76,0.6)"/>
-        <stop offset="100%" stop-color="rgba(201,168,76,0)"/>
-      </radialGradient>
-    </defs>
-    <g stroke="rgba(201,168,76,0.14)" stroke-width="0.7" fill="none">
-      <line x1="200" y1="100" x2="500" y2="300"/>
-      <line x1="500" y1="300" x2="900" y2="200"/>
-      <line x1="900" y1="200" x2="1200" y2="400"/>
-      <line x1="300" y1="500" x2="600" y2="350"/>
-      <line x1="600" y1="350" x2="800" y2="500"/>
-      <line x1="800" y1="500" x2="1100" y2="350"/>
-      <line x1="100" y1="300" x2="400" y2="150"/>
-      <line x1="1000" y1="100" x2="1300" y2="300"/>
-      <line x1="500" y1="300" x2="600" y2="350"/>
-      <line x1="900" y1="200" x2="800" y2="500"/>
+  <svg class="nsvg" viewBox="0 0 1400 700" preserveAspectRatio="xMidYMid slice">
+    <g stroke="rgba(201,168,76,0.13)" stroke-width=".8" fill="none">
+      <line x1="140" y1="110" x2="480" y2="300"/><line x1="480" y1="300" x2="860" y2="185"/>
+      <line x1="860" y1="185" x2="1210" y2="370"/><line x1="275" y1="510" x2="580" y2="355"/>
+      <line x1="580" y1="355" x2="810" y2="480"/><line x1="810" y1="480" x2="1120" y2="335"/>
+      <line x1="480" y1="300" x2="580" y2="355"/><line x1="860" y1="185" x2="810" y2="480"/>
     </g>
-    <g fill="rgba(201,168,76,0.18)">
-      <circle cx="200" cy="100" r="3"/>
-      <circle cx="500" cy="300" r="5"/>
-      <circle cx="900" cy="200" r="4"/>
-      <circle cx="1200" cy="400" r="3"/>
-      <circle cx="300" cy="500" r="2.5"/>
-      <circle cx="600" cy="350" r="6"/>
-      <circle cx="800" cy="500" r="3"/>
-      <circle cx="1100" cy="350" r="4"/>
-      <circle cx="100" cy="300" r="2.5"/>
-      <circle cx="1300" cy="300" r="3"/>
+    <g fill="rgba(201,168,76,0.2)">
+      <circle cx="140" cy="110" r="3"/><circle cx="480" cy="300" r="5.5"/><circle cx="860" cy="185" r="4.5"/>
+      <circle cx="1210" cy="370" r="3"/><circle cx="275" cy="510" r="2.5"/><circle cx="580" cy="355" r="6.5"/>
+      <circle cx="810" cy="480" r="3.5"/><circle cx="1120" cy="335" r="4.5"/>
     </g>
   </svg>
-
-  <div class="hero-eyebrow">Artista · Creadora · Buenos Aires</div>
-  <h1 class="hero-name">Mariel<br><em>Rosciano</em></h1>
-  <p class="hero-subtitle">Más de 20 años de trayectoria en cine, teatro, música y producción cultural. Actriz, directora, productora ejecutiva, documentalista y coach artística.</p>
-  <div class="hero-tags">
-    <a href="#actriz" class="tag tag-rose">Actriz</a>
-    <a href="#directora" class="tag tag-gold">Directora</a>
-    <a href="#productora" class="tag tag-teal">Productora</a>
-    <a href="#documental" class="tag tag-violet">Documentalista</a>
-    <a href="#coach" class="tag tag-green">Coach artística</a>
-    <span class="tag tag-orange">Guionista</span>
+  <div class="eyebrow">Artista · Creadora · Buenos Aires</div>
+  <h1 class="hname">Mariel<br><em>Rosciano</em></h1>
+  <p class="hsub">Más de 20 años de trayectoria en cine, teatro, música y producción cultural.</p>
+  <div class="htags">
+    <span class="htag tr" onclick="go('actriz')">Actriz</span>
+    <span class="htag tg" onclick="go('directora')">Directora</span>
+    <span class="htag tt" onclick="go('productora')">Productora</span>
+    <span class="htag tv" onclick="go('documental')">Documentalista</span>
+    <span class="htag tn" onclick="go('coach')">Coach artística</span>
+    <span class="htag to">Guionista</span>
   </div>
-  <div class="scroll-hint">
-    <div class="scroll-line"></div>
-    Explorar
-  </div>
+  <div class="hint"><div class="hline"></div>Explorar</div>
 </section>
 
 <!-- STATS -->
-
-<div class="stats-bar">
-  <div class="stat-item"><div class="stat-num">20+</div><div class="stat-label">Años de experiencia</div></div>
-  <div class="stat-item"><div class="stat-num">15+</div><div class="stat-label">Montajes teatrales</div></div>
-  <div class="stat-item"><div class="stat-num">7</div><div class="stat-label">Largometrajes</div></div>
-  <div class="stat-item"><div class="stat-num">3</div><div class="stat-label">Documentales</div></div>
-  <div class="stat-item"><div class="stat-num">10+</div><div class="stat-label">Países recorridos</div></div>
+<div class="stats">
+  <div class="sn"><div class="sv">20+</div><div class="sl">Años de experiencia</div></div>
+  <div class="sn"><div class="sv">15+</div><div class="sl">Montajes teatrales</div></div>
+  <div class="sn"><div class="sv">5</div><div class="sl">Largometrajes</div></div>
+  <div class="sn"><div class="sv">4</div><div class="sl">Documentales / Docuseries</div></div>
+  <div class="sn"><div class="sv">10+</div><div class="sl">Países recorridos</div></div>
 </div>
 
-<!-- NEURAL MAP — clickable network -->
-
-<section class="map-section">
-  <div class="section-label">Mapa de Disciplinas</div>
-  <div class="neural-network" id="neuralNet">
-
-```
-<svg class="neural-svg" viewBox="0 0 1100 520" preserveAspectRatio="none">
-  <!-- Connections from center to each node -->
-  <path class="conn conn-active" d="M 550 260 L 220 130" style="stroke: var(--rose);"/>
-  <path class="conn conn-active" d="M 550 260 L 880 130" style="stroke: var(--gold);"/>
-  <path class="conn conn-active" d="M 550 260 L 920 410" style="stroke: var(--teal);"/>
-  <path class="conn conn-active" d="M 550 260 L 180 410" style="stroke: var(--violet);"/>
-  <path class="conn conn-active" d="M 550 260 L 550 80" style="stroke: var(--green);"/>
-  <!-- Cross connections between nodes (subtle) -->
-  <path class="conn" d="M 220 130 L 880 130"/>
-  <path class="conn" d="M 880 130 L 920 410"/>
-  <path class="conn" d="M 920 410 L 180 410"/>
-  <path class="conn" d="M 180 410 L 220 130"/>
-  <path class="conn" d="M 550 80 L 220 130"/>
-  <path class="conn" d="M 550 80 L 880 130"/>
-  <path class="conn" d="M 220 130 L 180 410"/>
-  <path class="conn" d="M 880 130 L 920 410"/>
-</svg>
-
-<!-- Center node -->
-<a href="#top" class="nn-node nn-center" style="left: 50%; top: 50%;">
-  <div class="nn-node-circle">
-    <div class="nn-pulse"></div>
-    <div class="nn-icon">— M ·R —</div>
-    <div class="nn-label-name">Mariel<br>Rosciano</div>
-  </div>
-</a>
-
-<!-- Coach (top center) -->
-<a href="#coach" class="nn-node nn-coach" style="left: 50%; top: 15%;">
-  <div class="nn-node-circle">
-    <div class="nn-pulse"></div>
-    <div class="nn-icon">✦</div>
-    <div class="nn-label">Coach<br>artística</div>
-  </div>
-  <div class="nn-sublabel">Desarrollo de artistas</div>
-</a>
-
-<!-- Actriz (top-left) -->
-<a href="#actriz" class="nn-node nn-actriz" style="left: 20%; top: 25%;">
-  <div class="nn-node-circle">
-    <div class="nn-pulse"></div>
-    <div class="nn-icon">◐</div>
-    <div class="nn-label">Actriz</div>
-  </div>
-  <div class="nn-sublabel">Teatro · Cine · TV</div>
-</a>
-
-<!-- Directora (top-right) -->
-<a href="#directora" class="nn-node nn-directora" style="left: 80%; top: 25%;">
-  <div class="nn-node-circle">
-    <div class="nn-pulse"></div>
-    <div class="nn-icon">◢</div>
-    <div class="nn-label">Directora</div>
-  </div>
-  <div class="nn-sublabel">Argentina · Paraguay</div>
-</a>
-
-<!-- Documentalista (bottom-left) -->
-<a href="#documental" class="nn-node nn-documental" style="left: 16%; top: 79%;">
-  <div class="nn-node-circle">
-    <div class="nn-pulse"></div>
-    <div class="nn-icon">◭</div>
-    <div class="nn-label">Documental</div>
-  </div>
-  <div class="nn-sublabel">Cine social · Música</div>
-</a>
-
-<!-- Productora (bottom-right) -->
-<a href="#productora" class="nn-node nn-productora" style="left: 84%; top: 79%;">
-  <div class="nn-node-circle">
-    <div class="nn-pulse"></div>
-    <div class="nn-icon">◈</div>
-    <div class="nn-label">Productora</div>
-  </div>
-  <div class="nn-sublabel">Ejecutiva · Festival</div>
-</a>
-```
-
+<!-- NODE MAP -->
+<section class="nmap">
+  <div class="nml">— Mapa de disciplinas —</div>
+  <div class="nrow">
+    <button class="hub" onclick="go('actriz')">
+      <div class="hcirc hr" style="animation:fl 3.2s 0s ease-in-out infinite"><div class="hicn">🎭</div><div class="htxt">Actriz</div></div>
+    </button>
+    <button class="hub" onclick="go('directora')">
+      <div class="hcirc hg" style="animation:fl 3.6s .5s ease-in-out infinite"><div class="hicn">🎬</div><div class="htxt">Directora</div></div>
+    </button>
+    <button class="hub" onclick="go('productora')">
+      <div class="hcirc ht" style="animation:fl 3s .9s ease-in-out infinite"><div class="hicn">🎞</div><div class="htxt">Productora</div></div>
+    </button>
+    <button class="hub" onclick="go('documental')">
+      <div class="hcirc hv" style="animation:fl 3.8s 1.3s ease-in-out infinite"><div class="hicn">📽</div><div class="htxt">Documentalista</div></div>
+    </button>
+    <button class="hub" onclick="go('coach')">
+      <div class="hcirc hk" style="animation:fl 3.4s 1.7s ease-in-out infinite"><div class="hicn">✨</div><div class="htxt">Coach artística</div></div>
+    </button>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════ -->
+<!-- ══ 01 ACTRIZ ══ -->
+<section id="actriz" class="sec sa">
+<div class="si">
+  <div class="sh"><span class="snum">01 ·</span><h2 class="stit">Actriz</h2></div>
 
-<!-- ACTRIZ -->
+  <div class="sub">Teatro</div>
+  <div class="grid">
 
-<!-- ══════════════════════════════════════ -->
+    <div class="card" onclick="lb('Mujer de 30 desesperada, busca','Teatro · Unipersonal de humor','Seis temporadas en cartel. Giras por Argentina, Paraguay, Colombia y Costa Rica. Unipersonal sobre la crisis existencial de las mujeres a los 30.','https://drive.google.com/file/d/10j1cEq5e4dqyDUuL3fhW_iWxmdy8ZqDc/preview')">
+      <div class="cs cr"></div>
+      <div class="cvid"><img src="https://drive.google.com/thumbnail?id=10j1cEq5e4dqyDUuL3fhW_iWxmdy8ZqDc&sz=w480" alt="" onerror="this.style.display='none'"><div class="pbt">▶</div></div>
+      <div class="cbody"><div class="cmeta">Teatro · Unipersonal</div><div class="ctit">Mujer de 30 desesperada, busca</div><div class="cdesc">6 temporadas · AR · PY · CO · CR</div></div>
+      <div class="cex">↗</div>
+    </div>
 
-<section id="actriz" class="section-panel act">
-  <div class="section-inner">
-    <div class="section-header">
-      <span class="section-num">01 ·</span>
-      <h2 class="section-title"><em>Actriz</em></h2>
+    <div class="card" onclick="lb('Amalfi','Teatro · Actuación','Amalfi — Obra teatral. Actuación de Mariel Rosciano.','https://drive.google.com/file/d/1MFzu5grs72yn72NN7gYvPYCOjBqLZMJL/preview')">
+      <div class="cs cr"></div>
+      <div class="cvid"><img src="https://drive.google.com/thumbnail?id=1MFzu5grs72yn72NN7gYvPYCOjBqLZMJL&sz=w480" alt="" onerror="this.style.display='none'"><div class="pbt">▶</div></div>
+      <div class="cbody"><div class="cmeta">Teatro · Actuación</div><div class="ctit">Amalfi</div></div>
+      <div class="cex">↗</div>
     </div>
-    <p class="section-intro">Sobre los escenarios y frente a cámara: una construcción de personajes que atraviesa el humor, el drama y la denuncia social. Más de 15 montajes teatrales, largometrajes y publicidades en Argentina y América Latina.</p>
 
-```
-<!-- Teatro -->
-<div class="section-subsection">Teatro</div>
-<div class="cards-grid">
+    <div class="card" onclick="lb('Madre Primeriza','Teatro · Unipersonal · Humor','Unipersonal de humor sobre la maternidad. Gira por Argentina y Costa Rica.','https://drive.google.com/file/d/1muU9XOF-sPzHSSHi7-5HlhkeSKn6H2vH/preview')">
+      <div class="cs cr"></div>
+      <div class="cvid"><img src="https://drive.google.com/thumbnail?id=1muU9XOF-sPzHSSHi7-5HlhkeSKn6H2vH&sz=w480" alt="" onerror="this.style.display='none'"><div class="pbt">▶</div></div>
+      <div class="cbody"><div class="cmeta">Teatro · Unipersonal · Humor</div><div class="ctit">Madre Primeriza</div><div class="cdesc">Costa Rica · Argentina</div></div>
+      <div class="cex">↗</div>
+    </div>
 
-  <a class="card" href="#" data-title="Mujer de 30 desesperada, busca" data-meta="Teatro · Unipersonal · 6 temporadas" data-desc="El unipersonal que recorre la crisis existencial de las mujeres a los 30 años. Seis temporadas en cartel, giras por Argentina, Paraguay, Colombia y Costa Rica. Presentado en el Teatro Selectro (Mendoza), Teatro Textilia (Asunción), entre otros." data-type="video" data-src="https://drive.google.com/file/d/10j1cEq5e4dqyDUuL3fhW_iWxmdy8ZqDc/preview" onclick="return openLB(this)">
-    <div class="card-accent accent-rose"></div>
-    <div class="card-thumb-wrap">
-      <div class="card-thumb-fallback">🎭</div>
-      <img class="card-thumb" src="https://drive.google.com/thumbnail?id=10j1cEq5e4dqyDUuL3fhW_iWxmdy8ZqDc&sz=w800" alt="Mujer de 30 desesperada, busca" loading="lazy" onerror="this.style.display='none'">
-      <div class="card-thumb-overlay"></div>
-      <div class="card-type-badge">Video</div>
-      <div class="card-play-badge">▶</div>
+    <div class="card" onclick="lb('MILF — Teatro','Teatro · Unipersonal','MILF (Madre independiente, loca y feminista) — Unipersonal teatral.','https://drive.google.com/file/d/1rPSMz2u_n5BnLvBuNMIzJSiOmbag6N4S/preview')">
+      <div class="cs cr"></div>
+      <div class="cvid"><img src="https://drive.google.com/thumbnail?id=1rPSMz2u_n5BnLvBuNMIzJSiOmbag6N4S&sz=w480" alt="" onerror="this.style.display='none'"><div class="pbt">▶</div></div>
+      <div class="cbody"><div class="cmeta">Teatro · Unipersonal</div><div class="ctit">MILF</div><div class="cdesc">Madre independiente, loca y feminista</div></div>
+      <div class="cex">↗</div>
     </div>
-    <div class="card-body">
-      <div class="card-meta">Teatro · Unipersonal · 6 temporadas</div>
-      <div class="card-title">Mujer de 30 desesperada, busca</div>
-      <div class="card-desc">Argentina · Paraguay · Colombia · Costa Rica</div>
-    </div>
-    <div class="card-arrow">↗</div>
-  </a>
 
-  <a class="card" href="#" data-title="Elena" data-meta="Teatro · Personaje" data-desc="Obra teatral con gira nacional e internacional. Fotografías del proceso creativo y del personaje." data-type="image" data-src="https://drive.google.com/file/d/1i6lK337c15ZUfXL7UQzcEv3lDxxIuLGR/preview" onclick="return openLB(this)">
-    <div class="card-accent accent-rose"></div>
-    <div class="card-thumb-wrap">
-      <div class="card-thumb-fallback">🎭</div>
-      <img class="card-thumb" src="https://drive.google.com/thumbnail?id=1i6lK337c15ZUfXL7UQzcEv3lDxxIuLGR&sz=w800" alt="Elena" loading="lazy" onerror="this.style.display='none'">
-      <div class="card-thumb-overlay"></div>
-      <div class="card-type-badge">Foto</div>
+    <div class="card" onclick="lb('Elena','Teatro · Actuación','Elena — Obra teatral.','https://drive.google.com/file/d/1i6lK337c15ZUfXL7UQzcEv3lDxxIuLGR/preview')">
+      <div class="cs cr"></div>
+      <img class="cimg" src="https://drive.google.com/thumbnail?id=1i6lK337c15ZUfXL7UQzcEv3lDxxIuLGR&sz=w480" alt="" onerror="this.outerHTML='<div class=cph>🎭</div>'">
+      <div class="cbody"><div class="cmeta">Teatro · Actuación</div><div class="ctit">Elena</div></div>
+      <div class="cex">↗</div>
     </div>
-    <div class="card-body">
-      <div class="card-meta">Teatro · Personaje</div>
-      <div class="card-title">Elena</div>
-      <div class="card-desc">Obra teatral con gira nacional e internacional</div>
-    </div>
-    <div class="card-arrow">↗</div>
-  </a>
 
-  <a class="card" href="#" data-title="Madre Primeriza" data-meta="Teatro · Unipersonal · Humor" data-desc="Unipersonal donde desanda una alocada mirada sobre la maternidad y ridiculiza los estereotipos del género. Gira por Costa Rica y Argentina. Humor ovárico." data-type="video" data-src="https://drive.google.com/file/d/1muU9XOF-sPzHSSHi7-5HlhkeSKn6H2vH/preview" onclick="return openLB(this)">
-    <div class="card-accent accent-rose"></div>
-    <div class="card-thumb-wrap">
-      <div class="card-thumb-fallback">🎭</div>
-      <img class="card-thumb" src="https://drive.google.com/thumbnail?id=1muU9XOF-sPzHSSHi7-5HlhkeSKn6H2vH&sz=w800" alt="Madre Primeriza" loading="lazy" onerror="this.style.display='none'">
-      <div class="card-thumb-overlay"></div>
-      <div class="card-type-badge">Video</div>
-      <div class="card-play-badge">▶</div>
+    <div class="card" onclick="lb('En el nombre de Raquel','Teatro · Unipersonal · Activismo','Unipersonal basado en «La Polaca» de Myrtha Schalom. Denuncia sobre trata de personas. Giras por Argentina, Paraguay, Colombia y Costa Rica.','https://drive.google.com/file/d/192aWhxQ6O79ya_u3s3-y3qye6Nls5KFB/preview')">
+      <div class="cs cr"></div>
+      <img class="cimg" src="https://drive.google.com/thumbnail?id=192aWhxQ6O79ya_u3s3-y3qye6Nls5KFB&sz=w480" alt="" onerror="this.outerHTML='<div class=cph>🎭</div>'">
+      <div class="cbody"><div class="cmeta">Teatro · Unipersonal · Activismo</div><div class="ctit">En el nombre de Raquel</div><div class="cdesc">AR · PY · CO · CR</div></div>
+      <div class="cex">↗</div>
     </div>
-    <div class="card-body">
-      <div class="card-meta">Teatro · Unipersonal · Humor</div>
-      <div class="card-title">Madre Primeriza</div>
-      <div class="card-desc">Costa Rica · Argentina · Humor ovárico sobre la maternidad</div>
-    </div>
-    <div class="card-arrow">↗</div>
-  </a>
 
-  <a class="card" href="#" data-title="MILF — Teatro" data-meta="Teatro · Unipersonal" data-desc="MILF (Madre independiente, loca y feminista) — Unipersonal de humor. Trailer del espectáculo teatral." data-type="video" data-src="https://drive.google.com/file/d/1rPSMz2u_n5BnLvBuNMIzJSiOmbag6N4S/preview" onclick="return openLB(this)">
-    <div class="card-accent accent-rose"></div>
-    <div class="card-thumb-wrap">
-      <div class="card-thumb-fallback">🎭</div>
-      <img class="card-thumb" src="https://drive.google.com/thumbnail?id=1rPSMz2u_n5BnLvBuNMIzJSiOmbag6N4S&sz=w800" alt="MILF Teatro" loading="lazy" onerror="this.style.display='none'">
-      <div class="card-thumb-overlay"></div>
-      <div class="card-type-badge">Video</div>
-      <div class="card-play-badge">▶</div>
+    <div class="card" onclick="lb('La Menesunda','Teatro · Actuación','La Menesunda — Espectáculo teatral.','https://drive.google.com/file/d/1S5XdKgyv8HLpubwAqasia6Zm8y8saVev/preview')">
+      <div class="cs cr"></div>
+      <img class="cimg" src="https://drive.google.com/thumbnail?id=1S5XdKgyv8HLpubwAqasia6Zm8y8saVev&sz=w480" alt="" onerror="this.outerHTML='<div class=cph>🎭</div>'">
+      <div class="cbody"><div class="cmeta">Teatro</div><div class="ctit">La Menesunda</div></div>
+      <div class="cex">↗</div>
     </div>
-    <div class="card-body">
-      <div class="card-meta">Teatro · Unipersonal</div>
-      <div class="card-title">MILF</div>
-      <div class="card-desc">Madre independiente, loca y feminista — Humor</div>
-    </div>
-    <div class="card-arrow">↗</div>
-  </a>
-
-  <a class="card" href="#" data-title="La Menesunda" data-meta="Teatro · Rol actoral" data-desc="La Menesunda — Espectáculo teatral. Fotografías de producción." data-type="image" data-src="https://drive.google.com/file/d/1S5XdKgyv8HLpubwAqasia6Zm8y8saVev/preview" onclick="return openLB(this)">
-    <div class="card-accent accent-rose"></div>
-    <div class="card-thumb-wrap">
-      <div class="card-thumb-fallback">🎭</div>
-      <img class="card-thumb" src="https://drive.google.com/thumbnail?id=1S5XdKgyv8HLpubwAqasia6Zm8y8saVev&sz=w800" alt="La Menesunda" loading="lazy" onerror="this.style.display='none'">
-      <div class="card-thumb-overlay"></div>
-      <div class="card-type-badge">Foto</div>
-    </div>
-    <div class="card-body">
-      <div class="card-meta">Teatro · Rol actoral</div>
-      <div class="card-title">La Menesunda</div>
-      <div class="card-desc">Espectáculo teatral — fotografías de producción</div>
-    </div>
-    <div class="card-arrow">↗</div>
-  </a>
-
-</div>
-
-<!-- Cine y Series -->
-<div class="section-subsection">Cine y Series</div>
-<div class="cards-grid">
-
-  <a class="card" href="#" data-title="MILF — Serie" data-meta="Serie · Largometraje" data-desc="MILF — Serie/largometraje. Trailer oficial de la producción audiovisual." data-type="video" data-src="https://drive.google.com/file/d/109vcRDq1g2IkFUytRI1qt-6OVGSHGSr9/preview" onclick="return openLB(this)">
-    <div class="card-accent accent-rose"></div>
-    <div class="card-thumb-wrap">
-      <div class="card-thumb-fallback">🎬</div>
-      <img class="card-thumb" src="https://drive.google.com/thumbnail?id=109vcRDq1g2IkFUytRI1qt-6OVGSHGSr9&sz=w800" alt="MILF Serie" loading="lazy" onerror="this.style.display='none'">
-      <div class="card-thumb-overlay"></div>
-      <div class="card-type-badge">Trailer</div>
-      <div class="card-play-badge">▶</div>
-    </div>
-    <div class="card-body">
-      <div class="card-meta">Serie · Cine</div>
-      <div class="card-title">MILF</div>
-      <div class="card-desc">Trailer oficial — Madre independiente, loca y feminista</div>
-    </div>
-    <div class="card-arrow">↗</div>
-  </a>
-
-  <a class="card" href="#" data-title="El Último Traje" data-meta="Cine · Largometraje" data-desc="El Último Traje — Participación actoral. Imagen de producción." data-type="video" data-src="https://drive.google.com/file/d/111jj5JwptmXw3xF7YB-9uOIsGUnvhwgI/preview" onclick="return openLB(this)">
-    <div class="card-accent accent-rose"></div>
-    <div class="card-thumb-wrap">
-      <div class="card-thumb-fallback">🎬</div>
-      <img class="card-thumb" src="https://drive.google.com/thumbnail?id=111jj5JwptmXw3xF7YB-9uOIsGUnvhwgI&sz=w800" alt="El Último Traje" loading="lazy" onerror="this.style.display='none'">
-      <div class="card-thumb-overlay"></div>
-      <div class="card-type-badge">Cine</div>
-      <div class="card-play-badge">▶</div>
-    </div>
-    <div class="card-body">
-      <div class="card-meta">Cine · Largometraje</div>
-      <div class="card-title">El Último Traje</div>
-      <div class="card-desc">Participación actoral</div>
-    </div>
-    <div class="card-arrow">↗</div>
-  </a>
-
-</div>
-
-<!-- Publicidad y TV -->
-<div class="section-subsection">Publicidad y TV — como Actriz</div>
-<div class="note">Nota: La publicidad de Kinder es como <em>Coach artística</em>, no como actriz — ver sección Coach</div>
-<div class="cards-grid">
-
-  <a class="card" href="#" data-title="La Salteña — Idea Sorpresa" data-meta="Publicidad · Actriz" data-desc="La Salteña Idea Sorpresa — Aparición como actriz en publicidad." data-type="video" data-src="https://drive.google.com/file/d/1dkZfG-CCgDqhlUL8jkz0H1q5yPymDCn6/preview" onclick="return openLB(this)">
-    <div class="card-accent accent-rose"></div>
-    <div class="card-thumb-wrap">
-      <div class="card-thumb-fallback">📺</div>
-      <img class="card-thumb" src="https://drive.google.com/thumbnail?id=1dkZfG-CCgDqhlUL8jkz0H1q5yPymDCn6&sz=w800" alt="La Salteña Sorpresa" loading="lazy" onerror="this.style.display='none'">
-      <div class="card-thumb-overlay"></div>
-      <div class="card-type-badge">Publicidad</div>
-      <div class="card-play-badge">▶</div>
-    </div>
-    <div class="card-body">
-      <div class="card-meta">Publicidad · Actriz</div>
-      <div class="card-title">La Salteña — Idea Sorpresa</div>
-    </div>
-    <div class="card-arrow">↗</div>
-  </a>
-
-  <a class="card" href="#" data-title="La Salteña — Idea Práctica" data-meta="Publicidad · Actriz" data-desc="La Salteña Idea Práctica — Aparición como actriz." data-type="video" data-src="https://drive.google.com/file/d/1gQb34WGH17CQb4aOa-ctepoeJlqbUQKT/preview" onclick="return openLB(this)">
-    <div class="card-accent accent-rose"></div>
-    <div class="card-thumb-wrap">
-      <div class="card-thumb-fallback">📺</div>
-      <img class="card-thumb" src="https://drive.google.com/thumbnail?id=1gQb34WGH17CQb4aOa-ctepoeJlqbUQKT&sz=w800" alt="La Salteña Práctica" loading="lazy" onerror="this.style.display='none'">
-      <div class="card-thumb-overlay"></div>
-      <div class="card-type-badge">Publicidad</div>
-      <div class="card-play-badge">▶</div>
-    </div>
-    <div class="card-body">
-      <div class="card-meta">Publicidad · Actriz</div>
-      <div class="card-title">La Salteña — Idea Práctica</div>
-    </div>
-    <div class="card-arrow">↗</div>
-  </a>
-
-  <a class="card" href="#" data-title="La Salteña — Una idea" data-meta="Publicidad · Actriz" data-desc="La Salteña Una Idea — Aparición como actriz." data-type="video" data-src="https://drive.google.com/file/d/1J7ByIPXD3HiP9xWrOywtLVIDGzbSRDz-/preview" onclick="return openLB(this)">
-    <div class="card-accent accent-rose"></div>
-    <div class="card-thumb-wrap">
-      <div class="card-thumb-fallback">📺</div>
-      <img class="card-thumb" src="https://drive.google.com/thumbnail?id=1J7ByIPXD3HiP9xWrOywtLVIDGzbSRDz-&sz=w800" alt="La Salteña Una idea" loading="lazy" onerror="this.style.display='none'">
-      <div class="card-thumb-overlay"></div>
-      <div class="card-type-badge">Publicidad</div>
-      <div class="card-play-badge">▶</div>
-    </div>
-    <div class="card-body">
-      <div class="card-meta">Publicidad · Actriz</div>
-      <div class="card-title">La Salteña — Una idea</div>
-    </div>
-    <div class="card-arrow">↗</div>
-  </a>
-
-  <a class="card" href="#" data-title="Mantecol — Regalo" data-meta="Publicidad · Actriz" data-desc="Mantecol Regalo — Aparición como actriz en publicidad." data-type="video" data-src="https://drive.google.com/file/d/1u4CWpI0a7lUVe5kDEaJf0JNCk6ACU-eI/preview" onclick="return openLB(this)">
-    <div class="card-accent accent-rose"></div>
-    <div class="card-thumb-wrap">
-      <div class="card-thumb-fallback">📺</div>
-      <img class="card-thumb" src="https://drive.google.com/thumbnail?id=1u4CWpI0a7lUVe5kDEaJf0JNCk6ACU-eI&sz=w800" alt="Mantecol" loading="lazy" onerror="this.style.display='none'">
-      <div class="card-thumb-overlay"></div>
-      <div class="card-type-badge">Publicidad</div>
-      <div class="card-play-badge">▶</div>
-    </div>
-    <div class="card-body">
-      <div class="card-meta">Publicidad · Actriz</div>
-      <div class="card-title">Mantecol — Regalo</div>
-    </div>
-    <div class="card-arrow">↗</div>
-  </a>
-
-  <a class="card" href="#" data-title="Movistar — Navidad" data-meta="Publicidad · Actriz" data-desc="Movistar Navidad — Aparición como actriz en campaña navideña." data-type="video" data-src="https://drive.google.com/file/d/1wdlECMZHTraAxsWorYtwhy0xCos3evgi/preview" onclick="return openLB(this)">
-    <div class="card-accent accent-rose"></div>
-    <div class="card-thumb-wrap">
-      <div class="card-thumb-fallback">📺</div>
-      <img class="card-thumb" src="https://drive.google.com/thumbnail?id=1wdlECMZHTraAxsWorYtwhy0xCos3evgi&sz=w800" alt="Movistar Navidad" loading="lazy" onerror="this.style.display='none'">
-      <div class="card-thumb-overlay"></div>
-      <div class="card-type-badge">Publicidad</div>
-      <div class="card-play-badge">▶</div>
-    </div>
-    <div class="card-body">
-      <div class="card-meta">Publicidad · Actriz</div>
-      <div class="card-title">Movistar — Navidad</div>
-    </div>
-    <div class="card-arrow">↗</div>
-  </a>
-
-</div>
-
-<!-- Prensa -->
-<div class="section-subsection">Prensa & Referencias — Actriz</div>
-<div class="press-grid">
-  <a class="press-card" href="#" data-title="La crisis de los 30, sobre las tablas" data-meta="Clarín · 2014" data-desc="Entrevista en Clarín: «La crisis de los 30, sobre las tablas» — Sobre el unipersonal «Mujer de 30 desesperada, busca»." data-type="pdf" data-src="https://drive.google.com/file/d/1wgP_A3C4xSG5_Gqm9OXrPhTmSokS-1yC/preview" onclick="return openLB(this)">
-    <div class="press-card-thumb-wrap">
-      <div class="press-card-thumb-fallback">📰</div>
-      <img class="press-card-thumb" src="https://drive.google.com/thumbnail?id=1wgP_A3C4xSG5_Gqm9OXrPhTmSokS-1yC&sz=w400" alt="Clarín" loading="lazy" onerror="this.style.display='none'">
-      <div class="press-card-overlay"></div>
-      <div class="press-card-tag">Clarín</div>
-    </div>
-    <div class="press-card-body">
-      <div class="press-card-title">La crisis de los 30, sobre las tablas</div>
-      <div class="press-card-source">Clarín · 2014</div>
-    </div>
-  </a>
-  <a class="press-card" href="#" data-title="Reconciliación a través de la risa" data-meta="ABC Color · Paraguay · 2014" data-desc="Mariel Rosciano: reconciliación a través de la risa — ABC Color, Paraguay. Cobertura de la gira." data-type="pdf" data-src="https://drive.google.com/file/d/1v--jXDB3s7Fxzu-WGxBRf2momhUiUmIX/preview" onclick="return openLB(this)">
-    <div class="press-card-thumb-wrap">
-      <div class="press-card-thumb-fallback">📰</div>
-      <img class="press-card-thumb" src="https://drive.google.com/thumbnail?id=1v--jXDB3s7Fxzu-WGxBRf2momhUiUmIX&sz=w400" alt="ABC Color" loading="lazy" onerror="this.style.display='none'">
-      <div class="press-card-overlay"></div>
-      <div class="press-card-tag">ABC Color</div>
-    </div>
-    <div class="press-card-body">
-      <div class="press-card-title">Reconciliación a través de la risa</div>
-      <div class="press-card-source">ABC Color · Paraguay · 2014</div>
-    </div>
-  </a>
-  <a class="press-card" href="#" data-title="La crisis de los 30 tomada con humor" data-meta="Última Hora · Paraguay · 2014" data-desc="La crisis de los 30 tomada con humor — Última Hora, Paraguay." data-type="pdf" data-src="https://drive.google.com/file/d/1JbqQVcMmhQE621azvmcWUqIqdZ9txc_x/preview" onclick="return openLB(this)">
-    <div class="press-card-thumb-wrap">
-      <div class="press-card-thumb-fallback">📰</div>
-      <img class="press-card-thumb" src="https://drive.google.com/thumbnail?id=1JbqQVcMmhQE621azvmcWUqIqdZ9txc_x&sz=w400" alt="Última Hora" loading="lazy" onerror="this.style.display='none'">
-      <div class="press-card-overlay"></div>
-      <div class="press-card-tag">Última Hora</div>
-    </div>
-    <div class="press-card-body">
-      <div class="press-card-title">La crisis de los 30 tomada con humor</div>
-      <div class="press-card-source">Última Hora · Paraguay · 2014</div>
-    </div>
-  </a>
-  <a class="press-card" href="#" data-title="La neurosis de las tres décadas" data-meta="Los Andes · Mendoza · 2017" data-desc="La neurosis de las tres décadas — Los Andes, Mendoza. Cobertura de la función en el Teatro Selectro." data-type="pdf" data-src="https://drive.google.com/file/d/1bf1Eb6w6A7VB9Mm_q6xGSFZ0vlckksE4/preview" onclick="return openLB(this)">
-    <div class="press-card-thumb-wrap">
-      <div class="press-card-thumb-fallback">📰</div>
-      <img class="press-card-thumb" src="https://drive.google.com/thumbnail?id=1bf1Eb6w6A7VB9Mm_q6xGSFZ0vlckksE4&sz=w400" alt="Los Andes" loading="lazy" onerror="this.style.display='none'">
-      <div class="press-card-overlay"></div>
-      <div class="press-card-tag">Los Andes</div>
-    </div>
-    <div class="press-card-body">
-      <div class="press-card-title">La neurosis de las tres décadas</div>
-      <div class="press-card-source">Los Andes · Mendoza · 2017</div>
-    </div>
-  </a>
-  <a class="press-card" href="#" data-title="Standaperas" data-meta="El Guardian · 2012" data-desc="Artículo «Standaperas» — Mariel Rosciano entre las comediantas que se destacan en el stand up." data-type="image" data-src="https://drive.google.com/file/d/1-Y4jNYbBDnrYyvYzmYSUnGg-QBu9cNaM/preview" onclick="return openLB(this)">
-    <div class="press-card-thumb-wrap">
-      <div class="press-card-thumb-fallback">📰</div>
-      <img class="press-card-thumb" src="https://drive.google.com/thumbnail?id=1-Y4jNYbBDnrYyvYzmYSUnGg-QBu9cNaM&sz=w400" alt="Standaperas" loading="lazy" onerror="this.style.display='none'">
-      <div class="press-card-overlay"></div>
-      <div class="press-card-tag">El Guardian</div>
-    </div>
-    <div class="press-card-body">
-      <div class="press-card-title">Standaperas</div>
-      <div class="press-card-source">El Guardian · 2012</div>
-    </div>
-  </a>
-  <a class="press-card" href="#" data-title="Humor femenino y stand up" data-meta="El Guardian · 2012" data-desc="Nota completa sobre las mujeres en el stand up — Mariel Rosciano citada como referente." data-type="image" data-src="https://drive.google.com/file/d/1tEBXR2jC0WN0ZBjKzvOW4DqJkLhK_72I/preview" onclick="return openLB(this)">
-    <div class="press-card-thumb-wrap">
-      <div class="press-card-thumb-fallback">📰</div>
-      <img class="press-card-thumb" src="https://drive.google.com/thumbnail?id=1tEBXR2jC0WN0ZBjKzvOW4DqJkLhK_72I&sz=w400" alt="El Guardian nota" loading="lazy" onerror="this.style.display='none'">
-      <div class="press-card-overlay"></div>
-      <div class="press-card-tag">El Guardian</div>
-    </div>
-    <div class="press-card-body">
-      <div class="press-card-title">Humor femenino y stand up</div>
-      <div class="press-card-source">El Guardian · 2012</div>
-    </div>
-  </a>
-</div>
-
-<!-- Books / Ephemera -->
-<div class="section-subsection">Books & Material gráfico</div>
-<div class="press-grid">
-  <a class="press-card" href="#" data-title="Foto de prensa" data-meta="Books · Material gráfico" data-desc="Material de prensa y fotografías de producción." data-type="image" data-src="https://drive.google.com/file/d/1S1jbOMGH4NGc791TL39R6lmjglIu_dWd/preview" onclick="return openLB(this)">
-    <div class="press-card-thumb-wrap">
-      <div class="press-card-thumb-fallback">📷</div>
-      <img class="press-card-thumb" src="https://drive.google.com/thumbnail?id=1S1jbOMGH4NGc791TL39R6lmjglIu_dWd&sz=w400" alt="Foto de prensa" loading="lazy" onerror="this.style.display='none'">
-      <div class="press-card-overlay"></div>
-      <div class="press-card-tag">Books</div>
-    </div>
-    <div class="press-card-body"><div class="press-card-title">Foto de prensa</div><div class="press-card-source">Material gráfico</div></div>
-  </a>
-  <a class="press-card" href="#" data-title="Foto de prensa" data-meta="Books · Material gráfico" data-desc="Material de prensa." data-type="image" data-src="https://drive.google.com/file/d/1Vcqtymy9cTVjJ14ynVpJOEQKoeIBw2Oz/preview" onclick="return openLB(this)">
-    <div class="press-card-thumb-wrap">
-      <div class="press-card-thumb-fallback">📷</div>
-      <img class="press-card-thumb" src="https://drive.google.com/thumbnail?id=1Vcqtymy9cTVjJ14ynVpJOEQKoeIBw2Oz&sz=w400" alt="Foto de prensa" loading="lazy" onerror="this.style.display='none'">
-      <div class="press-card-overlay"></div>
-      <div class="press-card-tag">Books</div>
-    </div>
-    <div class="press-card-body"><div class="press-card-title">Foto de prensa</div><div class="press-card-source">Material gráfico</div></div>
-  </a>
-  <a class="press-card" href="#" data-title="Foto de prensa" data-meta="Books · Material gráfico" data-desc="Material de prensa." data-type="image" data-src="https://drive.google.com/file/d/18XtvvczTwSJxOFgDLh4tEXTQvynx9EQE/preview" onclick="return openLB(this)">
-    <div class="press-card-thumb-wrap">
-      <div class="press-card-thumb-fallback">📷</div>
-      <img class="press-card-thumb" src="https://drive.google.com/thumbnail?id=18XtvvczTwSJxOFgDLh4tEXTQvynx9EQE&sz=w400" alt="Foto de prensa" loading="lazy" onerror="this.style.display='none'">
-      <div class="press-card-overlay"></div>
-      <div class="press-card-tag">Books</div>
-    </div>
-    <div class="press-card-body"><div class="press-card-title">Foto de prensa</div><div class="press-card-source">Material gráfico</div></div>
-  </a>
-  <a class="press-card" href="#" data-title="Portrait" data-meta="Books · Retrato" data-desc="Retrato artístico." data-type="image" data-src="https://drive.google.com/file/d/1LcCYVph6Cxr2HUpYHSbCVp5NJpi6kD9_/preview" onclick="return openLB(this)">
-    <div class="press-card-thumb-wrap">
-      <div class="press-card-thumb-fallback">📷</div>
-      <img class="press-card-thumb" src="https://drive.google.com/thumbnail?id=1LcCYVph6Cxr2HUpYHSbCVp5NJpi6kD9_&sz=w400" alt="Portrait" loading="lazy" onerror="this.style.display='none'">
-      <div class="press-card-overlay"></div>
-      <div class="press-card-tag">Books</div>
-    </div>
-    <div class="press-card-body"><div class="press-card-title">Portrait</div><div class="press-card-source">Retrato artístico</div></div>
-  </a>
-</div>
-```
 
   </div>
-</section>
 
-<!-- ══════════════════════════════════════ -->
+  <div class="sub">Cine y Series — como actriz</div>
+  <div class="grid">
 
-<!-- DIRECTORA -->
+    <!-- MILF como actriz en cine — carpeta Actriz > Cine y series > Trailer MILF.mp4 -->
+    <div class="card" onclick="lb('MILF — Trailer (cine)','Cine · Actuación','MILF — Largometraje. Trailer. Como actriz.','https://drive.google.com/file/d/109vcRDq1g2IkFUytRI1qt-6OVGSHGSr9/preview')">
+      <div class="cs cr"></div>
+      <div class="cvid"><img src="https://drive.google.com/thumbnail?id=109vcRDq1g2IkFUytRI1qt-6OVGSHGSr9&sz=w480" alt="" onerror="this.style.display='none'"><div class="pbt">▶</div></div>
+      <div class="cbody"><div class="cmeta">Cine · Actuación</div><div class="ctit">MILF — Trailer</div><div class="cdesc">Largometraje</div></div>
+      <div class="cex">↗</div>
+    </div>
 
-<!-- ══════════════════════════════════════ -->
-
-<section id="directora" class="section-panel dir">
-  <div class="section-inner">
-    <div class="section-header">
-      <span class="section-num">02 ·</span>
-      <h2 class="section-title"><em>Directora</em></h2>
+    <!-- El último Traje — carpeta Actriz > Cine y series -->
+    <div class="card" onclick="lb('El Último Traje','Cine · Actuación','El Último Traje — Participación actoral. Imagen de producción.','https://drive.google.com/file/d/111jj5JwptmXw3xF7YB-9uOIsGUnvhwgI/preview')">
+      <div class="cs cr"></div>
+      <img class="cimg" src="https://drive.google.com/thumbnail?id=111jj5JwptmXw3xF7YB-9uOIsGUnvhwgI&sz=w480" alt="" onerror="this.outerHTML='<div class=cph>🎬</div>'">
+      <div class="cbody"><div class="cmeta">Cine · Actuación</div><div class="ctit">El Último Traje</div></div>
+      <div class="cex">↗</div>
     </div>
-    <p class="section-intro">Dirección artística y audiovisual con proyectos en Argentina y Paraguay. Desde teatro infantil hasta campañas de moda y series animadas: una mirada que combina rigor narrativo y sensibilidad de género.</p>
-
-```
-<!-- Paraguay -->
-<div class="geo-label geo-py">🇵🇾 Paraguay</div>
-<div class="cards-grid">
-
-  <a class="card" href="#" data-title="Fuerza Urbana" data-meta="Dirección · Paraguay" data-desc="Fuerza Urbana — Proyecto dirigido en Paraguay. Producción artística." data-type="video" data-src="https://drive.google.com/file/d/1NfDbSgYy-4CaVQnscHcI9vXjbnO2R6MQ/preview" onclick="return openLB(this)">
-    <div class="card-accent accent-gold"></div>
-    <div class="card-thumb-wrap">
-      <div class="card-thumb-fallback">🎬</div>
-      <img class="card-thumb" src="https://drive.google.com/thumbnail?id=1NfDbSgYy-4CaVQnscHcI9vXjbnO2R6MQ&sz=w800" alt="Fuerza Urbana" loading="lazy" onerror="this.style.display='none'">
-      <div class="card-thumb-overlay"></div>
-      <div class="card-type-badge">Video</div>
-      <div class="card-play-badge">▶</div>
-    </div>
-    <div class="card-body">
-      <div class="card-meta">Dirección · Paraguay</div>
-      <div class="card-title">Fuerza Urbana</div>
-      <div class="card-desc">Producción artística — Paraguay</div>
-    </div>
-    <div class="card-arrow">↗</div>
-  </a>
-
-  <a class="card" href="#" data-title="Cuatro Colas y un Funeral" data-meta="Dirección · Paraguay" data-desc="Cuatro Colas y un Funeral — Producción dirigida en Paraguay." data-type="video" data-src="https://drive.google.com/file/d/1VznC2hzD9cyjJsjqi1s6mudLMnrJt_xf/preview" onclick="return openLB(this)">
-    <div class="card-accent accent-gold"></div>
-    <div class="card-thumb-wrap">
-      <div class="card-thumb-fallback">🎬</div>
-      <img class="card-thumb" src="https://drive.google.com/thumbnail?id=1VznC2hzD9cyjJsjqi1s6mudLMnrJt_xf&sz=w800" alt="Cuatro Colas y un Funeral" loading="lazy" onerror="this.style.display='none'">
-      <div class="card-thumb-overlay"></div>
-      <div class="card-type-badge">Video</div>
-      <div class="card-play-badge">▶</div>
-    </div>
-    <div class="card-body">
-      <div class="card-meta">Dirección · Paraguay</div>
-      <div class="card-title">Cuatro Colas y un Funeral</div>
-      <div class="card-desc">Producción — Paraguay</div>
-    </div>
-    <div class="card-arrow">↗</div>
-  </a>
-
-  <a class="card" href="#" data-title="¡Blancanieves y el Príncipe Aventurero!" data-meta="Dirección · Paraguay" data-desc="¡Blancanieves y el Príncipe Aventurero! — Producción teatral dirigida en Paraguay." data-type="video" data-src="https://drive.google.com/file/d/1Ph3k931yepNgzbgA3k-ZzpWu7OC6VVmT/preview" onclick="return openLB(this)">
-    <div class="card-accent accent-gold"></div>
-    <div class="card-thumb-wrap">
-      <div class="card-thumb-fallback">🎬</div>
-      <img class="card-thumb" src="https://drive.google.com/thumbnail?id=1Ph3k931yepNgzbgA3k-ZzpWu7OC6VVmT&sz=w800" alt="Blancanieves" loading="lazy" onerror="this.style.display='none'">
-      <div class="card-thumb-overlay"></div>
-      <div class="card-type-badge">Video</div>
-      <div class="card-play-badge">▶</div>
-    </div>
-    <div class="card-body">
-      <div class="card-meta">Dirección · Paraguay</div>
-      <div class="card-title">¡Blancanieves y el Príncipe Aventurero!</div>
-      <div class="card-desc">Teatro infantil — Paraguay</div>
-    </div>
-    <div class="card-arrow">↗</div>
-  </a>
-
-</div>
-
-<!-- Argentina -->
-<div class="geo-label geo-ar" style="margin-top:36px">🇦🇷 Argentina</div>
-<div class="cards-grid">
-
-  <a class="card" href="#" data-title="Tulipán Up" data-meta="Dirección · Argentina · Con Francisco Civit" data-desc="Tulipán Up — Dirección con Francisco Civit. Publicidad/Arte." data-type="video" data-src="https://drive.google.com/file/d/1dDpBOHTPOPUw_hxCYyn2Q45BYzEXEudM/preview" onclick="return openLB(this)">
-    <div class="card-accent accent-gold"></div>
-    <div class="card-thumb-wrap">
-      <div class="card-thumb-fallback">🎬</div>
-      <img class="card-thumb" src="https://drive.google.com/thumbnail?id=1dDpBOHTPOPUw_hxCYyn2Q45BYzEXEudM&sz=w800" alt="Tulipán Up" loading="lazy" onerror="this.style.display='none'">
-      <div class="card-thumb-overlay"></div>
-      <div class="card-type-badge">Video</div>
-      <div class="card-play-badge">▶</div>
-    </div>
-    <div class="card-body">
-      <div class="card-meta">Dirección · Argentina</div>
-      <div class="card-title">Tulipán Up</div>
-      <div class="card-desc">Con Francisco Civit</div>
-    </div>
-    <div class="card-arrow">↗</div>
-  </a>
-
-  <a class="card" href="#" data-title="VER® #UniteAlaCharla" data-meta="Dirección · Argentina · 2017" data-desc="#UniteAlaCharla VER® Primavera Verano 2017 — Dirección de contenido de moda." data-type="video" data-src="https://drive.google.com/file/d/1BIbRlBWnJXMxzqRCmdSLOAr6mB1TboFv/preview" onclick="return openLB(this)">
-    <div class="card-accent accent-gold"></div>
-    <div class="card-thumb-wrap">
-      <div class="card-thumb-fallback">🎬</div>
-      <img class="card-thumb" src="https://drive.google.com/thumbnail?id=1BIbRlBWnJXMxzqRCmdSLOAr6mB1TboFv&sz=w800" alt="VER" loading="lazy" onerror="this.style.display='none'">
-      <div class="card-thumb-overlay"></div>
-      <div class="card-type-badge">Moda</div>
-      <div class="card-play-badge">▶</div>
-    </div>
-    <div class="card-body">
-      <div class="card-meta">Dirección · Argentina</div>
-      <div class="card-title">VER® #UniteAlaCharla</div>
-      <div class="card-desc">Campaña Primavera-Verano 2017</div>
-    </div>
-    <div class="card-arrow">↗</div>
-  </a>
-
-  <a class="card" href="#" data-title="Puntitas" data-meta="Dirección · Argentina" data-desc="Puntitas — Pieza audiovisual dirigida en Argentina." data-type="video" data-src="https://drive.google.com/file/d/18_O7yQNsuwh0H7UabOhydmOGI17w_ywv/preview" onclick="return openLB(this)">
-    <div class="card-accent accent-gold"></div>
-    <div class="card-thumb-wrap">
-      <div class="card-thumb-fallback">🎬</div>
-      <img class="card-thumb" src="https://drive.google.com/thumbnail?id=18_O7yQNsuwh0H7UabOhydmOGI17w_ywv&sz=w800" alt="Puntitas" loading="lazy" onerror="this.style.display='none'">
-      <div class="card-thumb-overlay"></div>
-      <div class="card-type-badge">Video</div>
-      <div class="card-play-badge">▶</div>
-    </div>
-    <div class="card-body">
-      <div class="card-meta">Dirección · Argentina</div>
-      <div class="card-title">Puntitas</div>
-      <div class="card-desc">Pieza audiovisual</div>
-    </div>
-    <div class="card-arrow">↗</div>
-  </a>
-
-  <a class="card" href="#" data-title="Wasted" data-meta="Serie animada · Dir. Martín Kovacs · Prod. Ej. Mariel Rosciano" data-desc="WASTED — Serie animada dirigida por Martín Kovacs. Producción ejecutiva de Mariel Rosciano (No End Projects). Trailer oficial." data-type="video" data-src="https://drive.google.com/file/d/1ElIsOjD7ODZ6Ksk6GnvodiAdpXPy1vQ6/preview" onclick="return openLB(this)">
-    <div class="card-accent accent-gold"></div>
-    <div class="card-thumb-wrap">
-      <div class="card-thumb-fallback">🎬</div>
-      <img class="card-thumb" src="https://drive.google.com/thumbnail?id=1ElIsOjD7ODZ6Ksk6GnvodiAdpXPy1vQ6&sz=w800" alt="Wasted" loading="lazy" onerror="this.style.display='none'">
-      <div class="card-thumb-overlay"></div>
-      <div class="card-type-badge">Trailer</div>
-      <div class="card-play-badge">▶</div>
-    </div>
-    <div class="card-body">
-      <div class="card-meta">Serie animada · Argentina</div>
-      <div class="card-title">Wasted</div>
-      <div class="card-desc">Dir. Martín Kovacs · Prod. Ej. No End Projects</div>
-    </div>
-    <div class="card-arrow">↗</div>
-  </a>
-
-</div>
-
-<!-- Prensa Directora -->
-<div class="section-subsection">Prensa — En el Nombre de Raquel (actriz · directora)</div>
-<div class="press-grid">
-  <a class="press-card" href="#" data-title="En el nombre de Raquel" data-meta="Télam · 2012" data-desc="Télam: reseña de «En el nombre de Raquel». Unipersonal directa y dramática sobre la trata de personas basada en La Polaca de Myrtha Schalom." data-type="image" data-src="https://drive.google.com/file/d/16FPXcJziBL5-YSxxbIgqBBiwHU1ZTei6/preview" onclick="return openLB(this)">
-    <div class="press-card-thumb-wrap">
-      <div class="press-card-thumb-fallback">📰</div>
-      <img class="press-card-thumb" src="https://drive.google.com/thumbnail?id=16FPXcJziBL5-YSxxbIgqBBiwHU1ZTei6&sz=w400" alt="Télam" loading="lazy" onerror="this.style.display='none'">
-      <div class="press-card-overlay"></div>
-      <div class="press-card-tag">Télam</div>
-    </div>
-    <div class="press-card-body"><div class="press-card-title">En el nombre de Raquel</div><div class="press-card-source">Télam · 2012</div></div>
-  </a>
-  <a class="press-card" href="#" data-title="En el nombre de Raquel" data-meta="Agencia NaN · 2012" data-desc="Agencia NaN: «En el nombre de Raquel en Teatro SHA» — Reseña completa de la obra." data-type="image" data-src="https://drive.google.com/file/d/1cm57ILx12cDZp6EXINnPsuGr-OypTU2Y/preview" onclick="return openLB(this)">
-    <div class="press-card-thumb-wrap">
-      <div class="press-card-thumb-fallback">📰</div>
-      <img class="press-card-thumb" src="https://drive.google.com/thumbnail?id=1cm57ILx12cDZp6EXINnPsuGr-OypTU2Y&sz=w400" alt="Agencia NaN" loading="lazy" onerror="this.style.display='none'">
-      <div class="press-card-overlay"></div>
-      <div class="press-card-tag">NaN</div>
-    </div>
-    <div class="press-card-body"><div class="press-card-title">En el nombre de Raquel</div><div class="press-card-source">Agencia NaN · 2012</div></div>
-  </a>
-  <a class="press-card" href="#" data-title="La polaca más valiente de Balvanera" data-meta="El Abasto · 2013" data-desc="El Abasto: «La polaca más valiente de Balvanera» — Nota sobre la obra." data-type="image" data-src="https://drive.google.com/file/d/18IpbvthVKibj1euMM0TP457VcqtsdUCD/preview" onclick="return openLB(this)">
-    <div class="press-card-thumb-wrap">
-      <div class="press-card-thumb-fallback">📰</div>
-      <img class="press-card-thumb" src="https://drive.google.com/thumbnail?id=18IpbvthVKibj1euMM0TP457VcqtsdUCD&sz=w400" alt="El Abasto" loading="lazy" onerror="this.style.display='none'">
-      <div class="press-card-overlay"></div>
-      <div class="press-card-tag">El Abasto</div>
-    </div>
-    <div class="press-card-body"><div class="press-card-title">La polaca más valiente de Balvanera</div><div class="press-card-source">El Abasto · 2013</div></div>
-  </a>
-  <a class="press-card" href="#" data-title="Raquel habla claro sobre la trata" data-meta="La Nación CR · 2012" data-desc="La Nación Costa Rica: «Raquel habla claro sobre la trata» — Gira por comunidades." data-type="image" data-src="https://drive.google.com/file/d/12GHR9qxpFD5FGxfP1rWc5Ro9UvbO7RKO/preview" onclick="return openLB(this)">
-    <div class="press-card-thumb-wrap">
-      <div class="press-card-thumb-fallback">📰</div>
-      <img class="press-card-thumb" src="https://drive.google.com/thumbnail?id=12GHR9qxpFD5FGxfP1rWc5Ro9UvbO7RKO&sz=w400" alt="La Nación CR" loading="lazy" onerror="this.style.display='none'">
-      <div class="press-card-overlay"></div>
-      <div class="press-card-tag">La Nación CR</div>
-    </div>
-    <div class="press-card-body"><div class="press-card-title">Raquel habla claro sobre la trata</div><div class="press-card-source">La Nación Costa Rica · 2012</div></div>
-  </a>
-  <a class="press-card" href="#" data-title="En el nombre de Raquel" data-meta="El Tribuno · Jujuy · 2013" data-desc="El Tribuno de Jujuy: «Se presentó En el nombre de Raquel» — Gira por el pórtico norte." data-type="image" data-src="https://drive.google.com/file/d/1vSDvxJrnmnk3nzqu3UJy-0YiBlN3Rn1j/preview" onclick="return openLB(this)">
-    <div class="press-card-thumb-wrap">
-      <div class="press-card-thumb-fallback">📰</div>
-      <img class="press-card-thumb" src="https://drive.google.com/thumbnail?id=1vSDvxJrnmnk3nzqu3UJy-0YiBlN3Rn1j&sz=w400" alt="El Tribuno" loading="lazy" onerror="this.style.display='none'">
-      <div class="press-card-overlay"></div>
-      <div class="press-card-tag">El Tribuno</div>
-    </div>
-    <div class="press-card-body"><div class="press-card-title">En el nombre de Raquel</div><div class="press-card-source">El Tribuno · Jujuy · 2013</div></div>
-  </a>
-  <a class="press-card" href="#" data-title="Denuncia al delito de trata" data-meta="Primera Edición · Misiones · 2013" data-desc="Primera Edición Misiones: «Una fuerte denuncia al delito de trata por medio del teatro»." data-type="image" data-src="https://drive.google.com/file/d/1NYEdHK1C2Jm4Jav65SB2CefubfvLBUo6/preview" onclick="return openLB(this)">
-    <div class="press-card-thumb-wrap">
-      <div class="press-card-thumb-fallback">📰</div>
-      <img class="press-card-thumb" src="https://drive.google.com/thumbnail?id=1NYEdHK1C2Jm4Jav65SB2CefubfvLBUo6&sz=w400" alt="Misiones" loading="lazy" onerror="this.style.display='none'">
-      <div class="press-card-overlay"></div>
-      <div class="press-card-tag">Primera Edición</div>
-    </div>
-    <div class="press-card-body"><div class="press-card-title">Denuncia al delito de trata</div><div class="press-card-source">Primera Edición · Misiones · 2013</div></div>
-  </a>
-  <a class="press-card" href="#" data-title="Teatro contra la trata" data-meta="Diario El Sol · 2013" data-desc="Diario El Sol: «Teatro contra la trata» — Presentación en el Teatro Municipal de Lomas de Zamora." data-type="image" data-src="https://drive.google.com/file/d/1ws39l8RCX-LyZ1ygVIYAc7icOYPUrCfp/preview" onclick="return openLB(this)">
-    <div class="press-card-thumb-wrap">
-      <div class="press-card-thumb-fallback">📰</div>
-      <img class="press-card-thumb" src="https://drive.google.com/thumbnail?id=1ws39l8RCX-LyZ1ygVIYAc7icOYPUrCfp&sz=w400" alt="El Sol" loading="lazy" onerror="this.style.display='none'">
-      <div class="press-card-overlay"></div>
-      <div class="press-card-tag">El Sol</div>
-    </div>
-    <div class="press-card-body"><div class="press-card-title">Teatro contra la trata</div><div class="press-card-source">Diario El Sol · 2013</div></div>
-  </a>
-  <a class="press-card" href="#" data-title="Cobertura de gira" data-meta="Diario El Sol · Marzo 2013" data-desc="Diario El Sol del 15 de marzo: cobertura de la obra en gira nacional." data-type="image" data-src="https://drive.google.com/file/d/1kZpGIkuGtO34o0SXPcpPlyaCGMQrY37D/preview" onclick="return openLB(this)">
-    <div class="press-card-thumb-wrap">
-      <div class="press-card-thumb-fallback">📰</div>
-      <img class="press-card-thumb" src="https://drive.google.com/thumbnail?id=1kZpGIkuGtO34o0SXPcpPlyaCGMQrY37D&sz=w400" alt="El Sol marzo" loading="lazy" onerror="this.style.display='none'">
-      <div class="press-card-overlay"></div>
-      <div class="press-card-tag">El Sol</div>
-    </div>
-    <div class="press-card-body"><div class="press-card-title">Cobertura de gira</div><div class="press-card-source">Diario El Sol · Marzo 2013</div></div>
-  </a>
-  <a class="press-card" href="#" data-title="El teatro es un grito visceral" data-meta="La Voz del Pueblo · Tres Arroyos · 2013" data-desc="La Voz del Pueblo: «El teatro es un grito visceral que no alcanza» — Entrevista con Mariel Rosciano." data-type="image" data-src="https://drive.google.com/file/d/14Ft_ZeTyQHVTx_E40qhoDSUlKiytKZPx/preview" onclick="return openLB(this)">
-    <div class="press-card-thumb-wrap">
-      <div class="press-card-thumb-fallback">📰</div>
-      <img class="press-card-thumb" src="https://drive.google.com/thumbnail?id=14Ft_ZeTyQHVTx_E40qhoDSUlKiytKZPx&sz=w400" alt="Tres Arroyos" loading="lazy" onerror="this.style.display='none'">
-      <div class="press-card-overlay"></div>
-      <div class="press-card-tag">La Voz</div>
-    </div>
-    <div class="press-card-body"><div class="press-card-title">El teatro es un grito visceral</div><div class="press-card-source">La Voz del Pueblo · 2013</div></div>
-  </a>
-  <a class="press-card" href="#" data-title="Postal de producción" data-meta="En el nombre de Raquel · 2011" data-desc="Postal de producción de «En el nombre de Raquel» — 2011." data-type="image" data-src="https://drive.google.com/file/d/192aWhxQ6O79ya_u3s3-y3qye6Nls5KFB/preview" onclick="return openLB(this)">
-    <div class="press-card-thumb-wrap">
-      <div class="press-card-thumb-fallback">📷</div>
-      <img class="press-card-thumb" src="https://drive.google.com/thumbnail?id=192aWhxQ6O79ya_u3s3-y3qye6Nls5KFB&sz=w400" alt="Postal" loading="lazy" onerror="this.style.display='none'">
-      <div class="press-card-overlay"></div>
-      <div class="press-card-tag">Postal</div>
-    </div>
-    <div class="press-card-body"><div class="press-card-title">Postal de producción</div><div class="press-card-source">En el nombre de Raquel · 2011</div></div>
-  </a>
-</div>
-```
 
   </div>
-</section>
 
-<!-- ══════════════════════════════════════ -->
+  <div class="sub">Publicidad y TV — como actriz</div>
+  <div class="note">La publicidad de <em>Kinder</em> está en la sección <em>Coach artística</em> porque en ese proyecto Mariel fue coach, no actriz.</div>
+  <div class="grid">
 
-<!-- PRODUCTORA -->
+    <div class="card" onclick="lb('La Salteña — Idea Sorpresa','Publicidad · Actriz','La Salteña Idea Sorpresa — Aparición como actriz.','https://drive.google.com/file/d/1dkZfG-CCgDqhlUL8jkz0H1q5yPymDCn6/preview')">
+      <div class="cs cr"></div>
+      <div class="cvid"><img src="https://drive.google.com/thumbnail?id=1dkZfG-CCgDqhlUL8jkz0H1q5yPymDCn6&sz=w480" alt="" onerror="this.style.display='none'"><div class="pbt">▶</div></div>
+      <div class="cbody"><div class="cmeta">Publicidad · Actriz</div><div class="ctit">La Salteña — Idea Sorpresa</div></div>
+      <div class="cex">↗</div>
+    </div>
 
-<!-- ══════════════════════════════════════ -->
+    <div class="card" onclick="lb('La Salteña — Idea Práctica','Publicidad · Actriz','La Salteña Idea Práctica.','https://drive.google.com/file/d/1gQb34WGH17CQb4aOa-ctepoeJlqbUQKT/preview')">
+      <div class="cs cr"></div>
+      <div class="cvid"><img src="https://drive.google.com/thumbnail?id=1gQb34WGH17CQb4aOa-ctepoeJlqbUQKT&sz=w480" alt="" onerror="this.style.display='none'"><div class="pbt">▶</div></div>
+      <div class="cbody"><div class="cmeta">Publicidad · Actriz</div><div class="ctit">La Salteña — Idea Práctica</div></div>
+      <div class="cex">↗</div>
+    </div>
 
-<section id="productora" class="section-panel prod">
-  <div class="section-inner">
-    <div class="section-header">
-      <span class="section-num">03 ·</span>
-      <h2 class="section-title"><em>Productora</em></h2>
+    <div class="card" onclick="lb('La Salteña — Una idea','Publicidad · Actriz','La Salteña Una Idea.','https://drive.google.com/file/d/1J7ByIPXD3HiP9xWrOywtLVIDGzbSRDz-/preview')">
+      <div class="cs cr"></div>
+      <div class="cvid"><img src="https://drive.google.com/thumbnail?id=1J7ByIPXD3HiP9xWrOywtLVIDGzbSRDz-&sz=w480" alt="" onerror="this.style.display='none'"><div class="pbt">▶</div></div>
+      <div class="cbody"><div class="cmeta">Publicidad · Actriz</div><div class="ctit">La Salteña — Una idea</div></div>
+      <div class="cex">↗</div>
     </div>
-    <p class="section-intro">Producción ejecutiva de cine, televisión y eventos culturales de gran escala. Desde el histórico Festival Martha Argerich 2004 hasta largometrajes y series animadas con la firma No End Projects.</p>
 
-```
-<div class="section-subsection">Cine & Series</div>
-<div class="cards-grid">
+    <div class="card" onclick="lb('Mantecol — Regalo','Publicidad · Actriz','Mantecol Regalo.','https://drive.google.com/file/d/1u4CWpI0a7lUVe5kDEaJf0JNCk6ACU-eI/preview')">
+      <div class="cs cr"></div>
+      <div class="cvid"><img src="https://drive.google.com/thumbnail?id=1u4CWpI0a7lUVe5kDEaJf0JNCk6ACU-eI&sz=w480" alt="" onerror="this.style.display='none'"><div class="pbt">▶</div></div>
+      <div class="cbody"><div class="cmeta">Publicidad · Actriz</div><div class="ctit">Mantecol — Regalo</div></div>
+      <div class="cex">↗</div>
+    </div>
 
-  <a class="card" href="#" data-title="MILF" data-meta="Producción Ejecutiva · Cine" data-desc="MILF — Largometraje. Producción ejecutiva. Trailer completo." data-type="video" data-src="https://drive.google.com/file/d/109vcRDq1g2IkFUytRI1qt-6OVGSHGSr9/preview" onclick="return openLB(this)">
-    <div class="card-accent accent-teal"></div>
-    <div class="card-thumb-wrap">
-      <div class="card-thumb-fallback">🎞</div>
-      <img class="card-thumb" src="https://drive.google.com/thumbnail?id=109vcRDq1g2IkFUytRI1qt-6OVGSHGSr9&sz=w800" alt="MILF" loading="lazy" onerror="this.style.display='none'">
-      <div class="card-thumb-overlay"></div>
-      <div class="card-type-badge">Trailer</div>
-      <div class="card-play-badge">▶</div>
+    <div class="card" onclick="lb('Movistar — Navidad','Publicidad · Actriz','Movistar Navidad — Campaña navideña.','https://drive.google.com/file/d/1wdlECMZHTraAxsWorYtwhy0xCos3evgi/preview')">
+      <div class="cs cr"></div>
+      <div class="cvid"><img src="https://drive.google.com/thumbnail?id=1wdlECMZHTraAxsWorYtwhy0xCos3evgi&sz=w480" alt="" onerror="this.style.display='none'"><div class="pbt">▶</div></div>
+      <div class="cbody"><div class="cmeta">Publicidad · Actriz</div><div class="ctit">Movistar — Navidad</div></div>
+      <div class="cex">↗</div>
     </div>
-    <div class="card-body">
-      <div class="card-meta">Producción Ejecutiva · Cine</div>
-      <div class="card-title">MILF</div>
-      <div class="card-desc">Largometraje</div>
-    </div>
-    <div class="card-arrow">↗</div>
-  </a>
 
-  <a class="card" href="#" data-title="Vagón Fumador" data-meta="Producción · Cine" data-desc="Vagón Fumador — Producción de largometraje." data-type="video" data-src="https://drive.google.com/file/d/1y6SfFvET3ZhZJiei15XexeeoC-AY5fgA/preview" onclick="return openLB(this)">
-    <div class="card-accent accent-teal"></div>
-    <div class="card-thumb-wrap">
-      <div class="card-thumb-fallback">🎞</div>
-      <img class="card-thumb" src="https://drive.google.com/thumbnail?id=1y6SfFvET3ZhZJiei15XexeeoC-AY5fgA&sz=w800" alt="Vagón Fumador" loading="lazy" onerror="this.style.display='none'">
-      <div class="card-thumb-overlay"></div>
-      <div class="card-type-badge">Cine</div>
-      <div class="card-play-badge">▶</div>
+    <div class="card" onclick="lb('Barco de Armando Bo','Publicidad · Actriz','Barco de Armando Bo — Publicidad.','https://drive.google.com/file/d/1kCNnR9lLb32LBXq9u9ExTiw4bbKLvMu2/preview')">
+      <div class="cs cr"></div>
+      <div class="cvid"><img src="https://drive.google.com/thumbnail?id=1kCNnR9lLb32LBXq9u9ExTiw4bbKLvMu2&sz=w480" alt="" onerror="this.style.display='none'"><div class="pbt">▶</div></div>
+      <div class="cbody"><div class="cmeta">Publicidad · Actriz</div><div class="ctit">Barco de Armando Bo</div></div>
+      <div class="cex">↗</div>
     </div>
-    <div class="card-body">
-      <div class="card-meta">Producción · Cine</div>
-      <div class="card-title">Vagón Fumador</div>
-    </div>
-    <div class="card-arrow">↗</div>
-  </a>
 
-  <a class="card" href="#" data-title="El Séptimo Arcángel" data-meta="Producción · Cine" data-desc="El Séptimo Arcángel — Producción de largometraje." data-type="video" data-src="https://drive.google.com/file/d/1BMojCZJYHFKUyxnhpaSvENTyLulgMTj-/preview" onclick="return openLB(this)">
-    <div class="card-accent accent-teal"></div>
-    <div class="card-thumb-wrap">
-      <div class="card-thumb-fallback">🎞</div>
-      <img class="card-thumb" src="https://drive.google.com/thumbnail?id=1BMojCZJYHFKUyxnhpaSvENTyLulgMTj-&sz=w800" alt="Séptimo Arcángel" loading="lazy" onerror="this.style.display='none'">
-      <div class="card-thumb-overlay"></div>
-      <div class="card-type-badge">Cine</div>
-      <div class="card-play-badge">▶</div>
+    <div class="card" onclick="lb('Promo — Publicidad y TV','Showreel · Actriz','Showreel de trabajo en publicidad y TV como actriz.','https://drive.google.com/file/d/1k8elU4SEeNYZW0BGCmoZZPK9km1eMOPR/preview')">
+      <div class="cs cr"></div>
+      <div class="cvid"><img src="https://drive.google.com/thumbnail?id=1k8elU4SEeNYZW0BGCmoZZPK9km1eMOPR&sz=w480" alt="" onerror="this.style.display='none'"><div class="pbt">▶</div></div>
+      <div class="cbody"><div class="cmeta">Showreel · Publicidad y TV</div><div class="ctit">Promo actriz</div></div>
+      <div class="cex">↗</div>
     </div>
-    <div class="card-body">
-      <div class="card-meta">Producción · Cine</div>
-      <div class="card-title">El Séptimo Arcángel</div>
-    </div>
-    <div class="card-arrow">↗</div>
-  </a>
-
-  <a class="card" href="#" data-title="Sudeste" data-meta="Producción · Cine" data-desc="Sudeste — Producción de largometraje." data-type="video" data-src="https://drive.google.com/file/d/12mPO0vWa6JgDcuwyqX0os_9Ib_TLGP08/preview" onclick="return openLB(this)">
-    <div class="card-accent accent-teal"></div>
-    <div class="card-thumb-wrap">
-      <div class="card-thumb-fallback">🎞</div>
-      <img class="card-thumb" src="https://drive.google.com/thumbnail?id=12mPO0vWa6JgDcuwyqX0os_9Ib_TLGP08&sz=w800" alt="Sudeste" loading="lazy" onerror="this.style.display='none'">
-      <div class="card-thumb-overlay"></div>
-      <div class="card-type-badge">Cine</div>
-      <div class="card-play-badge">▶</div>
-    </div>
-    <div class="card-body">
-      <div class="card-meta">Producción · Cine</div>
-      <div class="card-title">Sudeste</div>
-    </div>
-    <div class="card-arrow">↗</div>
-  </a>
-
-  <a class="card" href="#" data-title="Dulce de Leche" data-meta="Producción · Cine · Dir. Mariano Galperín" data-desc="Dulce de Leche de Mariano Galperín — Producción ejecutiva." data-type="video" data-src="https://drive.google.com/file/d/191zc1Plpveqm3QHfBVbmz6WG0nrMvbcN/preview" onclick="return openLB(this)">
-    <div class="card-accent accent-teal"></div>
-    <div class="card-thumb-wrap">
-      <div class="card-thumb-fallback">🎞</div>
-      <img class="card-thumb" src="https://drive.google.com/thumbnail?id=191zc1Plpveqm3QHfBVbmz6WG0nrMvbcN&sz=w800" alt="Dulce de Leche" loading="lazy" onerror="this.style.display='none'">
-      <div class="card-thumb-overlay"></div>
-      <div class="card-type-badge">Cine</div>
-      <div class="card-play-badge">▶</div>
-    </div>
-    <div class="card-body">
-      <div class="card-meta">Producción · Cine</div>
-      <div class="card-title">Dulce de Leche</div>
-      <div class="card-desc">Dir. Mariano Galperín</div>
-    </div>
-    <div class="card-arrow">↗</div>
-  </a>
-
-  <a class="card" href="#" data-title="El Cuenco de las Ciudades Mestizas" data-meta="Producción · Cine" data-desc="El Cuenco de las Ciudades Mestizas — Producción ejecutiva." data-type="video" data-src="https://drive.google.com/file/d/1AAvEuBsodC_e7FH4Yq-GRCjIjDaaIAiE/preview" onclick="return openLB(this)">
-    <div class="card-accent accent-teal"></div>
-    <div class="card-thumb-wrap">
-      <div class="card-thumb-fallback">🎞</div>
-      <img class="card-thumb" src="https://drive.google.com/thumbnail?id=1AAvEuBsodC_e7FH4Yq-GRCjIjDaaIAiE&sz=w800" alt="Cuenco" loading="lazy" onerror="this.style.display='none'">
-      <div class="card-thumb-overlay"></div>
-      <div class="card-type-badge">Cine</div>
-      <div class="card-play-badge">▶</div>
-    </div>
-    <div class="card-body">
-      <div class="card-meta">Producción · Cine</div>
-      <div class="card-title">El Cuenco de las Ciudades Mestizas</div>
-    </div>
-    <div class="card-arrow">↗</div>
-  </a>
-
-  <a class="card" href="#" data-title="Un Día de Suerte" data-meta="Producción · Cine" data-desc="Un Día de Suerte — Producción ejecutiva." data-type="video" data-src="https://drive.google.com/file/d/1dXQ5y1ugG_vMkXId-45BMTblCmZTWAjp/preview" onclick="return openLB(this)">
-    <div class="card-accent accent-teal"></div>
-    <div class="card-thumb-wrap">
-      <div class="card-thumb-fallback">🎞</div>
-      <img class="card-thumb" src="https://drive.google.com/thumbnail?id=1dXQ5y1ugG_vMkXId-45BMTblCmZTWAjp&sz=w800" alt="Un Día de Suerte" loading="lazy" onerror="this.style.display='none'">
-      <div class="card-thumb-overlay"></div>
-      <div class="card-type-badge">Cine</div>
-      <div class="card-play-badge">▶</div>
-    </div>
-    <div class="card-body">
-      <div class="card-meta">Producción · Cine</div>
-      <div class="card-title">Un Día de Suerte</div>
-    </div>
-    <div class="card-arrow">↗</div>
-  </a>
-
-</div>
-
-<div class="section-subsection">Festival Martha Argerich 2004</div>
-<div class="cards-grid">
-  <a class="card" href="#" data-title="Festival Martha Argerich 2004" data-meta="Producción Ejecutiva · Festival" data-desc="Festival Martha Argerich 2004 — Producción ejecutiva del histórico festival de piano." data-type="image" data-src="https://drive.google.com/file/d/1OXBg9wJ2uVOtYLHt5yZPYFiHy2eEJ5ce/preview" onclick="return openLB(this)">
-    <div class="card-accent accent-teal"></div>
-    <div class="card-thumb-wrap">
-      <div class="card-thumb-fallback">🎹</div>
-      <img class="card-thumb" src="https://drive.google.com/thumbnail?id=1OXBg9wJ2uVOtYLHt5yZPYFiHy2eEJ5ce&sz=w800" alt="Martha Argerich" loading="lazy" onerror="this.style.display='none'">
-      <div class="card-thumb-overlay"></div>
-      <div class="card-type-badge">Festival</div>
-    </div>
-    <div class="card-body">
-      <div class="card-meta">Festival · Producción Ejecutiva</div>
-      <div class="card-title">Festival Martha Argerich 2004</div>
-      <div class="card-desc">Producción ejecutiva del histórico festival de piano</div>
-    </div>
-    <div class="card-arrow">↗</div>
-  </a>
-</div>
-
-<div class="section-subsection">Casting</div>
-<div class="cards-grid">
-  <a class="card" href="#" data-title="Promo Casting 1" data-meta="Casting · Producción" data-desc="Promo de casting / producción." data-type="video" data-src="https://drive.google.com/file/d/1AD5b4r8NFpUaOzvQQTZ_R3VsnNG4SNhx/preview" onclick="return openLB(this)">
-    <div class="card-accent accent-teal"></div>
-    <div class="card-thumb-wrap">
-      <div class="card-thumb-fallback">🎞</div>
-      <img class="card-thumb" src="https://drive.google.com/thumbnail?id=1AD5b4r8NFpUaOzvQQTZ_R3VsnNG4SNhx&sz=w800" alt="Promo Casting 1" loading="lazy" onerror="this.style.display='none'">
-      <div class="card-thumb-overlay"></div>
-      <div class="card-type-badge">Casting</div>
-      <div class="card-play-badge">▶</div>
-    </div>
-    <div class="card-body">
-      <div class="card-meta">Casting · Producción</div>
-      <div class="card-title">Promo 1</div>
-    </div>
-    <div class="card-arrow">↗</div>
-  </a>
-  <a class="card" href="#" data-title="Promo Casting 2" data-meta="Casting · Producción" data-desc="Segunda promo de casting / producción." data-type="video" data-src="https://drive.google.com/file/d/1k8elU4SEeNYZW0BGCmoZZPK9km1eMOPR/preview" onclick="return openLB(this)">
-    <div class="card-accent accent-teal"></div>
-    <div class="card-thumb-wrap">
-      <div class="card-thumb-fallback">🎞</div>
-      <img class="card-thumb" src="https://drive.google.com/thumbnail?id=1k8elU4SEeNYZW0BGCmoZZPK9km1eMOPR&sz=w800" alt="Promo Casting 2" loading="lazy" onerror="this.style.display='none'">
-      <div class="card-thumb-overlay"></div>
-      <div class="card-type-badge">Casting</div>
-      <div class="card-play-badge">▶</div>
-    </div>
-    <div class="card-body">
-      <div class="card-meta">Casting · Producción</div>
-      <div class="card-title">Promo 2</div>
-    </div>
-    <div class="card-arrow">↗</div>
-  </a>
-</div>
-```
 
   </div>
-</section>
 
-<!-- ══════════════════════════════════════ -->
-
-<!-- DOCUMENTALISTA -->
-
-<!-- ══════════════════════════════════════ -->
-
-<section id="documental" class="section-panel doc">
-  <div class="section-inner">
-    <div class="section-header">
-      <span class="section-num">04 ·</span>
-      <h2 class="section-title"><em>Documentalista</em></h2>
+  <div class="sub">Books & Prensa</div>
+  <div class="pgrid">
+    <div class="pc" onclick="lb('Retrato','Books · Fotografía','Material de book fotográfico.','https://drive.google.com/file/d/1LcCYVph6Cxr2HUpYHSbCVp5NJpi6kD9_/preview')">
+      <img class="pcimg" src="https://drive.google.com/thumbnail?id=1LcCYVph6Cxr2HUpYHSbCVp5NJpi6kD9_&sz=w300" alt="" onerror="this.outerHTML='<div class=pcph>📸</div>'">
+      <div class="pcb"><div class="pct">Retrato</div><div class="pcs">Books</div></div>
     </div>
-    <p class="section-intro">Cine documental con perspectiva de género y compromiso social. Desde la trata de personas hasta la cuarentena vivida por mujeres, pasando por figuras icónicas de la música argentina.</p>
-
-```
-<div class="cards-grid">
-
-  <a class="card" href="#" data-title="Yo, abolicionista" data-meta="Documental · Cine.ar Play · 2019" data-desc="Yo, abolicionista — Documental de Mariel Rosciano. Disponible en Cine.ar Play. Fondo Nacional de las Artes, 2019. Aborda la prostitución desde el abolicionismo, con testimonios de mujeres en primera persona. Reseñado por Revista Emancipa." data-type="video" data-src="https://drive.google.com/file/d/1z2wmNZBNPjh3DBOxZ2OfPz1vge8x94QV/preview" onclick="return openLB(this)">
-    <div class="card-accent accent-violet"></div>
-    <div class="card-thumb-wrap">
-      <div class="card-thumb-fallback">📽</div>
-      <img class="card-thumb" src="https://drive.google.com/thumbnail?id=1z2wmNZBNPjh3DBOxZ2OfPz1vge8x94QV&sz=w800" alt="Yo, abolicionista" loading="lazy" onerror="this.style.display='none'">
-      <div class="card-thumb-overlay"></div>
-      <div class="card-type-badge">Documental</div>
-      <div class="card-play-badge">▶</div>
+    <div class="pc" onclick="lb('Book 2','Books · Fotografía','Imagen de book.','https://drive.google.com/file/d/1S1jbOMGH4NGc791TL39R6lmjglIu_dWd/preview')">
+      <img class="pcimg" src="https://drive.google.com/thumbnail?id=1S1jbOMGH4NGc791TL39R6lmjglIu_dWd&sz=w300" alt="" onerror="this.outerHTML='<div class=pcph>📸</div>'">
+      <div class="pcb"><div class="pct">Book</div><div class="pcs">Fotografía</div></div>
     </div>
-    <div class="card-body">
-      <div class="card-meta">Documental · Cine.ar Play · 2019</div>
-      <div class="card-title">Yo, abolicionista</div>
-      <div class="card-desc">Fondo Nacional de las Artes · Abolicionismo · Cine.ar Play</div>
+    <div class="pc" onclick="lb('Book 3','Books · Fotografía','Imagen de book.','https://drive.google.com/file/d/1Vcqtymy9cTVjJ14ynVpJOEQKoeIBw2Oz/preview')">
+      <img class="pcimg" src="https://drive.google.com/thumbnail?id=1Vcqtymy9cTVjJ14ynVpJOEQKoeIBw2Oz&sz=w300" alt="" onerror="this.outerHTML='<div class=pcph>📸</div>'">
+      <div class="pcb"><div class="pct">Book</div><div class="pcs">Fotografía</div></div>
     </div>
-    <div class="card-arrow">↗</div>
-  </a>
-
-  <a class="card" href="#" data-title="Rota, mujeres en cuarentena" data-meta="Docuserie · Mecenazgo GCBA · 2021" data-desc="ROTA, mujeres en cuarentena — Docuserie producida con Mecenazgo GCBA, 2021. Mujeres durante el ASPO." data-type="video" data-src="https://drive.google.com/file/d/1zL5fBe1qSTICazXBTNIqw_3O1g3RGKOa/preview" onclick="return openLB(this)">
-    <div class="card-accent accent-violet"></div>
-    <div class="card-thumb-wrap">
-      <div class="card-thumb-fallback">📽</div>
-      <img class="card-thumb" src="https://drive.google.com/thumbnail?id=1zL5fBe1qSTICazXBTNIqw_3O1g3RGKOa&sz=w800" alt="Rota" loading="lazy" onerror="this.style.display='none'">
-      <div class="card-thumb-overlay"></div>
-      <div class="card-type-badge">Docuserie</div>
-      <div class="card-play-badge">▶</div>
+    <div class="pc" onclick="lb('Clarín 2014','Clarín · 2014','La crisis de los 30, sobre las tablas — Entrevista en Clarín.','https://drive.google.com/file/d/1wgP_A3C4xSG5_Gqm9OXrPhTmSokS-1yC/preview')">
+      <div class="pcph" style="background:rgba(201,84,108,.06)">📰</div>
+      <div class="pcb"><div class="pct">La crisis de los 30</div><div class="pcs">Clarín · 2014</div></div>
     </div>
-    <div class="card-body">
-      <div class="card-meta">Docuserie · Mecenazgo GCBA · 2021</div>
-      <div class="card-title">Rota, mujeres en cuarentena</div>
-      <div class="card-desc">Mujeres durante el ASPO</div>
+    <div class="pc" onclick="lb('Los Andes 2017','Los Andes · Mendoza · 2017','La neurosis de las tres décadas — Teatro Selectro.','https://drive.google.com/file/d/1bf1Eb6w6A7VB9Mm_q6xGSFZ0vlckksE4/preview')">
+      <div class="pcph" style="background:rgba(201,84,108,.06)">📰</div>
+      <div class="pcb"><div class="pct">La neurosis de las tres décadas</div><div class="pcs">Los Andes · 2017</div></div>
     </div>
-    <div class="card-arrow">↗</div>
-  </a>
-
-  <a class="card" href="#" data-title="Sandra Mihanovich — 40 años en la música" data-meta="Documental · Sony / DBN · 2017" data-desc="Sandra Mihanovich – 40 años en la música — Documental producido para Sony/DBN, 2017." data-type="image" data-src="https://drive.google.com/file/d/1a54bm7tT32T8L8aEzzXQmCo3JLO5UFFc/preview" onclick="return openLB(this)">
-    <div class="card-accent accent-violet"></div>
-    <div class="card-thumb-wrap">
-      <div class="card-thumb-fallback">🎵</div>
-      <img class="card-thumb" src="https://drive.google.com/thumbnail?id=1a54bm7tT32T8L8aEzzXQmCo3JLO5UFFc&sz=w800" alt="Sandra Mihanovich" loading="lazy" onerror="this.style.display='none'">
-      <div class="card-thumb-overlay"></div>
-      <div class="card-type-badge">Documental</div>
+    <div class="pc" onclick="lb('ABC Color PY 2014','ABC Color Paraguay · 2014','Mariel Rosciano: reconciliación a través de la risa.','https://drive.google.com/file/d/1v--jXDB3s7Fxzu-WGxBRf2momhUiUmIX/preview')">
+      <div class="pcph" style="background:rgba(201,84,108,.06)">📰</div>
+      <div class="pcb"><div class="pct">Reconciliación a través de la risa</div><div class="pcs">ABC Color · PY · 2014</div></div>
     </div>
-    <div class="card-body">
-      <div class="card-meta">Documental · Sony / DBN · 2017</div>
-      <div class="card-title">Sandra Mihanovich — 40 años en la música</div>
-      <div class="card-desc">Sony / DBN · 2017</div>
+    <div class="pc" onclick="lb('Última Hora PY 2014','Última Hora · Paraguay · 2014','La crisis de los 30 tomada con humor.','https://drive.google.com/file/d/1JbqQVcMmhQE621azvmcWUqIqdZ9txc_x/preview')">
+      <div class="pcph" style="background:rgba(201,84,108,.06)">📰</div>
+      <div class="pcb"><div class="pct">La crisis de los 30 tomada con humor</div><div class="pcs">Última Hora · PY · 2014</div></div>
     </div>
-    <div class="card-arrow">↗</div>
-  </a>
-
-</div>
-
-<!-- Prensa Documental -->
-<div class="section-subsection">Prensa — Yo, abolicionista</div>
-<div class="press-grid">
-  <a class="press-card" href="#" data-title="Yo, abolicionista" data-meta="Revista Emancipa · 2019" data-desc="Yo, abolicionista. Documental de Mariel Rosciano — Revista Emancipa. Reseña y entrevista completa." data-type="pdf" data-src="https://drive.google.com/file/d/1J2pc3BRve3aNnNbpvhtxU5-iA0ivYjop/preview" onclick="return openLB(this)">
-    <div class="press-card-thumb-wrap">
-      <div class="press-card-thumb-fallback">📰</div>
-      <img class="press-card-thumb" src="https://drive.google.com/thumbnail?id=1J2pc3BRve3aNnNbpvhtxU5-iA0ivYjop&sz=w400" alt="Emancipa" loading="lazy" onerror="this.style.display='none'">
-      <div class="press-card-overlay"></div>
-      <div class="press-card-tag">Emancipa</div>
+    <div class="pc" onclick="lb('El Guardian — Standaperas','El Guardian · 2012','Standaperas — Nota con Mariel Rosciano.','https://drive.google.com/file/d/1-Y4jNYbBDnrYyvYzmYSUnGg-QBu9cNaM/preview')">
+      <img class="pcimg" src="https://drive.google.com/thumbnail?id=1-Y4jNYbBDnrYyvYzmYSUnGg-QBu9cNaM&sz=w300" alt="" onerror="this.outerHTML='<div class=pcph>📰</div>'">
+      <div class="pcb"><div class="pct">Standaperas</div><div class="pcs">El Guardian · 2012</div></div>
     </div>
-    <div class="press-card-body">
-      <div class="press-card-title">Yo, abolicionista</div>
-      <div class="press-card-source">Revista Emancipa · 2019</div>
+    <div class="pc" onclick="lb('El Guardian — Humor femenino','El Guardian · 2012','Humor femenino y stand up.','https://drive.google.com/file/d/1tEBXR2jC0WN0ZBjKzvOW4DqJkLhK_72I/preview')">
+      <img class="pcimg" src="https://drive.google.com/thumbnail?id=1tEBXR2jC0WN0ZBjKzvOW4DqJkLhK_72I&sz=w300" alt="" onerror="this.outerHTML='<div class=pcph>📰</div>'">
+      <div class="pcb"><div class="pct">Humor femenino y stand up</div><div class="pcs">El Guardian · 2012</div></div>
     </div>
-  </a>
-</div>
-```
-
+    <div class="pc" onclick="lb('Télam 2012','Télam · 2012','Reseña del unipersonal «En el nombre de Raquel».','https://drive.google.com/file/d/16FPXcJziBL5-YSxxbIgqBBiwHU1ZTei6/preview')">
+      <img class="pcimg" src="https://drive.google.com/thumbnail?id=16FPXcJziBL5-YSxxbIgqBBiwHU1ZTei6&sz=w300" alt="" onerror="this.outerHTML='<div class=pcph>📰</div>'">
+      <div class="pcb"><div class="pct">En el nombre de Raquel</div><div class="pcs">Télam · 2012</div></div>
+    </div>
+    <div class="pc" onclick="lb('Agencia NaN 2012','Agencia NaN · 2012','Reseña del estreno en Teatro SHA.','https://drive.google.com/file/d/1cm57ILx12cDZp6EXINnPsuGr-OypTU2Y/preview')">
+      <img class="pcimg" src="https://drive.google.com/thumbnail?id=1cm57ILx12cDZp6EXINnPsuGr-OypTU2Y&sz=w300" alt="" onerror="this.outerHTML='<div class=pcph>📰</div>'">
+      <div class="pcb"><div class="pct">En el nombre de Raquel</div><div class="pcs">Agencia NaN · 2012</div></div>
+    </div>
+    <div class="pc" onclick="lb('El Abasto 2013','El Abasto · 2013','La polaca más valiente de Balvanera.','https://drive.google.com/file/d/18IpbvthVKibj1euMM0TP457VcqtsdUCD/preview')">
+      <img class="pcimg" src="https://drive.google.com/thumbnail?id=18IpbvthVKibj1euMM0TP457VcqtsdUCD&sz=w300" alt="" onerror="this.outerHTML='<div class=pcph>📰</div>'">
+      <div class="pcb"><div class="pct">La polaca más valiente</div><div class="pcs">El Abasto · 2013</div></div>
+    </div>
+    <div class="pc" onclick="lb('La Nación CR 2012','La Nación Costa Rica · 2012','Raquel habla claro sobre la trata.','https://drive.google.com/file/d/12GHR9qxpFD5FGxfP1rWc5Ro9UvbO7RKO/preview')">
+      <img class="pcimg" src="https://drive.google.com/thumbnail?id=12GHR9qxpFD5FGxfP1rWc5Ro9UvbO7RKO&sz=w300" alt="" onerror="this.outerHTML='<div class=pcph>📰</div>'">
+      <div class="pcb"><div class="pct">Raquel habla claro sobre la trata</div><div class="pcs">La Nación · CR · 2012</div></div>
+    </div>
+    <div class="pc" onclick="lb('El Tribuno Jujuy 2013','El Tribuno · Jujuy · 2013','Se presentó «En el nombre de Raquel».','https://drive.google.com/file/d/1vSDvxJrnmnk3nzqu3UJy-0YiBlN3Rn1j/preview')">
+      <img class="pcimg" src="https://drive.google.com/thumbnail?id=1vSDvxJrnmnk3nzqu3UJy-0YiBlN3Rn1j&sz=w300" alt="" onerror="this.outerHTML='<div class=pcph>📰</div>'">
+      <div class="pcb"><div class="pct">En el nombre de Raquel</div><div class="pcs">El Tribuno · Jujuy · 2013</div></div>
+    </div>
+    <div class="pc" onclick="lb('Primera Edición Misiones 2013','Primera Edición · Misiones · 2013','Una fuerte denuncia al delito de trata por medio del teatro.','https://drive.google.com/file/d/1NYEdHK1C2Jm4Jav65SB2CefubfvLBUo6/preview')">
+      <img class="pcimg" src="https://drive.google.com/thumbnail?id=1NYEdHK1C2Jm4Jav65SB2CefubfvLBUo6&sz=w300" alt="" onerror="this.outerHTML='<div class=pcph>📰</div>'">
+      <div class="pcb"><div class="pct">Denuncia al delito de trata</div><div class="pcs">Primera Edición · Misiones · 2013</div></div>
+    </div>
+    <div class="pc" onclick="lb('Diario El Sol — 8 marzo 2013','Diario El Sol · 2013','8 de Marzo: en el nombre de la mujer.','https://drive.google.com/file/d/1ws39l8RCX-LyZ1ygVIYAc7icOYPUrCfp/preview')">
+      <img class="pcimg" src="https://drive.google.com/thumbnail?id=1ws39l8RCX-LyZ1ygVIYAc7icOYPUrCfp&sz=w300" alt="" onerror="this.outerHTML='<div class=pcph>📰</div>'">
+      <div class="pcb"><div class="pct">En el nombre de la mujer</div><div class="pcs">Diario El Sol · Marzo 2013</div></div>
+    </div>
+    <div class="pc" onclick="lb('Diario El Sol — 15 marzo 2013','Diario El Sol · 2013','Teatro contra la trata — Lomas de Zamora.','https://drive.google.com/file/d/1kZpGIkuGtO34o0SXPcpPlyaCGMQrY37D/preview')">
+      <img class="pcimg" src="https://drive.google.com/thumbnail?id=1kZpGIkuGtO34o0SXPcpPlyaCGMQrY37D&sz=w300" alt="" onerror="this.outerHTML='<div class=pcph>📰</div>'">
+      <div class="pcb"><div class="pct">Teatro contra la trata</div><div class="pcs">Diario El Sol · 15 marzo 2013</div></div>
+    </div>
+    <div class="pc" onclick="lb('La Voz del Pueblo — Tres Arroyos 2013','La Voz del Pueblo · 2013','El teatro es un grito visceral que no alcanza.','https://drive.google.com/file/d/14Ft_ZeTyQHVTx_E40qhoDSUlKiytKZPx/preview')">
+      <img class="pcimg" src="https://drive.google.com/thumbnail?id=14Ft_ZeTyQHVTx_E40qhoDSUlKiytKZPx&sz=w300" alt="" onerror="this.outerHTML='<div class=pcph>📰</div>'">
+      <div class="pcb"><div class="pct">El teatro es un grito visceral</div><div class="pcs">La Voz del Pueblo · 2013</div></div>
+    </div>
   </div>
+</div>
 </section>
 
-<!-- ══════════════════════════════════════ -->
+<!-- ══ 02 DIRECTORA ══ -->
+<section id="directora" class="sec sd">
+<div class="si">
+  <div class="sh"><span class="snum">02 ·</span><h2 class="stit">Directora</h2></div>
 
-<!-- COACH ARTÍSTICA -->
-
-<!-- ══════════════════════════════════════ -->
-
-<section id="coach" class="section-panel coa">
-  <div class="section-inner">
-    <div class="section-header">
-      <span class="section-num">05 ·</span>
-      <h2 class="section-title">Coach <em>Artística</em></h2>
+  <div class="geo gpy">🇵🇾 Paraguay</div>
+  <div class="grid">
+    <div class="card" onclick="lb('Fuerza Urbana','Dirección · Paraguay','Fuerza Urbana — Producción artística dirigida en Paraguay.','https://drive.google.com/file/d/1NfDbSgYy-4CaVQnscHcI9vXjbnO2R6MQ/preview')">
+      <div class="cs cg"></div>
+      <div class="cvid"><img src="https://drive.google.com/thumbnail?id=1NfDbSgYy-4CaVQnscHcI9vXjbnO2R6MQ&sz=w480" alt="" onerror="this.style.display='none'"><div class="pbt">▶</div></div>
+      <div class="cbody"><div class="cmeta">Dirección · Paraguay</div><div class="ctit">Fuerza Urbana</div></div>
+      <div class="cex">↗</div>
     </div>
-    <p class="section-intro">Acompañamiento integral de actores, actrices y figuras públicas frente a cámara y en escena. Coaching actoral, media training y dirección de talento en cine, series, teatro y publicidad.</p>
-
-```
-<!-- Cine y Series -->
-<div class="section-subsection">Cine y Series</div>
-<div class="cards-grid">
-
-  <a class="card" href="#" data-title="El Hijo" data-meta="Coach artística · Cine" data-desc="El Hijo — Coaching actoral en el rodaje. Fotografías del set de filmación." data-type="image" data-src="https://drive.google.com/file/d/13BZTsWDvzepnDoIGGUHxy_LLzqBOzDHC/preview" onclick="return openLB(this)">
-    <div class="card-accent accent-green"></div>
-    <div class="card-thumb-wrap">
-      <div class="card-thumb-fallback">✦</div>
-      <img class="card-thumb" src="https://drive.google.com/thumbnail?id=13BZTsWDvzepnDoIGGUHxy_LLzqBOzDHC&sz=w800" alt="El Hijo coach" loading="lazy" onerror="this.style.display='none'">
-      <div class="card-thumb-overlay"></div>
-      <div class="card-type-badge">Cine</div>
+    <div class="card" onclick="lb('Cuatro Colas y un Funeral','Dirección · Paraguay','Cuatro Colas y un Funeral — Teatro dirigido en Paraguay.','https://drive.google.com/file/d/1VznC2hzD9cyjJsjqi1s6mudLMnrJt_xf/preview')">
+      <div class="cs cg"></div>
+      <div class="cvid"><img src="https://drive.google.com/thumbnail?id=1VznC2hzD9cyjJsjqi1s6mudLMnrJt_xf&sz=w480" alt="" onerror="this.style.display='none'"><div class="pbt">▶</div></div>
+      <div class="cbody"><div class="cmeta">Dirección · Paraguay</div><div class="ctit">Cuatro Colas y un Funeral</div></div>
+      <div class="cex">↗</div>
     </div>
-    <div class="card-body">
-      <div class="card-meta">Coach artística · Cine</div>
-      <div class="card-title">El Hijo</div>
-      <div class="card-desc">Coaching actoral en rodaje</div>
+    <div class="card" onclick="lb('¡Blancanieves y el Príncipe Aventurero!','Dirección · Paraguay','Blancanieves y el Príncipe Aventurero — Teatro dirigido en Paraguay.','https://drive.google.com/file/d/1Ph3k931yepNgzbgA3k-ZzpWu7OC6VVmT/preview')">
+      <div class="cs cg"></div>
+      <div class="cvid"><img src="https://drive.google.com/thumbnail?id=1Ph3k931yepNgzbgA3k-ZzpWu7OC6VVmT&sz=w480" alt="" onerror="this.style.display='none'"><div class="pbt">▶</div></div>
+      <div class="cbody"><div class="cmeta">Dirección · Paraguay</div><div class="ctit">¡Blancanieves y el Príncipe Aventurero!</div></div>
+      <div class="cex">↗</div>
     </div>
-    <div class="card-arrow">↗</div>
-  </a>
-
-  <a class="card" href="#" data-title="El Hijo — Trailer" data-meta="Coach artística · Cine" data-desc="El Hijo — Trailer del largometraje donde Mariel trabajó como coach artística." data-type="video" data-src="https://drive.google.com/file/d/1QJKxwQL7YvvLRPN81hR1641_67YJBDuX/preview" onclick="return openLB(this)">
-    <div class="card-accent accent-green"></div>
-    <div class="card-thumb-wrap">
-      <div class="card-thumb-fallback">🎬</div>
-      <img class="card-thumb" src="https://drive.google.com/thumbnail?id=1QJKxwQL7YvvLRPN81hR1641_67YJBDuX&sz=w800" alt="El Hijo trailer" loading="lazy" onerror="this.style.display='none'">
-      <div class="card-thumb-overlay"></div>
-      <div class="card-type-badge">Trailer</div>
-      <div class="card-play-badge">▶</div>
-    </div>
-    <div class="card-body">
-      <div class="card-meta">Coach artística · Cine</div>
-      <div class="card-title">El Hijo — Trailer</div>
-      <div class="card-desc">Largometraje</div>
-    </div>
-    <div class="card-arrow">↗</div>
-  </a>
-
-  <a class="card" href="#" data-title="En el Barro — María Becerra" data-meta="Coach artística · María Becerra" data-desc="María Becerra — En el Barro. Mariel Rosciano como coach artística y media trainer durante el rodaje." data-type="image" data-src="https://drive.google.com/file/d/1GRPqo5ElMYEmCYFhrAwuvT59yXGdANgH/preview" onclick="return openLB(this)">
-    <div class="card-accent accent-green"></div>
-    <div class="card-thumb-wrap">
-      <div class="card-thumb-fallback">📷</div>
-      <img class="card-thumb" src="https://drive.google.com/thumbnail?id=1GRPqo5ElMYEmCYFhrAwuvT59yXGdANgH&sz=w800" alt="MB En el Barro" loading="lazy" onerror="this.style.display='none'">
-      <div class="card-thumb-overlay"></div>
-      <div class="card-type-badge">Set</div>
-    </div>
-    <div class="card-body">
-      <div class="card-meta">Coach artística · Serie</div>
-      <div class="card-title">En el Barro — María Becerra</div>
-      <div class="card-desc">Media training y coaching actoral</div>
-    </div>
-    <div class="card-arrow">↗</div>
-  </a>
-
-</div>
-
-<!-- Artistas -->
-<div class="section-subsection">Desarrollo de Artistas</div>
-<div class="cards-grid">
-
-  <a class="card" href="#" data-title="Elena — Promo" data-meta="Coach artística · Teatro" data-desc="Elena — Promo del espectáculo. Coaching y desarrollo del personaje." data-type="video" data-src="https://drive.google.com/file/d/1JZU5dx2tNSzk8QBf-KLlOZMtem9V_0hZ/preview" onclick="return openLB(this)">
-    <div class="card-accent accent-green"></div>
-    <div class="card-thumb-wrap">
-      <div class="card-thumb-fallback">✦</div>
-      <img class="card-thumb" src="https://drive.google.com/thumbnail?id=1JZU5dx2tNSzk8QBf-KLlOZMtem9V_0hZ&sz=w800" alt="Elena Promo" loading="lazy" onerror="this.style.display='none'">
-      <div class="card-thumb-overlay"></div>
-      <div class="card-type-badge">Teatro</div>
-      <div class="card-play-badge">▶</div>
-    </div>
-    <div class="card-body">
-      <div class="card-meta">Coach artística · Teatro</div>
-      <div class="card-title">Elena — Promo</div>
-      <div class="card-desc">Coaching y desarrollo del personaje</div>
-    </div>
-    <div class="card-arrow">↗</div>
-  </a>
-
-  <a class="card" href="#" data-title="MILF — Teatro (coaching)" data-meta="Coach artística · Teatro" data-desc="MILF — Coaching actoral para el unipersonal teatral." data-type="video" data-src="https://drive.google.com/file/d/1PE61xoEOS1wmKc7_QC7OY2XM-tf3PxdY/preview" onclick="return openLB(this)">
-    <div class="card-accent accent-green"></div>
-    <div class="card-thumb-wrap">
-      <div class="card-thumb-fallback">✦</div>
-      <img class="card-thumb" src="https://drive.google.com/thumbnail?id=1PE61xoEOS1wmKc7_QC7OY2XM-tf3PxdY&sz=w800" alt="MILF Coach" loading="lazy" onerror="this.style.display='none'">
-      <div class="card-thumb-overlay"></div>
-      <div class="card-type-badge">Teatro</div>
-      <div class="card-play-badge">▶</div>
-    </div>
-    <div class="card-body">
-      <div class="card-meta">Coach artística · Teatro</div>
-      <div class="card-title">MILF — Teatro</div>
-      <div class="card-desc">Coaching actoral para el unipersonal</div>
-    </div>
-    <div class="card-arrow">↗</div>
-  </a>
-
-  <a class="card" href="#" data-title="Madre Primeriza — Costa Rica" data-meta="Coach artística · Costa Rica" data-desc="Madre Primeriza en Costa Rica — Coaching artístico en gira internacional." data-type="video" data-src="https://drive.google.com/file/d/1AjOxioTOaBXZtj5vio78AP1XeGAi42z4/preview" onclick="return openLB(this)">
-    <div class="card-accent accent-green"></div>
-    <div class="card-thumb-wrap">
-      <div class="card-thumb-fallback">✦</div>
-      <img class="card-thumb" src="https://drive.google.com/thumbnail?id=1AjOxioTOaBXZtj5vio78AP1XeGAi42z4&sz=w800" alt="Madre Primeriza CR" loading="lazy" onerror="this.style.display='none'">
-      <div class="card-thumb-overlay"></div>
-      <div class="card-type-badge">Gira</div>
-      <div class="card-play-badge">▶</div>
-    </div>
-    <div class="card-body">
-      <div class="card-meta">Coach artística · Costa Rica</div>
-      <div class="card-title">Madre Primeriza — Gira Costa Rica</div>
-      <div class="card-desc">Coaching artístico en gira internacional</div>
-    </div>
-    <div class="card-arrow">↗</div>
-  </a>
-
-</div>
-
-<!-- Material Gráfico -->
-<div class="section-subsection">Material Gráfico — Coach artística</div>
-<div class="press-grid">
-  <a class="press-card" href="#" data-title="Material gráfico" data-meta="Coach artística · Gráfica" data-desc="Material gráfico de trabajo como coach artística." data-type="image" data-src="https://drive.google.com/file/d/1-Q1lWekPbCUvDk1igqPNA412lrPjtR06/preview" onclick="return openLB(this)">
-    <div class="press-card-thumb-wrap">
-      <div class="press-card-thumb-fallback">📷</div>
-      <img class="press-card-thumb" src="https://drive.google.com/thumbnail?id=1-Q1lWekPbCUvDk1igqPNA412lrPjtR06&sz=w400" alt="Material gráfico" loading="lazy" onerror="this.style.display='none'">
-      <div class="press-card-overlay"></div>
-      <div class="press-card-tag">Gráfica</div>
-    </div>
-    <div class="press-card-body"><div class="press-card-title">Material gráfico</div><div class="press-card-source">Coach artística</div></div>
-  </a>
-  <a class="press-card" href="#" data-title="Artistas" data-meta="Coach artística · Artistas" data-desc="Fotografías con artistas en proceso de coaching." data-type="image" data-src="https://drive.google.com/file/d/1g73WTBfZmkjrhihDEcOOb9qW44TXpluU/preview" onclick="return openLB(this)">
-    <div class="press-card-thumb-wrap">
-      <div class="press-card-thumb-fallback">📷</div>
-      <img class="press-card-thumb" src="https://drive.google.com/thumbnail?id=1g73WTBfZmkjrhihDEcOOb9qW44TXpluU&sz=w400" alt="Artistas" loading="lazy" onerror="this.style.display='none'">
-      <div class="press-card-overlay"></div>
-      <div class="press-card-tag">Artistas</div>
-    </div>
-    <div class="press-card-body"><div class="press-card-title">Artistas</div><div class="press-card-source">Coach artística</div></div>
-  </a>
-  <a class="press-card" href="#" data-title="Publicidad (incl. Kinder)" data-meta="Coach artística · Publicidad" data-desc="Trabajo como coach artística en publicidad (incluyendo campaña Kinder)." data-type="image" data-src="https://drive.google.com/file/d/1ZZe_VmQDDeRelWa59Q7GG1KBELZtu8vZ/preview" onclick="return openLB(this)">
-    <div class="press-card-thumb-wrap">
-      <div class="press-card-thumb-fallback">📷</div>
-      <img class="press-card-thumb" src="https://drive.google.com/thumbnail?id=1ZZe_VmQDDeRelWa59Q7GG1KBELZtu8vZ&sz=w400" alt="Publicidad" loading="lazy" onerror="this.style.display='none'">
-      <div class="press-card-overlay"></div>
-      <div class="press-card-tag">Publicidad</div>
-    </div>
-    <div class="press-card-body"><div class="press-card-title">Publicidad (incl. Kinder)</div><div class="press-card-source">Coach artística</div></div>
-  </a>
-</div>
-```
-
   </div>
+
+  <div class="geo gar" style="margin-top:26px">🇦🇷 Argentina</div>
+  <div class="grid">
+    <div class="card" onclick="lb('Tulipán Up','Dirección · Argentina','Tulipán Up — Con Francisco Civit.','https://drive.google.com/file/d/1dDpBOHTPOPUw_hxCYyn2Q45BYzEXEudM/preview')">
+      <div class="cs cg"></div>
+      <div class="cvid"><img src="https://drive.google.com/thumbnail?id=1dDpBOHTPOPUw_hxCYyn2Q45BYzEXEudM&sz=w480" alt="" onerror="this.style.display='none'"><div class="pbt">▶</div></div>
+      <div class="cbody"><div class="cmeta">Dirección · Argentina</div><div class="ctit">Tulipán Up</div><div class="cdesc">Con Francisco Civit</div></div>
+      <div class="cex">↗</div>
+    </div>
+    <div class="card" onclick="lb('VER® — #UniteAlaCharla PV2017','Dirección · Argentina · Moda','#UniteAlaCharla VER® Primavera-Verano 2017.','https://drive.google.com/file/d/1BIbRlBWnJXMxzqRCmdSLOAr6mB1TboFv/preview')">
+      <div class="cs cg"></div>
+      <div class="cvid"><img src="https://drive.google.com/thumbnail?id=1BIbRlBWnJXMxzqRCmdSLOAr6mB1TboFv&sz=w480" alt="" onerror="this.style.display='none'"><div class="pbt">▶</div></div>
+      <div class="cbody"><div class="cmeta">Dirección · Argentina · Moda</div><div class="ctit">VER® #UniteAlaCharla</div><div class="cdesc">Primavera-Verano 2017</div></div>
+      <div class="cex">↗</div>
+    </div>
+    <div class="card" onclick="lb('Puntitas','Dirección · Argentina','Puntitas — Pieza audiovisual.','https://drive.google.com/file/d/18_O7yQNsuwh0H7UabOhydmOGI17w_ywv/preview')">
+      <div class="cs cg"></div>
+      <div class="cvid"><img src="https://drive.google.com/thumbnail?id=18_O7yQNsuwh0H7UabOhydmOGI17w_ywv&sz=w480" alt="" onerror="this.style.display='none'"><div class="pbt">▶</div></div>
+      <div class="cbody"><div class="cmeta">Dirección · Argentina</div><div class="ctit">Puntitas</div></div>
+      <div class="cex">↗</div>
+    </div>
+    <div class="card" onclick="lb('Wasted — Trailer','Dirección Ejecutiva · Serie animada','WASTED — Serie animada. Dir. Martín Kovacs. Producción ejecutiva No End Projects.','https://drive.google.com/file/d/1ElIsOjD7ODZ6Ksk6GnvodiAdpXPy1vQ6/preview')">
+      <div class="cs cg"></div>
+      <div class="cvid"><img src="https://drive.google.com/thumbnail?id=1ElIsOjD7ODZ6Ksk6GnvodiAdpXPy1vQ6&sz=w480" alt="" onerror="this.style.display='none'"><div class="pbt">▶</div></div>
+      <div class="cbody"><div class="cmeta">Serie animada · No End Projects</div><div class="ctit">Wasted</div><div class="cdesc">Dir. Martín Kovacs</div></div>
+      <div class="cex">↗</div>
+    </div>
+  </div>
+</div>
 </section>
 
-<!-- FOOTER -->
+<!-- ══ 03 PRODUCTORA ══ -->
+<section id="productora" class="sec sp">
+<div class="si">
+  <div class="sh"><span class="snum">03 ·</span><h2 class="stit">Productora</h2></div>
+
+  <div class="sub">Cine & Series</div>
+  <div class="grid">
+    <div class="card" onclick="lb('MILF — Producción cine','Producción Ejecutiva · Cine','MILF — Largometraje. Producción ejecutiva.','https://drive.google.com/file/d/1PE61xoEOS1wmKc7_QC7OY2XM-tf3PxdY/preview')">
+      <div class="cs ct"></div>
+      <div class="cvid"><img src="https://drive.google.com/thumbnail?id=1PE61xoEOS1wmKc7_QC7OY2XM-tf3PxdY&sz=w480" alt="" onerror="this.style.display='none'"><div class="pbt">▶</div></div>
+      <div class="cbody"><div class="cmeta">Producción ejecutiva · Cine</div><div class="ctit">MILF</div><div class="cdesc">Largometraje</div></div>
+      <div class="cex">↗</div>
+    </div>
+    <div class="card" onclick="lb('Vagón Fumador','Producción · Cine','Vagón Fumador — Largometraje.','https://drive.google.com/file/d/1y6SfFvET3ZhZJiei15XexeeoC-AY5fgA/preview')">
+      <div class="cs ct"></div>
+      <div class="cvid"><img src="https://drive.google.com/thumbnail?id=1y6SfFvET3ZhZJiei15XexeeoC-AY5fgA&sz=w480" alt="" onerror="this.style.display='none'"><div class="pbt">▶</div></div>
+      <div class="cbody"><div class="cmeta">Producción · Cine</div><div class="ctit">Vagón Fumador</div></div>
+      <div class="cex">↗</div>
+    </div>
+    <div class="card" onclick="lb('El Séptimo Arcángel','Producción · Cine','El Séptimo Arcángel — Largometraje.','https://drive.google.com/file/d/1BMojCZJYHFKUyxnhpaSvENTyLulgMTj-/preview')">
+      <div class="cs ct"></div>
+      <div class="cvid"><img src="https://drive.google.com/thumbnail?id=1BMojCZJYHFKUyxnhpaSvENTyLulgMTj-&sz=w480" alt="" onerror="this.style.display='none'"><div class="pbt">▶</div></div>
+      <div class="cbody"><div class="cmeta">Producción · Cine</div><div class="ctit">El Séptimo Arcángel</div></div>
+      <div class="cex">↗</div>
+    </div>
+    <div class="card" onclick="lb('Sudeste','Producción · Cine','Sudeste — Largometraje.','https://drive.google.com/file/d/12mPO0vWa6JgDcuwyqX0os_9Ib_TLGP08/preview')">
+      <div class="cs ct"></div>
+      <div class="cvid"><img src="https://drive.google.com/thumbnail?id=12mPO0vWa6JgDcuwyqX0os_9Ib_TLGP08&sz=w480" alt="" onerror="this.style.display='none'"><div class="pbt">▶</div></div>
+      <div class="cbody"><div class="cmeta">Producción · Cine</div><div class="ctit">Sudeste</div></div>
+      <div class="cex">↗</div>
+    </div>
+    <div class="card" onclick="lb('Dulce de Leche','Producción · Cine','Dulce de Leche de Mariano Galperín — Producción ejecutiva.','https://drive.google.com/file/d/191zc1Plpveqm3QHfBVbmz6WG0nrMvbcN/preview')">
+      <div class="cs ct"></div>
+      <div class="cvid"><img src="https://drive.google.com/thumbnail?id=191zc1Plpveqm3QHfBVbmz6WG0nrMvbcN&sz=w480" alt="" onerror="this.style.display='none'"><div class="pbt">▶</div></div>
+      <div class="cbody"><div class="cmeta">Producción · Cine</div><div class="ctit">Dulce de Leche</div><div class="cdesc">Dir. Mariano Galperín</div></div>
+      <div class="cex">↗</div>
+    </div>
+    <div class="card" onclick="lb('El Cuenco de las Ciudades Mestizas','Producción · Cine','El Cuenco de las Ciudades Mestizas — Producción ejecutiva.','https://drive.google.com/file/d/1AAvEuBsodC_e7FH4Yq-GRCjIjDaaIAiE/preview')">
+      <div class="cs ct"></div>
+      <div class="cvid"><img src="https://drive.google.com/thumbnail?id=1AAvEuBsodC_e7FH4Yq-GRCjIjDaaIAiE&sz=w480" alt="" onerror="this.style.display='none'"><div class="pbt">▶</div></div>
+      <div class="cbody"><div class="cmeta">Producción · Cine</div><div class="ctit">El Cuenco de las Ciudades Mestizas</div></div>
+      <div class="cex">↗</div>
+    </div>
+    <div class="card" onclick="lb('Un Día de Suerte','Producción · Cine','Un Día de Suerte — Producción ejecutiva.','https://drive.google.com/file/d/1dXQ5y1ugG_vMkXId-45BMTblCmZTWAjp/preview')">
+      <div class="cs ct"></div>
+      <div class="cvid"><img src="https://drive.google.com/thumbnail?id=1dXQ5y1ugG_vMkXId-45BMTblCmZTWAjp&sz=w480" alt="" onerror="this.style.display='none'"><div class="pbt">▶</div></div>
+      <div class="cbody"><div class="cmeta">Producción · Cine</div><div class="ctit">Un Día de Suerte</div></div>
+      <div class="cex">↗</div>
+    </div>
+  </div>
+
+  <div class="sub">Festival & Eventos</div>
+  <div class="grid">
+    <div class="card" onclick="lb('Festival Martha Argerich 2004','Producción ejecutiva · Festival · 2004','Festival Martha Argerich 2004 — Producción ejecutiva del histórico festival de piano.','https://drive.google.com/file/d/1OXBg9wJ2uVOtYLHt5yZPYFiHy2eEJ5ce/preview')">
+      <div class="cs ct"></div>
+      <img class="cimg" src="https://drive.google.com/thumbnail?id=1OXBg9wJ2uVOtYLHt5yZPYFiHy2eEJ5ce&sz=w480" alt="" onerror="this.outerHTML='<div class=cph>🎹</div>'">
+      <div class="cbody"><div class="cmeta">Festival · Producción ejecutiva · 2004</div><div class="ctit">Festival Martha Argerich</div></div>
+      <div class="cex">↗</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ══ 04 DOCUMENTALISTA ══ -->
+<section id="documental" class="sec sv">
+<div class="si">
+  <div class="sh"><span class="snum">04 ·</span><h2 class="stit">Documentalista</h2></div>
+  <div class="grid">
+    <div class="card" onclick="lb('Yo, abolicionista','Documental · Cine.ar Play · Fondo Nacional de las Artes · 2019','Documental de Mariel Rosciano disponible en Cine.ar Play. Voces de mujeres, abolicionismo y prostitución.','https://drive.google.com/file/d/1z2wmNZBNPjh3DBOxZ2OfPz1vge8x94QV/preview')">
+      <div class="cs cv"></div>
+      <div class="cvid"><img src="https://drive.google.com/thumbnail?id=1z2wmNZBNPjh3DBOxZ2OfPz1vge8x94QV&sz=w480" alt="" onerror="this.style.display='none'"><div class="pbt">▶</div></div>
+      <div class="cbody"><div class="cmeta">Documental · Cine.ar Play · 2019</div><div class="ctit">Yo, abolicionista</div><div class="cdesc">Fondo Nacional de las Artes</div></div>
+      <div class="cex">↗</div>
+    </div>
+    <div class="card" onclick="lb('Rota, mujeres en cuarentena','Docuserie · Mecenazgo GCBA · 2021','ROTA — Docuserie producida con Mecenazgo GCBA, 2021. Mujeres en el ASPO.','https://drive.google.com/file/d/1zL5fBe1qSTICazXBTNIqw_3O1g3RGKOa/preview')">
+      <div class="cs cv"></div>
+      <div class="cvid"><img src="https://drive.google.com/thumbnail?id=1zL5fBe1qSTICazXBTNIqw_3O1g3RGKOa&sz=w480" alt="" onerror="this.style.display='none'"><div class="pbt">▶</div></div>
+      <div class="cbody"><div class="cmeta">Docuserie · Mecenazgo GCBA · 2021</div><div class="ctit">Rota, mujeres en cuarentena</div></div>
+      <div class="cex">↗</div>
+    </div>
+    <div class="card" onclick="lb('Sandra Mihanovich — 40 años en la música','Documental · Sony / DBN · 2017','Sandra Mihanovich – 40 años en la música — Documental Sony/DBN, 2017.','https://drive.google.com/file/d/1a54bm7tT32T8L8aEzzXQmCo3JLO5UFFc/preview')">
+      <div class="cs cv"></div>
+      <img class="cimg" src="https://drive.google.com/thumbnail?id=1a54bm7tT32T8L8aEzzXQmCo3JLO5UFFc&sz=w480" alt="" onerror="this.outerHTML='<div class=cph>🎵</div>'">
+      <div class="cbody"><div class="cmeta">Documental · Sony / DBN · 2017</div><div class="ctit">Sandra Mihanovich — 40 años en la música</div></div>
+      <div class="cex">↗</div>
+    </div>
+  </div>
+
+  <div class="sub">Prensa</div>
+  <div class="pgrid">
+    <div class="pc" onclick="lb('Revista Emancipa 2019','Revista Emancipa · 2019','Yo, abolicionista — Reseña completa y entrevista.','https://drive.google.com/file/d/1J2pc3BRve3aNnNbpvhtxU5-iA0ivYjop/preview')">
+      <div class="pcph" style="background:rgba(155,107,201,.06)">📰</div>
+      <div class="pcb"><div class="pct">Yo, abolicionista</div><div class="pcs">Revista Emancipa · 2019</div></div>
+    </div>
+  </div>
+
+  <div class="sub" style="margin-top:38px">María Becerra — En el Barro (registro de coaching)</div>
+  <div class="grid">
+    <div class="card" onclick="lb('MB En el Barro — Día 2 (plano 65)','Fotografía · María Becerra · Media training','Media training y coaching actoral para María Becerra durante el rodaje.','https://drive.google.com/file/d/1GRPqo5ElMYEmCYFhrAwuvT59yXGdANgH/preview')">
+      <div class="cs cv"></div>
+      <img class="cimg" src="https://drive.google.com/thumbnail?id=1GRPqo5ElMYEmCYFhrAwuvT59yXGdANgH&sz=w480" alt="" onerror="this.outerHTML='<div class=cph>📷</div>'">
+      <div class="cbody"><div class="cmeta">Fotografía · María Becerra</div><div class="ctit">En el Barro — Día 2</div></div>
+      <div class="cex">↗</div>
+    </div>
+    <div class="card" onclick="lb('MB En el Barro — Día 2 (plano 99)','Fotografía · María Becerra','Fotografía de producción del rodaje.','https://drive.google.com/file/d/1HxrfT8IVFaiH6VYfhijLLDKVuuVvtPgR/preview')">
+      <div class="cs cv"></div>
+      <img class="cimg" src="https://drive.google.com/thumbnail?id=1HxrfT8IVFaiH6VYfhijLLDKVuuVvtPgR&sz=w480" alt="" onerror="this.outerHTML='<div class=cph>📷</div>'">
+      <div class="cbody"><div class="cmeta">Fotografía · María Becerra</div><div class="ctit">En el Barro — Plano 99</div></div>
+      <div class="cex">↗</div>
+    </div>
+    <div class="card" onclick="lb('MB En el Barro — Día 2 (plano 6)','Fotografía · María Becerra','Fotografía de producción del rodaje.','https://drive.google.com/file/d/1dphWB8rH1BgYkAyKTYoicDDi8dwtv3PM/preview')">
+      <div class="cs cv"></div>
+      <img class="cimg" src="https://drive.google.com/thumbnail?id=1dphWB8rH1BgYkAyKTYoicDDi8dwtv3PM&sz=w480" alt="" onerror="this.outerHTML='<div class=cph>📷</div>'">
+      <div class="cbody"><div class="cmeta">Fotografía · María Becerra</div><div class="ctit">En el Barro — Plano 6</div></div>
+      <div class="cex">↗</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ══ 05 COACH ARTÍSTICA ══ -->
+<section id="coach" class="sec sk">
+<div class="si">
+  <div class="sh"><span class="snum">05 ·</span><h2 class="stit">Coach Artística</h2></div>
+
+  <div class="sub">Cine y Series</div>
+  <div class="grid">
+    <div class="card" onclick="lb('El Hijo — Coach artística','Coach artística · Cine','El Hijo — Coaching actoral en el rodaje.','https://drive.google.com/file/d/13BZTsWDvzepnDoIGGUHxy_LLzqBOzDHC/preview')">
+      <div class="cs ck"></div>
+      <img class="cimg" src="https://drive.google.com/thumbnail?id=13BZTsWDvzepnDoIGGUHxy_LLzqBOzDHC&sz=w480" alt="" onerror="this.outerHTML='<div class=cph>✨</div>'">
+      <div class="cbody"><div class="cmeta">Coach artística · Cine</div><div class="ctit">El Hijo</div><div class="cdesc">Coaching actoral en rodaje</div></div>
+      <div class="cex">↗</div>
+    </div>
+    <div class="card" onclick="lb('El Hijo — Set 2','Coach artística · Cine','El Hijo — Imagen del set.','https://drive.google.com/file/d/1ye3bodm4nS8s4A6Tz_PsFliFx0d0gEV7/preview')">
+      <div class="cs ck"></div>
+      <img class="cimg" src="https://drive.google.com/thumbnail?id=1ye3bodm4nS8s4A6Tz_PsFliFx0d0gEV7&sz=w480" alt="" onerror="this.outerHTML='<div class=cph>📷</div>'">
+      <div class="cbody"><div class="cmeta">Coach artística · Cine</div><div class="ctit">El Hijo — Set de rodaje</div></div>
+      <div class="cex">↗</div>
+    </div>
+    <div class="card" onclick="lb('El Hijo — Set 3','Coach artística · Cine','El Hijo — Imagen del set.','https://drive.google.com/file/d/1_gK2MLd21RBZ5kPJFu5PvUYlOffkRhnk/preview')">
+      <div class="cs ck"></div>
+      <img class="cimg" src="https://drive.google.com/thumbnail?id=1_gK2MLd21RBZ5kPJFu5PvUYlOffkRhnk&sz=w480" alt="" onerror="this.outerHTML='<div class=cph>📷</div>'">
+      <div class="cbody"><div class="cmeta">Coach artística · Cine</div><div class="ctit">El Hijo — Cámara</div></div>
+      <div class="cex">↗</div>
+    </div>
+    <div class="card" onclick="lb('El Hijo — Set 4','Coach artística · Cine','El Hijo — Imagen del set.','https://drive.google.com/file/d/1QJKxwQL7YvvLRPN81hR1641_67YJBDuX/preview')">
+      <div class="cs ck"></div>
+      <img class="cimg" src="https://drive.google.com/thumbnail?id=1QJKxwQL7YvvLRPN81hR1641_67YJBDuX&sz=w480" alt="" onerror="this.outerHTML='<div class=cph>📷</div>'">
+      <div class="cbody"><div class="cmeta">Coach artística · Cine</div><div class="ctit">El Hijo — Set</div></div>
+      <div class="cex">↗</div>
+    </div>
+  </div>
+
+  <div class="sub">Artistas</div>
+  <div class="grid">
+    <div class="card" onclick="lb('Cami Lour','Coach artística · Artista','Cami Lour — Video de desarrollo artístico.','https://drive.google.com/file/d/15uB1TUKKr6DziJAYsGW6zBEcVeJzGI1h/preview')">
+      <div class="cs ck"></div>
+      <div class="cvid"><img src="https://drive.google.com/thumbnail?id=15uB1TUKKr6DziJAYsGW6zBEcVeJzGI1h&sz=w480" alt="" onerror="this.style.display='none'"><div class="pbt">▶</div></div>
+      <div class="cbody"><div class="cmeta">Coach artística · Artista</div><div class="ctit">Cami Lour</div></div>
+      <div class="cex">↗</div>
+    </div>
+    <div class="card" onclick="lb('Alberee','Coach artística · Artista','Alberee — Video de desarrollo artístico.','https://drive.google.com/file/d/1nFizX4avfd-uvZUGuKdpVYx2eCSMEmyg/preview')">
+      <div class="cs ck"></div>
+      <div class="cvid"><img src="https://drive.google.com/thumbnail?id=1nFizX4avfd-uvZUGuKdpVYx2eCSMEmyg&sz=w480" alt="" onerror="this.style.display='none'"><div class="pbt">▶</div></div>
+      <div class="cbody"><div class="cmeta">Coach artística · Artista</div><div class="ctit">Alberee</div></div>
+      <div class="cex">↗</div>
+    </div>
+    <div class="card" onclick="lb('Morena','Coach artística · Artista','Morena — Video de desarrollo artístico.','https://drive.google.com/file/d/1hKgZx7lq2ihnCGmTMlIMrbgASGspfjBx/preview')">
+      <div class="cs ck"></div>
+      <div class="cvid"><img src="https://drive.google.com/thumbnail?id=1hKgZx7lq2ihnCGmTMlIMrbgASGspfjBx&sz=w480" alt="" onerror="this.style.display='none'"><div class="pbt">▶</div></div>
+      <div class="cbody"><div class="cmeta">Coach artística · Artista</div><div class="ctit">Morena</div></div>
+      <div class="cex">↗</div>
+    </div>
+    <div class="card" onclick="lb('Joelle','Coach artística · Artista','Joelle — Fotografías del proceso de coaching.','https://drive.google.com/file/d/1yhzxPP9Z9fcLfdt3VAThZ4ieZIWvXNCN/preview')">
+      <div class="cs ck"></div>
+      <img class="cimg" src="https://drive.google.com/thumbnail?id=1yhzxPP9Z9fcLfdt3VAThZ4ieZIWvXNCN&sz=w480" alt="" onerror="this.outerHTML='<div class=cph>✨</div>'">
+      <div class="cbody"><div class="cmeta">Coach artística · Artista</div><div class="ctit">Joelle</div></div>
+      <div class="cex">↗</div>
+    </div>
+    <div class="card" onclick="lb('More','Coach artística · Artista','More — Fotografía del proceso de coaching.','https://drive.google.com/file/d/14MtV1nyMkHTfme4KXkKhriAtfvUP3w3i/preview')">
+      <div class="cs ck"></div>
+      <img class="cimg" src="https://drive.google.com/thumbnail?id=14MtV1nyMkHTfme4KXkKhriAtfvUP3w3i&sz=w480" alt="" onerror="this.outerHTML='<div class=cph>✨</div>'">
+      <div class="cbody"><div class="cmeta">Coach artística · Artista</div><div class="ctit">More</div></div>
+      <div class="cex">↗</div>
+    </div>
+  </div>
+
+  <div class="sub">Publicidad — como Coach artística (incl. Kinder)</div>
+  <div class="grid">
+    <div class="card" onclick="lb('Kinder — Nueva Cara (Coach artística)','Coach artística · Publicidad Kinder','Mariel Rosciano fue Coach artística en la campaña Kinder, NO actriz. Imagen gráfica de la campaña «Nueva Cara».','https://drive.google.com/file/d/1gi6K0uHYt7yXMWvUEsQ-zkISmCg1mk52/preview')">
+      <div class="cs ck"></div>
+      <img class="cimg" src="https://drive.google.com/thumbnail?id=1gi6K0uHYt7yXMWvUEsQ-zkISmCg1mk52&sz=w480" alt="" onerror="this.outerHTML='<div class=cph>✨</div>'">
+      <div class="cbody"><div class="cmeta">Coach artística · Publicidad</div><div class="ctit">Kinder — Nueva Cara</div><div class="cdesc">Coach artística en campaña publicitaria</div></div>
+      <div class="cex">↗</div>
+    </div>
+    <div class="card" onclick="lb('Repost — trabajo de coaching','Coach artística · Contenido','Video de trabajo como coach artística.','https://drive.google.com/file/d/1g858ITdLSAhp47lgF91e5bBcGXCyNa3M/preview')">
+      <div class="cs ck"></div>
+      <div class="cvid"><img src="https://drive.google.com/thumbnail?id=1g858ITdLSAhp47lgF91e5bBcGXCyNa3M&sz=w480" alt="" onerror="this.style.display='none'"><div class="pbt">▶</div></div>
+      <div class="cbody"><div class="cmeta">Coach artística · Contenido</div><div class="ctit">Trabajo de coaching</div></div>
+      <div class="cex">↗</div>
+    </div>
+  </div>
+
+  <div class="sub">Gráfica</div>
+  <div class="pgrid">
+    <div class="pc" onclick="lb('Coach I','Coach artística · Gráfica','Fotografía de trabajo como coach artística.','https://drive.google.com/file/d/14k0rXy8gXJRTg0Kw_hGjxSjfBNDSCG52/preview')">
+      <img class="pcimg" src="https://drive.google.com/thumbnail?id=14k0rXy8gXJRTg0Kw_hGjxSjfBNDSCG52&sz=w300" alt="" onerror="this.outerHTML='<div class=pcph>✨</div>'">
+      <div class="pcb"><div class="pct">Coach I</div><div class="pcs">Gráfica</div></div>
+    </div>
+    <div class="pc" onclick="lb('Coach II','Coach artística · Gráfica','Fotografía de trabajo como coach artística.','https://drive.google.com/file/d/1hiDMGJBSDpS3wDZ2096vOWWVYabIH7Oy/preview')">
+      <img class="pcimg" src="https://drive.google.com/thumbnail?id=1hiDMGJBSDpS3wDZ2096vOWWVYabIH7Oy&sz=w300" alt="" onerror="this.outerHTML='<div class=pcph>✨</div>'">
+      <div class="pcb"><div class="pct">Coach II</div><div class="pcs">Gráfica</div></div>
+    </div>
+    <div class="pc" onclick="lb('Coach III','Coach artística · Gráfica','Fotografía de trabajo como coach artística.','https://drive.google.com/file/d/1TCsANLbZoUsSD5McpipV0o74SFc4cJQL/preview')">
+      <img class="pcimg" src="https://drive.google.com/thumbnail?id=1TCsANLbZoUsSD5McpipV0o74SFc4cJQL&sz=w300" alt="" onerror="this.outerHTML='<div class=pcph>✨</div>'">
+      <div class="pcb"><div class="pct">Coach III</div><div class="pcs">Gráfica</div></div>
+    </div>
+    <div class="pc" onclick="lb('Coach IV','Coach artística · Gráfica','Fotografía de trabajo como coach artística.','https://drive.google.com/file/d/1YNo9vyGqtrVNkQj08W0clGueN0ogNplZ/preview')">
+      <img class="pcimg" src="https://drive.google.com/thumbnail?id=1YNo9vyGqtrVNkQj08W0clGueN0ogNplZ&sz=w300" alt="" onerror="this.outerHTML='<div class=pcph>✨</div>'">
+      <div class="pcb"><div class="pct">Coach IV</div><div class="pcs">Gráfica</div></div>
+    </div>
+    <div class="pc" onclick="lb('Con artistas 1','Coach artística · Gráfica','Fotografía con artistas en proceso de coaching.','https://drive.google.com/file/d/1Ak9I5bfMU12Y_lQZDQcSBusSUh_5pvzM/preview')">
+      <img class="pcimg" src="https://drive.google.com/thumbnail?id=1Ak9I5bfMU12Y_lQZDQcSBusSUh_5pvzM&sz=w300" alt="" onerror="this.outerHTML='<div class=pcph>✨</div>'">
+      <div class="pcb"><div class="pct">Con artistas</div><div class="pcs">Gráfica</div></div>
+    </div>
+    <div class="pc" onclick="lb('Con artistas 2','Coach artística · Gráfica','Fotografía con artistas.','https://drive.google.com/file/d/1vZq-caeJdoJEEf7oO4j4EeTlYDayQ-it/preview')">
+      <img class="pcimg" src="https://drive.google.com/thumbnail?id=1vZq-caeJdoJEEf7oO4j4EeTlYDayQ-it&sz=w300" alt="" onerror="this.outerHTML='<div class=pcph>✨</div>'">
+      <div class="pcb"><div class="pct">Con artistas</div><div class="pcs">Gráfica</div></div>
+    </div>
+    <div class="pc" onclick="lb('Con artistas 3','Coach artística · Gráfica','Fotografía con artistas.','https://drive.google.com/file/d/1N5ZhbenX6cNVGgZGlWhkIVYLD7zZCMU4/preview')">
+      <img class="pcimg" src="https://drive.google.com/thumbnail?id=1N5ZhbenX6cNVGgZGlWhkIVYLD7zZCMU4&sz=w300" alt="" onerror="this.outerHTML='<div class=pcph>✨</div>'">
+      <div class="pcb"><div class="pct">Con artistas</div><div class="pcs">Gráfica</div></div>
+    </div>
+    <div class="pc" onclick="lb('Con artistas 4','Coach artística · Gráfica','Fotografía en proceso de coaching.','https://drive.google.com/file/d/1m0tRYygMV9sVlhoFUQo0cBeRJDNynNrq/preview')">
+      <img class="pcimg" src="https://drive.google.com/thumbnail?id=1m0tRYygMV9sVlhoFUQo0cBeRJDNynNrq&sz=w300" alt="" onerror="this.outerHTML='<div class=pcph>✨</div>'">
+      <div class="pcb"><div class="pct">Con artistas</div><div class="pcs">Gráfica</div></div>
+    </div>
+    <div class="pc" onclick="lb('Imagen coach','Coach artística · Gráfica','Imagen de trabajo.','https://drive.google.com/file/d/1-Q1lWekPbCUvDk1igqPNA412lrPjtR06/preview')">
+      <img class="pcimg" src="https://drive.google.com/thumbnail?id=1-Q1lWekPbCUvDk1igqPNA412lrPjtR06&sz=w300" alt="" onerror="this.outerHTML='<div class=pcph>✨</div>'">
+      <div class="pcb"><div class="pct">Imagen coach</div><div class="pcs">Gráfica</div></div>
+    </div>
+  </div>
+</div>
+</section>
 
 <footer>
-  <div class="footer-name">Mariel Rosciano</div>
-  <div class="footer-roles">Productora Ejecutiva · Coach Artística · Actriz · Directora · Documentalista</div>
-  <div class="footer-contact">
+  <div class="fn">Mariel Rosciano</div>
+  <div class="fi">
     <a href="mailto:marielrosciano@gmail.com">marielrosciano@gmail.com</a>
-    <span class="footer-divider">·</span>
-    <a href="tel:+5491151490434">+54 9 11 5149 0434</a>
-    <span class="footer-divider">·</span>
-    <span>Buenos Aires, Argentina</span>
+    &nbsp;·&nbsp;+54 9 11 5149 0434
+    &nbsp;·&nbsp;Buenos Aires, Argentina
   </div>
-  <div class="footer-credits">© 2024 — Portfolio Profesional</div>
+  <div style="margin-top:16px;font-family:'DM Mono',monospace;font-size:.46rem;letter-spacing:.17em;color:rgba(90,90,114,.38)">Productora Ejecutiva · Coach Artística · Actriz · Directora · Documentalista</div>
 </footer>
 
 <!-- LIGHTBOX -->
-
-<div class="lightbox" id="lightbox" onclick="closeLB(event)">
-  <div class="lightbox-inner">
-    <button class="lightbox-close" onclick="closeLBBtn()" aria-label="Cerrar">✕</button>
-    <div class="lightbox-media-wrap" id="lb-media-wrap"></div>
-    <div class="lightbox-body">
-      <div class="lightbox-meta" id="lb-meta"></div>
-      <div class="lightbox-title" id="lb-title"></div>
-      <div class="lightbox-desc" id="lb-desc"></div>
-      <a id="lb-link" class="lightbox-link" href="#" target="_blank" rel="noopener" style="display:none">Abrir en Drive ↗</a>
+<div class="lb" id="lb" onclick="lbclose(event)">
+  <div class="lbi">
+    <button class="lbclose" onclick="closeLB()">✕</button>
+    <div id="lbw"></div>
+    <div class="lbb">
+      <div class="lbmet" id="lbm"></div>
+      <div class="lbtit" id="lbt"></div>
+      <div class="lbdesc" id="lbd"></div>
+      <a id="lbl" class="lblink" href="#" target="_blank" style="display:none">↗ Ver en Drive</a>
     </div>
   </div>
 </div>
 
 <script>
-  // Lightbox open/close logic
-  function openLB(el) {
-    const title = el.dataset.title;
-    const meta  = el.dataset.meta;
-    const desc  = el.dataset.desc;
-    const type  = el.dataset.type;
-    const src   = el.dataset.src;
-
-    const lb = document.getElementById('lightbox');
-    document.getElementById('lb-title').textContent = title || '';
-    document.getElementById('lb-meta').textContent = meta || '';
-    document.getElementById('lb-desc').textContent = desc || '';
-
-    const wrap = document.getElementById('lb-media-wrap');
-    if (type === 'image') {
-      wrap.innerHTML = `<iframe src="${src}" style="height:60vh;width:100%;border:none;" allowfullscreen></iframe>`;
-    } else if (type === 'video') {
-      wrap.innerHTML = `<iframe src="${src}" style="height:60vh;width:100%;border:none;" allowfullscreen allow="autoplay"></iframe>`;
-    } else if (type === 'pdf') {
-      wrap.innerHTML = `<iframe src="${src}" style="height:70vh;width:100%;border:none;" allowfullscreen></iframe>`;
-    } else {
-      wrap.innerHTML = '';
+// nav activation + scroll-to
+function nav(el){
+  document.querySelectorAll('nav a').forEach(a=>a.classList.remove('on'));
+  el.classList.add('on');
+}
+function go(id){
+  document.getElementById(id)?.scrollIntoView({behavior:'smooth'});
+  document.querySelectorAll('nav a').forEach(a=>a.classList.toggle('on',a.dataset.s===id));
+}
+// scroll spy
+const spy=new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(e.isIntersecting){
+      const id=e.target.id;
+      document.querySelectorAll('nav a').forEach(a=>a.classList.toggle('on',a.dataset.s===id));
     }
-
-    const lnk = document.getElementById('lb-link');
-    if (src) {
-      // Build a "Drive" link from the preview URL
-      const id = (src.match(/\/d\/([^\/]+)/) || [])[1];
-      lnk.href = id ? `https://drive.google.com/file/d/${id}/view` : src;
-      lnk.style.display = 'inline-flex';
-    } else {
-      lnk.style.display = 'none';
-    }
-
-    lb.classList.add('open');
-    document.body.style.overflow = 'hidden';
-    return false; // prevent navigation when href="#"
-  }
-
-  function closeLBBtn() {
-    const lb = document.getElementById('lightbox');
-    lb.classList.remove('open');
-    document.getElementById('lb-media-wrap').innerHTML = '';
-    document.body.style.overflow = '';
-  }
-
-  function closeLB(e) {
-    if (e.target === document.getElementById('lightbox')) closeLBBtn();
-  }
-
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeLBBtn();
   });
-
-  // Header shrink on scroll
-  const header = document.getElementById('header');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 60) header.classList.add('scrolled');
-    else header.classList.remove('scrolled');
-  });
-
-  // Card stagger on intersection
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.style.animationPlayState = 'running';
-      }
-    });
-  }, { threshold: 0.1 });
-
-  document.querySelectorAll('.card, .press-card').forEach((c, i) => {
-    c.style.animationDelay = `${(i % 6) * 0.06}s`;
-    c.style.animationPlayState = 'paused';
-    observer.observe(c);
-  });
-
-  // Floating animation for nodes
-  document.querySelectorAll('.nn-node').forEach((n, i) => {
-    if (n.classList.contains('nn-center')) return;
-    const floatDelay = `${i * 0.6}s`;
-    n.style.animation = `floatNode ${4 + i * 0.4}s ${floatDelay} ease-in-out infinite`;
-  });
-
-  // Pulse animation offset per node
-  document.querySelectorAll('.nn-pulse').forEach((p, i) => {
-    p.style.animationDelay = `${i * 0.7}s`;
-  });
+},{threshold:.2});
+['actriz','directora','productora','documental','coach'].forEach(id=>{
+  const el=document.getElementById(id);if(el)spy.observe(el);
+});
+// lightbox
+function lb(t,m,d,src){
+  document.getElementById('lbt').textContent=t;
+  document.getElementById('lbm').textContent=m;
+  document.getElementById('lbd').textContent=d;
+  document.getElementById('lbw').innerHTML=`<iframe src="${src}" class="lbm" allowfullscreen allow="autoplay" style="width:100%;height:54vh;border:none;display:block;background:#000"></iframe>`;
+  const lk=document.getElementById('lbl');
+  lk.href=src.replace('/preview','');lk.style.display='inline-flex';
+  document.getElementById('lb').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeLB(){
+  document.getElementById('lb').classList.remove('open');
+  document.getElementById('lbw').innerHTML='';
+  document.body.style.overflow='';
+}
+function lbclose(e){if(e.target===document.getElementById('lb'))closeLB();}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLB();});
+// stagger cards
+const io=new IntersectionObserver(es=>{
+  es.forEach(e=>{if(e.isIntersecting)e.target.style.animationPlayState='running';});
+},{threshold:.08});
+document.querySelectorAll('.card,.pc').forEach((c,i)=>{
+  c.style.animationDelay=`${(i%8)*.055}s`;
+  c.style.animationPlayState='paused';
+  io.observe(c);
+});
 </script>
-
 </body>
 </html>
