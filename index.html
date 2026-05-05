@@ -187,84 +187,99 @@
   }
   .hero-name em {
     font-style: italic; font-weight: 300;
-    background: linear-gradient(120deg, var(--gold), var(--rose) 60%, var(--violet));
-    -webkit-background-clip: text; background-clip: text; color: transparent;
+    color: var(--gold);
     display: inline-block;
   }
   .hero-subtitle {
-    margin-top: 32px;
-    font-family: var(--font-display);
-    font-size: clamp(1.1rem, 1.6vw, 1.25rem);
-    font-weight: 300; font-style: italic; letter-spacing: 0.01em;
-    color: var(--ink-soft); max-width: 580px; line-height: 1.6;
+    margin-top: 36px;
+    font-family: var(--font-mono);
+    font-size: clamp(0.85rem, 1.1vw, 0.95rem);
+    font-weight: 300;
+    font-style: normal;
+    letter-spacing: 0.02em;
+    color: var(--ink-soft);
+    max-width: 620px;
+    line-height: 1.85;
     animation: fadeUp 1s 0.3s var(--ease-out) both;
   }
   .hero-tags {
-    margin-top: 44px; display: flex; flex-wrap: wrap;
-    gap: 8px; justify-content: center; max-width: 720px;
+    margin-top: 48px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    max-width: 720px;
+    width: 100%;
     animation: fadeUp 1s 0.45s var(--ease-out) both;
   }
   .tag {
-    font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.18em;
-    text-transform: uppercase; padding: 7px 14px;
-    border: 1px solid; border-radius: var(--radius-pill);
-    transition: background 0.3s var(--ease-out), transform 0.3s var(--ease-out);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 18px 14px;
+    border: 1px solid;
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    background: rgba(11,10,14,0.4);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition:
+      background 0.4s var(--ease-out),
+      transform 0.4s var(--ease-out),
+      box-shadow 0.4s var(--ease-out),
+      border-color 0.4s var(--ease-out);
+    text-decoration: none;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    position: relative;
+    overflow: hidden;
+    color: inherit;
+    font: inherit;
+    text-transform: uppercase;
+    line-height: 1.2;
   }
-  .tag:hover { transform: translateY(-2px); }
-  .tag-rose   { border-color: rgba(var(--rose-rgb),0.4);   color: var(--rose);   }
-  .tag-rose:hover   { background: rgba(var(--rose-rgb),0.1); }
-  .tag-gold   { border-color: rgba(var(--gold-rgb),0.4);   color: var(--gold);   }
-  .tag-gold:hover   { background: rgba(var(--gold-rgb),0.1); }
-  .tag-teal   { border-color: rgba(var(--teal-rgb),0.4);   color: var(--teal);   }
-  .tag-teal:hover   { background: rgba(var(--teal-rgb),0.1); }
-  .tag-violet { border-color: rgba(var(--violet-rgb),0.4); color: var(--violet); }
-  .tag-violet:hover { background: rgba(var(--violet-rgb),0.1); }
-  .tag-green  { border-color: rgba(var(--green-rgb),0.4);  color: var(--green);  }
-  .tag-green:hover  { background: rgba(var(--green-rgb),0.1); }
-  .tag-orange { border-color: rgba(var(--orange-rgb),0.4); color: var(--orange); }
-  .tag-orange:hover { background: rgba(var(--orange-rgb),0.1); }
+  .tag::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 100%, currentColor, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s var(--ease-out);
+    pointer-events: none;
+  }
+  .tag:hover, .tag:focus-visible {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.3);
+  }
+  .tag:hover::before, .tag:focus-visible::before { opacity: 0.08; }
+  .tag-rose   { border-color: rgba(var(--rose-rgb),0.45);   color: var(--rose);   }
+  .tag-rose:hover   { background: rgba(var(--rose-rgb),0.08);   border-color: var(--rose); box-shadow: 0 12px 28px rgba(var(--rose-rgb),0.15); }
+  .tag-gold   { border-color: rgba(var(--gold-rgb),0.45);   color: var(--gold);   }
+  .tag-gold:hover   { background: rgba(var(--gold-rgb),0.08);   border-color: var(--gold); box-shadow: 0 12px 28px rgba(var(--gold-rgb),0.15); }
+  .tag-teal   { border-color: rgba(var(--teal-rgb),0.45);   color: var(--teal);   }
+  .tag-teal:hover   { background: rgba(var(--teal-rgb),0.08);   border-color: var(--teal); box-shadow: 0 12px 28px rgba(var(--teal-rgb),0.15); }
+  .tag-violet { border-color: rgba(var(--violet-rgb),0.45); color: var(--violet); }
+  .tag-violet:hover { background: rgba(var(--violet-rgb),0.08); border-color: var(--violet); box-shadow: 0 12px 28px rgba(var(--violet-rgb),0.15); }
+  .tag-green  { border-color: rgba(var(--green-rgb),0.45);  color: var(--green);  }
+  .tag-green:hover  { background: rgba(var(--green-rgb),0.08);  border-color: var(--green); box-shadow: 0 12px 28px rgba(var(--green-rgb),0.15); }
+  .tag-orange { border-color: rgba(var(--orange-rgb),0.45); color: var(--orange); }
+  .tag-orange:hover { background: rgba(var(--orange-rgb),0.08); border-color: var(--orange); box-shadow: 0 12px 28px rgba(var(--orange-rgb),0.15); }
   .scroll-hint {
-    position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
-    display: flex; flex-direction: column; align-items: center; gap: 12px;
-    font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.24em;
+    position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    font-family: var(--font-mono); font-size: 0.55rem; letter-spacing: 0.24em;
     text-transform: uppercase; color: var(--ink-mute);
-    animation: fadeUp 1s 0.7s var(--ease-out) both; z-index: 3;
+    animation: fadeUp 1s 0.7s var(--ease-out) both; z-index: 1;
+    opacity: 0.6;
   }
   .scroll-line {
-    width: 1px; height: 44px;
+    width: 1px; height: 24px;
     background: linear-gradient(to bottom, var(--gold), transparent);
     transform-origin: top;
     animation: lineGrow 1.5s 1s var(--ease-out) both, pulse 2.4s 2.5s ease-in-out infinite;
-  }
-
-  /* STATS */
-  .stats-bar {
-    position: relative; z-index: 2;
-    background: linear-gradient(to right,
-      rgba(var(--rose-rgb),0.04), rgba(var(--gold-rgb),0.04),
-      rgba(var(--teal-rgb),0.04), rgba(var(--violet-rgb),0.04),
-      rgba(var(--green-rgb),0.04));
-    border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
-    padding: 48px clamp(20px, 4vw, 48px);
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 32px; max-width: 1280px; margin: 0 auto;
-  }
-  .stat-item { text-align: center; position: relative; }
-  .stat-item:not(:last-child)::after {
-    content: ''; position: absolute; right: -16px; top: 50%;
-    transform: translateY(-50%); width: 1px; height: 40px; background: var(--line);
-  }
-  .stat-num {
-    font-family: var(--font-display);
-    font-size: clamp(2.4rem, 4vw, 3rem); font-weight: 700; line-height: 1;
-    background: linear-gradient(135deg, var(--ink), var(--gold));
-    -webkit-background-clip: text; background-clip: text; color: transparent;
-    font-variation-settings: "opsz" 144;
-  }
-  .stat-label {
-    font-family: var(--font-mono); font-size: 0.62rem;
-    letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--ink-mute); margin-top: 10px;
   }
 
   /* MAP / NEURAL — RED NEURONAL CON CONEXIONES */
@@ -293,6 +308,8 @@
     position: absolute; top: 0; left: 0; width: 100%; height: 100%;
     pointer-events: none; z-index: 0;
   }
+  .neural-connections-desktop { display: block; }
+  .neural-connections-mobile { display: none; }
   .neural-connections .conn {
     fill: none; stroke: rgba(var(--gold-rgb), 0.18);
     stroke-width: 1; stroke-dasharray: 4 6;
@@ -384,11 +401,90 @@
   .hub-documental .hub-pulse { background: radial-gradient(circle, rgba(var(--violet-rgb),0.18), transparent 70%); }
   .hub-coach .hub-pulse { background: radial-gradient(circle, rgba(var(--green-rgb),0.18),  transparent 70%); }
 
+  /* INDICADOR DE SECCIÓN ACTIVA — sticky bajo el header */
+  .section-indicator {
+    position: fixed;
+    top: 64px; /* debajo del header */
+    left: 0; right: 0;
+    z-index: 90;
+    background: rgba(11,10,14,0.85);
+    backdrop-filter: blur(16px) saturate(120%);
+    -webkit-backdrop-filter: blur(16px) saturate(120%);
+    border-bottom: 1px solid var(--line);
+    padding: 10px clamp(20px, 4vw, 48px);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: transform 0.4s var(--ease-out), opacity 0.3s var(--ease-out);
+    pointer-events: none;
+  }
+  .section-indicator.visible {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .section-indicator-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 12px currentColor;
+    flex-shrink: 0;
+    transition: background 0.4s var(--ease-out);
+  }
+  .section-indicator-num {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.22em;
+    color: var(--ink-mute);
+    font-weight: 400;
+  }
+  .section-indicator-name {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 500;
+    font-style: italic;
+    color: var(--ink);
+    transition: color 0.4s var(--ease-out);
+  }
+  .section-indicator-sub {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-left: auto;
+    text-align: right;
+    line-height: 1.3;
+  }
+  .section-indicator-sub strong {
+    color: var(--ink-soft);
+    font-weight: 400;
+  }
+  /* Colores dinámicos según data-section */
+  .section-indicator[data-section="actriz"]    .section-indicator-dot { background: var(--rose); }
+  .section-indicator[data-section="actriz"]    .section-indicator-name { color: var(--rose); }
+  .section-indicator[data-section="directora"] .section-indicator-dot { background: var(--gold); }
+  .section-indicator[data-section="directora"] .section-indicator-name { color: var(--gold); }
+  .section-indicator[data-section="productora"] .section-indicator-dot { background: var(--teal); }
+  .section-indicator[data-section="productora"] .section-indicator-name { color: var(--teal); }
+  .section-indicator[data-section="documental"] .section-indicator-dot { background: var(--violet); }
+  .section-indicator[data-section="documental"] .section-indicator-name { color: var(--violet); }
+  .section-indicator[data-section="coach"]      .section-indicator-dot { background: var(--green); }
+  .section-indicator[data-section="coach"]      .section-indicator-name { color: var(--green); }
+
+  @media (max-width: 768px) {
+    .section-indicator { top: 56px; padding: 8px 16px; gap: 10px; }
+    .section-indicator-name { font-size: 0.9rem; }
+    .section-indicator-num { font-size: 0.58rem; letter-spacing: 0.18em; }
+    .section-indicator-sub { font-size: 0.55rem; letter-spacing: 0.14em; max-width: 50%; }
+  }
+
   /* SECTIONS */
   .section-panel {
     position: relative; z-index: 2;
     padding: clamp(60px, 10vh, 100px) clamp(20px, 4vw, 48px);
-    scroll-margin-top: 80px;
+    scroll-margin-top: 120px;
   }
   .section-panel::before {
     content: ''; position: absolute; left: 50%; top: 0; transform: translateX(-50%);
@@ -473,13 +569,23 @@
   .card-thumb {
     width: 100%; height: 100%; object-fit: cover; display: block;
     transition: transform 0.7s var(--ease-out);
+    background: linear-gradient(135deg, var(--bg-soft), var(--surface));
   }
   .card:hover .card-thumb { transform: scale(1.04); }
   .card-thumb-placeholder {
     position: absolute; inset: 0; width: 100%; height: 100%;
     display: flex; align-items: center; justify-content: center;
     font-size: 2.8rem; opacity: 0.25;
+    pointer-events: none;
+    background: linear-gradient(135deg,
+      rgba(var(--gold-rgb),0.05) 0%,
+      rgba(var(--rose-rgb),0.03) 50%,
+      rgba(var(--violet-rgb),0.05) 100%);
   }
+  /* Cuando la imagen carga ok, ocultamos el placeholder */
+  .card-thumb-wrap.has-image .card-thumb-placeholder { opacity: 0; }
+  /* Cuando la imagen falla, escondemos la img y mostramos el placeholder */
+  .card-thumb-wrap.no-image .card-thumb { display: none; }
   .card-overlay {
     position: absolute; inset: 0; pointer-events: none;
     background: linear-gradient(to top,
@@ -546,16 +652,22 @@
     transform: translateY(-3px); border-color: var(--line-strong);
     box-shadow: 0 16px 32px rgba(0,0,0,0.25);
   }
-  .press-card-img-wrap { width: 100%; height: 130px; overflow: hidden; position: relative; }
+  .press-card-img-wrap { width: 100%; height: 130px; overflow: hidden; position: relative;
+    background: linear-gradient(135deg, var(--bg-soft), var(--surface));
+  }
   .press-card-img-wrap img {
     width: 100%; height: 100%; object-fit: cover; display: block;
     transition: transform 0.6s var(--ease-out);
   }
+  .press-card-img-wrap.has-image .press-card-icon { opacity: 0; }
+  .press-card-img-wrap.no-image img { display: none; }
   .press-card:hover .press-card-img-wrap img { transform: scale(1.05); }
   .press-card-icon {
-    width: 100%; height: 100%; display: flex;
-    align-items: center; justify-content: center;
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
     font-size: 2rem; opacity: 0.5;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
   }
   .press-card-body { padding: 14px 16px 16px; }
   .press-card-title {
@@ -741,15 +853,20 @@
     }
     .menu-btn { display: flex; }
     .hero { padding: 120px 20px 80px; }
-    .hero-tags { gap: 6px; }
-    .tag { font-size: 0.58rem; padding: 6px 11px; }
-    .stats-bar { padding: 32px 20px; gap: 24px; grid-template-columns: repeat(2, 1fr); }
-    .stat-item:not(:last-child)::after { display: none; }
+    .hero-tags {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-top: 36px;
+    }
+    .tag { font-size: 0.62rem; padding: 14px 10px; letter-spacing: 0.14em; }
     .disciplines-row { grid-template-columns: repeat(2, 1fr); gap: 32px 12px; }
     .discipline-hub:last-child { grid-column: 1 / -1; max-width: 220px; margin: 0 auto; }
     .hub-node { width: 100px; height: 100px; }
     .hub-icon { font-size: 1.6rem; }
-    .neural-connections { display: none; } /* En móvil ocultamos las líneas para mejor performance */
+    /* En mobile, mantenemos la red neuronal pero adaptada al grid 2x3 */
+    .neural-connections { display: block; }
+    .neural-connections-mobile { display: block; }
+    .neural-connections-desktop { display: none; }
     .section-header { gap: 14px; }
     .section-num { font-size: 0.7rem; }
     .section-tag { margin-left: 0; }
@@ -765,7 +882,6 @@
   }
   @media (max-width: 480px) {
     .hero-name { font-size: clamp(2.6rem, 14vw, 4rem); }
-    .stat-num { font-size: 2.2rem; }
   }
 </style>
 
@@ -790,6 +906,15 @@
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
   </button>
 </header>
+
+<!-- Indicador de sección activa (sticky bajo el header) -->
+
+<div class="section-indicator" id="section-indicator" data-section="" role="status" aria-live="polite">
+  <span class="section-indicator-dot" aria-hidden="true"></span>
+  <span class="section-indicator-num" id="indicator-num">01 / 05</span>
+  <span class="section-indicator-name" id="indicator-name">Actriz</span>
+  <span class="section-indicator-sub" id="indicator-sub"></span>
+</div>
 
 <main id="main">
 
@@ -821,32 +946,22 @@
     </g>
   </svg>
 
-<span class="hero-eyebrow">Buenos Aires · Artista · Creadora</span>
-
   <h1 class="hero-name" id="hero-title">Mariel<br><em>Rosciano</em></h1>
   <p class="hero-subtitle">Más de veinte años construyendo lenguaje en cine, teatro, música y producción cultural. Actriz, directora, productora ejecutiva y coach artística.</p>
 
   <div class="hero-tags" role="list">
-    <span class="tag tag-rose"   role="listitem">Actriz</span>
-    <span class="tag tag-gold"   role="listitem">Directora</span>
-    <span class="tag tag-teal"   role="listitem">Productora</span>
-    <span class="tag tag-violet" role="listitem">Documentalista</span>
-    <span class="tag tag-green"  role="listitem">Coach artística</span>
-    <span class="tag tag-orange" role="listitem">Guionista</span>
+    <button type="button" class="tag tag-rose"   data-target="actriz"     role="listitem" aria-label="Ir a Actriz">Actriz</button>
+    <button type="button" class="tag tag-gold"   data-target="directora"  role="listitem" aria-label="Ir a Directora">Directora</button>
+    <button type="button" class="tag tag-teal"   data-target="productora" role="listitem" aria-label="Ir a Productora">Productora</button>
+    <button type="button" class="tag tag-violet" data-target="documental" role="listitem" aria-label="Ir a Documentalista">Documentalista</button>
+    <button type="button" class="tag tag-green"  data-target="coach"      role="listitem" aria-label="Ir a Coach artística">Coach artística</button>
+    <button type="button" class="tag tag-orange" data-target="actriz"     role="listitem" aria-label="Ir a Actriz">Guionista</button>
   </div>
 
   <div class="scroll-hint" aria-hidden="true">
     <div class="scroll-line"></div>
     Explorar
   </div>
-</section>
-
-<section class="stats-bar" aria-label="Estadísticas de trayectoria">
-  <div class="stat-item"><div class="stat-num">20+</div><div class="stat-label">Años de trayectoria</div></div>
-  <div class="stat-item"><div class="stat-num">15+</div><div class="stat-label">Montajes teatrales</div></div>
-  <div class="stat-item"><div class="stat-num">5</div><div class="stat-label">Largometrajes</div></div>
-  <div class="stat-item"><div class="stat-num">4</div><div class="stat-label">Documentales</div></div>
-  <div class="stat-item"><div class="stat-num">10+</div><div class="stat-label">Países en gira</div></div>
 </section>
 
 <!-- MAPA DE DISCIPLINAS — RED NEURONAL -->
@@ -856,17 +971,14 @@
   <div class="neural-map">
 
 ```
-<!-- SVG con líneas conectando los nodos como red neuronal -->
-<svg class="neural-connections" viewBox="0 0 1280 240" preserveAspectRatio="none" aria-hidden="true">
-  <!-- Líneas entre nodos consecutivos y cruzadas -->
+<!-- SVG con líneas conectando los nodos como red neuronal — DESKTOP -->
+<svg class="neural-connections neural-connections-desktop" viewBox="0 0 1280 240" preserveAspectRatio="none" aria-hidden="true">
   <!-- Posiciones aproximadas de los 5 nodos: 128, 384, 640, 896, 1152 -->
   <g class="conn">
-    <!-- Conexiones primarias (consecutivos) -->
     <path d="M 128 60 Q 256 30 384 60" />
     <path d="M 384 60 Q 512 90 640 60" />
     <path d="M 640 60 Q 768 30 896 60" />
     <path d="M 896 60 Q 1024 90 1152 60" />
-    <!-- Conexiones cruzadas (efecto red neuronal) -->
     <path d="M 128 60 Q 384 200 640 60" />
     <path d="M 384 60 Q 640 200 896 60" />
     <path d="M 640 60 Q 896 200 1152 60" />
@@ -874,7 +986,6 @@
     <path d="M 384 60 Q 768 200 1152 60" />
     <path d="M 128 60 Q 512 200 896 60" />
   </g>
-  <!-- Glow -->
   <g class="conn-glow" stroke="url(#conn-grad)">
     <path d="M 128 60 Q 384 200 640 60" />
     <path d="M 640 60 Q 896 200 1152 60" />
@@ -888,7 +999,6 @@
       <stop offset="100%" stop-color="rgba(125,209,168,0.5)"/>
     </linearGradient>
   </defs>
-  <!-- Pequeños puntos decorativos -->
   <g class="dot">
     <circle cx="256" cy="120" r="2"/>
     <circle cx="512" cy="150" r="2.5" style="animation-delay: 0.4s"/>
@@ -896,6 +1006,53 @@
     <circle cx="1024" cy="150" r="2.5" style="animation-delay: 1.2s"/>
     <circle cx="384" cy="180" r="1.5" style="animation-delay: 0.6s"/>
     <circle cx="896" cy="180" r="1.5" style="animation-delay: 1.4s"/>
+  </g>
+</svg>
+
+<!-- SVG MOBILE — adaptado al grid 2x3 (Actriz·Directora / Productora·Documental / Coach centrado) -->
+<svg class="neural-connections neural-connections-mobile" viewBox="0 0 400 700" preserveAspectRatio="none" aria-hidden="true">
+  <!-- Centros aproximados de los 5 nodos en grid 2x3:
+       Fila 1: (100, 100) = Actriz, (300, 100) = Directora
+       Fila 2: (100, 320) = Productora, (300, 320) = Documental
+       Fila 3: (200, 540) = Coach -->
+  <g class="conn">
+    <!-- Conexiones horizontales -->
+    <path d="M 100 100 Q 200 70 300 100" />
+    <path d="M 100 320 Q 200 290 300 320" />
+    <!-- Conexiones verticales -->
+    <path d="M 100 100 Q 80 210 100 320" />
+    <path d="M 300 100 Q 320 210 300 320" />
+    <!-- Conexiones diagonales (red neuronal) -->
+    <path d="M 100 100 Q 200 200 300 320" />
+    <path d="M 300 100 Q 200 200 100 320" />
+    <!-- A Coach (centrado abajo) -->
+    <path d="M 100 320 Q 150 430 200 540" />
+    <path d="M 300 320 Q 250 430 200 540" />
+    <path d="M 100 100 Q 150 320 200 540" />
+    <path d="M 300 100 Q 250 320 200 540" />
+  </g>
+  <g class="conn-glow" stroke="url(#conn-grad-mobile)">
+    <path d="M 100 100 Q 200 200 300 320" />
+    <path d="M 300 100 Q 200 200 100 320" />
+    <path d="M 100 320 Q 150 430 200 540" />
+    <path d="M 300 320 Q 250 430 200 540" />
+  </g>
+  <defs>
+    <linearGradient id="conn-grad-mobile" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="rgba(226,109,138,0.5)"/>
+      <stop offset="25%" stop-color="rgba(212,168,87,0.5)"/>
+      <stop offset="50%" stop-color="rgba(92,196,212,0.5)"/>
+      <stop offset="75%" stop-color="rgba(176,132,214,0.5)"/>
+      <stop offset="100%" stop-color="rgba(125,209,168,0.5)"/>
+    </linearGradient>
+  </defs>
+  <g class="dot">
+    <circle cx="200" cy="100" r="2"/>
+    <circle cx="200" cy="320" r="2" style="animation-delay: 0.5s"/>
+    <circle cx="180" cy="210" r="1.5" style="animation-delay: 0.3s"/>
+    <circle cx="220" cy="210" r="1.5" style="animation-delay: 0.7s"/>
+    <circle cx="150" cy="430" r="1.5" style="animation-delay: 1s"/>
+    <circle cx="250" cy="430" r="1.5" style="animation-delay: 1.3s"/>
   </g>
 </svg>
 
@@ -970,7 +1127,7 @@
     data-src="https://drive.google.com/file/d/10j1cEq5e4dqyDUuL3fhW_iWxmdy8ZqDc/preview">
     <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=10j1cEq5e4dqyDUuL3fhW_iWxmdy8ZqDc&sz=w800" alt="Mujer de 30 desesperada, busca" onerror="this.style.display='none'">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=10j1cEq5e4dqyDUuL3fhW_iWxmdy8ZqDc&sz=w800" alt="Mujer de 30 desesperada, busca" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/10j1cEq5e4dqyDUuL3fhW_iWxmdy8ZqDc=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
       <div class="card-thumb-placeholder">🎭</div>
       <div class="card-overlay"></div>
       <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
@@ -990,7 +1147,7 @@
     data-src="https://drive.google.com/file/d/1MFzu5grs72yn72NN7gYvPYCOjBqLZMJL/preview">
     <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1MFzu5grs72yn72NN7gYvPYCOjBqLZMJL&sz=w800" alt="Amalfi" onerror="this.style.display='none'">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1MFzu5grs72yn72NN7gYvPYCOjBqLZMJL&sz=w800" alt="Amalfi" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1MFzu5grs72yn72NN7gYvPYCOjBqLZMJL=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
       <div class="card-thumb-placeholder">🎭</div>
       <div class="card-overlay"></div>
       <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
@@ -1010,7 +1167,7 @@
     data-src="https://drive.google.com/file/d/1muU9XOF-sPzHSSHi7-5HlhkeSKn6H2vH/preview">
     <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1muU9XOF-sPzHSSHi7-5HlhkeSKn6H2vH&sz=w800" alt="Madre Primeriza" onerror="this.style.display='none'">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1muU9XOF-sPzHSSHi7-5HlhkeSKn6H2vH&sz=w800" alt="Madre Primeriza" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1muU9XOF-sPzHSSHi7-5HlhkeSKn6H2vH=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
       <div class="card-thumb-placeholder">🎭</div>
       <div class="card-overlay"></div>
       <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
@@ -1030,7 +1187,7 @@
     data-src="https://drive.google.com/file/d/1rPSMz2u_n5BnLvBuNMIzJSiOmbag6N4S/preview">
     <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1rPSMz2u_n5BnLvBuNMIzJSiOmbag6N4S&sz=w800" alt="MILF" onerror="this.style.display='none'">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1rPSMz2u_n5BnLvBuNMIzJSiOmbag6N4S&sz=w800" alt="MILF" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1rPSMz2u_n5BnLvBuNMIzJSiOmbag6N4S=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
       <div class="card-thumb-placeholder">🎭</div>
       <div class="card-overlay"></div>
       <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
@@ -1050,7 +1207,7 @@
     data-src="https://drive.google.com/file/d/1i6lK337c15ZUfXL7UQzcEv3lDxxIuLGR/preview">
     <span class="card-pill">Foto</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1i6lK337c15ZUfXL7UQzcEv3lDxxIuLGR&sz=w800" alt="Elena" onerror="this.style.display='none'">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1i6lK337c15ZUfXL7UQzcEv3lDxxIuLGR&sz=w800" alt="Elena" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1i6lK337c15ZUfXL7UQzcEv3lDxxIuLGR=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
       <div class="card-thumb-placeholder">🎭</div>
       <div class="card-overlay"></div>
       
@@ -1070,7 +1227,7 @@
     data-src="https://drive.google.com/file/d/192aWhxQ6O79ya_u3s3-y3qye6Nls5KFB/preview">
     <span class="card-pill">Foto</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=192aWhxQ6O79ya_u3s3-y3qye6Nls5KFB&sz=w800" alt="En el nombre de Raquel" onerror="this.style.display='none'">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=192aWhxQ6O79ya_u3s3-y3qye6Nls5KFB&sz=w800" alt="En el nombre de Raquel" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/192aWhxQ6O79ya_u3s3-y3qye6Nls5KFB=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
       <div class="card-thumb-placeholder">🎭</div>
       <div class="card-overlay"></div>
       
@@ -1090,7 +1247,7 @@
     data-src="https://drive.google.com/file/d/1S5XdKgyv8HLpubwAqasia6Zm8y8saVev/preview">
     <span class="card-pill">Foto</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1S5XdKgyv8HLpubwAqasia6Zm8y8saVev&sz=w800" alt="La Menesunda" onerror="this.style.display='none'">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1S5XdKgyv8HLpubwAqasia6Zm8y8saVev&sz=w800" alt="La Menesunda" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1S5XdKgyv8HLpubwAqasia6Zm8y8saVev=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
       <div class="card-thumb-placeholder">🎭</div>
       <div class="card-overlay"></div>
       
@@ -1113,7 +1270,7 @@
     data-src="https://drive.google.com/file/d/109vcRDq1g2IkFUytRI1qt-6OVGSHGSr9/preview">
     <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=109vcRDq1g2IkFUytRI1qt-6OVGSHGSr9&sz=w800" alt="MILF — Trailer" onerror="this.style.display='none'">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=109vcRDq1g2IkFUytRI1qt-6OVGSHGSr9&sz=w800" alt="MILF — Trailer" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/109vcRDq1g2IkFUytRI1qt-6OVGSHGSr9=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
       <div class="card-thumb-placeholder">🎬</div>
       <div class="card-overlay"></div>
       <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
@@ -1133,7 +1290,7 @@
     data-src="https://drive.google.com/file/d/111jj5JwptmXw3xF7YB-9uOIsGUnvhwgI/preview">
     <span class="card-pill">Foto</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=111jj5JwptmXw3xF7YB-9uOIsGUnvhwgI&sz=w800" alt="El Último Traje" onerror="this.style.display='none'">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=111jj5JwptmXw3xF7YB-9uOIsGUnvhwgI&sz=w800" alt="El Último Traje" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/111jj5JwptmXw3xF7YB-9uOIsGUnvhwgI=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
       <div class="card-thumb-placeholder">🎬</div>
       <div class="card-overlay"></div>
       
@@ -1157,7 +1314,7 @@
     data-src="https://drive.google.com/file/d/1dkZfG-CCgDqhlUL8jkz0H1q5yPymDCn6/preview">
     <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1dkZfG-CCgDqhlUL8jkz0H1q5yPymDCn6&sz=w800" alt="La Salteña — Idea Sorpresa" onerror="this.style.display='none'">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1dkZfG-CCgDqhlUL8jkz0H1q5yPymDCn6&sz=w800" alt="La Salteña — Idea Sorpresa" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1dkZfG-CCgDqhlUL8jkz0H1q5yPymDCn6=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
       <div class="card-thumb-placeholder">📺</div>
       <div class="card-overlay"></div>
       <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
@@ -1177,7 +1334,7 @@
     data-src="https://drive.google.com/file/d/1gQb34WGH17CQb4aOa-ctepoeJlqbUQKT/preview">
     <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1gQb34WGH17CQb4aOa-ctepoeJlqbUQKT&sz=w800" alt="La Salteña — Idea Práctica" onerror="this.style.display='none'">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1gQb34WGH17CQb4aOa-ctepoeJlqbUQKT&sz=w800" alt="La Salteña — Idea Práctica" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1gQb34WGH17CQb4aOa-ctepoeJlqbUQKT=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
       <div class="card-thumb-placeholder">📺</div>
       <div class="card-overlay"></div>
       <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
@@ -1197,7 +1354,7 @@
     data-src="https://drive.google.com/file/d/1J7ByIPXD3HiP9xWrOywtLVIDGzbSRDz-/preview">
     <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1J7ByIPXD3HiP9xWrOywtLVIDGzbSRDz-&sz=w800" alt="La Salteña — Una idea" onerror="this.style.display='none'">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1J7ByIPXD3HiP9xWrOywtLVIDGzbSRDz-&sz=w800" alt="La Salteña — Una idea" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1J7ByIPXD3HiP9xWrOywtLVIDGzbSRDz-=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
       <div class="card-thumb-placeholder">📺</div>
       <div class="card-overlay"></div>
       <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
@@ -1217,7 +1374,7 @@
     data-src="https://drive.google.com/file/d/1u4CWpI0a7lUVe5kDEaJf0JNCk6ACU-eI/preview">
     <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1u4CWpI0a7lUVe5kDEaJf0JNCk6ACU-eI&sz=w800" alt="Mantecol — Regalo" onerror="this.style.display='none'">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1u4CWpI0a7lUVe5kDEaJf0JNCk6ACU-eI&sz=w800" alt="Mantecol — Regalo" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1u4CWpI0a7lUVe5kDEaJf0JNCk6ACU-eI=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
       <div class="card-thumb-placeholder">📺</div>
       <div class="card-overlay"></div>
       <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
@@ -1237,7 +1394,7 @@
     data-src="https://drive.google.com/file/d/1wdlECMZHTraAxsWorYtwhy0xCos3evgi/preview">
     <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1wdlECMZHTraAxsWorYtwhy0xCos3evgi&sz=w800" alt="Movistar — Navidad" onerror="this.style.display='none'">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1wdlECMZHTraAxsWorYtwhy0xCos3evgi&sz=w800" alt="Movistar — Navidad" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1wdlECMZHTraAxsWorYtwhy0xCos3evgi=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
       <div class="card-thumb-placeholder">📺</div>
       <div class="card-overlay"></div>
       <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
@@ -1257,7 +1414,7 @@
     data-src="https://drive.google.com/file/d/1kCNnR9lLb32LBXq9u9ExTiw4bbKLvMu2/preview">
     <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1kCNnR9lLb32LBXq9u9ExTiw4bbKLvMu2&sz=w800" alt="Barco de Armando Bo" onerror="this.style.display='none'">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1kCNnR9lLb32LBXq9u9ExTiw4bbKLvMu2&sz=w800" alt="Barco de Armando Bo" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1kCNnR9lLb32LBXq9u9ExTiw4bbKLvMu2=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
       <div class="card-thumb-placeholder">📺</div>
       <div class="card-overlay"></div>
       <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
@@ -1277,7 +1434,7 @@
     data-src="https://drive.google.com/file/d/1k8elU4SEeNYZW0BGCmoZZPK9km1eMOPR/preview">
     <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1k8elU4SEeNYZW0BGCmoZZPK9km1eMOPR&sz=w800" alt="Promo actriz" onerror="this.style.display='none'">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1k8elU4SEeNYZW0BGCmoZZPK9km1eMOPR&sz=w800" alt="Promo actriz" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1k8elU4SEeNYZW0BGCmoZZPK9km1eMOPR=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
       <div class="card-thumb-placeholder">📺</div>
       <div class="card-overlay"></div>
       <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
@@ -1298,7 +1455,7 @@
     data-desc="Retrato"
     data-type="image"
     data-src="https://drive.google.com/file/d/1LcCYVph6Cxr2HUpYHSbCVp5NJpi6kD9_/preview">
-    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1LcCYVph6Cxr2HUpYHSbCVp5NJpi6kD9_&sz=w400" alt="Retrato"></div>
+    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1LcCYVph6Cxr2HUpYHSbCVp5NJpi6kD9_&sz=w400" alt="Retrato" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1LcCYVph6Cxr2HUpYHSbCVp5NJpi6kD9_=w400'}else{this.style.display='none';this.parentElement.classList.add('no-image')}"></div>
     <div class="press-card-body">
       <div class="press-card-title">Retrato</div>
       <div class="press-card-source">Books</div>
@@ -1310,7 +1467,7 @@
     data-desc="Book"
     data-type="image"
     data-src="https://drive.google.com/file/d/1S1jbOMGH4NGc791TL39R6lmjglIu_dWd/preview">
-    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1S1jbOMGH4NGc791TL39R6lmjglIu_dWd&sz=w400" alt="Book"></div>
+    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1S1jbOMGH4NGc791TL39R6lmjglIu_dWd&sz=w400" alt="Book" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1S1jbOMGH4NGc791TL39R6lmjglIu_dWd=w400'}else{this.style.display='none';this.parentElement.classList.add('no-image')}"></div>
     <div class="press-card-body">
       <div class="press-card-title">Book</div>
       <div class="press-card-source">Fotografía</div>
@@ -1322,7 +1479,7 @@
     data-desc="Book"
     data-type="image"
     data-src="https://drive.google.com/file/d/1Vcqtymy9cTVjJ14ynVpJOEQKoeIBw2Oz/preview">
-    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1Vcqtymy9cTVjJ14ynVpJOEQKoeIBw2Oz&sz=w400" alt="Book"></div>
+    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1Vcqtymy9cTVjJ14ynVpJOEQKoeIBw2Oz&sz=w400" alt="Book" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1Vcqtymy9cTVjJ14ynVpJOEQKoeIBw2Oz=w400'}else{this.style.display='none';this.parentElement.classList.add('no-image')}"></div>
     <div class="press-card-body">
       <div class="press-card-title">Book</div>
       <div class="press-card-source">Fotografía</div>
@@ -1334,7 +1491,7 @@
     data-desc="Book"
     data-type="image"
     data-src="https://drive.google.com/file/d/18XtvvczTwSJxOFgDLh4tEXTQvynx9EQE/preview">
-    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=18XtvvczTwSJxOFgDLh4tEXTQvynx9EQE&sz=w400" alt="Book"></div>
+    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=18XtvvczTwSJxOFgDLh4tEXTQvynx9EQE&sz=w400" alt="Book" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/18XtvvczTwSJxOFgDLh4tEXTQvynx9EQE=w400'}else{this.style.display='none';this.parentElement.classList.add('no-image')}"></div>
     <div class="press-card-body">
       <div class="press-card-title">Book</div>
       <div class="press-card-source">Fotografía</div>
@@ -1349,7 +1506,7 @@
     data-desc="Entrevista en Clarín sobre el unipersonal «Mujer de 30 desesperada, busca»."
     data-type="pdf"
     data-src="https://drive.google.com/file/d/1wgP_A3C4xSG5_Gqm9OXrPhTmSokS-1yC/preview">
-    <div class="press-card-img-wrap"><div class="press-card-icon" style="background:rgba(var(--rose-rgb),0.08)">📰</div></div>
+    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1LcCYVph6Cxr2HUpYHSbCVp5NJpi6kD9_&sz=w400" alt="" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1LcCYVph6Cxr2HUpYHSbCVp5NJpi6kD9_=w400'}else{this.style.display='none'}"><div class="press-card-icon" style="background:rgba(var(--rose-rgb),0.08)">📰</div></div>
     <div class="press-card-body">
       <div class="press-card-title">La crisis de los 30</div>
       <div class="press-card-source">Clarín · 2014</div>
@@ -1361,7 +1518,7 @@
     data-desc="Cobertura de la función en el Teatro Selectro, Mendoza."
     data-type="pdf"
     data-src="https://drive.google.com/file/d/1bf1Eb6w6A7VB9Mm_q6xGSFZ0vlckksE4/preview">
-    <div class="press-card-img-wrap"><div class="press-card-icon" style="background:rgba(var(--rose-rgb),0.08)">📰</div></div>
+    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1bf1Eb6w6A7VB9Mm_q6xGSFZ0vlckksE4&sz=w400" alt="" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1bf1Eb6w6A7VB9Mm_q6xGSFZ0vlckksE4=w400'}else{this.style.display='none'}"><div class="press-card-icon" style="background:rgba(var(--rose-rgb),0.08)">📰</div></div>
     <div class="press-card-body">
       <div class="press-card-title">La neurosis de las tres décadas</div>
       <div class="press-card-source">Los Andes · 2017</div>
@@ -1373,7 +1530,7 @@
     data-desc="Mariel Rosciano: reconciliación a través de la risa. Cobertura de la gira en ABC Color, Paraguay."
     data-type="pdf"
     data-src="https://drive.google.com/file/d/1v--jXDB3s7Fxzu-WGxBRf2momhUiUmIX/preview">
-    <div class="press-card-img-wrap"><div class="press-card-icon" style="background:rgba(var(--rose-rgb),0.08)">📰</div></div>
+    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1v--jXDB3s7Fxzu-WGxBRf2momhUiUmIX&sz=w400" alt="" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1v--jXDB3s7Fxzu-WGxBRf2momhUiUmIX=w400'}else{this.style.display='none'}"><div class="press-card-icon" style="background:rgba(var(--rose-rgb),0.08)">📰</div></div>
     <div class="press-card-body">
       <div class="press-card-title">Reconciliación a través de la risa</div>
       <div class="press-card-source">ABC Color · PY · 2014</div>
@@ -1385,7 +1542,7 @@
     data-desc="Cobertura en Última Hora de Paraguay."
     data-type="pdf"
     data-src="https://drive.google.com/file/d/1JbqQVcMmhQE621azvmcWUqIqdZ9txc_x/preview">
-    <div class="press-card-img-wrap"><div class="press-card-icon" style="background:rgba(var(--rose-rgb),0.08)">📰</div></div>
+    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1JbqQVcMmhQE621azvmcWUqIqdZ9txc_x&sz=w400" alt="" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1JbqQVcMmhQE621azvmcWUqIqdZ9txc_x=w400'}else{this.style.display='none'}"><div class="press-card-icon" style="background:rgba(var(--rose-rgb),0.08)">📰</div></div>
     <div class="press-card-body">
       <div class="press-card-title">La crisis de los 30 tomada con humor</div>
       <div class="press-card-source">Última Hora · PY · 2014</div>
@@ -1397,7 +1554,7 @@
     data-desc="Mariel Rosciano entre las comediantas que se destacan en el stand up."
     data-type="image"
     data-src="https://drive.google.com/file/d/1-Y4jNYbBDnrYyvYzmYSUnGg-QBu9cNaM/preview">
-    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1-Y4jNYbBDnrYyvYzmYSUnGg-QBu9cNaM&sz=w400" alt="Standaperas"></div>
+    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1-Y4jNYbBDnrYyvYzmYSUnGg-QBu9cNaM&sz=w400" alt="Standaperas" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1-Y4jNYbBDnrYyvYzmYSUnGg-QBu9cNaM=w400'}else{this.style.display='none';this.parentElement.classList.add('no-image')}"></div>
     <div class="press-card-body">
       <div class="press-card-title">Standaperas</div>
       <div class="press-card-source">El Guardian · 2012</div>
@@ -1409,7 +1566,7 @@
     data-desc="Nota completa sobre las mujeres en el stand up — Mariel Rosciano citada como referente."
     data-type="image"
     data-src="https://drive.google.com/file/d/1tEBXR2jC0WN0ZBjKzvOW4DqJkLhK_72I/preview">
-    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1tEBXR2jC0WN0ZBjKzvOW4DqJkLhK_72I&sz=w400" alt="Humor femenino y stand up"></div>
+    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1tEBXR2jC0WN0ZBjKzvOW4DqJkLhK_72I&sz=w400" alt="Humor femenino y stand up" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1tEBXR2jC0WN0ZBjKzvOW4DqJkLhK_72I=w400'}else{this.style.display='none';this.parentElement.classList.add('no-image')}"></div>
     <div class="press-card-body">
       <div class="press-card-title">Humor femenino y stand up</div>
       <div class="press-card-source">El Guardian · 2012</div>
@@ -1421,7 +1578,7 @@
     data-desc="Reseña de «En el nombre de Raquel» en Télam."
     data-type="image"
     data-src="https://drive.google.com/file/d/16FPXcJziBL5-YSxxbIgqBBiwHU1ZTei6/preview">
-    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=16FPXcJziBL5-YSxxbIgqBBiwHU1ZTei6&sz=w400" alt="En el nombre de Raquel"></div>
+    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=16FPXcJziBL5-YSxxbIgqBBiwHU1ZTei6&sz=w400" alt="En el nombre de Raquel" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/16FPXcJziBL5-YSxxbIgqBBiwHU1ZTei6=w400'}else{this.style.display='none';this.parentElement.classList.add('no-image')}"></div>
     <div class="press-card-body">
       <div class="press-card-title">En el nombre de Raquel</div>
       <div class="press-card-source">Télam · 2012</div>
@@ -1433,7 +1590,7 @@
     data-desc="Reseña en Agencia NaN."
     data-type="image"
     data-src="https://drive.google.com/file/d/1cm57ILx12cDZp6EXINnPsuGr-OypTU2Y/preview">
-    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1cm57ILx12cDZp6EXINnPsuGr-OypTU2Y&sz=w400" alt="En el nombre de Raquel"></div>
+    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1cm57ILx12cDZp6EXINnPsuGr-OypTU2Y&sz=w400" alt="En el nombre de Raquel" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1cm57ILx12cDZp6EXINnPsuGr-OypTU2Y=w400'}else{this.style.display='none';this.parentElement.classList.add('no-image')}"></div>
     <div class="press-card-body">
       <div class="press-card-title">En el nombre de Raquel</div>
       <div class="press-card-source">Agencia NaN · 2012</div>
@@ -1445,7 +1602,7 @@
     data-desc="Nota sobre la obra en El Abasto."
     data-type="image"
     data-src="https://drive.google.com/file/d/18IpbvthVKibj1euMM0TP457VcqtsdUCD/preview">
-    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=18IpbvthVKibj1euMM0TP457VcqtsdUCD&sz=w400" alt="La polaca más valiente"></div>
+    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=18IpbvthVKibj1euMM0TP457VcqtsdUCD&sz=w400" alt="La polaca más valiente" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/18IpbvthVKibj1euMM0TP457VcqtsdUCD=w400'}else{this.style.display='none';this.parentElement.classList.add('no-image')}"></div>
     <div class="press-card-body">
       <div class="press-card-title">La polaca más valiente</div>
       <div class="press-card-source">El Abasto · 2013</div>
@@ -1457,7 +1614,7 @@
     data-desc="Cobertura de la gira por Costa Rica."
     data-type="image"
     data-src="https://drive.google.com/file/d/12GHR9qxpFD5FGxfP1rWc5Ro9UvbO7RKO/preview">
-    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=12GHR9qxpFD5FGxfP1rWc5Ro9UvbO7RKO&sz=w400" alt="Raquel habla claro sobre la trata"></div>
+    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=12GHR9qxpFD5FGxfP1rWc5Ro9UvbO7RKO&sz=w400" alt="Raquel habla claro sobre la trata" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/12GHR9qxpFD5FGxfP1rWc5Ro9UvbO7RKO=w400'}else{this.style.display='none';this.parentElement.classList.add('no-image')}"></div>
     <div class="press-card-body">
       <div class="press-card-title">Raquel habla claro sobre la trata</div>
       <div class="press-card-source">La Nación · CR · 2012</div>
@@ -1469,7 +1626,7 @@
     data-desc="Gira por el norte argentino."
     data-type="image"
     data-src="https://drive.google.com/file/d/1vSDvxJrnmnk3nzqu3UJy-0YiBlN3Rn1j/preview">
-    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1vSDvxJrnmnk3nzqu3UJy-0YiBlN3Rn1j&sz=w400" alt="En el nombre de Raquel"></div>
+    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1vSDvxJrnmnk3nzqu3UJy-0YiBlN3Rn1j&sz=w400" alt="En el nombre de Raquel" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1vSDvxJrnmnk3nzqu3UJy-0YiBlN3Rn1j=w400'}else{this.style.display='none';this.parentElement.classList.add('no-image')}"></div>
     <div class="press-card-body">
       <div class="press-card-title">En el nombre de Raquel</div>
       <div class="press-card-source">El Tribuno · Jujuy · 2013</div>
@@ -1481,7 +1638,7 @@
     data-desc="Una fuerte denuncia al delito de trata por medio del teatro."
     data-type="image"
     data-src="https://drive.google.com/file/d/1NYEdHK1C2Jm4Jav65SB2CefubfvLBUo6/preview">
-    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1NYEdHK1C2Jm4Jav65SB2CefubfvLBUo6&sz=w400" alt="Denuncia al delito de trata"></div>
+    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1NYEdHK1C2Jm4Jav65SB2CefubfvLBUo6&sz=w400" alt="Denuncia al delito de trata" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1NYEdHK1C2Jm4Jav65SB2CefubfvLBUo6=w400'}else{this.style.display='none';this.parentElement.classList.add('no-image')}"></div>
     <div class="press-card-body">
       <div class="press-card-title">Denuncia al delito de trata</div>
       <div class="press-card-source">Primera Edición · Misiones · 2013</div>
@@ -1493,7 +1650,7 @@
     data-desc="Presentación en el Teatro Municipal de Lomas de Zamora."
     data-type="image"
     data-src="https://drive.google.com/file/d/1ws39l8RCX-LyZ1ygVIYAc7icOYPUrCfp/preview">
-    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1ws39l8RCX-LyZ1ygVIYAc7icOYPUrCfp&sz=w400" alt="En el nombre de la mujer"></div>
+    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1ws39l8RCX-LyZ1ygVIYAc7icOYPUrCfp&sz=w400" alt="En el nombre de la mujer" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1ws39l8RCX-LyZ1ygVIYAc7icOYPUrCfp=w400'}else{this.style.display='none';this.parentElement.classList.add('no-image')}"></div>
     <div class="press-card-body">
       <div class="press-card-title">En el nombre de la mujer</div>
       <div class="press-card-source">Diario El Sol · Marzo 2013</div>
@@ -1505,7 +1662,7 @@
     data-desc="Cobertura de la obra en gira nacional."
     data-type="image"
     data-src="https://drive.google.com/file/d/1kZpGIkuGtO34o0SXPcpPlyaCGMQrY37D/preview">
-    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1kZpGIkuGtO34o0SXPcpPlyaCGMQrY37D&sz=w400" alt="Teatro contra la trata"></div>
+    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1kZpGIkuGtO34o0SXPcpPlyaCGMQrY37D&sz=w400" alt="Teatro contra la trata" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1kZpGIkuGtO34o0SXPcpPlyaCGMQrY37D=w400'}else{this.style.display='none';this.parentElement.classList.add('no-image')}"></div>
     <div class="press-card-body">
       <div class="press-card-title">Teatro contra la trata</div>
       <div class="press-card-source">Diario El Sol · 15 marzo 2013</div>
@@ -1517,7 +1674,7 @@
     data-desc="Entrevista con Mariel Rosciano."
     data-type="image"
     data-src="https://drive.google.com/file/d/14Ft_ZeTyQHVTx_E40qhoDSUlKiytKZPx/preview">
-    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=14Ft_ZeTyQHVTx_E40qhoDSUlKiytKZPx&sz=w400" alt="El teatro es un grito visceral"></div>
+    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=14Ft_ZeTyQHVTx_E40qhoDSUlKiytKZPx&sz=w400" alt="El teatro es un grito visceral" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/14Ft_ZeTyQHVTx_E40qhoDSUlKiytKZPx=w400'}else{this.style.display='none';this.parentElement.classList.add('no-image')}"></div>
     <div class="press-card-body">
       <div class="press-card-title">El teatro es un grito visceral</div>
       <div class="press-card-source">La Voz del Pueblo · 2013</div>
@@ -1546,7 +1703,7 @@
     data-src="https://drive.google.com/file/d/1NfDbSgYy-4CaVQnscHcI9vXjbnO2R6MQ/preview">
     <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1NfDbSgYy-4CaVQnscHcI9vXjbnO2R6MQ&sz=w800" alt="Fuerza Urbana" onerror="this.style.display='none'">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1NfDbSgYy-4CaVQnscHcI9vXjbnO2R6MQ&sz=w800" alt="Fuerza Urbana" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1NfDbSgYy-4CaVQnscHcI9vXjbnO2R6MQ=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
       <div class="card-thumb-placeholder">🎬</div>
       <div class="card-overlay"></div>
       <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
@@ -1566,7 +1723,7 @@
     data-src="https://drive.google.com/file/d/1VznC2hzD9cyjJsjqi1s6mudLMnrJt_xf/preview">
     <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1VznC2hzD9cyjJsjqi1s6mudLMnrJt_xf&sz=w800" alt="Cuatro Colas y un Funeral" onerror="this.style.display='none'">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1VznC2hzD9cyjJsjqi1s6mudLMnrJt_xf&sz=w800" alt="Cuatro Colas y un Funeral" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1VznC2hzD9cyjJsjqi1s6mudLMnrJt_xf=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
       <div class="card-thumb-placeholder">🎬</div>
       <div class="card-overlay"></div>
       <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
@@ -1586,7 +1743,7 @@
     data-src="https://drive.google.com/file/d/1Ph3k931yepNgzbgA3k-ZzpWu7OC6VVmT/preview">
     <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1Ph3k931yepNgzbgA3k-ZzpWu7OC6VVmT&sz=w800" alt="¡Blancanieves y el Príncipe Aventurero!" onerror="this.style.display='none'">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1Ph3k931yepNgzbgA3k-ZzpWu7OC6VVmT&sz=w800" alt="¡Blancanieves y el Príncipe Aventurero!" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1Ph3k931yepNgzbgA3k-ZzpWu7OC6VVmT=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
       <div class="card-thumb-placeholder">🎬</div>
       <div class="card-overlay"></div>
       <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
@@ -1609,7 +1766,7 @@
     data-src="https://drive.google.com/file/d/1dDpBOHTPOPUw_hxCYyn2Q45BYzEXEudM/preview">
     <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1dDpBOHTPOPUw_hxCYyn2Q45BYzEXEudM&sz=w800" alt="Tulipán Up" onerror="this.style.display='none'">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1dDpBOHTPOPUw_hxCYyn2Q45BYzEXEudM&sz=w800" alt="Tulipán Up" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1dDpBOHTPOPUw_hxCYyn2Q45BYzEXEudM=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
       <div class="card-thumb-placeholder">🎬</div>
       <div class="card-overlay"></div>
       <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
@@ -1629,7 +1786,7 @@
     data-src="https://drive.google.com/file/d/1BIbRlBWnJXMxzqRCmdSLOAr6mB1TboFv/preview">
     <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1BIbRlBWnJXMxzqRCmdSLOAr6mB1TboFv&sz=w800" alt="VER® #UniteAlaCharla" onerror="this.style.display='none'">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1BIbRlBWnJXMxzqRCmdSLOAr6mB1TboFv&sz=w800" alt="VER® #UniteAlaCharla" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1BIbRlBWnJXMxzqRCmdSLOAr6mB1TboFv=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
       <div class="card-thumb-placeholder">🎬</div>
       <div class="card-overlay"></div>
       <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
@@ -1649,7 +1806,7 @@
     data-src="https://drive.google.com/file/d/18_O7yQNsuwh0H7UabOhydmOGI17w_ywv/preview">
     <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=18_O7yQNsuwh0H7UabOhydmOGI17w_ywv&sz=w800" alt="Puntitas" onerror="this.style.display='none'">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=18_O7yQNsuwh0H7UabOhydmOGI17w_ywv&sz=w800" alt="Puntitas" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/18_O7yQNsuwh0H7UabOhydmOGI17w_ywv=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
       <div class="card-thumb-placeholder">🎬</div>
       <div class="card-overlay"></div>
       <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
@@ -1669,7 +1826,7 @@
     data-src="https://drive.google.com/file/d/1ElIsOjD7ODZ6Ksk6GnvodiAdpXPy1vQ6/preview">
     <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1ElIsOjD7ODZ6Ksk6GnvodiAdpXPy1vQ6&sz=w800" alt="Wasted" onerror="this.style.display='none'">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1ElIsOjD7ODZ6Ksk6GnvodiAdpXPy1vQ6&sz=w800" alt="Wasted" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1ElIsOjD7ODZ6Ksk6GnvodiAdpXPy1vQ6=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
       <div class="card-thumb-placeholder">🎬</div>
       <div class="card-overlay"></div>
       <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
@@ -1704,7 +1861,7 @@
     data-src="https://drive.google.com/file/d/1PE61xoEOS1wmKc7_QC7OY2XM-tf3PxdY/preview">
     <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1PE61xoEOS1wmKc7_QC7OY2XM-tf3PxdY&sz=w800" alt="MILF" onerror="this.style.display='none'">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1PE61xoEOS1wmKc7_QC7OY2XM-tf3PxdY&sz=w800" alt="MILF" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1PE61xoEOS1wmKc7_QC7OY2XM-tf3PxdY=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
       <div class="card-thumb-placeholder">🎞</div>
       <div class="card-overlay"></div>
       <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
@@ -1724,7 +1881,7 @@
     data-src="https://drive.google.com/file/d/1y6SfFvET3ZhZJiei15XexeeoC-AY5fgA/preview">
     <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1y6SfFvET3ZhZJiei15XexeeoC-AY5fgA&sz=w800" alt="Vagón Fumador" onerror="this.style.display='none'">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1y6SfFvET3ZhZJiei15XexeeoC-AY5fgA&sz=w800" alt="Vagón Fumador" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1y6SfFvET3ZhZJiei15XexeeoC-AY5fgA=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
       <div class="card-thumb-placeholder">🎞</div>
       <div class="card-overlay"></div>
       <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
@@ -1744,7 +1901,7 @@
     data-src="https://drive.google.com/file/d/1BMojCZJYHFKUyxnhpaSvENTyLulgMTj-/preview">
     <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1BMojCZJYHFKUyxnhpaSvENTyLulgMTj-&sz=w800" alt="El Séptimo Arcángel" onerror="this.style.display='none'">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1BMojCZJYHFKUyxnhpaSvENTyLulgMTj-&sz=w800" alt="El Séptimo Arcángel" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1BMojCZJYHFKUyxnhpaSvENTyLulgMTj-=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
       <div class="card-thumb-placeholder">🎞</div>
       <div class="card-overlay"></div>
       <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
@@ -1764,7 +1921,7 @@
     data-src="https://drive.google.com/file/d/12mPO0vWa6JgDcuwyqX0os_9Ib_TLGP08/preview">
     <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=12mPO0vWa6JgDcuwyqX0os_9Ib_TLGP08&sz=w800" alt="Sudeste" onerror="this.style.display='none'">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=12mPO0vWa6JgDcuwyqX0os_9Ib_TLGP08&sz=w800" alt="Sudeste" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/12mPO0vWa6JgDcuwyqX0os_9Ib_TLGP08=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
       <div class="card-thumb-placeholder">🎞</div>
       <div class="card-overlay"></div>
       <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
@@ -1784,7 +1941,7 @@
     data-src="https://drive.google.com/file/d/191zc1Plpveqm3QHfBVbmz6WG0nrMvbcN/preview">
     <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=191zc1Plpveqm3QHfBVbmz6WG0nrMvbcN&sz=w800" alt="Dulce de Leche" onerror="this.style.display='none'">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=191zc1Plpveqm3QHfBVbmz6WG0nrMvbcN&sz=w800" alt="Dulce de Leche" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/191zc1Plpveqm3QHfBVbmz6WG0nrMvbcN=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
       <div class="card-thumb-placeholder">🎞</div>
       <div class="card-overlay"></div>
       <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
@@ -1804,7 +1961,7 @@
     data-src="https://drive.google.com/file/d/1AAvEuBsodC_e7FH4Yq-GRCjIjDaaIAiE/preview">
     <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1AAvEuBsodC_e7FH4Yq-GRCjIjDaaIAiE&sz=w800" alt="El Cuenco de las Ciudades Mestizas" onerror="this.style.display='none'">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1AAvEuBsodC_e7FH4Yq-GRCjIjDaaIAiE&sz=w800" alt="El Cuenco de las Ciudades Mestizas" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1AAvEuBsodC_e7FH4Yq-GRCjIjDaaIAiE=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
       <div class="card-thumb-placeholder">🎞</div>
       <div class="card-overlay"></div>
       <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
@@ -1824,7 +1981,7 @@
     data-src="https://drive.google.com/file/d/1dXQ5y1ugG_vMkXId-45BMTblCmZTWAjp/preview">
     <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1dXQ5y1ugG_vMkXId-45BMTblCmZTWAjp&sz=w800" alt="Un Día de Suerte" onerror="this.style.display='none'">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1dXQ5y1ugG_vMkXId-45BMTblCmZTWAjp&sz=w800" alt="Un Día de Suerte" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1dXQ5y1ugG_vMkXId-45BMTblCmZTWAjp=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
       <div class="card-thumb-placeholder">🎞</div>
       <div class="card-overlay"></div>
       <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
@@ -1847,7 +2004,7 @@
     data-src="https://drive.google.com/file/d/1OXBg9wJ2uVOtYLHt5yZPYFiHy2eEJ5ce/preview">
     <span class="card-pill">Foto</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1OXBg9wJ2uVOtYLHt5yZPYFiHy2eEJ5ce&sz=w800" alt="Festival Martha Argerich" onerror="this.style.display='none'">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1OXBg9wJ2uVOtYLHt5yZPYFiHy2eEJ5ce&sz=w800" alt="Festival Martha Argerich" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1OXBg9wJ2uVOtYLHt5yZPYFiHy2eEJ5ce=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
       <div class="card-thumb-placeholder">🎹</div>
       <div class="card-overlay"></div>
       
@@ -1881,7 +2038,7 @@
     data-src="https://drive.google.com/file/d/1z2wmNZBNPjh3DBOxZ2OfPz1vge8x94QV/preview">
     <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1z2wmNZBNPjh3DBOxZ2OfPz1vge8x94QV&sz=w800" alt="Yo, abolicionista" onerror="this.style.display='none'">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1z2wmNZBNPjh3DBOxZ2OfPz1vge8x94QV&sz=w800" alt="Yo, abolicionista" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1z2wmNZBNPjh3DBOxZ2OfPz1vge8x94QV=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
       <div class="card-thumb-placeholder">📽</div>
       <div class="card-overlay"></div>
       <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
@@ -1901,7 +2058,7 @@
     data-src="https://drive.google.com/file/d/1zL5fBe1qSTICazXBTNIqw_3O1g3RGKOa/preview">
     <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1zL5fBe1qSTICazXBTNIqw_3O1g3RGKOa&sz=w800" alt="Rota, mujeres en cuarentena" onerror="this.style.display='none'">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1zL5fBe1qSTICazXBTNIqw_3O1g3RGKOa&sz=w800" alt="Rota, mujeres en cuarentena" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1zL5fBe1qSTICazXBTNIqw_3O1g3RGKOa=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
       <div class="card-thumb-placeholder">📽</div>
       <div class="card-overlay"></div>
       <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
@@ -1921,7 +2078,7 @@
     data-src="https://drive.google.com/file/d/1a54bm7tT32T8L8aEzzXQmCo3JLO5UFFc/preview">
     <span class="card-pill">Foto</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1a54bm7tT32T8L8aEzzXQmCo3JLO5UFFc&sz=w800" alt="Sandra Mihanovich — 40 años en la música" onerror="this.style.display='none'">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1a54bm7tT32T8L8aEzzXQmCo3JLO5UFFc&sz=w800" alt="Sandra Mihanovich — 40 años en la música" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1a54bm7tT32T8L8aEzzXQmCo3JLO5UFFc=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
       <div class="card-thumb-placeholder">🎵</div>
       <div class="card-overlay"></div>
       
@@ -1942,7 +2099,7 @@
     data-desc="«Yo, abolicionista. Documental de Mariel Rosciano» — Reseña y entrevista completa en Revista Emancipa."
     data-type="pdf"
     data-src="https://drive.google.com/file/d/1J2pc3BRve3aNnNbpvhtxU5-iA0ivYjop/preview">
-    <div class="press-card-img-wrap"><div class="press-card-icon" style="background:rgba(var(--violet-rgb),0.08)">📰</div></div>
+    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1-Y4jNYbBDnrYyvYzmYSUnGg-QBu9cNaM&sz=w400" alt="" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1-Y4jNYbBDnrYyvYzmYSUnGg-QBu9cNaM=w400'}else{this.style.display='none'}"><div class="press-card-icon" style="background:rgba(var(--violet-rgb),0.08)">📰</div></div>
     <div class="press-card-body">
       <div class="press-card-title">Yo, abolicionista</div>
       <div class="press-card-source">Revista Emancipa · 2019</div>
@@ -1959,7 +2116,7 @@
     data-src="https://drive.google.com/file/d/1GRPqo5ElMYEmCYFhrAwuvT59yXGdANgH/preview">
     <span class="card-pill">Foto</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1GRPqo5ElMYEmCYFhrAwuvT59yXGdANgH&sz=w800" alt="En el Barro — Día 2" onerror="this.style.display='none'">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1GRPqo5ElMYEmCYFhrAwuvT59yXGdANgH&sz=w800" alt="En el Barro — Día 2" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1GRPqo5ElMYEmCYFhrAwuvT59yXGdANgH=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
       <div class="card-thumb-placeholder">📷</div>
       <div class="card-overlay"></div>
       
@@ -1979,7 +2136,7 @@
     data-src="https://drive.google.com/file/d/1HxrfT8IVFaiH6VYfhijLLDKVuuVvtPgR/preview">
     <span class="card-pill">Foto</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1HxrfT8IVFaiH6VYfhijLLDKVuuVvtPgR&sz=w800" alt="En el Barro — Plano 99" onerror="this.style.display='none'">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1HxrfT8IVFaiH6VYfhijLLDKVuuVvtPgR&sz=w800" alt="En el Barro — Plano 99" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1HxrfT8IVFaiH6VYfhijLLDKVuuVvtPgR=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
       <div class="card-thumb-placeholder">📷</div>
       <div class="card-overlay"></div>
       
@@ -1999,7 +2156,7 @@
     data-src="https://drive.google.com/file/d/1dphWB8rH1BgYkAyKTYoicDDi8dwtv3PM/preview">
     <span class="card-pill">Foto</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1dphWB8rH1BgYkAyKTYoicDDi8dwtv3PM&sz=w800" alt="En el Barro — Plano 6" onerror="this.style.display='none'">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1dphWB8rH1BgYkAyKTYoicDDi8dwtv3PM&sz=w800" alt="En el Barro — Plano 6" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1dphWB8rH1BgYkAyKTYoicDDi8dwtv3PM=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
       <div class="card-thumb-placeholder">📷</div>
       <div class="card-overlay"></div>
       
@@ -2034,7 +2191,7 @@
     data-src="https://drive.google.com/file/d/13BZTsWDvzepnDoIGGUHxy_LLzqBOzDHC/preview">
     <span class="card-pill">Foto</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=13BZTsWDvzepnDoIGGUHxy_LLzqBOzDHC&sz=w800" alt="El Hijo" onerror="this.style.display='none'">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=13BZTsWDvzepnDoIGGUHxy_LLzqBOzDHC&sz=w800" alt="El Hijo" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/13BZTsWDvzepnDoIGGUHxy_LLzqBOzDHC=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
       <div class="card-thumb-placeholder">✨</div>
       <div class="card-overlay"></div>
       
@@ -2054,7 +2211,7 @@
     data-src="https://drive.google.com/file/d/1ye3bodm4nS8s4A6Tz_PsFliFx0d0gEV7/preview">
     <span class="card-pill">Foto</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1ye3bodm4nS8s4A6Tz_PsFliFx0d0gEV7&sz=w800" alt="El Hijo — Set de rodaje" onerror="this.style.display='none'">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1ye3bodm4nS8s4A6Tz_PsFliFx0d0gEV7&sz=w800" alt="El Hijo — Set de rodaje" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1ye3bodm4nS8s4A6Tz_PsFliFx0d0gEV7=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
       <div class="card-thumb-placeholder">✨</div>
       <div class="card-overlay"></div>
       
@@ -2074,7 +2231,7 @@
     data-src="https://drive.google.com/file/d/1_gK2MLd21RBZ5kPJFu5PvUYlOffkRhnk/preview">
     <span class="card-pill">Foto</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1_gK2MLd21RBZ5kPJFu5PvUYlOffkRhnk&sz=w800" alt="El Hijo — Cámara" onerror="this.style.display='none'">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1_gK2MLd21RBZ5kPJFu5PvUYlOffkRhnk&sz=w800" alt="El Hijo — Cámara" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1_gK2MLd21RBZ5kPJFu5PvUYlOffkRhnk=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
       <div class="card-thumb-placeholder">✨</div>
       <div class="card-overlay"></div>
       
@@ -2094,7 +2251,7 @@
     data-src="https://drive.google.com/file/d/1QJKxwQL7YvvLRPN81hR1641_67YJBDuX/preview">
     <span class="card-pill">Foto</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1QJKxwQL7YvvLRPN81hR1641_67YJBDuX&sz=w800" alt="El Hijo — Set" onerror="this.style.display='none'">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1QJKxwQL7YvvLRPN81hR1641_67YJBDuX&sz=w800" alt="El Hijo — Set" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1QJKxwQL7YvvLRPN81hR1641_67YJBDuX=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
       <div class="card-thumb-placeholder">✨</div>
       <div class="card-overlay"></div>
       
@@ -2117,7 +2274,7 @@
     data-src="https://drive.google.com/file/d/15uB1TUKKr6DziJAYsGW6zBEcVeJzGI1h/preview">
     <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=15uB1TUKKr6DziJAYsGW6zBEcVeJzGI1h&sz=w800" alt="Cami Lour" onerror="this.style.display='none'">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=15uB1TUKKr6DziJAYsGW6zBEcVeJzGI1h&sz=w800" alt="Cami Lour" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/15uB1TUKKr6DziJAYsGW6zBEcVeJzGI1h=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
       <div class="card-thumb-placeholder">✨</div>
       <div class="card-overlay"></div>
       <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
@@ -2137,7 +2294,7 @@
     data-src="https://drive.google.com/file/d/1nFizX4avfd-uvZUGuKdpVYx2eCSMEmyg/preview">
     <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1nFizX4avfd-uvZUGuKdpVYx2eCSMEmyg&sz=w800" alt="Alberee" onerror="this.style.display='none'">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1nFizX4avfd-uvZUGuKdpVYx2eCSMEmyg&sz=w800" alt="Alberee" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1nFizX4avfd-uvZUGuKdpVYx2eCSMEmyg=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
       <div class="card-thumb-placeholder">✨</div>
       <div class="card-overlay"></div>
       <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
@@ -2157,7 +2314,7 @@
     data-src="https://drive.google.com/file/d/1hKgZx7lq2ihnCGmTMlIMrbgASGspfjBx/preview">
     <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1hKgZx7lq2ihnCGmTMlIMrbgASGspfjBx&sz=w800" alt="Morena" onerror="this.style.display='none'">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1hKgZx7lq2ihnCGmTMlIMrbgASGspfjBx&sz=w800" alt="Morena" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1hKgZx7lq2ihnCGmTMlIMrbgASGspfjBx=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
       <div class="card-thumb-placeholder">✨</div>
       <div class="card-overlay"></div>
       <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
@@ -2177,7 +2334,7 @@
     data-src="https://drive.google.com/file/d/1yhzxPP9Z9fcLfdt3VAThZ4ieZIWvXNCN/preview">
     <span class="card-pill">Foto</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1yhzxPP9Z9fcLfdt3VAThZ4ieZIWvXNCN&sz=w800" alt="Joelle" onerror="this.style.display='none'">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1yhzxPP9Z9fcLfdt3VAThZ4ieZIWvXNCN&sz=w800" alt="Joelle" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1yhzxPP9Z9fcLfdt3VAThZ4ieZIWvXNCN=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
       <div class="card-thumb-placeholder">✨</div>
       <div class="card-overlay"></div>
       
@@ -2197,7 +2354,7 @@
     data-src="https://drive.google.com/file/d/14MtV1nyMkHTfme4KXkKhriAtfvUP3w3i/preview">
     <span class="card-pill">Foto</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=14MtV1nyMkHTfme4KXkKhriAtfvUP3w3i&sz=w800" alt="More" onerror="this.style.display='none'">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=14MtV1nyMkHTfme4KXkKhriAtfvUP3w3i&sz=w800" alt="More" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/14MtV1nyMkHTfme4KXkKhriAtfvUP3w3i=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
       <div class="card-thumb-placeholder">✨</div>
       <div class="card-overlay"></div>
       
@@ -2220,7 +2377,7 @@
     data-src="https://drive.google.com/file/d/1gi6K0uHYt7yXMWvUEsQ-zkISmCg1mk52/preview">
     <span class="card-pill">Foto</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1gi6K0uHYt7yXMWvUEsQ-zkISmCg1mk52&sz=w800" alt="Kinder — Nueva Cara" onerror="this.style.display='none'">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1gi6K0uHYt7yXMWvUEsQ-zkISmCg1mk52&sz=w800" alt="Kinder — Nueva Cara" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1gi6K0uHYt7yXMWvUEsQ-zkISmCg1mk52=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
       <div class="card-thumb-placeholder">✨</div>
       <div class="card-overlay"></div>
       
@@ -2240,7 +2397,7 @@
     data-src="https://drive.google.com/file/d/1g858ITdLSAhp47lgF91e5bBcGXCyNa3M/preview">
     <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1g858ITdLSAhp47lgF91e5bBcGXCyNa3M&sz=w800" alt="Trabajo de coaching" onerror="this.style.display='none'">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1g858ITdLSAhp47lgF91e5bBcGXCyNa3M&sz=w800" alt="Trabajo de coaching" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1g858ITdLSAhp47lgF91e5bBcGXCyNa3M=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
       <div class="card-thumb-placeholder">✨</div>
       <div class="card-overlay"></div>
       <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
@@ -2261,7 +2418,7 @@
     data-desc="Material gráfico de trabajo como coach artística."
     data-type="image"
     data-src="https://drive.google.com/file/d/14k0rXy8gXJRTg0Kw_hGjxSjfBNDSCG52/preview">
-    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=14k0rXy8gXJRTg0Kw_hGjxSjfBNDSCG52&sz=w400" alt="Coach I"></div>
+    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=14k0rXy8gXJRTg0Kw_hGjxSjfBNDSCG52&sz=w400" alt="Coach I" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/14k0rXy8gXJRTg0Kw_hGjxSjfBNDSCG52=w400'}else{this.style.display='none';this.parentElement.classList.add('no-image')}"></div>
     <div class="press-card-body">
       <div class="press-card-title">Coach I</div>
       <div class="press-card-source">Gráfica</div>
@@ -2273,7 +2430,7 @@
     data-desc="Material gráfico de trabajo como coach artística."
     data-type="image"
     data-src="https://drive.google.com/file/d/1hiDMGJBSDpS3wDZ2096vOWWVYabIH7Oy/preview">
-    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1hiDMGJBSDpS3wDZ2096vOWWVYabIH7Oy&sz=w400" alt="Coach II"></div>
+    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1hiDMGJBSDpS3wDZ2096vOWWVYabIH7Oy&sz=w400" alt="Coach II" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1hiDMGJBSDpS3wDZ2096vOWWVYabIH7Oy=w400'}else{this.style.display='none';this.parentElement.classList.add('no-image')}"></div>
     <div class="press-card-body">
       <div class="press-card-title">Coach II</div>
       <div class="press-card-source">Gráfica</div>
@@ -2285,7 +2442,7 @@
     data-desc="Material gráfico de trabajo como coach artística."
     data-type="image"
     data-src="https://drive.google.com/file/d/1TCsANLbZoUsSD5McpipV0o74SFc4cJQL/preview">
-    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1TCsANLbZoUsSD5McpipV0o74SFc4cJQL&sz=w400" alt="Coach III"></div>
+    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1TCsANLbZoUsSD5McpipV0o74SFc4cJQL&sz=w400" alt="Coach III" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1TCsANLbZoUsSD5McpipV0o74SFc4cJQL=w400'}else{this.style.display='none';this.parentElement.classList.add('no-image')}"></div>
     <div class="press-card-body">
       <div class="press-card-title">Coach III</div>
       <div class="press-card-source">Gráfica</div>
@@ -2297,7 +2454,7 @@
     data-desc="Material gráfico de trabajo como coach artística."
     data-type="image"
     data-src="https://drive.google.com/file/d/1YNo9vyGqtrVNkQj08W0clGueN0ogNplZ/preview">
-    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1YNo9vyGqtrVNkQj08W0clGueN0ogNplZ&sz=w400" alt="Coach IV"></div>
+    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1YNo9vyGqtrVNkQj08W0clGueN0ogNplZ&sz=w400" alt="Coach IV" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1YNo9vyGqtrVNkQj08W0clGueN0ogNplZ=w400'}else{this.style.display='none';this.parentElement.classList.add('no-image')}"></div>
     <div class="press-card-body">
       <div class="press-card-title">Coach IV</div>
       <div class="press-card-source">Gráfica</div>
@@ -2309,7 +2466,7 @@
     data-desc="Trabajo con artistas en proceso de coaching."
     data-type="image"
     data-src="https://drive.google.com/file/d/1Ak9I5bfMU12Y_lQZDQcSBusSUh_5pvzM/preview">
-    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1Ak9I5bfMU12Y_lQZDQcSBusSUh_5pvzM&sz=w400" alt="Con artistas"></div>
+    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1Ak9I5bfMU12Y_lQZDQcSBusSUh_5pvzM&sz=w400" alt="Con artistas" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1Ak9I5bfMU12Y_lQZDQcSBusSUh_5pvzM=w400'}else{this.style.display='none';this.parentElement.classList.add('no-image')}"></div>
     <div class="press-card-body">
       <div class="press-card-title">Con artistas</div>
       <div class="press-card-source">Gráfica</div>
@@ -2321,7 +2478,7 @@
     data-desc="Trabajo con artistas en proceso de coaching."
     data-type="image"
     data-src="https://drive.google.com/file/d/1vZq-caeJdoJEEf7oO4j4EeTlYDayQ-it/preview">
-    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1vZq-caeJdoJEEf7oO4j4EeTlYDayQ-it&sz=w400" alt="Con artistas"></div>
+    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1vZq-caeJdoJEEf7oO4j4EeTlYDayQ-it&sz=w400" alt="Con artistas" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1vZq-caeJdoJEEf7oO4j4EeTlYDayQ-it=w400'}else{this.style.display='none';this.parentElement.classList.add('no-image')}"></div>
     <div class="press-card-body">
       <div class="press-card-title">Con artistas</div>
       <div class="press-card-source">Gráfica</div>
@@ -2333,7 +2490,7 @@
     data-desc="Trabajo con artistas en proceso de coaching."
     data-type="image"
     data-src="https://drive.google.com/file/d/1N5ZhbenX6cNVGgZGlWhkIVYLD7zZCMU4/preview">
-    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1N5ZhbenX6cNVGgZGlWhkIVYLD7zZCMU4&sz=w400" alt="Con artistas"></div>
+    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1N5ZhbenX6cNVGgZGlWhkIVYLD7zZCMU4&sz=w400" alt="Con artistas" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1N5ZhbenX6cNVGgZGlWhkIVYLD7zZCMU4=w400'}else{this.style.display='none';this.parentElement.classList.add('no-image')}"></div>
     <div class="press-card-body">
       <div class="press-card-title">Con artistas</div>
       <div class="press-card-source">Gráfica</div>
@@ -2345,7 +2502,7 @@
     data-desc="Trabajo con artistas en proceso de coaching."
     data-type="image"
     data-src="https://drive.google.com/file/d/1m0tRYygMV9sVlhoFUQo0cBeRJDNynNrq/preview">
-    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1m0tRYygMV9sVlhoFUQo0cBeRJDNynNrq&sz=w400" alt="Con artistas"></div>
+    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1m0tRYygMV9sVlhoFUQo0cBeRJDNynNrq&sz=w400" alt="Con artistas" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1m0tRYygMV9sVlhoFUQo0cBeRJDNynNrq=w400'}else{this.style.display='none';this.parentElement.classList.add('no-image')}"></div>
     <div class="press-card-body">
       <div class="press-card-title">Con artistas</div>
       <div class="press-card-source">Gráfica</div>
@@ -2357,7 +2514,7 @@
     data-desc="Imagen de trabajo como coach artística."
     data-type="image"
     data-src="https://drive.google.com/file/d/1-Q1lWekPbCUvDk1igqPNA412lrPjtR06/preview">
-    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1-Q1lWekPbCUvDk1igqPNA412lrPjtR06&sz=w400" alt="Imagen coach"></div>
+    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1-Q1lWekPbCUvDk1igqPNA412lrPjtR06&sz=w400" alt="Imagen coach" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1-Q1lWekPbCUvDk1igqPNA412lrPjtR06=w400'}else{this.style.display='none';this.parentElement.classList.add('no-image')}"></div>
     <div class="press-card-body">
       <div class="press-card-title">Imagen coach</div>
       <div class="press-card-source">Gráfica</div>
@@ -2400,8 +2557,143 @@
 </div>
 
 <script>
+/* ════════════════════════════════════════════════════════════════════
+   ✨ PORTADAS PERSONALIZADAS — EDITAR AQUÍ ✨
+   ════════════════════════════════════════════════════════════════════
+
+   Para que un video o tarjeta tenga una portada CUSTOM (en vez de la
+   que Drive genera automáticamente), agregá su entrada acá abajo.
+
+   ─────────── CÓMO USAR ───────────
+
+   1) Subí la imagen de portada a Google Drive (en una carpeta pública).
+      Recomendado: imagen horizontal 16:10, mínimo 1280×800 px, .jpg o .png.
+
+   2) En Drive, hacé click derecho sobre la imagen → "Compartir" →
+      cambiá a "Cualquier persona con el enlace".
+
+   3) Copiá el ID de la imagen (de la URL):
+      https://drive.google.com/file/d/AAAAAAAAAAAAAAAAAA/view
+                                       └── este es el ID ──┘
+
+   4) Identificá el ID del VIDEO al que querés ponerle esa portada.
+      Es el ID que aparece en el `data-src` de la card en este archivo.
+      Ejemplo: el video "Mujer de 30" tiene ID = 10j1cEq5e4dqyDUuL3fhW_iWxmdy8ZqDc
+
+   5) Agregá una línea acá abajo con este formato:
+      'ID_DEL_VIDEO': 'ID_DE_LA_IMAGEN_DE_PORTADA',
+
+   ─────────── EJEMPLO ───────────
+
+   Si querés ponerle a "Mujer de 30" una portada custom cuya imagen
+   tiene ID "1ABC123PORTADA", agregás:
+
+      const CUSTOM_POSTERS = {
+        '10j1cEq5e4dqyDUuL3fhW_iWxmdy8ZqDc': '1ABC123PORTADA',
+      };
+
+   Si dejás el objeto vacío, todos los videos usan la portada
+   automática de Drive (el frame que Drive elija).
+
+   ──────────────────────────────────────────────────────────────────── */
+
+const CUSTOM_POSTERS = {
+  // Pegá acá tus portadas en formato: 'ID_DEL_VIDEO': 'ID_DE_LA_IMAGEN',
+  //
+  // Ejemplos (reemplazá / borrá según necesites):
+  //
+  // ─── ACTRIZ · Teatro ───
+  // '10j1cEq5e4dqyDUuL3fhW_iWxmdy8ZqDc': 'PEGAR_ID_AQUI', // Mujer de 30 desesperada
+  // '1MFzu5grs72yn72NN7gYvPYCOjBqLZMJL': 'PEGAR_ID_AQUI', // Amalfi
+  // '1muU9XOF-sPzHSSHi7-5HlhkeSKn6H2vH': 'PEGAR_ID_AQUI', // Madre Primeriza
+  // '1rPSMz2u_n5BnLvBuNMIzJSiOmbag6N4S': 'PEGAR_ID_AQUI', // MILF (teatro)
+  //
+  // ─── ACTRIZ · Cine ───
+  // '109vcRDq1g2IkFUytRI1qt-6OVGSHGSr9': 'PEGAR_ID_AQUI', // MILF Trailer
+  //
+  // ─── ACTRIZ · Publicidad ───
+  // '1dkZfG-CCgDqhlUL8jkz0H1q5yPymDCn6': 'PEGAR_ID_AQUI', // La Salteña - Idea Sorpresa
+  // '1gQb34WGH17CQb4aOa-ctepoeJlqbUQKT': 'PEGAR_ID_AQUI', // La Salteña - Idea Práctica
+  // '1J7ByIPXD3HiP9xWrOywtLVIDGzbSRDz-': 'PEGAR_ID_AQUI', // La Salteña - Una idea
+  // '1u4CWpI0a7lUVe5kDEaJf0JNCk6ACU-eI': 'PEGAR_ID_AQUI', // Mantecol - Regalo
+  // '1wdlECMZHTraAxsWorYtwhy0xCos3evgi': 'PEGAR_ID_AQUI', // Movistar - Navidad
+  // '1kCNnR9lLb32LBXq9u9ExTiw4bbKLvMu2': 'PEGAR_ID_AQUI', // Barco de Armando Bo
+  // '1k8elU4SEeNYZW0BGCmoZZPK9km1eMOPR': 'PEGAR_ID_AQUI', // Promo actriz (showreel)
+  //
+  // ─── DIRECTORA · Paraguay ───
+  // '1NfDbSgYy-4CaVQnscHcI9vXjbnO2R6MQ': 'PEGAR_ID_AQUI', // Fuerza Urbana
+  // '1VznC2hzD9cyjJsjqi1s6mudLMnrJt_xf': 'PEGAR_ID_AQUI', // Cuatro Colas y un Funeral
+  // '1Ph3k931yepNgzbgA3k-ZzpWu7OC6VVmT': 'PEGAR_ID_AQUI', // Blancanieves
+  //
+  // ─── DIRECTORA · Argentina ───
+  // '1dDpBOHTPOPUw_hxCYyn2Q45BYzEXEudM': 'PEGAR_ID_AQUI', // Tulipán Up
+  // '1BIbRlBWnJXMxzqRCmdSLOAr6mB1TboFv': 'PEGAR_ID_AQUI', // VER #UniteAlaCharla
+  // '18_O7yQNsuwh0H7UabOhydmOGI17w_ywv': 'PEGAR_ID_AQUI', // Puntitas
+  // '1ElIsOjD7ODZ6Ksk6GnvodiAdpXPy1vQ6': 'PEGAR_ID_AQUI', // Wasted
+  //
+  // ─── PRODUCTORA · Cine ───
+  // '1PE61xoEOS1wmKc7_QC7OY2XM-tf3PxdY': 'PEGAR_ID_AQUI', // MILF (producción)
+  // '1y6SfFvET3ZhZJiei15XexeeoC-AY5fgA': 'PEGAR_ID_AQUI', // Vagón Fumador
+  // '1BMojCZJYHFKUyxnhpaSvENTyLulgMTj-': 'PEGAR_ID_AQUI', // El Séptimo Arcángel
+  // '12mPO0vWa6JgDcuwyqX0os_9Ib_TLGP08': 'PEGAR_ID_AQUI', // Sudeste
+  // '191zc1Plpveqm3QHfBVbmz6WG0nrMvbcN': 'PEGAR_ID_AQUI', // Dulce de Leche
+  // '1AAvEuBsodC_e7FH4Yq-GRCjIjDaaIAiE': 'PEGAR_ID_AQUI', // El Cuenco de las Ciudades
+  // '1dXQ5y1ugG_vMkXId-45BMTblCmZTWAjp': 'PEGAR_ID_AQUI', // Un Día de Suerte
+  //
+  // ─── DOCUMENTAL ───
+  // '1z2wmNZBNPjh3DBOxZ2OfPz1vge8x94QV': 'PEGAR_ID_AQUI', // Yo, abolicionista
+  // '1zL5fBe1qSTICazXBTNIqw_3O1g3RGKOa': 'PEGAR_ID_AQUI', // Rota, mujeres en cuarentena
+  //
+  // ─── COACH · Artistas ───
+  // '15uB1TUKKr6DziJAYsGW6zBEcVeJzGI1h': 'PEGAR_ID_AQUI', // Cami Lour
+  // '1nFizX4avfd-uvZUGuKdpVYx2eCSMEmyg': 'PEGAR_ID_AQUI', // Alberee
+  // '1hKgZx7lq2ihnCGmTMlIMrbgASGspfjBx': 'PEGAR_ID_AQUI', // Morena
+  // '1g858ITdLSAhp47lgF91e5bBcGXCyNa3M': 'PEGAR_ID_AQUI', // Trabajo de coaching
+};
+
+// También se aceptan URLs externas (no de Drive). Ejemplo:
+//   '10j1cEq5e4dqyDUuL3fhW_iWxmdy8ZqDc': 'https://images.unsplash.com/photo-XXX',
+// El sistema detecta automáticamente si es ID de Drive o URL completa.
+
+/* ════════════════════════════════════════════════════════════════════
+   FIN DE LA CONFIGURACIÓN — NO TOCAR DE ACÁ EN ADELANTE
+   ════════════════════════════════════════════════════════════════════ */
+
 (() => {
   'use strict';
+
+  // ── APLICAR PORTADAS CUSTOM ──
+  // Recorre todas las cards y, si su data-src contiene un ID que figura
+  // en CUSTOM_POSTERS, reemplaza el src de la imagen por la portada custom.
+  const applyCustomPosters = () => {
+    document.querySelectorAll('.card, .press-card').forEach(card => {
+      const src = card.dataset.src || '';
+      const idMatch = src.match(/\/file\/d\/([a-zA-Z0-9_\-]+)/);
+      if (!idMatch) return;
+      const videoId = idMatch[1];
+      const customPoster = CUSTOM_POSTERS[videoId];
+      if (!customPoster) return;
+
+      const img = card.querySelector('img');
+      if (!img) return;
+
+      // Detectar si es URL completa o ID de Drive
+      let posterUrl;
+      if (customPoster.startsWith('http://') || customPoster.startsWith('https://')) {
+        posterUrl = customPoster;
+      } else {
+        // Es ID de Drive
+        posterUrl = `https://drive.google.com/thumbnail?id=${customPoster}&sz=w800`;
+      }
+      img.src = posterUrl;
+      img.dataset.custom = '1';
+      // Si es URL externa, quitamos el fallback a Drive
+      if (customPoster.startsWith('http')) {
+        img.removeAttribute('onerror');
+      }
+    });
+  };
+  applyCustomPosters();
 
   const header = document.getElementById('site-header');
   const updateHeader = () => header.classList.toggle('scrolled', window.scrollY > 20);
@@ -2423,7 +2715,7 @@
     );
   }
 
-  document.querySelectorAll('.discipline-hub').forEach(btn => {
+  document.querySelectorAll('.discipline-hub, .tag[data-target]').forEach(btn => {
     btn.addEventListener('click', () => {
       const target = btn.getAttribute('data-target');
       const el = document.getElementById(target);
@@ -2491,8 +2783,86 @@
     if (e.key === 'Escape' && lb.classList.contains('open')) closeLB();
   });
 
-  // REVEAL ON SCROLL
-  const revealEls = document.querySelectorAll('.card, .press-card, .section-header, .stats-bar, .geo-label, .section-subsection');
+  // ── INDICADOR DE SECCIÓN ACTIVA ──
+  const indicator = document.getElementById('section-indicator');
+  const indicatorNum = document.getElementById('indicator-num');
+  const indicatorName = document.getElementById('indicator-name');
+  const indicatorSub = document.getElementById('indicator-sub');
+
+  const SECTIONS = [
+    { id: 'actriz',     name: 'Actriz',         num: '01 / 05' },
+    { id: 'directora',  name: 'Directora',      num: '02 / 05' },
+    { id: 'productora', name: 'Productora',     num: '03 / 05' },
+    { id: 'documental', name: 'Documentalista', num: '04 / 05' },
+    { id: 'coach',      name: 'Coach Artística', num: '05 / 05' },
+  ];
+
+  let currentSectionId = '';
+  let currentSubsection = '';
+
+  const updateIndicator = () => {
+    const scrollY = window.scrollY;
+    const viewportTop = scrollY + 140; // un poco bajo el header
+
+    // ¿Estamos en alguna sección?
+    let activeSection = null;
+    for (const s of SECTIONS) {
+      const el = document.getElementById(s.id);
+      if (!el) continue;
+      const rect = el.getBoundingClientRect();
+      const top = rect.top + scrollY;
+      const bottom = top + el.offsetHeight;
+      if (viewportTop >= top && viewportTop < bottom) {
+        activeSection = s;
+        break;
+      }
+    }
+
+    if (activeSection) {
+      // Actualizar contenido si cambió
+      if (activeSection.id !== currentSectionId) {
+        currentSectionId = activeSection.id;
+        indicator.dataset.section = activeSection.id;
+        indicatorNum.textContent = activeSection.num;
+        indicatorName.textContent = activeSection.name;
+      }
+
+      // Detectar subsection más cercana arriba del viewport
+      const sectionEl = document.getElementById(activeSection.id);
+      const subs = sectionEl.querySelectorAll('.section-subsection');
+      let activeSub = '';
+      subs.forEach(sub => {
+        const r = sub.getBoundingClientRect();
+        if (r.top < 200) {
+          activeSub = sub.textContent.trim().replace(/\s+/g, ' ');
+        }
+      });
+      // También geo-labels
+      const geos = sectionEl.querySelectorAll('.geo-label');
+      geos.forEach(g => {
+        const r = g.getBoundingClientRect();
+        if (r.top < 200) {
+          activeSub = g.textContent.trim().replace(/\s+/g, ' ');
+        }
+      });
+
+      if (activeSub !== currentSubsection) {
+        currentSubsection = activeSub;
+        indicatorSub.innerHTML = activeSub ? `<strong>${activeSub}</strong>` : '';
+      }
+
+      indicator.classList.add('visible');
+    } else {
+      indicator.classList.remove('visible');
+      currentSectionId = '';
+    }
+  };
+
+  updateIndicator();
+  window.addEventListener('scroll', updateIndicator, { passive: true });
+
+
+  const revealEls = document.querySelectorAll('.card, .press-card, .section-header, .geo-label, .section-subsection');
   revealEls.forEach(el => el.classList.add('reveal'));
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => {
