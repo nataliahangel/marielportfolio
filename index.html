@@ -103,6 +103,104 @@
   }
   .skip-link:focus { top: 16px; }
 
+  /* Placeholders pendientes (cards sin ID asignado) */
+  .card.is-placeholder, .press-card.is-placeholder {
+    cursor: default;
+    opacity: 0.85;
+    border-style: dashed;
+    border-color: var(--line-strong);
+  }
+  .card.is-placeholder:hover, .press-card.is-placeholder:hover {
+    transform: none;
+    box-shadow: none;
+  }
+  .card.is-placeholder .card-pill {
+    background: rgba(var(--gold-rgb), 0.18);
+    border-color: rgba(var(--gold-rgb), 0.5);
+    color: var(--gold);
+  }
+  .placeholder-pending {
+    opacity: 0.4 !important;
+    background: repeating-linear-gradient(
+      45deg,
+      rgba(var(--gold-rgb), 0.04),
+      rgba(var(--gold-rgb), 0.04) 10px,
+      transparent 10px,
+      transparent 20px
+    ) !important;
+  }
+  .empty-grid-placeholder {
+    padding: 32px 24px;
+    text-align: center;
+    border: 1px dashed var(--line-strong);
+    border-radius: var(--radius-lg);
+    color: var(--ink-mute);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    background: rgba(255,255,255,0.015);
+  }
+
+  /* Bio block (sección Guionista) */
+  .bio-block {
+    margin: 0 0 56px;
+    padding: 36px clamp(24px, 4vw, 48px);
+    background: linear-gradient(135deg,
+      rgba(var(--orange-rgb), 0.06) 0%,
+      rgba(var(--orange-rgb), 0.02) 100%);
+    border-left: 3px solid var(--orange);
+    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+    max-width: 820px;
+    position: relative;
+  }
+  .bio-block::before {
+    content: '"';
+    position: absolute;
+    top: -12px; left: 24px;
+    font-family: var(--font-display);
+    font-size: 5rem;
+    line-height: 1;
+    color: var(--orange);
+    opacity: 0.25;
+    font-style: italic;
+    pointer-events: none;
+  }
+  .bio-text {
+    font-family: var(--font-display);
+    font-size: clamp(1.1rem, 1.6vw, 1.35rem);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    margin-bottom: 18px;
+  }
+  .bio-text:last-child { margin-bottom: 0; }
+  .bio-em {
+    color: var(--ink);
+    font-weight: 400;
+  }
+  .bio-highlight {
+    color: var(--orange);
+    font-weight: 500;
+    font-style: italic;
+    position: relative;
+  }
+  .bio-highlight::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0;
+    bottom: -2px;
+    height: 1px;
+    background: linear-gradient(to right, var(--orange), transparent);
+    opacity: 0.5;
+  }
+
+  /* Color de la nueva sección Guionista */
+  .gui .section-title, .gui .section-subsection { color: var(--orange); }
+  .gui .card:hover { border-color: rgba(var(--orange-rgb),0.4); box-shadow: 0 24px 48px rgba(var(--orange-rgb),0.08); }
+  .accent-orange { background: var(--orange); }
+
   /* HEADER */
   header {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
@@ -328,8 +426,8 @@
   }
 
   .disciplines-row {
-    display: grid; grid-template-columns: repeat(5, 1fr);
-    gap: 24px; position: relative; z-index: 1;
+    display: grid; grid-template-columns: repeat(6, 1fr);
+    gap: 18px; position: relative; z-index: 1;
   }
   .discipline-hub {
     display: flex; flex-direction: column; align-items: center; gap: 18px;
@@ -393,6 +491,10 @@
   .hub-coach::before, .hub-coach::after { border-color: var(--green); }
   .hub-coach .hub-label { color: var(--green); }
   .discipline-hub.is-coach:hover .hub-name { color: var(--green); }
+  .hub-guionista { background: radial-gradient(circle at 35% 35%, rgba(var(--orange-rgb),0.32), rgba(var(--orange-rgb),0.04)); border: 1.5px solid rgba(var(--orange-rgb),0.7); }
+  .hub-guionista::before, .hub-guionista::after { border-color: var(--orange); }
+  .hub-guionista .hub-label { color: var(--orange); }
+  .discipline-hub.is-guionista:hover .hub-name { color: var(--orange); }
   .hub-pulse {
     position: absolute; inset: -24px; border-radius: 50%;
     animation: pulseRing 3.2s ease-in-out infinite;
@@ -403,6 +505,7 @@
   .hub-productora .hub-pulse { background: radial-gradient(circle, rgba(var(--teal-rgb),0.18),   transparent 70%); }
   .hub-documental .hub-pulse { background: radial-gradient(circle, rgba(var(--violet-rgb),0.18), transparent 70%); }
   .hub-coach .hub-pulse { background: radial-gradient(circle, rgba(var(--green-rgb),0.18),  transparent 70%); }
+  .hub-guionista .hub-pulse { background: radial-gradient(circle, rgba(var(--orange-rgb),0.18), transparent 70%); }
 
   /* INDICADOR DE SECCIÓN ACTIVA — sticky bajo el header */
   .section-indicator {
@@ -475,6 +578,8 @@
   .section-indicator[data-section="documental"] .section-indicator-name { color: var(--violet); }
   .section-indicator[data-section="coach"]      .section-indicator-dot { background: var(--green); }
   .section-indicator[data-section="coach"]      .section-indicator-name { color: var(--green); }
+  .section-indicator[data-section="guionista"]  .section-indicator-dot { background: var(--orange); }
+  .section-indicator[data-section="guionista"]  .section-indicator-name { color: var(--orange); }
 
   @media (max-width: 768px) {
     .section-indicator { top: 56px; padding: 8px 16px; gap: 10px; }
@@ -865,7 +970,7 @@
     }
     .tag { font-size: 0.62rem; padding: 14px 10px; letter-spacing: 0.14em; }
     .disciplines-row { grid-template-columns: repeat(2, 1fr); gap: 32px 12px; }
-    .discipline-hub:last-child { grid-column: 1 / -1; max-width: 220px; margin: 0 auto; }
+    .discipline-hub:last-child { grid-column: auto; max-width: none; margin: 0; }
     .hub-node { width: 100px; height: 100px; }
     .hub-icon { font-size: 1.6rem; }
     /* En mobile, mantenemos la red neuronal pero adaptada al grid 2x3 */
@@ -905,6 +1010,7 @@
     <a href="#productora">Productora</a>
     <a href="#documental">Documental</a>
     <a href="#coach">Coach</a>
+    <a href="#guionista">Guionista</a>
   </nav>
   <button class="menu-btn" id="menu-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="main-nav">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
@@ -959,7 +1065,7 @@
     <button type="button" class="tag tag-teal"   data-target="productora" role="listitem" aria-label="Ir a Productora">Productora</button>
     <button type="button" class="tag tag-violet" data-target="documental" role="listitem" aria-label="Ir a Documentalista">Documentalista</button>
     <button type="button" class="tag tag-green"  data-target="coach"      role="listitem" aria-label="Ir a Coach artística">Coach artística</button>
-    <button type="button" class="tag tag-orange" data-target="actriz"     role="listitem" aria-label="Ir a Actriz">Guionista</button>
+    <button type="button" class="tag tag-orange" data-target="guionista" role="listitem" aria-label="Ir a Guionista">Guionista</button>
   </div>
 
   <div class="scroll-hint" aria-hidden="true">
@@ -975,80 +1081,82 @@
   <div class="neural-map">
 
 ```
-<!-- SVG con líneas conectando los nodos como red neuronal — DESKTOP -->
+<!-- SVG con líneas conectando los nodos como red neuronal — DESKTOP (6 nodos) -->
 <svg class="neural-connections neural-connections-desktop" viewBox="0 0 1280 240" preserveAspectRatio="none" aria-hidden="true">
-  <!-- Posiciones aproximadas de los 5 nodos: 128, 384, 640, 896, 1152 -->
+  <!-- Posiciones aproximadas de los 6 nodos: 107, 320, 533, 747, 960, 1173 -->
   <g class="conn">
-    <path d="M 128 60 Q 256 30 384 60" />
-    <path d="M 384 60 Q 512 90 640 60" />
-    <path d="M 640 60 Q 768 30 896 60" />
-    <path d="M 896 60 Q 1024 90 1152 60" />
-    <path d="M 128 60 Q 384 200 640 60" />
-    <path d="M 384 60 Q 640 200 896 60" />
-    <path d="M 640 60 Q 896 200 1152 60" />
-    <path d="M 128 60 Q 640 220 1152 60" />
-    <path d="M 384 60 Q 768 200 1152 60" />
-    <path d="M 128 60 Q 512 200 896 60" />
+    <!-- Conexiones consecutivas -->
+    <path d="M 107 60 Q 213 30 320 60" />
+    <path d="M 320 60 Q 426 90 533 60" />
+    <path d="M 533 60 Q 640 30 747 60" />
+    <path d="M 747 60 Q 853 90 960 60" />
+    <path d="M 960 60 Q 1066 30 1173 60" />
+    <!-- Conexiones cruzadas -->
+    <path d="M 107 60 Q 320 200 533 60" />
+    <path d="M 320 60 Q 533 200 747 60" />
+    <path d="M 533 60 Q 747 200 960 60" />
+    <path d="M 747 60 Q 960 200 1173 60" />
+    <path d="M 107 60 Q 533 220 960 60" />
+    <path d="M 320 60 Q 747 220 1173 60" />
   </g>
   <g class="conn-glow" stroke="url(#conn-grad)">
-    <path d="M 128 60 Q 384 200 640 60" />
-    <path d="M 640 60 Q 896 200 1152 60" />
+    <path d="M 107 60 Q 533 220 960 60" />
+    <path d="M 320 60 Q 747 220 1173 60" />
   </g>
   <defs>
     <linearGradient id="conn-grad" x1="0" x2="1" y1="0" y2="0">
       <stop offset="0%" stop-color="rgba(226,109,138,0.5)"/>
-      <stop offset="25%" stop-color="rgba(212,168,87,0.5)"/>
-      <stop offset="50%" stop-color="rgba(92,196,212,0.5)"/>
-      <stop offset="75%" stop-color="rgba(176,132,214,0.5)"/>
-      <stop offset="100%" stop-color="rgba(125,209,168,0.5)"/>
+      <stop offset="20%" stop-color="rgba(212,168,87,0.5)"/>
+      <stop offset="40%" stop-color="rgba(92,196,212,0.5)"/>
+      <stop offset="60%" stop-color="rgba(176,132,214,0.5)"/>
+      <stop offset="80%" stop-color="rgba(125,209,168,0.5)"/>
+      <stop offset="100%" stop-color="rgba(228,165,120,0.5)"/>
     </linearGradient>
   </defs>
   <g class="dot">
-    <circle cx="256" cy="120" r="2"/>
-    <circle cx="512" cy="150" r="2.5" style="animation-delay: 0.4s"/>
-    <circle cx="768" cy="120" r="2" style="animation-delay: 0.8s"/>
-    <circle cx="1024" cy="150" r="2.5" style="animation-delay: 1.2s"/>
-    <circle cx="384" cy="180" r="1.5" style="animation-delay: 0.6s"/>
-    <circle cx="896" cy="180" r="1.5" style="animation-delay: 1.4s"/>
+    <circle cx="213" cy="120" r="2"/>
+    <circle cx="426" cy="150" r="2.5" style="animation-delay: 0.4s"/>
+    <circle cx="640" cy="120" r="2" style="animation-delay: 0.8s"/>
+    <circle cx="853" cy="150" r="2.5" style="animation-delay: 1.2s"/>
+    <circle cx="1066" cy="120" r="2" style="animation-delay: 1.6s"/>
   </g>
 </svg>
 
-<!-- SVG MOBILE — red neuronal simplificada (grid 2x3) -->
+<!-- SVG MOBILE — red neuronal simplificada (grid 2x3 con 6 disciplinas) -->
 <svg class="neural-connections neural-connections-mobile" viewBox="0 0 400 700" preserveAspectRatio="none" aria-hidden="true">
-  <!-- Centros de los 5 nodos en grid 2x3:
+  <!-- Centros de los 6 nodos en grid 2x3:
        Fila 1: (100, 100) Actriz, (300, 100) Directora
        Fila 2: (100, 320) Productora, (300, 320) Documental
-       Fila 3: (200, 540) Coach -->
+       Fila 3: (100, 540) Coach, (300, 540) Guionista -->
   <g class="conn">
-    <!-- Conexiones primarias (perímetro del grid) -->
+    <!-- Conexiones horizontales por fila -->
     <path d="M 100 100 Q 200 70 300 100" />
     <path d="M 100 320 Q 200 290 300 320" />
+    <path d="M 100 540 Q 200 510 300 540" />
+    <!-- Verticales del perímetro -->
     <path d="M 100 100 Q 80 210 100 320" />
     <path d="M 300 100 Q 320 210 300 320" />
-    <!-- Una sola diagonal central como "respiro" visual -->
+    <path d="M 100 320 Q 80 430 100 540" />
+    <path d="M 300 320 Q 320 430 300 540" />
+    <!-- Diagonal central como "respiro" -->
     <path d="M 100 100 Q 200 200 300 320" />
-    <!-- Bajadas a Coach (solo desde nodos vecinos) -->
-    <path d="M 100 320 Q 150 430 200 540" />
-    <path d="M 300 320 Q 250 430 200 540" />
+    <path d="M 300 320 Q 200 430 100 540" />
   </g>
-  <!-- Glow solo en la diagonal y las bajadas a Coach (3 líneas, no 4) -->
   <g class="conn-glow" stroke="url(#conn-grad-mobile)">
     <path d="M 100 100 Q 200 200 300 320" />
-    <path d="M 100 320 Q 150 430 200 540" />
-    <path d="M 300 320 Q 250 430 200 540" />
+    <path d="M 300 320 Q 200 430 100 540" />
   </g>
   <defs>
     <linearGradient id="conn-grad-mobile" x1="0" x2="1" y1="0" y2="1">
       <stop offset="0%" stop-color="rgba(226,109,138,0.4)"/>
       <stop offset="50%" stop-color="rgba(92,196,212,0.4)"/>
-      <stop offset="100%" stop-color="rgba(125,209,168,0.4)"/>
+      <stop offset="100%" stop-color="rgba(228,165,120,0.4)"/>
     </linearGradient>
   </defs>
-  <!-- Solo 3 puntos pulsantes (antes 6) -->
   <g class="dot">
     <circle cx="200" cy="100" r="2"/>
-    <circle cx="200" cy="320" r="2" style="animation-delay: 0.7s"/>
-    <circle cx="200" cy="430" r="1.5" style="animation-delay: 1.4s"/>
+    <circle cx="200" cy="320" r="2" style="animation-delay: 0.5s"/>
+    <circle cx="200" cy="540" r="2" style="animation-delay: 1s"/>
   </g>
 </svg>
 
@@ -1098,6 +1206,15 @@
     <span class="hub-name">Coach Artística</span>
     <span class="hub-tag">Media training</span>
   </button>
+  <button type="button" class="discipline-hub is-guionista" data-target="guionista" aria-label="Ir a sección Guionista">
+    <div class="hub-node hub-guionista">
+      <div class="hub-pulse" aria-hidden="true"></div>
+      <div class="hub-icon" aria-hidden="true">✍️</div>
+      <div class="hub-label">Guionista</div>
+    </div>
+    <span class="hub-name">Guionista</span>
+    <span class="hub-tag">Escritura · Guion</span>
+  </button>
 </div>
 ```
 
@@ -1107,43 +1224,101 @@
 <section id="actriz" class="section-panel act" aria-labelledby="actriz-title">
   <div class="section-inner">
     <header class="section-header">
-      <span class="section-num">01 / 05</span>
+      <span class="section-num">01 / 06</span>
       <h2 class="section-title" id="actriz-title">Actriz</h2>
     </header>
 
 ```
-<h3 class="section-subsection">Teatro</h3>
+<h3 class="section-subsection">Teatro & Cine</h3>
 <div class="cards-grid">
-  <button type="button" class="card"
-    data-title="Mujer de 30 desesperada, busca"
-    data-meta="Teatro · Unipersonal"
-    data-desc="El unipersonal que recorre la crisis existencial de las mujeres a los 30 años. Seis temporadas en cartel y giras por Argentina, Paraguay, Colombia y Costa Rica. Presentado en el Teatro Selectro (Mendoza), Teatro Textilia (Asunción), entre otros."
-    data-type="video"
-    data-src="https://drive.google.com/file/d/10j1cEq5e4dqyDUuL3fhW_iWxmdy8ZqDc/preview">
+  <button type="button" class="card is-placeholder" >
+    <span class="card-pill">⚠ Pegar ID</span>
+    <div class="card-thumb-wrap">
+      <div class="card-thumb-placeholder placeholder-pending">🎭</div>
+      <div class="card-overlay"></div>
+      
+    </div>
+    <div class="card-accent accent-rose"></div>
+    <div class="card-body">
+      <div class="card-meta">Teatro · Unipersonal · Trailer</div>
+      <div class="card-title">Mujer de 30 desesperada, busca</div>
+      <div class="card-desc">6 temporadas · AR · PY · CO · CR</div>
+    </div>
+  </button>
+  <button type="button" class="card is-placeholder" >
+    <span class="card-pill">⚠ Pegar ID</span>
+    <div class="card-thumb-wrap">
+      <div class="card-thumb-placeholder placeholder-pending">🎭</div>
+      <div class="card-overlay"></div>
+      
+    </div>
+    <div class="card-accent accent-rose"></div>
+    <div class="card-body">
+      <div class="card-meta">Teatro · Unipersonal · Humor · Trailer</div>
+      <div class="card-title">Madre Primeriza</div>
+      <div class="card-desc">Costa Rica · Argentina</div>
+    </div>
+  </button>
+  <button type="button" class="card is-placeholder" >
+    <span class="card-pill">⚠ Pegar ID</span>
+    <div class="card-thumb-wrap">
+      <div class="card-thumb-placeholder placeholder-pending">🎭</div>
+      <div class="card-overlay"></div>
+      
+    </div>
+    <div class="card-accent accent-rose"></div>
+    <div class="card-body">
+      <div class="card-meta">Teatro · Unipersonal · Trailer</div>
+      <div class="card-title">En el nombre de Raquel</div>
+      <div class="card-desc">AR · PY · CO · CR</div>
+    </div>
+  </button>
+  <button type="button" class="card" data-title="Mujer de 30 — Función" data-meta="Teatro · Unipersonal" data-desc="Función del unipersonal Mujer de 30 desesperada, busca." data-type="video" data-src="https://drive.google.com/file/d/10j1cEq5e4dqyDUuL3fhW_iWxmdy8ZqDc/preview">
     <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=10j1cEq5e4dqyDUuL3fhW_iWxmdy8ZqDc&sz=w800" alt="Mujer de 30 desesperada, busca" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/10j1cEq5e4dqyDUuL3fhW_iWxmdy8ZqDc=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
-      <div class="card-thumb-placeholder">🎭</div>
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=10j1cEq5e4dqyDUuL3fhW_iWxmdy8ZqDc&sz=w800" alt="Mujer de 30 — Función" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/10j1cEq5e4dqyDUuL3fhW_iWxmdy8ZqDc=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">🎭</div>
       <div class="card-overlay"></div>
       <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
     </div>
     <div class="card-accent accent-rose"></div>
     <div class="card-body">
       <div class="card-meta">Teatro · Unipersonal</div>
-      <div class="card-title">Mujer de 30 desesperada, busca</div>
-      <div class="card-desc">6 temporadas · Argentina · Paraguay · Colombia · Costa Rica</div>
+      <div class="card-title">Mujer de 30 — Función</div>
+      <div class="card-desc">Función completa</div>
     </div>
   </button>
-  <button type="button" class="card"
-    data-title="Amalfi"
-    data-meta="Teatro · Actuación"
-    data-desc="Amalfi — Obra teatral. Actuación de Mariel Rosciano."
-    data-type="video"
-    data-src="https://drive.google.com/file/d/1MFzu5grs72yn72NN7gYvPYCOjBqLZMJL/preview">
+  <button type="button" class="card" data-title="Madre Primeriza — Función" data-meta="Teatro · Unipersonal · Humor" data-desc="Función completa del unipersonal Madre Primeriza." data-type="video" data-src="https://drive.google.com/file/d/1muU9XOF-sPzHSSHi7-5HlhkeSKn6H2vH/preview">
     <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1MFzu5grs72yn72NN7gYvPYCOjBqLZMJL&sz=w800" alt="Amalfi" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1MFzu5grs72yn72NN7gYvPYCOjBqLZMJL=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
-      <div class="card-thumb-placeholder">🎭</div>
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1muU9XOF-sPzHSSHi7-5HlhkeSKn6H2vH&sz=w800" alt="Madre Primeriza — Función" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1muU9XOF-sPzHSSHi7-5HlhkeSKn6H2vH=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">🎭</div>
+      <div class="card-overlay"></div>
+      <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+    </div>
+    <div class="card-accent accent-rose"></div>
+    <div class="card-body">
+      <div class="card-meta">Teatro · Unipersonal · Humor</div>
+      <div class="card-title">Madre Primeriza — Función</div>
+      <div class="card-desc">Costa Rica · Argentina</div>
+    </div>
+  </button>
+  <button type="button" class="card" data-title="MILF — Teatro" data-meta="Teatro · Unipersonal" data-desc="MILF — Madre independiente, loca y feminista. Unipersonal de humor." data-type="video" data-src="https://drive.google.com/file/d/1rPSMz2u_n5BnLvBuNMIzJSiOmbag6N4S/preview">
+    <span class="card-pill">Video</span>
+    <div class="card-thumb-wrap">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1rPSMz2u_n5BnLvBuNMIzJSiOmbag6N4S&sz=w800" alt="MILF — Teatro" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1rPSMz2u_n5BnLvBuNMIzJSiOmbag6N4S=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">🎭</div>
+      <div class="card-overlay"></div>
+      <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+    </div>
+    <div class="card-accent accent-rose"></div>
+    <div class="card-body">
+      <div class="card-meta">Teatro · Unipersonal</div>
+      <div class="card-title">MILF — Teatro</div>
+      <div class="card-desc">Madre independiente, loca y feminista</div>
+    </div>
+  </button>
+  <button type="button" class="card" data-title="Amalfi" data-meta="Teatro · Actuación" data-desc="Amalfi — Obra teatral. Actuación de Mariel Rosciano." data-type="video" data-src="https://drive.google.com/file/d/1MFzu5grs72yn72NN7gYvPYCOjBqLZMJL/preview">
+    <span class="card-pill">Video</span>
+    <div class="card-thumb-wrap">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1MFzu5grs72yn72NN7gYvPYCOjBqLZMJL&sz=w800" alt="Amalfi" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1MFzu5grs72yn72NN7gYvPYCOjBqLZMJL=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">🎭</div>
       <div class="card-overlay"></div>
       <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
     </div>
@@ -1151,524 +1326,218 @@
     <div class="card-body">
       <div class="card-meta">Teatro · Actuación</div>
       <div class="card-title">Amalfi</div>
-      <div class="card-desc">Obra teatral. Actuación de Mariel Rosciano.</div>
+      <div class="card-desc">Obra teatral</div>
     </div>
   </button>
-  <button type="button" class="card"
-    data-title="Madre Primeriza"
-    data-meta="Teatro · Unipersonal · Humor"
-    data-desc="Unipersonal donde desanda una alocada mirada sobre la maternidad y ridiculiza los estereotipos del género. Gira por Costa Rica y Argentina."
-    data-type="video"
-    data-src="https://drive.google.com/file/d/1muU9XOF-sPzHSSHi7-5HlhkeSKn6H2vH/preview">
-    <span class="card-pill">Video</span>
+  <button type="button" class="card is-placeholder" >
+    <span class="card-pill">⚠ Pegar ID</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1muU9XOF-sPzHSSHi7-5HlhkeSKn6H2vH&sz=w800" alt="Madre Primeriza" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1muU9XOF-sPzHSSHi7-5HlhkeSKn6H2vH=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
-      <div class="card-thumb-placeholder">🎭</div>
+      <div class="card-thumb-placeholder placeholder-pending">🎭</div>
       <div class="card-overlay"></div>
-      <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+      
     </div>
     <div class="card-accent accent-rose"></div>
     <div class="card-body">
-      <div class="card-meta">Teatro · Unipersonal · Humor</div>
-      <div class="card-title">Madre Primeriza</div>
-      <div class="card-desc">Costa Rica · Argentina</div>
+      <div class="card-meta">Teatro · Actuación · Miniatura</div>
+      <div class="card-title">Amalfi — Miniatura</div>
+      <div class="card-desc">Imagen del espectáculo</div>
     </div>
   </button>
-  <button type="button" class="card"
-    data-title="MILF"
-    data-meta="Teatro · Unipersonal"
-    data-desc="MILF — Madre independiente, loca y feminista. Unipersonal de humor. Trailer disponible."
-    data-type="video"
-    data-src="https://drive.google.com/file/d/1rPSMz2u_n5BnLvBuNMIzJSiOmbag6N4S/preview">
-    <span class="card-pill">Video</span>
+  <button type="button" class="card is-placeholder" >
+    <span class="card-pill">⚠ Pegar ID</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1rPSMz2u_n5BnLvBuNMIzJSiOmbag6N4S&sz=w800" alt="MILF" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1rPSMz2u_n5BnLvBuNMIzJSiOmbag6N4S=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
-      <div class="card-thumb-placeholder">🎭</div>
-      <div class="card-overlay"></div>
-      <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-    </div>
-    <div class="card-accent accent-rose"></div>
-    <div class="card-body">
-      <div class="card-meta">Teatro · Unipersonal</div>
-      <div class="card-title">MILF</div>
-      <div class="card-desc">Madre independiente, loca y feminista</div>
-    </div>
-  </button>
-  <button type="button" class="card"
-    data-title="Elena"
-    data-meta="Teatro · Actuación"
-    data-desc="Obra teatral con gira nacional e internacional. Fotografías del proceso creativo y del personaje."
-    data-type="image"
-    data-src="https://drive.google.com/file/d/1i6lK337c15ZUfXL7UQzcEv3lDxxIuLGR/preview">
-    <span class="card-pill">Foto</span>
-    <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1i6lK337c15ZUfXL7UQzcEv3lDxxIuLGR&sz=w800" alt="Elena" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1i6lK337c15ZUfXL7UQzcEv3lDxxIuLGR=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
-      <div class="card-thumb-placeholder">🎭</div>
+      <div class="card-thumb-placeholder placeholder-pending">🎭</div>
       <div class="card-overlay"></div>
       
     </div>
     <div class="card-accent accent-rose"></div>
     <div class="card-body">
       <div class="card-meta">Teatro · Actuación</div>
-      <div class="card-title">Elena</div>
-      <div class="card-desc">Obra teatral con gira nacional e internacional</div>
-    </div>
-  </button>
-  <button type="button" class="card"
-    data-title="En el nombre de Raquel"
-    data-meta="Teatro · Unipersonal · Activismo"
-    data-desc="Unipersonal directa y dramática sobre la trata de personas, basada en La Polaca de Myrtha Schalom. Gira por Argentina, Paraguay, Colombia y Costa Rica."
-    data-type="image"
-    data-src="https://drive.google.com/file/d/192aWhxQ6O79ya_u3s3-y3qye6Nls5KFB/preview">
-    <span class="card-pill">Foto</span>
-    <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=192aWhxQ6O79ya_u3s3-y3qye6Nls5KFB&sz=w800" alt="En el nombre de Raquel" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/192aWhxQ6O79ya_u3s3-y3qye6Nls5KFB=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
-      <div class="card-thumb-placeholder">🎭</div>
-      <div class="card-overlay"></div>
-      
-    </div>
-    <div class="card-accent accent-rose"></div>
-    <div class="card-body">
-      <div class="card-meta">Teatro · Unipersonal · Activismo</div>
-      <div class="card-title">En el nombre de Raquel</div>
-      <div class="card-desc">AR · PY · CO · CR</div>
-    </div>
-  </button>
-  <button type="button" class="card"
-    data-title="La Menesunda"
-    data-meta="Teatro"
-    data-desc="La Menesunda — Espectáculo teatral. Fotografías de producción."
-    data-type="image"
-    data-src="https://drive.google.com/file/d/1S5XdKgyv8HLpubwAqasia6Zm8y8saVev/preview">
-    <span class="card-pill">Foto</span>
-    <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1S5XdKgyv8HLpubwAqasia6Zm8y8saVev&sz=w800" alt="La Menesunda" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1S5XdKgyv8HLpubwAqasia6Zm8y8saVev=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
-      <div class="card-thumb-placeholder">🎭</div>
-      <div class="card-overlay"></div>
-      
-    </div>
-    <div class="card-accent accent-rose"></div>
-    <div class="card-body">
-      <div class="card-meta">Teatro</div>
       <div class="card-title">La Menesunda</div>
       <div class="card-desc">Espectáculo teatral</div>
     </div>
   </button></div>
 
-<h3 class="section-subsection">Cine y series — como actriz</h3>
+<h3 class="section-subsection">Cine y series</h3>
 <div class="cards-grid">
-  <button type="button" class="card"
-    data-title="MILF — Trailer"
-    data-meta="Cine · Actuación"
-    data-desc="MILF — Largometraje. Trailer del film."
-    data-type="video"
-    data-src="https://drive.google.com/file/d/109vcRDq1g2IkFUytRI1qt-6OVGSHGSr9/preview">
+  <button type="button" class="card" data-title="MILF — Demo Trailer" data-meta="Cine · Demo Trailer" data-desc="MILF — Demo Trailer del proyecto cinematográfico." data-type="video" data-src="https://drive.google.com/file/d/109vcRDq1g2IkFUytRI1qt-6OVGSHGSr9/preview">
     <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=109vcRDq1g2IkFUytRI1qt-6OVGSHGSr9&sz=w800" alt="MILF — Trailer" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/109vcRDq1g2IkFUytRI1qt-6OVGSHGSr9=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
-      <div class="card-thumb-placeholder">🎬</div>
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=109vcRDq1g2IkFUytRI1qt-6OVGSHGSr9&sz=w800" alt="MILF — Demo Trailer" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/109vcRDq1g2IkFUytRI1qt-6OVGSHGSr9=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">🎬</div>
       <div class="card-overlay"></div>
       <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
     </div>
     <div class="card-accent accent-rose"></div>
     <div class="card-body">
-      <div class="card-meta">Cine · Actuación</div>
-      <div class="card-title">MILF — Trailer</div>
-      <div class="card-desc">Largometraje</div>
+      <div class="card-meta">Cine · Demo Trailer</div>
+      <div class="card-title">MILF — Demo Trailer</div>
+      
     </div>
   </button>
-  <button type="button" class="card"
-    data-title="El Último Traje"
-    data-meta="Cine · Actuación"
-    data-desc="El Último Traje — Participación actoral. Imagen de producción."
-    data-type="image"
-    data-src="https://drive.google.com/file/d/111jj5JwptmXw3xF7YB-9uOIsGUnvhwgI/preview">
+  <button type="button" class="card" data-title="El Último Traje" data-meta="Cine · Largometraje" data-desc="El Último Traje — Participación actoral." data-type="image" data-src="https://drive.google.com/file/d/111jj5JwptmXw3xF7YB-9uOIsGUnvhwgI/preview">
     <span class="card-pill">Foto</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=111jj5JwptmXw3xF7YB-9uOIsGUnvhwgI&sz=w800" alt="El Último Traje" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/111jj5JwptmXw3xF7YB-9uOIsGUnvhwgI=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
-      <div class="card-thumb-placeholder">🎬</div>
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=111jj5JwptmXw3xF7YB-9uOIsGUnvhwgI&sz=w800" alt="El Último Traje" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/111jj5JwptmXw3xF7YB-9uOIsGUnvhwgI=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">🎬</div>
       <div class="card-overlay"></div>
       
     </div>
     <div class="card-accent accent-rose"></div>
     <div class="card-body">
-      <div class="card-meta">Cine · Actuación</div>
+      <div class="card-meta">Cine · Largometraje</div>
       <div class="card-title">El Último Traje</div>
       <div class="card-desc">Participación actoral</div>
     </div>
   </button></div>
 
-<h3 class="section-subsection">Publicidad y TV — como actriz</h3>
-<p class="section-note">La publicidad de <em>Kinder</em> está en la sección Coach artística porque en ese proyecto Mariel fue coach, no actriz.</p>
+<h3 class="section-subsection">Galería de fotos</h3>
 <div class="cards-grid">
-  <button type="button" class="card"
-    data-title="La Salteña — Idea Sorpresa"
-    data-meta="Publicidad · Actriz"
-    data-desc="Aparición como actriz en publicidad de La Salteña — campaña Idea Sorpresa."
-    data-type="video"
-    data-src="https://drive.google.com/file/d/1dkZfG-CCgDqhlUL8jkz0H1q5yPymDCn6/preview">
-    <span class="card-pill">Video</span>
+  <button type="button" class="card is-placeholder" >
+    <span class="card-pill">⚠ Pegar ID</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1dkZfG-CCgDqhlUL8jkz0H1q5yPymDCn6&sz=w800" alt="La Salteña — Idea Sorpresa" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1dkZfG-CCgDqhlUL8jkz0H1q5yPymDCn6=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
-      <div class="card-thumb-placeholder">📺</div>
+      <div class="card-thumb-placeholder placeholder-pending">📸</div>
       <div class="card-overlay"></div>
-      <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-    </div>
-    <div class="card-accent accent-rose"></div>
-    <div class="card-body">
-      <div class="card-meta">Publicidad · Actriz</div>
-      <div class="card-title">La Salteña — Idea Sorpresa</div>
       
     </div>
-  </button>
-  <button type="button" class="card"
-    data-title="La Salteña — Idea Práctica"
-    data-meta="Publicidad · Actriz"
-    data-desc="Aparición como actriz en publicidad de La Salteña — campaña Idea Práctica."
-    data-type="video"
-    data-src="https://drive.google.com/file/d/1gQb34WGH17CQb4aOa-ctepoeJlqbUQKT/preview">
-    <span class="card-pill">Video</span>
-    <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1gQb34WGH17CQb4aOa-ctepoeJlqbUQKT&sz=w800" alt="La Salteña — Idea Práctica" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1gQb34WGH17CQb4aOa-ctepoeJlqbUQKT=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
-      <div class="card-thumb-placeholder">📺</div>
-      <div class="card-overlay"></div>
-      <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-    </div>
     <div class="card-accent accent-rose"></div>
     <div class="card-body">
-      <div class="card-meta">Publicidad · Actriz</div>
-      <div class="card-title">La Salteña — Idea Práctica</div>
-      
-    </div>
-  </button>
-  <button type="button" class="card"
-    data-title="La Salteña — Una idea"
-    data-meta="Publicidad · Actriz"
-    data-desc="Aparición como actriz en publicidad de La Salteña — campaña Una idea."
-    data-type="video"
-    data-src="https://drive.google.com/file/d/1J7ByIPXD3HiP9xWrOywtLVIDGzbSRDz-/preview">
-    <span class="card-pill">Video</span>
-    <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1J7ByIPXD3HiP9xWrOywtLVIDGzbSRDz-&sz=w800" alt="La Salteña — Una idea" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1J7ByIPXD3HiP9xWrOywtLVIDGzbSRDz-=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
-      <div class="card-thumb-placeholder">📺</div>
-      <div class="card-overlay"></div>
-      <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-    </div>
-    <div class="card-accent accent-rose"></div>
-    <div class="card-body">
-      <div class="card-meta">Publicidad · Actriz</div>
-      <div class="card-title">La Salteña — Una idea</div>
-      
-    </div>
-  </button>
-  <button type="button" class="card"
-    data-title="Mantecol — Regalo"
-    data-meta="Publicidad · Actriz"
-    data-desc="Aparición como actriz en publicidad de Mantecol — campaña Regalo."
-    data-type="video"
-    data-src="https://drive.google.com/file/d/1u4CWpI0a7lUVe5kDEaJf0JNCk6ACU-eI/preview">
-    <span class="card-pill">Video</span>
-    <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1u4CWpI0a7lUVe5kDEaJf0JNCk6ACU-eI&sz=w800" alt="Mantecol — Regalo" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1u4CWpI0a7lUVe5kDEaJf0JNCk6ACU-eI=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
-      <div class="card-thumb-placeholder">📺</div>
-      <div class="card-overlay"></div>
-      <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-    </div>
-    <div class="card-accent accent-rose"></div>
-    <div class="card-body">
-      <div class="card-meta">Publicidad · Actriz</div>
-      <div class="card-title">Mantecol — Regalo</div>
-      
-    </div>
-  </button>
-  <button type="button" class="card"
-    data-title="Movistar — Navidad"
-    data-meta="Publicidad · Actriz"
-    data-desc="Aparición como actriz en campaña navideña de Movistar."
-    data-type="video"
-    data-src="https://drive.google.com/file/d/1wdlECMZHTraAxsWorYtwhy0xCos3evgi/preview">
-    <span class="card-pill">Video</span>
-    <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1wdlECMZHTraAxsWorYtwhy0xCos3evgi&sz=w800" alt="Movistar — Navidad" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1wdlECMZHTraAxsWorYtwhy0xCos3evgi=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
-      <div class="card-thumb-placeholder">📺</div>
-      <div class="card-overlay"></div>
-      <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-    </div>
-    <div class="card-accent accent-rose"></div>
-    <div class="card-body">
-      <div class="card-meta">Publicidad · Actriz</div>
-      <div class="card-title">Movistar — Navidad</div>
-      
-    </div>
-  </button>
-  <button type="button" class="card"
-    data-title="Barco de Armando Bo"
-    data-meta="Publicidad · Actriz"
-    data-desc="Publicidad dirigida por Armando Bo. Participación como actriz."
-    data-type="video"
-    data-src="https://drive.google.com/file/d/1kCNnR9lLb32LBXq9u9ExTiw4bbKLvMu2/preview">
-    <span class="card-pill">Video</span>
-    <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1kCNnR9lLb32LBXq9u9ExTiw4bbKLvMu2&sz=w800" alt="Barco de Armando Bo" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1kCNnR9lLb32LBXq9u9ExTiw4bbKLvMu2=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
-      <div class="card-thumb-placeholder">📺</div>
-      <div class="card-overlay"></div>
-      <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-    </div>
-    <div class="card-accent accent-rose"></div>
-    <div class="card-body">
-      <div class="card-meta">Publicidad · Actriz</div>
-      <div class="card-title">Barco de Armando Bo</div>
-      
-    </div>
-  </button>
-  <button type="button" class="card"
-    data-title="Promo actriz"
-    data-meta="Showreel · Publicidad y TV"
-    data-desc="Showreel de publicidad y TV — compendio de apariciones como actriz."
-    data-type="video"
-    data-src="https://drive.google.com/file/d/1k8elU4SEeNYZW0BGCmoZZPK9km1eMOPR/preview">
-    <span class="card-pill">Video</span>
-    <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1k8elU4SEeNYZW0BGCmoZZPK9km1eMOPR&sz=w800" alt="Promo actriz" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1k8elU4SEeNYZW0BGCmoZZPK9km1eMOPR=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
-      <div class="card-thumb-placeholder">📺</div>
-      <div class="card-overlay"></div>
-      <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-    </div>
-    <div class="card-accent accent-rose"></div>
-    <div class="card-body">
-      <div class="card-meta">Showreel · Publicidad y TV</div>
-      <div class="card-title">Promo actriz</div>
-      <div class="card-desc">Showreel publicitario</div>
+      <div class="card-meta">Galería · Portada</div>
+      <div class="card-title">Galería de fotos</div>
+      <div class="card-desc">Todas las obras</div>
     </div>
   </button></div>
 
-<h3 class="section-subsection">Books</h3>
-<div class="press-grid">
-  <button type="button" class="press-card"
-    data-title="Retrato"
-    data-meta="Books"
-    data-desc="Retrato"
-    data-type="image"
-    data-src="https://drive.google.com/file/d/1LcCYVph6Cxr2HUpYHSbCVp5NJpi6kD9_/preview">
-    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1LcCYVph6Cxr2HUpYHSbCVp5NJpi6kD9_&sz=w400" alt="Retrato" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1LcCYVph6Cxr2HUpYHSbCVp5NJpi6kD9_=w400'}else{this.style.display='none';this.parentElement.classList.add('no-image')}"></div>
-    <div class="press-card-body">
-      <div class="press-card-title">Retrato</div>
-      <div class="press-card-source">Books</div>
+<h3 class="section-subsection">Publicidad y TV</h3>
+<div class="cards-grid">
+  <button type="button" class="card is-placeholder" >
+    <span class="card-pill">⚠ Pegar ID</span>
+    <div class="card-thumb-wrap">
+      <div class="card-thumb-placeholder placeholder-pending">📺</div>
+      <div class="card-overlay"></div>
+      
+    </div>
+    <div class="card-accent accent-rose"></div>
+    <div class="card-body">
+      <div class="card-meta">Publicidad · TV</div>
+      <div class="card-title">Tulipán — Trailer TV</div>
+      
     </div>
   </button>
-  <button type="button" class="press-card"
-    data-title="Book"
-    data-meta="Fotografía"
-    data-desc="Book"
-    data-type="image"
-    data-src="https://drive.google.com/file/d/1S1jbOMGH4NGc791TL39R6lmjglIu_dWd/preview">
-    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1S1jbOMGH4NGc791TL39R6lmjglIu_dWd&sz=w400" alt="Book" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1S1jbOMGH4NGc791TL39R6lmjglIu_dWd=w400'}else{this.style.display='none';this.parentElement.classList.add('no-image')}"></div>
-    <div class="press-card-body">
-      <div class="press-card-title">Book</div>
-      <div class="press-card-source">Fotografía</div>
+  <button type="button" class="card is-placeholder" >
+    <span class="card-pill">⚠ Pegar ID</span>
+    <div class="card-thumb-wrap">
+      <div class="card-thumb-placeholder placeholder-pending">📺</div>
+      <div class="card-overlay"></div>
+      
     </div>
-  </button>
-  <button type="button" class="press-card"
-    data-title="Book"
-    data-meta="Fotografía"
-    data-desc="Book"
-    data-type="image"
-    data-src="https://drive.google.com/file/d/1Vcqtymy9cTVjJ14ynVpJOEQKoeIBw2Oz/preview">
-    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1Vcqtymy9cTVjJ14ynVpJOEQKoeIBw2Oz&sz=w400" alt="Book" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1Vcqtymy9cTVjJ14ynVpJOEQKoeIBw2Oz=w400'}else{this.style.display='none';this.parentElement.classList.add('no-image')}"></div>
-    <div class="press-card-body">
-      <div class="press-card-title">Book</div>
-      <div class="press-card-source">Fotografía</div>
-    </div>
-  </button>
-  <button type="button" class="press-card"
-    data-title="Book"
-    data-meta="Fotografía"
-    data-desc="Book"
-    data-type="image"
-    data-src="https://drive.google.com/file/d/18XtvvczTwSJxOFgDLh4tEXTQvynx9EQE/preview">
-    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=18XtvvczTwSJxOFgDLh4tEXTQvynx9EQE&sz=w400" alt="Book" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/18XtvvczTwSJxOFgDLh4tEXTQvynx9EQE=w400'}else{this.style.display='none';this.parentElement.classList.add('no-image')}"></div>
-    <div class="press-card-body">
-      <div class="press-card-title">Book</div>
-      <div class="press-card-source">Fotografía</div>
+    <div class="card-accent accent-rose"></div>
+    <div class="card-body">
+      <div class="card-meta">Publicidad · TV</div>
+      <div class="card-title">VER — Trailer TV</div>
+      
     </div>
   </button></div>
 
-<h3 class="section-subsection">Prensa & Referencias</h3>
+<h3 class="section-subsection">Prensa</h3>
 <div class="press-grid">
-  <button type="button" class="press-card"
-    data-title="La crisis de los 30"
-    data-meta="Clarín · 2014"
-    data-desc="Entrevista en Clarín sobre el unipersonal «Mujer de 30 desesperada, busca»."
-    data-type="pdf"
-    data-src="https://drive.google.com/file/d/1wgP_A3C4xSG5_Gqm9OXrPhTmSokS-1yC/preview">
-    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1LcCYVph6Cxr2HUpYHSbCVp5NJpi6kD9_&sz=w400" alt="" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1LcCYVph6Cxr2HUpYHSbCVp5NJpi6kD9_=w400'}else{this.style.display='none'}"><div class="press-card-icon" style="background:rgba(var(--rose-rgb),0.08)">📰</div></div>
+  <button type="button" class="press-card" data-title="La crisis de los 30" data-meta="Clarín · 2014" data-desc="Entrevista en Clarín sobre el unipersonal «Mujer de 30 desesperada, busca»." data-type="pdf" data-src="https://drive.google.com/file/d/1wgP_A3C4xSG5_Gqm9OXrPhTmSokS-1yC/preview">
+    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1wgP_A3C4xSG5_Gqm9OXrPhTmSokS-1yC&sz=w400" alt="" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1wgP_A3C4xSG5_Gqm9OXrPhTmSokS-1yC=w400'}else{this.style.display='none'}"><div class="press-card-icon" style="background:rgba(var(--rose-rgb),0.08)">📰</div></div>
     <div class="press-card-body">
       <div class="press-card-title">La crisis de los 30</div>
       <div class="press-card-source">Clarín · 2014</div>
     </div>
   </button>
-  <button type="button" class="press-card"
-    data-title="La neurosis de las tres décadas"
-    data-meta="Los Andes · 2017"
-    data-desc="Cobertura de la función en el Teatro Selectro, Mendoza."
-    data-type="pdf"
-    data-src="https://drive.google.com/file/d/1bf1Eb6w6A7VB9Mm_q6xGSFZ0vlckksE4/preview">
+  <button type="button" class="press-card" data-title="La neurosis de las tres décadas" data-meta="Los Andes · 2017" data-desc="Cobertura de la función en el Teatro Selectro, Mendoza." data-type="pdf" data-src="https://drive.google.com/file/d/1bf1Eb6w6A7VB9Mm_q6xGSFZ0vlckksE4/preview">
     <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1bf1Eb6w6A7VB9Mm_q6xGSFZ0vlckksE4&sz=w400" alt="" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1bf1Eb6w6A7VB9Mm_q6xGSFZ0vlckksE4=w400'}else{this.style.display='none'}"><div class="press-card-icon" style="background:rgba(var(--rose-rgb),0.08)">📰</div></div>
     <div class="press-card-body">
       <div class="press-card-title">La neurosis de las tres décadas</div>
       <div class="press-card-source">Los Andes · 2017</div>
     </div>
   </button>
-  <button type="button" class="press-card"
-    data-title="Reconciliación a través de la risa"
-    data-meta="ABC Color · PY · 2014"
-    data-desc="Mariel Rosciano: reconciliación a través de la risa. Cobertura de la gira en ABC Color, Paraguay."
-    data-type="pdf"
-    data-src="https://drive.google.com/file/d/1v--jXDB3s7Fxzu-WGxBRf2momhUiUmIX/preview">
+  <button type="button" class="press-card" data-title="Reconciliación a través de la risa" data-meta="ABC Color · PY · 2014" data-desc="Cobertura de la gira en ABC Color, Paraguay." data-type="pdf" data-src="https://drive.google.com/file/d/1v--jXDB3s7Fxzu-WGxBRf2momhUiUmIX/preview">
     <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1v--jXDB3s7Fxzu-WGxBRf2momhUiUmIX&sz=w400" alt="" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1v--jXDB3s7Fxzu-WGxBRf2momhUiUmIX=w400'}else{this.style.display='none'}"><div class="press-card-icon" style="background:rgba(var(--rose-rgb),0.08)">📰</div></div>
     <div class="press-card-body">
       <div class="press-card-title">Reconciliación a través de la risa</div>
       <div class="press-card-source">ABC Color · PY · 2014</div>
     </div>
   </button>
-  <button type="button" class="press-card"
-    data-title="La crisis de los 30 tomada con humor"
-    data-meta="Última Hora · PY · 2014"
-    data-desc="Cobertura en Última Hora de Paraguay."
-    data-type="pdf"
-    data-src="https://drive.google.com/file/d/1JbqQVcMmhQE621azvmcWUqIqdZ9txc_x/preview">
+  <button type="button" class="press-card" data-title="La crisis de los 30 tomada con humor" data-meta="Última Hora · PY · 2014" data-desc="Cobertura en Última Hora de Paraguay." data-type="pdf" data-src="https://drive.google.com/file/d/1JbqQVcMmhQE621azvmcWUqIqdZ9txc_x/preview">
     <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1JbqQVcMmhQE621azvmcWUqIqdZ9txc_x&sz=w400" alt="" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1JbqQVcMmhQE621azvmcWUqIqdZ9txc_x=w400'}else{this.style.display='none'}"><div class="press-card-icon" style="background:rgba(var(--rose-rgb),0.08)">📰</div></div>
     <div class="press-card-body">
       <div class="press-card-title">La crisis de los 30 tomada con humor</div>
       <div class="press-card-source">Última Hora · PY · 2014</div>
     </div>
   </button>
-  <button type="button" class="press-card"
-    data-title="Standaperas"
-    data-meta="El Guardian · 2012"
-    data-desc="Mariel Rosciano entre las comediantas que se destacan en el stand up."
-    data-type="image"
-    data-src="https://drive.google.com/file/d/1-Y4jNYbBDnrYyvYzmYSUnGg-QBu9cNaM/preview">
+  <button type="button" class="press-card" data-title="Standaperas" data-meta="El Guardian · 2012" data-desc="Mariel Rosciano entre las comediantas que se destacan en el stand up." data-type="image" data-src="https://drive.google.com/file/d/1-Y4jNYbBDnrYyvYzmYSUnGg-QBu9cNaM/preview">
     <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1-Y4jNYbBDnrYyvYzmYSUnGg-QBu9cNaM&sz=w400" alt="Standaperas" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1-Y4jNYbBDnrYyvYzmYSUnGg-QBu9cNaM=w400'}else{this.style.display='none';this.parentElement.classList.add('no-image')}"></div>
     <div class="press-card-body">
       <div class="press-card-title">Standaperas</div>
       <div class="press-card-source">El Guardian · 2012</div>
     </div>
   </button>
-  <button type="button" class="press-card"
-    data-title="Humor femenino y stand up"
-    data-meta="El Guardian · 2012"
-    data-desc="Nota completa sobre las mujeres en el stand up — Mariel Rosciano citada como referente."
-    data-type="image"
-    data-src="https://drive.google.com/file/d/1tEBXR2jC0WN0ZBjKzvOW4DqJkLhK_72I/preview">
+  <button type="button" class="press-card" data-title="Humor femenino y stand up" data-meta="El Guardian · 2012" data-desc="Nota completa sobre las mujeres en el stand up." data-type="image" data-src="https://drive.google.com/file/d/1tEBXR2jC0WN0ZBjKzvOW4DqJkLhK_72I/preview">
     <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1tEBXR2jC0WN0ZBjKzvOW4DqJkLhK_72I&sz=w400" alt="Humor femenino y stand up" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1tEBXR2jC0WN0ZBjKzvOW4DqJkLhK_72I=w400'}else{this.style.display='none';this.parentElement.classList.add('no-image')}"></div>
     <div class="press-card-body">
       <div class="press-card-title">Humor femenino y stand up</div>
       <div class="press-card-source">El Guardian · 2012</div>
     </div>
   </button>
-  <button type="button" class="press-card"
-    data-title="En el nombre de Raquel"
-    data-meta="Télam · 2012"
-    data-desc="Reseña de «En el nombre de Raquel» en Télam."
-    data-type="image"
-    data-src="https://drive.google.com/file/d/16FPXcJziBL5-YSxxbIgqBBiwHU1ZTei6/preview">
+  <button type="button" class="press-card" data-title="En el nombre de Raquel" data-meta="Télam · 2012" data-desc="Reseña de «En el nombre de Raquel» en Télam." data-type="image" data-src="https://drive.google.com/file/d/16FPXcJziBL5-YSxxbIgqBBiwHU1ZTei6/preview">
     <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=16FPXcJziBL5-YSxxbIgqBBiwHU1ZTei6&sz=w400" alt="En el nombre de Raquel" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/16FPXcJziBL5-YSxxbIgqBBiwHU1ZTei6=w400'}else{this.style.display='none';this.parentElement.classList.add('no-image')}"></div>
     <div class="press-card-body">
       <div class="press-card-title">En el nombre de Raquel</div>
       <div class="press-card-source">Télam · 2012</div>
     </div>
   </button>
-  <button type="button" class="press-card"
-    data-title="En el nombre de Raquel"
-    data-meta="Agencia NaN · 2012"
-    data-desc="Reseña en Agencia NaN."
-    data-type="image"
-    data-src="https://drive.google.com/file/d/1cm57ILx12cDZp6EXINnPsuGr-OypTU2Y/preview">
+  <button type="button" class="press-card" data-title="En el nombre de Raquel" data-meta="Agencia NaN · 2012" data-desc="Reseña en Agencia NaN." data-type="image" data-src="https://drive.google.com/file/d/1cm57ILx12cDZp6EXINnPsuGr-OypTU2Y/preview">
     <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1cm57ILx12cDZp6EXINnPsuGr-OypTU2Y&sz=w400" alt="En el nombre de Raquel" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1cm57ILx12cDZp6EXINnPsuGr-OypTU2Y=w400'}else{this.style.display='none';this.parentElement.classList.add('no-image')}"></div>
     <div class="press-card-body">
       <div class="press-card-title">En el nombre de Raquel</div>
       <div class="press-card-source">Agencia NaN · 2012</div>
     </div>
   </button>
-  <button type="button" class="press-card"
-    data-title="La polaca más valiente"
-    data-meta="El Abasto · 2013"
-    data-desc="Nota sobre la obra en El Abasto."
-    data-type="image"
-    data-src="https://drive.google.com/file/d/18IpbvthVKibj1euMM0TP457VcqtsdUCD/preview">
+  <button type="button" class="press-card" data-title="La polaca más valiente" data-meta="El Abasto · 2013" data-desc="Nota sobre la obra en El Abasto." data-type="image" data-src="https://drive.google.com/file/d/18IpbvthVKibj1euMM0TP457VcqtsdUCD/preview">
     <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=18IpbvthVKibj1euMM0TP457VcqtsdUCD&sz=w400" alt="La polaca más valiente" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/18IpbvthVKibj1euMM0TP457VcqtsdUCD=w400'}else{this.style.display='none';this.parentElement.classList.add('no-image')}"></div>
     <div class="press-card-body">
       <div class="press-card-title">La polaca más valiente</div>
       <div class="press-card-source">El Abasto · 2013</div>
     </div>
   </button>
-  <button type="button" class="press-card"
-    data-title="Raquel habla claro sobre la trata"
-    data-meta="La Nación · CR · 2012"
-    data-desc="Cobertura de la gira por Costa Rica."
-    data-type="image"
-    data-src="https://drive.google.com/file/d/12GHR9qxpFD5FGxfP1rWc5Ro9UvbO7RKO/preview">
+  <button type="button" class="press-card" data-title="Raquel habla claro sobre la trata" data-meta="La Nación · CR · 2012" data-desc="Cobertura de la gira por Costa Rica." data-type="image" data-src="https://drive.google.com/file/d/12GHR9qxpFD5FGxfP1rWc5Ro9UvbO7RKO/preview">
     <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=12GHR9qxpFD5FGxfP1rWc5Ro9UvbO7RKO&sz=w400" alt="Raquel habla claro sobre la trata" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/12GHR9qxpFD5FGxfP1rWc5Ro9UvbO7RKO=w400'}else{this.style.display='none';this.parentElement.classList.add('no-image')}"></div>
     <div class="press-card-body">
       <div class="press-card-title">Raquel habla claro sobre la trata</div>
       <div class="press-card-source">La Nación · CR · 2012</div>
     </div>
   </button>
-  <button type="button" class="press-card"
-    data-title="En el nombre de Raquel"
-    data-meta="El Tribuno · Jujuy · 2013"
-    data-desc="Gira por el norte argentino."
-    data-type="image"
-    data-src="https://drive.google.com/file/d/1vSDvxJrnmnk3nzqu3UJy-0YiBlN3Rn1j/preview">
+  <button type="button" class="press-card" data-title="En el nombre de Raquel" data-meta="El Tribuno · Jujuy · 2013" data-desc="Gira por el norte argentino." data-type="image" data-src="https://drive.google.com/file/d/1vSDvxJrnmnk3nzqu3UJy-0YiBlN3Rn1j/preview">
     <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1vSDvxJrnmnk3nzqu3UJy-0YiBlN3Rn1j&sz=w400" alt="En el nombre de Raquel" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1vSDvxJrnmnk3nzqu3UJy-0YiBlN3Rn1j=w400'}else{this.style.display='none';this.parentElement.classList.add('no-image')}"></div>
     <div class="press-card-body">
       <div class="press-card-title">En el nombre de Raquel</div>
       <div class="press-card-source">El Tribuno · Jujuy · 2013</div>
     </div>
   </button>
-  <button type="button" class="press-card"
-    data-title="Denuncia al delito de trata"
-    data-meta="Primera Edición · Misiones · 2013"
-    data-desc="Una fuerte denuncia al delito de trata por medio del teatro."
-    data-type="image"
-    data-src="https://drive.google.com/file/d/1NYEdHK1C2Jm4Jav65SB2CefubfvLBUo6/preview">
+  <button type="button" class="press-card" data-title="Denuncia al delito de trata" data-meta="Primera Edición · Misiones · 2013" data-desc="Una fuerte denuncia al delito de trata por medio del teatro." data-type="image" data-src="https://drive.google.com/file/d/1NYEdHK1C2Jm4Jav65SB2CefubfvLBUo6/preview">
     <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1NYEdHK1C2Jm4Jav65SB2CefubfvLBUo6&sz=w400" alt="Denuncia al delito de trata" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1NYEdHK1C2Jm4Jav65SB2CefubfvLBUo6=w400'}else{this.style.display='none';this.parentElement.classList.add('no-image')}"></div>
     <div class="press-card-body">
       <div class="press-card-title">Denuncia al delito de trata</div>
       <div class="press-card-source">Primera Edición · Misiones · 2013</div>
     </div>
   </button>
-  <button type="button" class="press-card"
-    data-title="En el nombre de la mujer"
-    data-meta="Diario El Sol · Marzo 2013"
-    data-desc="Presentación en el Teatro Municipal de Lomas de Zamora."
-    data-type="image"
-    data-src="https://drive.google.com/file/d/1ws39l8RCX-LyZ1ygVIYAc7icOYPUrCfp/preview">
+  <button type="button" class="press-card" data-title="En el nombre de la mujer" data-meta="Diario El Sol · Marzo 2013" data-desc="Presentación en el Teatro Municipal de Lomas de Zamora." data-type="image" data-src="https://drive.google.com/file/d/1ws39l8RCX-LyZ1ygVIYAc7icOYPUrCfp/preview">
     <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1ws39l8RCX-LyZ1ygVIYAc7icOYPUrCfp&sz=w400" alt="En el nombre de la mujer" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1ws39l8RCX-LyZ1ygVIYAc7icOYPUrCfp=w400'}else{this.style.display='none';this.parentElement.classList.add('no-image')}"></div>
     <div class="press-card-body">
       <div class="press-card-title">En el nombre de la mujer</div>
       <div class="press-card-source">Diario El Sol · Marzo 2013</div>
     </div>
   </button>
-  <button type="button" class="press-card"
-    data-title="Teatro contra la trata"
-    data-meta="Diario El Sol · 15 marzo 2013"
-    data-desc="Cobertura de la obra en gira nacional."
-    data-type="image"
-    data-src="https://drive.google.com/file/d/1kZpGIkuGtO34o0SXPcpPlyaCGMQrY37D/preview">
+  <button type="button" class="press-card" data-title="Teatro contra la trata" data-meta="Diario El Sol · 15 marzo 2013" data-desc="Cobertura de la obra en gira nacional." data-type="image" data-src="https://drive.google.com/file/d/1kZpGIkuGtO34o0SXPcpPlyaCGMQrY37D/preview">
     <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1kZpGIkuGtO34o0SXPcpPlyaCGMQrY37D&sz=w400" alt="Teatro contra la trata" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1kZpGIkuGtO34o0SXPcpPlyaCGMQrY37D=w400'}else{this.style.display='none';this.parentElement.classList.add('no-image')}"></div>
     <div class="press-card-body">
       <div class="press-card-title">Teatro contra la trata</div>
       <div class="press-card-source">Diario El Sol · 15 marzo 2013</div>
     </div>
   </button>
-  <button type="button" class="press-card"
-    data-title="El teatro es un grito visceral"
-    data-meta="La Voz del Pueblo · 2013"
-    data-desc="Entrevista con Mariel Rosciano."
-    data-type="image"
-    data-src="https://drive.google.com/file/d/14Ft_ZeTyQHVTx_E40qhoDSUlKiytKZPx/preview">
+  <button type="button" class="press-card" data-title="El teatro es un grito visceral" data-meta="La Voz del Pueblo · 2013" data-desc="Entrevista con Mariel Rosciano." data-type="image" data-src="https://drive.google.com/file/d/14Ft_ZeTyQHVTx_E40qhoDSUlKiytKZPx/preview">
     <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=14Ft_ZeTyQHVTx_E40qhoDSUlKiytKZPx&sz=w400" alt="El teatro es un grito visceral" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/14Ft_ZeTyQHVTx_E40qhoDSUlKiytKZPx=w400'}else{this.style.display='none';this.parentElement.classList.add('no-image')}"></div>
     <div class="press-card-body">
       <div class="press-card-title">El teatro es un grito visceral</div>
@@ -1682,43 +1551,31 @@
 <section id="directora" class="section-panel dir" aria-labelledby="dir-title">
   <div class="section-inner">
     <header class="section-header">
-      <span class="section-num">02 / 05</span>
+      <span class="section-num">02 / 06</span>
       <h2 class="section-title" id="dir-title">Directora</h2>
     </header>
 
 ```
 <div class="geo-label geo-py" aria-label="Producciones en Paraguay">🇵🇾 Paraguay</div>
 <div class="cards-grid">
-  <button type="button" class="card"
-    data-title="Fuerza Urbana"
-    data-meta="Dirección · Paraguay"
-    data-desc="Proyecto dirigido en Paraguay. Producción artística completa."
-    data-type="video"
-    data-src="https://drive.google.com/file/d/1NfDbSgYy-4CaVQnscHcI9vXjbnO2R6MQ/preview">
+  <button type="button" class="card" data-title="Fuerza Urbana" data-meta="Dirección Artística · Paraguay" data-desc="Dirección artística del proyecto Fuerza Urbana en Paraguay." data-type="video" data-src="https://drive.google.com/file/d/1NfDbSgYy-4CaVQnscHcI9vXjbnO2R6MQ/preview">
     <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1NfDbSgYy-4CaVQnscHcI9vXjbnO2R6MQ&sz=w800" alt="Fuerza Urbana" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1NfDbSgYy-4CaVQnscHcI9vXjbnO2R6MQ=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
-      <div class="card-thumb-placeholder">🎬</div>
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1NfDbSgYy-4CaVQnscHcI9vXjbnO2R6MQ&sz=w800" alt="Fuerza Urbana" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1NfDbSgYy-4CaVQnscHcI9vXjbnO2R6MQ=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">🎨</div>
       <div class="card-overlay"></div>
       <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
     </div>
     <div class="card-accent accent-gold"></div>
     <div class="card-body">
-      <div class="card-meta">Dirección · Paraguay</div>
+      <div class="card-meta">Dirección Artística · Paraguay</div>
       <div class="card-title">Fuerza Urbana</div>
       <div class="card-desc">Producción artística — Paraguay</div>
     </div>
   </button>
-  <button type="button" class="card"
-    data-title="Cuatro Colas y un Funeral"
-    data-meta="Dirección · Paraguay"
-    data-desc="Producción dirigida en Paraguay."
-    data-type="video"
-    data-src="https://drive.google.com/file/d/1VznC2hzD9cyjJsjqi1s6mudLMnrJt_xf/preview">
+  <button type="button" class="card" data-title="Cuatro Colas y un Funeral" data-meta="Dirección · Paraguay" data-desc="Dirección de Cuatro Colas y un Funeral en Paraguay." data-type="video" data-src="https://drive.google.com/file/d/1VznC2hzD9cyjJsjqi1s6mudLMnrJt_xf/preview">
     <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1VznC2hzD9cyjJsjqi1s6mudLMnrJt_xf&sz=w800" alt="Cuatro Colas y un Funeral" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1VznC2hzD9cyjJsjqi1s6mudLMnrJt_xf=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
-      <div class="card-thumb-placeholder">🎬</div>
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1VznC2hzD9cyjJsjqi1s6mudLMnrJt_xf&sz=w800" alt="Cuatro Colas y un Funeral" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1VznC2hzD9cyjJsjqi1s6mudLMnrJt_xf=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">🎬</div>
       <div class="card-overlay"></div>
       <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
     </div>
@@ -1729,16 +1586,10 @@
       <div class="card-desc">Producción — Paraguay</div>
     </div>
   </button>
-  <button type="button" class="card"
-    data-title="¡Blancanieves y el Príncipe Aventurero!"
-    data-meta="Dirección · Paraguay"
-    data-desc="Producción teatral dirigida en Paraguay."
-    data-type="video"
-    data-src="https://drive.google.com/file/d/1Ph3k931yepNgzbgA3k-ZzpWu7OC6VVmT/preview">
+  <button type="button" class="card" data-title="¡Blancanieves y el Príncipe Aventurero!" data-meta="Dirección · Paraguay" data-desc="Dirección de la obra teatral en Paraguay." data-type="video" data-src="https://drive.google.com/file/d/1Ph3k931yepNgzbgA3k-ZzpWu7OC6VVmT/preview">
     <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1Ph3k931yepNgzbgA3k-ZzpWu7OC6VVmT&sz=w800" alt="¡Blancanieves y el Príncipe Aventurero!" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1Ph3k931yepNgzbgA3k-ZzpWu7OC6VVmT=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
-      <div class="card-thumb-placeholder">🎬</div>
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1Ph3k931yepNgzbgA3k-ZzpWu7OC6VVmT&sz=w800" alt="¡Blancanieves y el Príncipe Aventurero!" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1Ph3k931yepNgzbgA3k-ZzpWu7OC6VVmT=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">🎬</div>
       <div class="card-overlay"></div>
       <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
     </div>
@@ -1748,88 +1599,83 @@
       <div class="card-title">¡Blancanieves y el Príncipe Aventurero!</div>
       <div class="card-desc">Teatro — Paraguay</div>
     </div>
+  </button>
+  <button type="button" class="card is-placeholder" >
+    <span class="card-pill">⚠ Pegar ID</span>
+    <div class="card-thumb-wrap">
+      <div class="card-thumb-placeholder placeholder-pending">🎬</div>
+      <div class="card-overlay"></div>
+      
+    </div>
+    <div class="card-accent accent-gold"></div>
+    <div class="card-body">
+      <div class="card-meta">Dirección · Paraguay</div>
+      <div class="card-title">La joda es bella</div>
+      
+    </div>
+  </button>
+  <button type="button" class="card is-placeholder" >
+    <span class="card-pill">⚠ Pegar ID</span>
+    <div class="card-thumb-wrap">
+      <div class="card-thumb-placeholder placeholder-pending">🎬</div>
+      <div class="card-overlay"></div>
+      
+    </div>
+    <div class="card-accent accent-gold"></div>
+    <div class="card-body">
+      <div class="card-meta">Dirección · Paraguay</div>
+      <div class="card-title">Los Pitufos y la pócima secreta</div>
+      
+    </div>
   </button></div>
 
 <div class="geo-label geo-ar" style="margin-top:40px" aria-label="Producciones en Argentina">🇦🇷 Argentina</div>
+
+<h3 class="section-subsection">Teatro</h3>
 <div class="cards-grid">
-  <button type="button" class="card"
-    data-title="Tulipán Up"
-    data-meta="Dirección · Argentina"
-    data-desc="Tulipán Up — Dirección con Francisco Civit. Publicidad / Arte."
-    data-type="video"
-    data-src="https://drive.google.com/file/d/1dDpBOHTPOPUw_hxCYyn2Q45BYzEXEudM/preview">
-    <span class="card-pill">Video</span>
+  <button type="button" class="card is-placeholder" >
+    <span class="card-pill">⚠ Pegar ID</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1dDpBOHTPOPUw_hxCYyn2Q45BYzEXEudM&sz=w800" alt="Tulipán Up" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1dDpBOHTPOPUw_hxCYyn2Q45BYzEXEudM=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
-      <div class="card-thumb-placeholder">🎬</div>
+      <div class="card-thumb-placeholder placeholder-pending">🎭</div>
       <div class="card-overlay"></div>
-      <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+      
     </div>
     <div class="card-accent accent-gold"></div>
     <div class="card-body">
-      <div class="card-meta">Dirección · Argentina</div>
-      <div class="card-title">Tulipán Up</div>
-      <div class="card-desc">Con Francisco Civit</div>
+      <div class="card-meta">Dirección · Teatro · Argentina</div>
+      <div class="card-title">Por su culpa</div>
+      <div class="card-desc">Trailer</div>
+    </div>
+  </button></div>
+
+<h3 class="section-subsection">Video Clips</h3>
+<div class="cards-grid">
+  <button type="button" class="card is-placeholder" >
+    <span class="card-pill">⚠ Pegar ID</span>
+    <div class="card-thumb-wrap">
+      <div class="card-thumb-placeholder placeholder-pending">🎬</div>
+      <div class="card-overlay"></div>
+      
+    </div>
+    <div class="card-accent accent-gold"></div>
+    <div class="card-body">
+      <div class="card-meta">Dirección · Video Clip</div>
+      <div class="card-title">Xango</div>
+      <div class="card-desc">Video Clip</div>
     </div>
   </button>
-  <button type="button" class="card"
-    data-title="VER® #UniteAlaCharla"
-    data-meta="Dirección · Argentina · Moda"
-    data-desc="Campaña #UniteAlaCharla de VER® Primavera Verano 2017. Dirección de contenido de moda."
-    data-type="video"
-    data-src="https://drive.google.com/file/d/1BIbRlBWnJXMxzqRCmdSLOAr6mB1TboFv/preview">
-    <span class="card-pill">Video</span>
+  <button type="button" class="card is-placeholder" >
+    <span class="card-pill">⚠ Pegar ID</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1BIbRlBWnJXMxzqRCmdSLOAr6mB1TboFv&sz=w800" alt="VER® #UniteAlaCharla" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1BIbRlBWnJXMxzqRCmdSLOAr6mB1TboFv=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
-      <div class="card-thumb-placeholder">🎬</div>
+      <div class="card-thumb-placeholder placeholder-pending">🎬</div>
       <div class="card-overlay"></div>
-      <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+      
     </div>
     <div class="card-accent accent-gold"></div>
     <div class="card-body">
-      <div class="card-meta">Dirección · Argentina · Moda</div>
-      <div class="card-title">VER® #UniteAlaCharla</div>
-      <div class="card-desc">Primavera-Verano 2017</div>
-    </div>
-  </button>
-  <button type="button" class="card"
-    data-title="Puntitas"
-    data-meta="Dirección · Argentina"
-    data-desc="Pieza audiovisual dirigida en Argentina."
-    data-type="video"
-    data-src="https://drive.google.com/file/d/18_O7yQNsuwh0H7UabOhydmOGI17w_ywv/preview">
-    <span class="card-pill">Video</span>
-    <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=18_O7yQNsuwh0H7UabOhydmOGI17w_ywv&sz=w800" alt="Puntitas" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/18_O7yQNsuwh0H7UabOhydmOGI17w_ywv=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
-      <div class="card-thumb-placeholder">🎬</div>
-      <div class="card-overlay"></div>
-      <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-    </div>
-    <div class="card-accent accent-gold"></div>
-    <div class="card-body">
-      <div class="card-meta">Dirección · Argentina</div>
-      <div class="card-title">Puntitas</div>
-      <div class="card-desc">Pieza audiovisual</div>
-    </div>
-  </button>
-  <button type="button" class="card"
-    data-title="Wasted"
-    data-meta="Serie animada · No End Projects"
-    data-desc="WASTED — Serie animada dirigida por Martín Kovacs. Producción ejecutiva de Mariel Rosciano (No End Projects). Trailer oficial."
-    data-type="video"
-    data-src="https://drive.google.com/file/d/1ElIsOjD7ODZ6Ksk6GnvodiAdpXPy1vQ6/preview">
-    <span class="card-pill">Video</span>
-    <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1ElIsOjD7ODZ6Ksk6GnvodiAdpXPy1vQ6&sz=w800" alt="Wasted" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1ElIsOjD7ODZ6Ksk6GnvodiAdpXPy1vQ6=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
-      <div class="card-thumb-placeholder">🎬</div>
-      <div class="card-overlay"></div>
-      <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-    </div>
-    <div class="card-accent accent-gold"></div>
-    <div class="card-body">
-      <div class="card-meta">Serie animada · No End Projects</div>
-      <div class="card-title">Wasted</div>
-      <div class="card-desc">Dir. Martín Kovacs</div>
+      <div class="card-meta">Dirección · Video Clip</div>
+      <div class="card-title">Leo Qüin</div>
+      <div class="card-desc">Video Clip</div>
     </div>
   </button></div>
 ```
@@ -1839,43 +1685,59 @@
 <section id="productora" class="section-panel prod" aria-labelledby="prod-title">
   <div class="section-inner">
     <header class="section-header">
-      <span class="section-num">03 / 05</span>
+      <span class="section-num">03 / 06</span>
       <h2 class="section-title" id="prod-title">Productora</h2>
     </header>
 
 ```
 <h3 class="section-subsection">Cine & series</h3>
 <div class="cards-grid">
-  <button type="button" class="card"
-    data-title="MILF"
-    data-meta="Producción ejecutiva · Cine"
-    data-desc="MILF — Largometraje. Producción ejecutiva."
-    data-type="video"
-    data-src="https://drive.google.com/file/d/1PE61xoEOS1wmKc7_QC7OY2XM-tf3PxdY/preview">
+  <button type="button" class="card" data-title="Wasted" data-meta="Producción ejecutiva · Serie animada" data-desc="Wasted — Serie animada dirigida por Martín Kovacs. Producción ejecutiva de Mariel Rosciano (No End Projects)." data-type="video" data-src="https://drive.google.com/file/d/1ElIsOjD7ODZ6Ksk6GnvodiAdpXPy1vQ6/preview">
     <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1PE61xoEOS1wmKc7_QC7OY2XM-tf3PxdY&sz=w800" alt="MILF" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1PE61xoEOS1wmKc7_QC7OY2XM-tf3PxdY=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
-      <div class="card-thumb-placeholder">🎞</div>
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1ElIsOjD7ODZ6Ksk6GnvodiAdpXPy1vQ6&sz=w800" alt="Wasted" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1ElIsOjD7ODZ6Ksk6GnvodiAdpXPy1vQ6=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">🎞</div>
       <div class="card-overlay"></div>
       <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
     </div>
     <div class="card-accent accent-teal"></div>
     <div class="card-body">
-      <div class="card-meta">Producción ejecutiva · Cine</div>
-      <div class="card-title">MILF</div>
-      <div class="card-desc">Largometraje</div>
+      <div class="card-meta">Producción ejecutiva · Serie animada</div>
+      <div class="card-title">Wasted</div>
+      <div class="card-desc">Dir. Martín Kovacs · No End Projects</div>
     </div>
   </button>
-  <button type="button" class="card"
-    data-title="Vagón Fumador"
-    data-meta="Producción · Cine"
-    data-desc="Vagón Fumador — Producción de largometraje."
-    data-type="video"
-    data-src="https://drive.google.com/file/d/1y6SfFvET3ZhZJiei15XexeeoC-AY5fgA/preview">
+  <button type="button" class="card" data-title="MILF" data-meta="Producción ejecutiva · Serie web" data-desc="MILF — Serie web. Producción ejecutiva." data-type="video" data-src="https://drive.google.com/file/d/1PE61xoEOS1wmKc7_QC7OY2XM-tf3PxdY/preview">
     <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1y6SfFvET3ZhZJiei15XexeeoC-AY5fgA&sz=w800" alt="Vagón Fumador" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1y6SfFvET3ZhZJiei15XexeeoC-AY5fgA=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
-      <div class="card-thumb-placeholder">🎞</div>
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1PE61xoEOS1wmKc7_QC7OY2XM-tf3PxdY&sz=w800" alt="MILF" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1PE61xoEOS1wmKc7_QC7OY2XM-tf3PxdY=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">🎞</div>
+      <div class="card-overlay"></div>
+      <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+    </div>
+    <div class="card-accent accent-teal"></div>
+    <div class="card-body">
+      <div class="card-meta">Producción ejecutiva · Serie web</div>
+      <div class="card-title">MILF</div>
+      <div class="card-desc">Serie web</div>
+    </div>
+  </button>
+  <button type="button" class="card" data-title="Sudeste" data-meta="Producción · Cine" data-desc="Sudeste — Largometraje. Dirigida por Sergio Bellotti. Producción ejecutiva." data-type="video" data-src="https://drive.google.com/file/d/12mPO0vWa6JgDcuwyqX0os_9Ib_TLGP08/preview">
+    <span class="card-pill">Video</span>
+    <div class="card-thumb-wrap">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=12mPO0vWa6JgDcuwyqX0os_9Ib_TLGP08&sz=w800" alt="Sudeste" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/12mPO0vWa6JgDcuwyqX0os_9Ib_TLGP08=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">🎞</div>
+      <div class="card-overlay"></div>
+      <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+    </div>
+    <div class="card-accent accent-teal"></div>
+    <div class="card-body">
+      <div class="card-meta">Producción · Cine</div>
+      <div class="card-title">Sudeste</div>
+      <div class="card-desc">Dir. Sergio Bellotti</div>
+    </div>
+  </button>
+  <button type="button" class="card" data-title="Vagón Fumador" data-meta="Producción · Cine" data-desc="Vagón Fumador — Largometraje. Dirigida por Verónica Chen." data-type="video" data-src="https://drive.google.com/file/d/1y6SfFvET3ZhZJiei15XexeeoC-AY5fgA/preview">
+    <span class="card-pill">Video</span>
+    <div class="card-thumb-wrap">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1y6SfFvET3ZhZJiei15XexeeoC-AY5fgA&sz=w800" alt="Vagón Fumador" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1y6SfFvET3ZhZJiei15XexeeoC-AY5fgA=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">🎞</div>
       <div class="card-overlay"></div>
       <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
     </div>
@@ -1883,19 +1745,27 @@
     <div class="card-body">
       <div class="card-meta">Producción · Cine</div>
       <div class="card-title">Vagón Fumador</div>
-      
+      <div class="card-desc">Dir. Verónica Chen</div>
     </div>
   </button>
-  <button type="button" class="card"
-    data-title="El Séptimo Arcángel"
-    data-meta="Producción · Cine"
-    data-desc="Producción de largometraje."
-    data-type="video"
-    data-src="https://drive.google.com/file/d/1BMojCZJYHFKUyxnhpaSvENTyLulgMTj-/preview">
+  <button type="button" class="card" data-title="Un Día de Suerte" data-meta="Producción · Cine" data-desc="Un Día de Suerte — Largometraje. Dirigida por Sandra Gugliotta." data-type="video" data-src="https://drive.google.com/file/d/1dXQ5y1ugG_vMkXId-45BMTblCmZTWAjp/preview">
     <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1BMojCZJYHFKUyxnhpaSvENTyLulgMTj-&sz=w800" alt="El Séptimo Arcángel" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1BMojCZJYHFKUyxnhpaSvENTyLulgMTj-=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
-      <div class="card-thumb-placeholder">🎞</div>
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1dXQ5y1ugG_vMkXId-45BMTblCmZTWAjp&sz=w800" alt="Un Día de Suerte" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1dXQ5y1ugG_vMkXId-45BMTblCmZTWAjp=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">🎞</div>
+      <div class="card-overlay"></div>
+      <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+    </div>
+    <div class="card-accent accent-teal"></div>
+    <div class="card-body">
+      <div class="card-meta">Producción · Cine</div>
+      <div class="card-title">Un Día de Suerte</div>
+      <div class="card-desc">Dir. Sandra Gugliotta</div>
+    </div>
+  </button>
+  <button type="button" class="card" data-title="El Séptimo Arcángel" data-meta="Producción · Cine" data-desc="Producción de largometraje." data-type="video" data-src="https://drive.google.com/file/d/1BMojCZJYHFKUyxnhpaSvENTyLulgMTj-/preview">
+    <span class="card-pill">Video</span>
+    <div class="card-thumb-wrap">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1BMojCZJYHFKUyxnhpaSvENTyLulgMTj-&sz=w800" alt="El Séptimo Arcángel" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1BMojCZJYHFKUyxnhpaSvENTyLulgMTj-=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">🎞</div>
       <div class="card-overlay"></div>
       <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
     </div>
@@ -1906,36 +1776,10 @@
       
     </div>
   </button>
-  <button type="button" class="card"
-    data-title="Sudeste"
-    data-meta="Producción · Cine"
-    data-desc="Producción de largometraje."
-    data-type="video"
-    data-src="https://drive.google.com/file/d/12mPO0vWa6JgDcuwyqX0os_9Ib_TLGP08/preview">
+  <button type="button" class="card" data-title="Dulce de Leche" data-meta="Producción · Cine" data-desc="Dulce de Leche de Mariano Galperín. Producción ejecutiva." data-type="video" data-src="https://drive.google.com/file/d/191zc1Plpveqm3QHfBVbmz6WG0nrMvbcN/preview">
     <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=12mPO0vWa6JgDcuwyqX0os_9Ib_TLGP08&sz=w800" alt="Sudeste" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/12mPO0vWa6JgDcuwyqX0os_9Ib_TLGP08=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
-      <div class="card-thumb-placeholder">🎞</div>
-      <div class="card-overlay"></div>
-      <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-    </div>
-    <div class="card-accent accent-teal"></div>
-    <div class="card-body">
-      <div class="card-meta">Producción · Cine</div>
-      <div class="card-title">Sudeste</div>
-      
-    </div>
-  </button>
-  <button type="button" class="card"
-    data-title="Dulce de Leche"
-    data-meta="Producción · Cine"
-    data-desc="Dulce de Leche de Mariano Galperín. Producción ejecutiva."
-    data-type="video"
-    data-src="https://drive.google.com/file/d/191zc1Plpveqm3QHfBVbmz6WG0nrMvbcN/preview">
-    <span class="card-pill">Video</span>
-    <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=191zc1Plpveqm3QHfBVbmz6WG0nrMvbcN&sz=w800" alt="Dulce de Leche" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/191zc1Plpveqm3QHfBVbmz6WG0nrMvbcN=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
-      <div class="card-thumb-placeholder">🎞</div>
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=191zc1Plpveqm3QHfBVbmz6WG0nrMvbcN&sz=w800" alt="Dulce de Leche" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/191zc1Plpveqm3QHfBVbmz6WG0nrMvbcN=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">🎞</div>
       <div class="card-overlay"></div>
       <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
     </div>
@@ -1946,16 +1790,10 @@
       <div class="card-desc">Dir. Mariano Galperín</div>
     </div>
   </button>
-  <button type="button" class="card"
-    data-title="El Cuenco de las Ciudades Mestizas"
-    data-meta="Producción · Cine"
-    data-desc="Producción ejecutiva."
-    data-type="video"
-    data-src="https://drive.google.com/file/d/1AAvEuBsodC_e7FH4Yq-GRCjIjDaaIAiE/preview">
+  <button type="button" class="card" data-title="El Cuenco de las Ciudades Mestizas" data-meta="Producción · Cine" data-desc="Producción ejecutiva." data-type="video" data-src="https://drive.google.com/file/d/1AAvEuBsodC_e7FH4Yq-GRCjIjDaaIAiE/preview">
     <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1AAvEuBsodC_e7FH4Yq-GRCjIjDaaIAiE&sz=w800" alt="El Cuenco de las Ciudades Mestizas" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1AAvEuBsodC_e7FH4Yq-GRCjIjDaaIAiE=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
-      <div class="card-thumb-placeholder">🎞</div>
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1AAvEuBsodC_e7FH4Yq-GRCjIjDaaIAiE&sz=w800" alt="El Cuenco de las Ciudades Mestizas" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1AAvEuBsodC_e7FH4Yq-GRCjIjDaaIAiE=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">🎞</div>
       <div class="card-overlay"></div>
       <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
     </div>
@@ -1965,40 +1803,14 @@
       <div class="card-title">El Cuenco de las Ciudades Mestizas</div>
       
     </div>
-  </button>
-  <button type="button" class="card"
-    data-title="Un Día de Suerte"
-    data-meta="Producción · Cine"
-    data-desc="Producción ejecutiva."
-    data-type="video"
-    data-src="https://drive.google.com/file/d/1dXQ5y1ugG_vMkXId-45BMTblCmZTWAjp/preview">
-    <span class="card-pill">Video</span>
-    <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1dXQ5y1ugG_vMkXId-45BMTblCmZTWAjp&sz=w800" alt="Un Día de Suerte" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1dXQ5y1ugG_vMkXId-45BMTblCmZTWAjp=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
-      <div class="card-thumb-placeholder">🎞</div>
-      <div class="card-overlay"></div>
-      <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-    </div>
-    <div class="card-accent accent-teal"></div>
-    <div class="card-body">
-      <div class="card-meta">Producción · Cine</div>
-      <div class="card-title">Un Día de Suerte</div>
-      
-    </div>
   </button></div>
 
-<h3 class="section-subsection">Festival & Eventos</h3>
+<h3 class="section-subsection">Festivales & Eventos</h3>
 <div class="cards-grid">
-  <button type="button" class="card"
-    data-title="Festival Martha Argerich"
-    data-meta="Festival · Producción ejecutiva · 2004"
-    data-desc="Producción ejecutiva del histórico Festival Martha Argerich 2004."
-    data-type="image"
-    data-src="https://drive.google.com/file/d/1OXBg9wJ2uVOtYLHt5yZPYFiHy2eEJ5ce/preview">
+  <button type="button" class="card" data-title="Festival Martha Argerich" data-meta="Festival · Producción ejecutiva · 2004" data-desc="Producción ejecutiva del histórico Festival Martha Argerich 2004." data-type="image" data-src="https://drive.google.com/file/d/1OXBg9wJ2uVOtYLHt5yZPYFiHy2eEJ5ce/preview">
     <span class="card-pill">Foto</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1OXBg9wJ2uVOtYLHt5yZPYFiHy2eEJ5ce&sz=w800" alt="Festival Martha Argerich" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1OXBg9wJ2uVOtYLHt5yZPYFiHy2eEJ5ce=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
-      <div class="card-thumb-placeholder">🎹</div>
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1OXBg9wJ2uVOtYLHt5yZPYFiHy2eEJ5ce&sz=w800" alt="Festival Martha Argerich" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1OXBg9wJ2uVOtYLHt5yZPYFiHy2eEJ5ce=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">🎹</div>
       <div class="card-overlay"></div>
       
     </div>
@@ -2008,6 +1820,20 @@
       <div class="card-title">Festival Martha Argerich</div>
       <div class="card-desc">Producción ejecutiva del histórico festival de piano</div>
     </div>
+  </button>
+  <button type="button" class="card is-placeholder" >
+    <span class="card-pill">⚠ Pegar ID</span>
+    <div class="card-thumb-wrap">
+      <div class="card-thumb-placeholder placeholder-pending">🌊</div>
+      <div class="card-overlay"></div>
+      
+    </div>
+    <div class="card-accent accent-teal"></div>
+    <div class="card-body">
+      <div class="card-meta">Festival · Producción</div>
+      <div class="card-title">Festival Playas</div>
+      <div class="card-desc">Producción</div>
+    </div>
   </button></div>
 ```
 
@@ -2016,22 +1842,16 @@
 <section id="documental" class="section-panel doc" aria-labelledby="doc-title">
   <div class="section-inner">
     <header class="section-header">
-      <span class="section-num">04 / 05</span>
+      <span class="section-num">04 / 06</span>
       <h2 class="section-title" id="doc-title">Documentalista</h2>
     </header>
 
 ```
 <div class="cards-grid">
-  <button type="button" class="card"
-    data-title="Yo, abolicionista"
-    data-meta="Documental · Cine.ar Play · 2019"
-    data-desc="Documental disponible en Cine.ar Play. Fondo Nacional de las Artes, 2019. Aborda la prostitución desde el abolicionismo, con testimonios de mujeres en primera persona. Reseñado por Revista Emancipa."
-    data-type="video"
-    data-src="https://drive.google.com/file/d/1z2wmNZBNPjh3DBOxZ2OfPz1vge8x94QV/preview">
+  <button type="button" class="card" data-title="Yo, abolicionista" data-meta="Documental · Cine.ar Play · 2019" data-desc="Documental disponible en Cine.ar Play. Fondo Nacional de las Artes, 2019. Aborda la prostitución desde el abolicionismo, con testimonios de mujeres en primera persona." data-type="video" data-src="https://drive.google.com/file/d/1z2wmNZBNPjh3DBOxZ2OfPz1vge8x94QV/preview">
     <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1z2wmNZBNPjh3DBOxZ2OfPz1vge8x94QV&sz=w800" alt="Yo, abolicionista" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1z2wmNZBNPjh3DBOxZ2OfPz1vge8x94QV=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
-      <div class="card-thumb-placeholder">📽</div>
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1z2wmNZBNPjh3DBOxZ2OfPz1vge8x94QV&sz=w800" alt="Yo, abolicionista" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1z2wmNZBNPjh3DBOxZ2OfPz1vge8x94QV=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">📽</div>
       <div class="card-overlay"></div>
       <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
     </div>
@@ -2042,16 +1862,10 @@
       <div class="card-desc">Fondo Nacional de las Artes</div>
     </div>
   </button>
-  <button type="button" class="card"
-    data-title="Rota, mujeres en cuarentena"
-    data-meta="Docuserie · Mecenazgo GCBA · 2021"
-    data-desc="Docuserie producida con Mecenazgo GCBA, 2021. Mujeres durante el ASPO."
-    data-type="video"
-    data-src="https://drive.google.com/file/d/1zL5fBe1qSTICazXBTNIqw_3O1g3RGKOa/preview">
+  <button type="button" class="card" data-title="Rota, mujeres en cuarentena" data-meta="Docuserie · Mecenazgo GCBA · 2021" data-desc="Docuserie producida con Mecenazgo GCBA, 2021. Mujeres durante el ASPO." data-type="video" data-src="https://drive.google.com/file/d/1zL5fBe1qSTICazXBTNIqw_3O1g3RGKOa/preview">
     <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1zL5fBe1qSTICazXBTNIqw_3O1g3RGKOa&sz=w800" alt="Rota, mujeres en cuarentena" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1zL5fBe1qSTICazXBTNIqw_3O1g3RGKOa=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
-      <div class="card-thumb-placeholder">📽</div>
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1zL5fBe1qSTICazXBTNIqw_3O1g3RGKOa&sz=w800" alt="Rota, mujeres en cuarentena" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1zL5fBe1qSTICazXBTNIqw_3O1g3RGKOa=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">📽</div>
       <div class="card-overlay"></div>
       <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
     </div>
@@ -2062,16 +1876,10 @@
       <div class="card-desc">Mujeres durante el ASPO</div>
     </div>
   </button>
-  <button type="button" class="card"
-    data-title="Sandra Mihanovich — 40 años en la música"
-    data-meta="Documental · Sony / DBN · 2017"
-    data-desc="Documental producido para Sony / DBN. 40 años de la trayectoria musical de Sandra Mihanovich."
-    data-type="image"
-    data-src="https://drive.google.com/file/d/1a54bm7tT32T8L8aEzzXQmCo3JLO5UFFc/preview">
+  <button type="button" class="card" data-title="Sandra Mihanovich — 40 años en la música" data-meta="Documental · Sony / DBN · 2017" data-desc="Documental producido para Sony / DBN. 40 años de la trayectoria musical de Sandra Mihanovich." data-type="image" data-src="https://drive.google.com/file/d/1a54bm7tT32T8L8aEzzXQmCo3JLO5UFFc/preview">
     <span class="card-pill">Foto</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1a54bm7tT32T8L8aEzzXQmCo3JLO5UFFc&sz=w800" alt="Sandra Mihanovich — 40 años en la música" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1a54bm7tT32T8L8aEzzXQmCo3JLO5UFFc=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
-      <div class="card-thumb-placeholder">🎵</div>
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1a54bm7tT32T8L8aEzzXQmCo3JLO5UFFc&sz=w800" alt="Sandra Mihanovich — 40 años en la música" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1a54bm7tT32T8L8aEzzXQmCo3JLO5UFFc=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">🎵</div>
       <div class="card-overlay"></div>
       
     </div>
@@ -2082,84 +1890,6 @@
       <div class="card-desc">Sony / DBN · 2017</div>
     </div>
   </button></div>
-
-<h3 class="section-subsection">Prensa</h3>
-<div class="press-grid">
-  <button type="button" class="press-card"
-    data-title="Yo, abolicionista"
-    data-meta="Revista Emancipa · 2019"
-    data-desc="«Yo, abolicionista. Documental de Mariel Rosciano» — Reseña y entrevista completa en Revista Emancipa."
-    data-type="pdf"
-    data-src="https://drive.google.com/file/d/1J2pc3BRve3aNnNbpvhtxU5-iA0ivYjop/preview">
-    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1-Y4jNYbBDnrYyvYzmYSUnGg-QBu9cNaM&sz=w400" alt="" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1-Y4jNYbBDnrYyvYzmYSUnGg-QBu9cNaM=w400'}else{this.style.display='none'}"><div class="press-card-icon" style="background:rgba(var(--violet-rgb),0.08)">📰</div></div>
-    <div class="press-card-body">
-      <div class="press-card-title">Yo, abolicionista</div>
-      <div class="press-card-source">Revista Emancipa · 2019</div>
-    </div>
-  </button></div>
-
-<h3 class="section-subsection">María Becerra — En el Barro <span style="font-size:0.7em;opacity:0.6;letter-spacing:0.15em;font-weight:300"> (registro de coaching)</span></h3>
-<div class="cards-grid">
-  <button type="button" class="card"
-    data-title="En el Barro — Día 2"
-    data-meta="Fotografía · María Becerra"
-    data-desc="María Becerra — En el Barro. Día 2 de rodaje. Mariel Rosciano como coach artística y media trainer."
-    data-type="image"
-    data-src="https://drive.google.com/file/d/1GRPqo5ElMYEmCYFhrAwuvT59yXGdANgH/preview">
-    <span class="card-pill">Foto</span>
-    <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1GRPqo5ElMYEmCYFhrAwuvT59yXGdANgH&sz=w800" alt="En el Barro — Día 2" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1GRPqo5ElMYEmCYFhrAwuvT59yXGdANgH=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
-      <div class="card-thumb-placeholder">📷</div>
-      <div class="card-overlay"></div>
-      
-    </div>
-    <div class="card-accent accent-violet"></div>
-    <div class="card-body">
-      <div class="card-meta">Fotografía · María Becerra</div>
-      <div class="card-title">En el Barro — Día 2</div>
-      <div class="card-desc">Coaching y media training</div>
-    </div>
-  </button>
-  <button type="button" class="card"
-    data-title="En el Barro — Plano 99"
-    data-meta="Fotografía · María Becerra"
-    data-desc="María Becerra — En el Barro. Día 2 de rodaje. Fotografía de producción."
-    data-type="image"
-    data-src="https://drive.google.com/file/d/1HxrfT8IVFaiH6VYfhijLLDKVuuVvtPgR/preview">
-    <span class="card-pill">Foto</span>
-    <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1HxrfT8IVFaiH6VYfhijLLDKVuuVvtPgR&sz=w800" alt="En el Barro — Plano 99" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1HxrfT8IVFaiH6VYfhijLLDKVuuVvtPgR=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
-      <div class="card-thumb-placeholder">📷</div>
-      <div class="card-overlay"></div>
-      
-    </div>
-    <div class="card-accent accent-violet"></div>
-    <div class="card-body">
-      <div class="card-meta">Fotografía · María Becerra</div>
-      <div class="card-title">En el Barro — Plano 99</div>
-      <div class="card-desc">Coaching y media training</div>
-    </div>
-  </button>
-  <button type="button" class="card"
-    data-title="En el Barro — Plano 6"
-    data-meta="Fotografía · María Becerra"
-    data-desc="María Becerra — En el Barro. Fotografía de producción."
-    data-type="image"
-    data-src="https://drive.google.com/file/d/1dphWB8rH1BgYkAyKTYoicDDi8dwtv3PM/preview">
-    <span class="card-pill">Foto</span>
-    <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1dphWB8rH1BgYkAyKTYoicDDi8dwtv3PM&sz=w800" alt="En el Barro — Plano 6" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1dphWB8rH1BgYkAyKTYoicDDi8dwtv3PM=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
-      <div class="card-thumb-placeholder">📷</div>
-      <div class="card-overlay"></div>
-      
-    </div>
-    <div class="card-accent accent-violet"></div>
-    <div class="card-body">
-      <div class="card-meta">Fotografía · María Becerra</div>
-      <div class="card-title">En el Barro — Plano 6</div>
-      <div class="card-desc">Coaching y media training</div>
-    </div>
-  </button></div>
 ```
 
   </div>
@@ -2167,166 +1897,118 @@
 <section id="coach" class="section-panel coa" aria-labelledby="coach-title">
   <div class="section-inner">
     <header class="section-header">
-      <span class="section-num">05 / 05</span>
+      <span class="section-num">05 / 06</span>
       <h2 class="section-title" id="coach-title">Coach <em>Artística</em></h2>
     </header>
 
 ```
 <h3 class="section-subsection">Cine y series</h3>
 <div class="cards-grid">
-  <button type="button" class="card"
-    data-title="El Hijo"
-    data-meta="Coach artística · Cine"
-    data-desc="Coaching actoral en el rodaje de El Hijo."
-    data-type="image"
-    data-src="https://drive.google.com/file/d/13BZTsWDvzepnDoIGGUHxy_LLzqBOzDHC/preview">
-    <span class="card-pill">Foto</span>
+  <button type="button" class="card is-placeholder" >
+    <span class="card-pill">⚠ Pegar ID</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=13BZTsWDvzepnDoIGGUHxy_LLzqBOzDHC&sz=w800" alt="El Hijo" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/13BZTsWDvzepnDoIGGUHxy_LLzqBOzDHC=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
-      <div class="card-thumb-placeholder">✨</div>
+      <div class="card-thumb-placeholder placeholder-pending">🎬</div>
       <div class="card-overlay"></div>
       
     </div>
     <div class="card-accent accent-green"></div>
     <div class="card-body">
-      <div class="card-meta">Coach artística · Cine</div>
+      <div class="card-meta">Coach artística · Largometraje</div>
       <div class="card-title">El Hijo</div>
-      <div class="card-desc">Coaching actoral en rodaje</div>
+      <div class="card-desc">Largometraje · Coaching actoral</div>
     </div>
   </button>
-  <button type="button" class="card"
-    data-title="El Hijo — Set de rodaje"
-    data-meta="Coach artística · Cine"
-    data-desc="El Hijo — Coaching artístico en set de rodaje."
-    data-type="image"
-    data-src="https://drive.google.com/file/d/1ye3bodm4nS8s4A6Tz_PsFliFx0d0gEV7/preview">
-    <span class="card-pill">Foto</span>
+  <button type="button" class="card is-placeholder" >
+    <span class="card-pill">⚠ Pegar ID</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1ye3bodm4nS8s4A6Tz_PsFliFx0d0gEV7&sz=w800" alt="El Hijo — Set de rodaje" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1ye3bodm4nS8s4A6Tz_PsFliFx0d0gEV7=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
-      <div class="card-thumb-placeholder">✨</div>
+      <div class="card-thumb-placeholder placeholder-pending">🎬</div>
       <div class="card-overlay"></div>
       
     </div>
     <div class="card-accent accent-green"></div>
     <div class="card-body">
-      <div class="card-meta">Coach artística · Cine</div>
-      <div class="card-title">El Hijo — Set de rodaje</div>
-      <div class="card-desc">Coaching actoral</div>
+      <div class="card-meta">Dirección de casting</div>
+      <div class="card-title">Dulce de Leche</div>
+      <div class="card-desc">Dirección de casting</div>
     </div>
   </button>
-  <button type="button" class="card"
-    data-title="El Hijo — Cámara"
-    data-meta="Coach artística · Cine"
-    data-desc="El Hijo — Trabajo de cámara con coaching artístico."
-    data-type="image"
-    data-src="https://drive.google.com/file/d/1_gK2MLd21RBZ5kPJFu5PvUYlOffkRhnk/preview">
-    <span class="card-pill">Foto</span>
+  <button type="button" class="card is-placeholder" >
+    <span class="card-pill">⚠ Pegar ID</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1_gK2MLd21RBZ5kPJFu5PvUYlOffkRhnk&sz=w800" alt="El Hijo — Cámara" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1_gK2MLd21RBZ5kPJFu5PvUYlOffkRhnk=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
-      <div class="card-thumb-placeholder">✨</div>
+      <div class="card-thumb-placeholder placeholder-pending">🎬</div>
       <div class="card-overlay"></div>
       
     </div>
     <div class="card-accent accent-green"></div>
     <div class="card-body">
-      <div class="card-meta">Coach artística · Cine</div>
-      <div class="card-title">El Hijo — Cámara</div>
-      <div class="card-desc">Coaching actoral</div>
+      <div class="card-meta">Dirección de casting</div>
+      <div class="card-title">Caño Dorado</div>
+      <div class="card-desc">Dirección de casting</div>
     </div>
   </button>
-  <button type="button" class="card"
-    data-title="El Hijo — Set"
-    data-meta="Coach artística · Cine"
-    data-desc="El Hijo — Coaching en set."
-    data-type="image"
-    data-src="https://drive.google.com/file/d/1QJKxwQL7YvvLRPN81hR1641_67YJBDuX/preview">
+  <button type="button" class="card" data-title="En el Barro — María Becerra" data-meta="Coach artística · María Becerra" data-desc="María Becerra — En el Barro. Día 2 de rodaje. Mariel Rosciano como coach artística y media trainer." data-type="image" data-src="https://drive.google.com/file/d/1GRPqo5ElMYEmCYFhrAwuvT59yXGdANgH/preview">
     <span class="card-pill">Foto</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1QJKxwQL7YvvLRPN81hR1641_67YJBDuX&sz=w800" alt="El Hijo — Set" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1QJKxwQL7YvvLRPN81hR1641_67YJBDuX=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
-      <div class="card-thumb-placeholder">✨</div>
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1GRPqo5ElMYEmCYFhrAwuvT59yXGdANgH&sz=w800" alt="En el Barro — María Becerra" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1GRPqo5ElMYEmCYFhrAwuvT59yXGdANgH=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">📷</div>
       <div class="card-overlay"></div>
       
     </div>
     <div class="card-accent accent-green"></div>
     <div class="card-body">
-      <div class="card-meta">Coach artística · Cine</div>
-      <div class="card-title">El Hijo — Set</div>
-      <div class="card-desc">Coaching actoral</div>
+      <div class="card-meta">Coach artística · María Becerra</div>
+      <div class="card-title">En el Barro — María Becerra</div>
+      <div class="card-desc">Coaching y media training</div>
+    </div>
+  </button>
+  <button type="button" class="card" data-title="En el Barro — Plano 99" data-meta="Coach artística · María Becerra" data-desc="María Becerra — En el Barro. Día 2 de rodaje." data-type="image" data-src="https://drive.google.com/file/d/1HxrfT8IVFaiH6VYfhijLLDKVuuVvtPgR/preview">
+    <span class="card-pill">Foto</span>
+    <div class="card-thumb-wrap">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1HxrfT8IVFaiH6VYfhijLLDKVuuVvtPgR&sz=w800" alt="En el Barro — Plano 99" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1HxrfT8IVFaiH6VYfhijLLDKVuuVvtPgR=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">📷</div>
+      <div class="card-overlay"></div>
+      
+    </div>
+    <div class="card-accent accent-green"></div>
+    <div class="card-body">
+      <div class="card-meta">Coach artística · María Becerra</div>
+      <div class="card-title">En el Barro — Plano 99</div>
+      <div class="card-desc">Coaching y media training</div>
+    </div>
+  </button>
+  <button type="button" class="card" data-title="En el Barro — Producción" data-meta="Coach artística · María Becerra" data-desc="María Becerra — En el Barro. Fotografía de producción." data-type="image" data-src="https://drive.google.com/file/d/1dphWB8rH1BgYkAyKTYoicDDi8dwtv3PM/preview">
+    <span class="card-pill">Foto</span>
+    <div class="card-thumb-wrap">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1dphWB8rH1BgYkAyKTYoicDDi8dwtv3PM&sz=w800" alt="En el Barro — Producción" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1dphWB8rH1BgYkAyKTYoicDDi8dwtv3PM=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">📷</div>
+      <div class="card-overlay"></div>
+      
+    </div>
+    <div class="card-accent accent-green"></div>
+    <div class="card-body">
+      <div class="card-meta">Coach artística · María Becerra</div>
+      <div class="card-title">En el Barro — Producción</div>
+      <div class="card-desc">Coaching y media training</div>
     </div>
   </button></div>
 
-<h3 class="section-subsection">Artistas</h3>
+<h3 class="section-subsection">Artistas — Videos</h3>
 <div class="cards-grid">
-  <button type="button" class="card"
-    data-title="Cami Lour"
-    data-meta="Coach artística · Artista"
-    data-desc="Coaching artístico y desarrollo de Cami Lour."
-    data-type="video"
-    data-src="https://drive.google.com/file/d/15uB1TUKKr6DziJAYsGW6zBEcVeJzGI1h/preview">
-    <span class="card-pill">Video</span>
+  <button type="button" class="card is-placeholder" >
+    <span class="card-pill">⚠ Pegar ID</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=15uB1TUKKr6DziJAYsGW6zBEcVeJzGI1h&sz=w800" alt="Cami Lour" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/15uB1TUKKr6DziJAYsGW6zBEcVeJzGI1h=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
-      <div class="card-thumb-placeholder">✨</div>
+      <div class="card-thumb-placeholder placeholder-pending">✨</div>
       <div class="card-overlay"></div>
-      <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+      
     </div>
     <div class="card-accent accent-green"></div>
     <div class="card-body">
       <div class="card-meta">Coach artística · Artista</div>
-      <div class="card-title">Cami Lour</div>
+      <div class="card-title">Leo</div>
       <div class="card-desc">Desarrollo artístico</div>
     </div>
   </button>
-  <button type="button" class="card"
-    data-title="Alberee"
-    data-meta="Coach artística · Artista"
-    data-desc="Coaching artístico y desarrollo de Alberee."
-    data-type="video"
-    data-src="https://drive.google.com/file/d/1nFizX4avfd-uvZUGuKdpVYx2eCSMEmyg/preview">
-    <span class="card-pill">Video</span>
+  <button type="button" class="card is-placeholder" >
+    <span class="card-pill">⚠ Pegar ID</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1nFizX4avfd-uvZUGuKdpVYx2eCSMEmyg&sz=w800" alt="Alberee" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1nFizX4avfd-uvZUGuKdpVYx2eCSMEmyg=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
-      <div class="card-thumb-placeholder">✨</div>
-      <div class="card-overlay"></div>
-      <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-    </div>
-    <div class="card-accent accent-green"></div>
-    <div class="card-body">
-      <div class="card-meta">Coach artística · Artista</div>
-      <div class="card-title">Alberee</div>
-      <div class="card-desc">Desarrollo artístico</div>
-    </div>
-  </button>
-  <button type="button" class="card"
-    data-title="Morena"
-    data-meta="Coach artística · Artista"
-    data-desc="Coaching artístico y desarrollo de Morena."
-    data-type="video"
-    data-src="https://drive.google.com/file/d/1hKgZx7lq2ihnCGmTMlIMrbgASGspfjBx/preview">
-    <span class="card-pill">Video</span>
-    <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1hKgZx7lq2ihnCGmTMlIMrbgASGspfjBx&sz=w800" alt="Morena" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1hKgZx7lq2ihnCGmTMlIMrbgASGspfjBx=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
-      <div class="card-thumb-placeholder">✨</div>
-      <div class="card-overlay"></div>
-      <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-    </div>
-    <div class="card-accent accent-green"></div>
-    <div class="card-body">
-      <div class="card-meta">Coach artística · Artista</div>
-      <div class="card-title">Morena</div>
-      <div class="card-desc">Desarrollo artístico</div>
-    </div>
-  </button>
-  <button type="button" class="card"
-    data-title="Joelle"
-    data-meta="Coach artística · Artista"
-    data-desc="Coaching artístico y desarrollo de Joelle."
-    data-type="image"
-    data-src="https://drive.google.com/file/d/1yhzxPP9Z9fcLfdt3VAThZ4ieZIWvXNCN/preview">
-    <span class="card-pill">Foto</span>
-    <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1yhzxPP9Z9fcLfdt3VAThZ4ieZIWvXNCN&sz=w800" alt="Joelle" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1yhzxPP9Z9fcLfdt3VAThZ4ieZIWvXNCN=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
-      <div class="card-thumb-placeholder">✨</div>
+      <div class="card-thumb-placeholder placeholder-pending">✨</div>
       <div class="card-overlay"></div>
       
     </div>
@@ -2337,180 +2019,136 @@
       <div class="card-desc">Desarrollo artístico</div>
     </div>
   </button>
-  <button type="button" class="card"
-    data-title="More"
-    data-meta="Coach artística · Artista"
-    data-desc="Coaching artístico y desarrollo de More."
-    data-type="image"
-    data-src="https://drive.google.com/file/d/14MtV1nyMkHTfme4KXkKhriAtfvUP3w3i/preview">
-    <span class="card-pill">Foto</span>
+  <button type="button" class="card is-placeholder" >
+    <span class="card-pill">⚠ Pegar ID</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=14MtV1nyMkHTfme4KXkKhriAtfvUP3w3i&sz=w800" alt="More" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/14MtV1nyMkHTfme4KXkKhriAtfvUP3w3i=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
-      <div class="card-thumb-placeholder">✨</div>
+      <div class="card-thumb-placeholder placeholder-pending">✨</div>
       <div class="card-overlay"></div>
       
     </div>
     <div class="card-accent accent-green"></div>
     <div class="card-body">
       <div class="card-meta">Coach artística · Artista</div>
-      <div class="card-title">More</div>
+      <div class="card-title">Morena</div>
       <div class="card-desc">Desarrollo artístico</div>
     </div>
-  </button></div>
-
-<h3 class="section-subsection">Publicidad — como Coach artística (incl. Kinder)</h3>
-<div class="cards-grid">
-  <button type="button" class="card"
-    data-title="Kinder — Nueva Cara"
-    data-meta="Coach artística · Publicidad"
-    data-desc="Coach artística en campaña publicitaria de Kinder — Nueva Cara."
-    data-type="image"
-    data-src="https://drive.google.com/file/d/1gi6K0uHYt7yXMWvUEsQ-zkISmCg1mk52/preview">
-    <span class="card-pill">Foto</span>
+  </button>
+  <button type="button" class="card is-placeholder" >
+    <span class="card-pill">⚠ Pegar ID</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1gi6K0uHYt7yXMWvUEsQ-zkISmCg1mk52&sz=w800" alt="Kinder — Nueva Cara" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1gi6K0uHYt7yXMWvUEsQ-zkISmCg1mk52=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
-      <div class="card-thumb-placeholder">✨</div>
+      <div class="card-thumb-placeholder placeholder-pending">✨</div>
       <div class="card-overlay"></div>
       
     </div>
     <div class="card-accent accent-green"></div>
     <div class="card-body">
-      <div class="card-meta">Coach artística · Publicidad</div>
-      <div class="card-title">Kinder — Nueva Cara</div>
-      <div class="card-desc">Campaña publicitaria</div>
+      <div class="card-meta">Coach artística · Artista</div>
+      <div class="card-title">Vicky Masuelli</div>
+      <div class="card-desc">Desarrollo artístico</div>
     </div>
   </button>
-  <button type="button" class="card"
-    data-title="Trabajo de coaching"
-    data-meta="Coach artística · Contenido"
-    data-desc="Registro audiovisual del trabajo de coaching artístico."
-    data-type="video"
-    data-src="https://drive.google.com/file/d/1g858ITdLSAhp47lgF91e5bBcGXCyNa3M/preview">
-    <span class="card-pill">Video</span>
+  <button type="button" class="card is-placeholder" >
+    <span class="card-pill">⚠ Pegar ID</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1g858ITdLSAhp47lgF91e5bBcGXCyNa3M&sz=w800" alt="Trabajo de coaching" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1g858ITdLSAhp47lgF91e5bBcGXCyNa3M=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}">
-      <div class="card-thumb-placeholder">✨</div>
+      <div class="card-thumb-placeholder placeholder-pending">✨</div>
       <div class="card-overlay"></div>
-      <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+      
     </div>
     <div class="card-accent accent-green"></div>
     <div class="card-body">
-      <div class="card-meta">Coach artística · Contenido</div>
-      <div class="card-title">Trabajo de coaching</div>
-      <div class="card-desc">Registro de procesos</div>
+      <div class="card-meta">Coach artística · Artista</div>
+      <div class="card-title">Beyla</div>
+      <div class="card-desc">Desarrollo artístico</div>
+    </div>
+  </button>
+  <button type="button" class="card is-placeholder" >
+    <span class="card-pill">⚠ Pegar ID</span>
+    <div class="card-thumb-wrap">
+      <div class="card-thumb-placeholder placeholder-pending">✨</div>
+      <div class="card-overlay"></div>
+      
+    </div>
+    <div class="card-accent accent-green"></div>
+    <div class="card-body">
+      <div class="card-meta">Coach artística · Artista</div>
+      <div class="card-title">Salas</div>
+      <div class="card-desc">Desarrollo artístico</div>
+    </div>
+  </button>
+  <button type="button" class="card is-placeholder" >
+    <span class="card-pill">⚠ Pegar ID</span>
+    <div class="card-thumb-wrap">
+      <div class="card-thumb-placeholder placeholder-pending">✨</div>
+      <div class="card-overlay"></div>
+      
+    </div>
+    <div class="card-accent accent-green"></div>
+    <div class="card-body">
+      <div class="card-meta">Coach artística · Artista</div>
+      <div class="card-title">Xango</div>
+      <div class="card-desc">Desarrollo artístico</div>
+    </div>
+  </button></div>
+
+<h3 class="section-subsection">Artistas — Galería de fotos</h3>
+<div class="cards-grid">
+  <button type="button" class="card is-placeholder" >
+    <span class="card-pill">⚠ Pegar ID</span>
+    <div class="card-thumb-wrap">
+      <div class="card-thumb-placeholder placeholder-pending">📸</div>
+      <div class="card-overlay"></div>
+      
+    </div>
+    <div class="card-accent accent-green"></div>
+    <div class="card-body">
+      <div class="card-meta">Galería · Portada</div>
+      <div class="card-title">Galería de Fotos · Artistas</div>
+      <div class="card-desc">Todas las artistas</div>
     </div>
   </button></div>
 
 <h3 class="section-subsection">Gráfica</h3>
 <div class="press-grid">
-  <button type="button" class="press-card"
-    data-title="Coach I"
-    data-meta="Gráfica"
-    data-desc="Material gráfico de trabajo como coach artística."
-    data-type="image"
-    data-src="https://drive.google.com/file/d/14k0rXy8gXJRTg0Kw_hGjxSjfBNDSCG52/preview">
-    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=14k0rXy8gXJRTg0Kw_hGjxSjfBNDSCG52&sz=w400" alt="Coach I" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/14k0rXy8gXJRTg0Kw_hGjxSjfBNDSCG52=w400'}else{this.style.display='none';this.parentElement.classList.add('no-image')}"></div>
+  <button type="button" class="press-card is-placeholder" >
+    <div class="press-card-img-wrap"><div class="press-card-icon placeholder-pending" style="background:rgba(var(--green-rgb),0.08)">⚠</div></div>
     <div class="press-card-body">
-      <div class="press-card-title">Coach I</div>
-      <div class="press-card-source">Gráfica</div>
+      <div class="press-card-title">Gráfica 1</div>
+      <div class="press-card-source">—</div>
     </div>
   </button>
-  <button type="button" class="press-card"
-    data-title="Coach II"
-    data-meta="Gráfica"
-    data-desc="Material gráfico de trabajo como coach artística."
-    data-type="image"
-    data-src="https://drive.google.com/file/d/1hiDMGJBSDpS3wDZ2096vOWWVYabIH7Oy/preview">
-    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1hiDMGJBSDpS3wDZ2096vOWWVYabIH7Oy&sz=w400" alt="Coach II" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1hiDMGJBSDpS3wDZ2096vOWWVYabIH7Oy=w400'}else{this.style.display='none';this.parentElement.classList.add('no-image')}"></div>
+  <button type="button" class="press-card is-placeholder" >
+    <div class="press-card-img-wrap"><div class="press-card-icon placeholder-pending" style="background:rgba(var(--green-rgb),0.08)">⚠</div></div>
     <div class="press-card-body">
-      <div class="press-card-title">Coach II</div>
-      <div class="press-card-source">Gráfica</div>
+      <div class="press-card-title">Gráfica 2</div>
+      <div class="press-card-source">—</div>
     </div>
   </button>
-  <button type="button" class="press-card"
-    data-title="Coach III"
-    data-meta="Gráfica"
-    data-desc="Material gráfico de trabajo como coach artística."
-    data-type="image"
-    data-src="https://drive.google.com/file/d/1TCsANLbZoUsSD5McpipV0o74SFc4cJQL/preview">
-    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1TCsANLbZoUsSD5McpipV0o74SFc4cJQL&sz=w400" alt="Coach III" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1TCsANLbZoUsSD5McpipV0o74SFc4cJQL=w400'}else{this.style.display='none';this.parentElement.classList.add('no-image')}"></div>
+  <button type="button" class="press-card is-placeholder" >
+    <div class="press-card-img-wrap"><div class="press-card-icon placeholder-pending" style="background:rgba(var(--green-rgb),0.08)">⚠</div></div>
     <div class="press-card-body">
-      <div class="press-card-title">Coach III</div>
-      <div class="press-card-source">Gráfica</div>
-    </div>
-  </button>
-  <button type="button" class="press-card"
-    data-title="Coach IV"
-    data-meta="Gráfica"
-    data-desc="Material gráfico de trabajo como coach artística."
-    data-type="image"
-    data-src="https://drive.google.com/file/d/1YNo9vyGqtrVNkQj08W0clGueN0ogNplZ/preview">
-    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1YNo9vyGqtrVNkQj08W0clGueN0ogNplZ&sz=w400" alt="Coach IV" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1YNo9vyGqtrVNkQj08W0clGueN0ogNplZ=w400'}else{this.style.display='none';this.parentElement.classList.add('no-image')}"></div>
-    <div class="press-card-body">
-      <div class="press-card-title">Coach IV</div>
-      <div class="press-card-source">Gráfica</div>
-    </div>
-  </button>
-  <button type="button" class="press-card"
-    data-title="Con artistas"
-    data-meta="Gráfica"
-    data-desc="Trabajo con artistas en proceso de coaching."
-    data-type="image"
-    data-src="https://drive.google.com/file/d/1Ak9I5bfMU12Y_lQZDQcSBusSUh_5pvzM/preview">
-    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1Ak9I5bfMU12Y_lQZDQcSBusSUh_5pvzM&sz=w400" alt="Con artistas" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1Ak9I5bfMU12Y_lQZDQcSBusSUh_5pvzM=w400'}else{this.style.display='none';this.parentElement.classList.add('no-image')}"></div>
-    <div class="press-card-body">
-      <div class="press-card-title">Con artistas</div>
-      <div class="press-card-source">Gráfica</div>
-    </div>
-  </button>
-  <button type="button" class="press-card"
-    data-title="Con artistas"
-    data-meta="Gráfica"
-    data-desc="Trabajo con artistas en proceso de coaching."
-    data-type="image"
-    data-src="https://drive.google.com/file/d/1vZq-caeJdoJEEf7oO4j4EeTlYDayQ-it/preview">
-    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1vZq-caeJdoJEEf7oO4j4EeTlYDayQ-it&sz=w400" alt="Con artistas" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1vZq-caeJdoJEEf7oO4j4EeTlYDayQ-it=w400'}else{this.style.display='none';this.parentElement.classList.add('no-image')}"></div>
-    <div class="press-card-body">
-      <div class="press-card-title">Con artistas</div>
-      <div class="press-card-source">Gráfica</div>
-    </div>
-  </button>
-  <button type="button" class="press-card"
-    data-title="Con artistas"
-    data-meta="Gráfica"
-    data-desc="Trabajo con artistas en proceso de coaching."
-    data-type="image"
-    data-src="https://drive.google.com/file/d/1N5ZhbenX6cNVGgZGlWhkIVYLD7zZCMU4/preview">
-    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1N5ZhbenX6cNVGgZGlWhkIVYLD7zZCMU4&sz=w400" alt="Con artistas" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1N5ZhbenX6cNVGgZGlWhkIVYLD7zZCMU4=w400'}else{this.style.display='none';this.parentElement.classList.add('no-image')}"></div>
-    <div class="press-card-body">
-      <div class="press-card-title">Con artistas</div>
-      <div class="press-card-source">Gráfica</div>
-    </div>
-  </button>
-  <button type="button" class="press-card"
-    data-title="Con artistas"
-    data-meta="Gráfica"
-    data-desc="Trabajo con artistas en proceso de coaching."
-    data-type="image"
-    data-src="https://drive.google.com/file/d/1m0tRYygMV9sVlhoFUQo0cBeRJDNynNrq/preview">
-    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1m0tRYygMV9sVlhoFUQo0cBeRJDNynNrq&sz=w400" alt="Con artistas" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1m0tRYygMV9sVlhoFUQo0cBeRJDNynNrq=w400'}else{this.style.display='none';this.parentElement.classList.add('no-image')}"></div>
-    <div class="press-card-body">
-      <div class="press-card-title">Con artistas</div>
-      <div class="press-card-source">Gráfica</div>
-    </div>
-  </button>
-  <button type="button" class="press-card"
-    data-title="Imagen coach"
-    data-meta="Gráfica"
-    data-desc="Imagen de trabajo como coach artística."
-    data-type="image"
-    data-src="https://drive.google.com/file/d/1-Q1lWekPbCUvDk1igqPNA412lrPjtR06/preview">
-    <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1-Q1lWekPbCUvDk1igqPNA412lrPjtR06&sz=w400" alt="Imagen coach" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1-Q1lWekPbCUvDk1igqPNA412lrPjtR06=w400'}else{this.style.display='none';this.parentElement.classList.add('no-image')}"></div>
-    <div class="press-card-body">
-      <div class="press-card-title">Imagen coach</div>
-      <div class="press-card-source">Gráfica</div>
+      <div class="press-card-title">Gráfica 3</div>
+      <div class="press-card-source">—</div>
     </div>
   </button></div>
+```
+
+  </div>
+</section>
+<section id="guionista" class="section-panel gui" aria-labelledby="gui-title">
+  <div class="section-inner">
+    <header class="section-header">
+      <span class="section-num">06 / 06</span>
+      <h2 class="section-title" id="gui-title">Guionista</h2>
+    </header>
+
+```
+<div class="bio-block">
+  <p class="bio-text">Escribo para la escena y para la pantalla. Me apasionan los monólogos teatrales y a lo largo de mi carrera desarrollé largometrajes, documentales y series web <span class="bio-em">—algunas de ellas ganadoras de concursos.</span></p>
+  <p class="bio-text">Hoy estoy enfocada en el desarrollo de guiones para <span class="bio-highlight">ficciones verticales</span>, un formato que me desafía y me entusiasma por su potencial narrativo.</p>
+</div>
+
+<h3 class="section-subsection">Obras</h3>
+<div class="empty-grid-placeholder">Próximamente — pegar materiales de la carpeta de Drive</div>
 ```
 
   </div>
@@ -2781,11 +2419,12 @@ const CUSTOM_POSTERS = {
   const indicatorSub = document.getElementById('indicator-sub');
 
   const SECTIONS = [
-    { id: 'actriz',     name: 'Actriz',         num: '01 / 05' },
-    { id: 'directora',  name: 'Directora',      num: '02 / 05' },
-    { id: 'productora', name: 'Productora',     num: '03 / 05' },
-    { id: 'documental', name: 'Documentalista', num: '04 / 05' },
-    { id: 'coach',      name: 'Coach Artística', num: '05 / 05' },
+    { id: 'actriz',     name: 'Actriz',         num: '01 / 06' },
+    { id: 'directora',  name: 'Directora',      num: '02 / 06' },
+    { id: 'productora', name: 'Productora',     num: '03 / 06' },
+    { id: 'documental', name: 'Documentalista', num: '04 / 06' },
+    { id: 'coach',      name: 'Coach Artística', num: '05 / 06' },
+    { id: 'guionista',  name: 'Guionista',      num: '06 / 06' },
   ];
 
   let currentSectionId = '';
@@ -2793,9 +2432,12 @@ const CUSTOM_POSTERS = {
 
   const updateIndicator = () => {
     const scrollY = window.scrollY;
+    const viewportH = window.innerHeight;
     const viewportTop = scrollY + 140; // un poco bajo el header
 
     // ¿Estamos en alguna sección?
+    // Estrategia: la sección activa es aquella cuyo top es <= viewportTop
+    // y que sea la más cercana al viewportTop por encima.
     let activeSection = null;
     for (const s of SECTIONS) {
       const el = document.getElementById(s.id);
@@ -2803,9 +2445,11 @@ const CUSTOM_POSTERS = {
       const rect = el.getBoundingClientRect();
       const top = rect.top + scrollY;
       const bottom = top + el.offsetHeight;
+      // La sección está activa si su rango contiene al viewportTop
       if (viewportTop >= top && viewportTop < bottom) {
         activeSection = s;
-        break;
+        // No break — seguimos iterando para encontrar la última que matchea
+        // (en caso de secciones anidadas, queremos la más profunda)
       }
     }
 
@@ -2846,11 +2490,13 @@ const CUSTOM_POSTERS = {
     } else {
       indicator.classList.remove('visible');
       currentSectionId = '';
+      currentSubsection = '';
     }
   };
 
   updateIndicator();
   window.addEventListener('scroll', updateIndicator, { passive: true });
+  window.addEventListener('resize', updateIndicator, { passive: true });
 
 
   const revealEls = document.querySelectorAll('.card, .press-card, .section-header, .geo-label, .section-subsection');
