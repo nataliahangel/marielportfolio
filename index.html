@@ -739,6 +739,27 @@
     border: 1px solid rgba(255,255,255,0.12); color: var(--ink);
   }
 
+  /* Card como link (abre carpeta de Drive en nueva pestaña) */
+  .card.card-as-link {
+    text-decoration: none;
+    color: inherit;
+  }
+  .card.card-as-link .card-play-folder {
+    background: rgba(11,10,14,0.7);
+    backdrop-filter: blur(8px);
+  }
+  .card.card-as-link .card-play-folder svg { fill: none; }
+  .card.card-as-link:hover .card-play-folder {
+    background: var(--gold);
+    transform: scale(1.05);
+  }
+  .card.card-as-link:hover .card-play-folder svg { color: var(--bg); }
+  /* Indicador "abre en Drive" en la pill */
+  .card.card-as-link .card-pill::after {
+    content: ' ↗';
+    opacity: 0.7;
+  }
+
   /* PRESS */
   .press-grid {
     display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -1229,93 +1250,128 @@
     </header>
 
 ```
-<h3 class="section-subsection">Teatro & Cine</h3>
+<h3 class="section-subsection">Teatro</h3>
 <div class="cards-grid">
-  <button type="button" class="card is-placeholder" >
-    <span class="card-pill">⚠ Pegar ID</span>
+  <button type="button" class="card"
+    data-title="Elena"
+    data-meta="Teatro · Actuación"
+    data-desc="Elena — Obra teatral con gira nacional e internacional. Fotografías del proceso creativo y del personaje."
+    data-type="image"
+    data-src="https://drive.google.com/file/d/1i6lK337c15ZUfXL7UQzcEv3lDxxIuLGR/preview">
+    <span class="card-pill">Foto</span>
     <div class="card-thumb-wrap">
-      <div class="card-thumb-placeholder placeholder-pending">🎭</div>
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1i6lK337c15ZUfXL7UQzcEv3lDxxIuLGR&sz=w800" alt="Elena" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1i6lK337c15ZUfXL7UQzcEv3lDxxIuLGR=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">🎭</div>
       <div class="card-overlay"></div>
       
     </div>
     <div class="card-accent accent-rose"></div>
     <div class="card-body">
-      <div class="card-meta">Teatro · Unipersonal · Trailer</div>
-      <div class="card-title">Mujer de 30 desesperada, busca</div>
-      <div class="card-desc">6 temporadas · AR · PY · CO · CR</div>
+      <div class="card-meta">Teatro · Actuación</div>
+      <div class="card-title">Elena</div>
+      <div class="card-desc">Obra teatral con gira nacional e internacional</div>
     </div>
   </button>
-  <button type="button" class="card is-placeholder" >
-    <span class="card-pill">⚠ Pegar ID</span>
-    <div class="card-thumb-wrap">
-      <div class="card-thumb-placeholder placeholder-pending">🎭</div>
-      <div class="card-overlay"></div>
-      
-    </div>
-    <div class="card-accent accent-rose"></div>
-    <div class="card-body">
-      <div class="card-meta">Teatro · Unipersonal · Humor · Trailer</div>
-      <div class="card-title">Madre Primeriza</div>
-      <div class="card-desc">Costa Rica · Argentina</div>
-    </div>
-  </button>
-  <button type="button" class="card is-placeholder" >
-    <span class="card-pill">⚠ Pegar ID</span>
-    <div class="card-thumb-wrap">
-      <div class="card-thumb-placeholder placeholder-pending">🎭</div>
-      <div class="card-overlay"></div>
-      
-    </div>
-    <div class="card-accent accent-rose"></div>
-    <div class="card-body">
-      <div class="card-meta">Teatro · Unipersonal · Trailer</div>
-      <div class="card-title">En el nombre de Raquel</div>
-      <div class="card-desc">AR · PY · CO · CR</div>
-    </div>
-  </button>
-  <button type="button" class="card" data-title="Mujer de 30 — Función" data-meta="Teatro · Unipersonal" data-desc="Función del unipersonal Mujer de 30 desesperada, busca." data-type="video" data-src="https://drive.google.com/file/d/10j1cEq5e4dqyDUuL3fhW_iWxmdy8ZqDc/preview">
+  <button type="button" class="card"
+    data-title="MILF"
+    data-meta="Teatro · Unipersonal"
+    data-desc="MILF — Madre independiente, loca y feminista. Unipersonal de humor."
+    data-type="video"
+    data-src="https://drive.google.com/file/d/1rPSMz2u_n5BnLvBuNMIzJSiOmbag6N4S/preview">
     <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=10j1cEq5e4dqyDUuL3fhW_iWxmdy8ZqDc&sz=w800" alt="Mujer de 30 — Función" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/10j1cEq5e4dqyDUuL3fhW_iWxmdy8ZqDc=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">🎭</div>
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1rPSMz2u_n5BnLvBuNMIzJSiOmbag6N4S&sz=w800" alt="MILF" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1rPSMz2u_n5BnLvBuNMIzJSiOmbag6N4S=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">🎭</div>
       <div class="card-overlay"></div>
       <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
     </div>
     <div class="card-accent accent-rose"></div>
     <div class="card-body">
       <div class="card-meta">Teatro · Unipersonal</div>
-      <div class="card-title">Mujer de 30 — Función</div>
-      <div class="card-desc">Función completa</div>
+      <div class="card-title">MILF</div>
+      <div class="card-desc">Madre independiente, loca y feminista</div>
     </div>
   </button>
-  <button type="button" class="card" data-title="Madre Primeriza — Función" data-meta="Teatro · Unipersonal · Humor" data-desc="Función completa del unipersonal Madre Primeriza." data-type="video" data-src="https://drive.google.com/file/d/1muU9XOF-sPzHSSHi7-5HlhkeSKn6H2vH/preview">
+  <button type="button" class="card"
+    data-title="La Menesunda"
+    data-meta="Teatro · Actuación"
+    data-desc="La Menesunda — Espectáculo teatral."
+    data-type="image"
+    data-src="https://drive.google.com/file/d/1S5XdKgyv8HLpubwAqasia6Zm8y8saVev/preview">
+    <span class="card-pill">Foto</span>
+    <div class="card-thumb-wrap">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1S5XdKgyv8HLpubwAqasia6Zm8y8saVev&sz=w800" alt="La Menesunda" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1S5XdKgyv8HLpubwAqasia6Zm8y8saVev=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">🎭</div>
+      <div class="card-overlay"></div>
+      
+    </div>
+    <div class="card-accent accent-rose"></div>
+    <div class="card-body">
+      <div class="card-meta">Teatro · Actuación</div>
+      <div class="card-title">La Menesunda</div>
+      <div class="card-desc">Espectáculo teatral</div>
+    </div>
+  </button>
+  <button type="button" class="card"
+    data-title="En el nombre de Raquel"
+    data-meta="Teatro · Unipersonal"
+    data-desc="En el nombre de Raquel — Unipersonal sobre la trata de personas, basado en La Polaca de Myrtha Schalom. Gira por Argentina, Paraguay, Colombia y Costa Rica."
+    data-type="image"
+    data-src="https://drive.google.com/file/d/192aWhxQ6O79ya_u3s3-y3qye6Nls5KFB/preview">
+    <span class="card-pill">Foto</span>
+    <div class="card-thumb-wrap">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=192aWhxQ6O79ya_u3s3-y3qye6Nls5KFB&sz=w800" alt="En el nombre de Raquel" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/192aWhxQ6O79ya_u3s3-y3qye6Nls5KFB=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">🎭</div>
+      <div class="card-overlay"></div>
+      
+    </div>
+    <div class="card-accent accent-rose"></div>
+    <div class="card-body">
+      <div class="card-meta">Teatro · Unipersonal</div>
+      <div class="card-title">En el nombre de Raquel</div>
+      <div class="card-desc">AR · PY · CO · CR</div>
+    </div>
+  </button>
+  <button type="button" class="card"
+    data-title="Mujer de 30 desesperada, busca"
+    data-meta="Teatro · Unipersonal"
+    data-desc="Mujer de 30 desesperada, busca. 6 temporadas en cartel y giras por Argentina, Paraguay, Colombia y Costa Rica."
+    data-type="video"
+    data-src="https://drive.google.com/file/d/10j1cEq5e4dqyDUuL3fhW_iWxmdy8ZqDc/preview">
     <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1muU9XOF-sPzHSSHi7-5HlhkeSKn6H2vH&sz=w800" alt="Madre Primeriza — Función" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1muU9XOF-sPzHSSHi7-5HlhkeSKn6H2vH=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">🎭</div>
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=10j1cEq5e4dqyDUuL3fhW_iWxmdy8ZqDc&sz=w800" alt="Mujer de 30 desesperada, busca" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/10j1cEq5e4dqyDUuL3fhW_iWxmdy8ZqDc=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">🎭</div>
+      <div class="card-overlay"></div>
+      <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+    </div>
+    <div class="card-accent accent-rose"></div>
+    <div class="card-body">
+      <div class="card-meta">Teatro · Unipersonal</div>
+      <div class="card-title">Mujer de 30 desesperada, busca</div>
+      <div class="card-desc">6 temporadas · AR · PY · CO · CR</div>
+    </div>
+  </button>
+  <button type="button" class="card"
+    data-title="Madre Primeriza"
+    data-meta="Teatro · Unipersonal · Humor"
+    data-desc="Madre Primeriza — Una alocada mirada sobre la maternidad. Gira por Costa Rica y Argentina."
+    data-type="video"
+    data-src="https://drive.google.com/file/d/1muU9XOF-sPzHSSHi7-5HlhkeSKn6H2vH/preview">
+    <span class="card-pill">Video</span>
+    <div class="card-thumb-wrap">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1muU9XOF-sPzHSSHi7-5HlhkeSKn6H2vH&sz=w800" alt="Madre Primeriza" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1muU9XOF-sPzHSSHi7-5HlhkeSKn6H2vH=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">🎭</div>
       <div class="card-overlay"></div>
       <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
     </div>
     <div class="card-accent accent-rose"></div>
     <div class="card-body">
       <div class="card-meta">Teatro · Unipersonal · Humor</div>
-      <div class="card-title">Madre Primeriza — Función</div>
+      <div class="card-title">Madre Primeriza</div>
       <div class="card-desc">Costa Rica · Argentina</div>
     </div>
   </button>
-  <button type="button" class="card" data-title="MILF — Teatro" data-meta="Teatro · Unipersonal" data-desc="MILF — Madre independiente, loca y feminista. Unipersonal de humor." data-type="video" data-src="https://drive.google.com/file/d/1rPSMz2u_n5BnLvBuNMIzJSiOmbag6N4S/preview">
-    <span class="card-pill">Video</span>
-    <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1rPSMz2u_n5BnLvBuNMIzJSiOmbag6N4S&sz=w800" alt="MILF — Teatro" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1rPSMz2u_n5BnLvBuNMIzJSiOmbag6N4S=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">🎭</div>
-      <div class="card-overlay"></div>
-      <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-    </div>
-    <div class="card-accent accent-rose"></div>
-    <div class="card-body">
-      <div class="card-meta">Teatro · Unipersonal</div>
-      <div class="card-title">MILF — Teatro</div>
-      <div class="card-desc">Madre independiente, loca y feminista</div>
-    </div>
-  </button>
-  <button type="button" class="card" data-title="Amalfi" data-meta="Teatro · Actuación" data-desc="Amalfi — Obra teatral. Actuación de Mariel Rosciano." data-type="video" data-src="https://drive.google.com/file/d/1MFzu5grs72yn72NN7gYvPYCOjBqLZMJL/preview">
+  <button type="button" class="card"
+    data-title="Amalfi"
+    data-meta="Teatro · Actuación"
+    data-desc="Amalfi — Obra teatral. Actuación de Mariel Rosciano."
+    data-type="video"
+    data-src="https://drive.google.com/file/d/1MFzu5grs72yn72NN7gYvPYCOjBqLZMJL/preview">
     <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
       <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1MFzu5grs72yn72NN7gYvPYCOjBqLZMJL&sz=w800" alt="Amalfi" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1MFzu5grs72yn72NN7gYvPYCOjBqLZMJL=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">🎭</div>
@@ -1328,53 +1384,79 @@
       <div class="card-title">Amalfi</div>
       <div class="card-desc">Obra teatral</div>
     </div>
-  </button>
-  <button type="button" class="card is-placeholder" >
-    <span class="card-pill">⚠ Pegar ID</span>
-    <div class="card-thumb-wrap">
-      <div class="card-thumb-placeholder placeholder-pending">🎭</div>
-      <div class="card-overlay"></div>
-      
-    </div>
-    <div class="card-accent accent-rose"></div>
-    <div class="card-body">
-      <div class="card-meta">Teatro · Actuación · Miniatura</div>
-      <div class="card-title">Amalfi — Miniatura</div>
-      <div class="card-desc">Imagen del espectáculo</div>
-    </div>
-  </button>
-  <button type="button" class="card is-placeholder" >
-    <span class="card-pill">⚠ Pegar ID</span>
-    <div class="card-thumb-wrap">
-      <div class="card-thumb-placeholder placeholder-pending">🎭</div>
-      <div class="card-overlay"></div>
-      
-    </div>
-    <div class="card-accent accent-rose"></div>
-    <div class="card-body">
-      <div class="card-meta">Teatro · Actuación</div>
-      <div class="card-title">La Menesunda</div>
-      <div class="card-desc">Espectáculo teatral</div>
-    </div>
   </button></div>
+
+<h3 class="section-subsection">Publicidad y TV</h3>
+<div class="cards-grid">
+  <a class="card card-as-link" href="https://drive.google.com/drive/folders/12JYGYKJ2t3D5XNoDBsYSmh7BZQxY0izM" target="_blank" rel="noopener noreferrer"
+    aria-label="Abrir Tulipán Up en Google Drive">
+    <span class="card-pill">Video</span>
+    <div class="card-thumb-wrap">
+      <div class="card-thumb-placeholder">📺</div>
+      <div class="card-overlay"></div>
+      <div class="card-play card-play-folder" aria-label="Abrir en Drive"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></div>
+    </div>
+    <div class="card-accent accent-rose"></div>
+    <div class="card-body">
+      <div class="card-meta">Publicidad · TV</div>
+      <div class="card-title">Tulipán Up</div>
+      
+    </div>
+  </a>
+  <a class="card card-as-link" href="https://drive.google.com/drive/folders/12JYGYKJ2t3D5XNoDBsYSmh7BZQxY0izM" target="_blank" rel="noopener noreferrer"
+    aria-label="Abrir VER — Unite a la charla en Google Drive">
+    <span class="card-pill">Video</span>
+    <div class="card-thumb-wrap">
+      <div class="card-thumb-placeholder">📺</div>
+      <div class="card-overlay"></div>
+      <div class="card-play card-play-folder" aria-label="Abrir en Drive"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></div>
+    </div>
+    <div class="card-accent accent-rose"></div>
+    <div class="card-body">
+      <div class="card-meta">Publicidad · TV</div>
+      <div class="card-title">VER — Unite a la charla</div>
+      <div class="card-desc">#UniteAlaCharla</div>
+    </div>
+  </a>
+  <a class="card card-as-link" href="https://drive.google.com/drive/folders/12JYGYKJ2t3D5XNoDBsYSmh7BZQxY0izM" target="_blank" rel="noopener noreferrer"
+    aria-label="Abrir VER — Puntitas en Google Drive">
+    <span class="card-pill">Video</span>
+    <div class="card-thumb-wrap">
+      <div class="card-thumb-placeholder">📺</div>
+      <div class="card-overlay"></div>
+      <div class="card-play card-play-folder" aria-label="Abrir en Drive"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></div>
+    </div>
+    <div class="card-accent accent-rose"></div>
+    <div class="card-body">
+      <div class="card-meta">Publicidad · TV</div>
+      <div class="card-title">VER — Puntitas</div>
+      
+    </div>
+  </a>
+  <a class="card card-as-link" href="https://drive.google.com/drive/folders/12JYGYKJ2t3D5XNoDBsYSmh7BZQxY0izM" target="_blank" rel="noopener noreferrer"
+    aria-label="Abrir Sonámbulos y En el baño en Google Drive">
+    <span class="card-pill">Video</span>
+    <div class="card-thumb-wrap">
+      <div class="card-thumb-placeholder">📺</div>
+      <div class="card-overlay"></div>
+      <div class="card-play card-play-folder" aria-label="Abrir en Drive"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></div>
+    </div>
+    <div class="card-accent accent-rose"></div>
+    <div class="card-body">
+      <div class="card-meta">Publicidad · TV</div>
+      <div class="card-title">Sonámbulos y En el baño</div>
+      
+    </div>
+  </a></div>
 
 <h3 class="section-subsection">Cine y series</h3>
 <div class="cards-grid">
-  <button type="button" class="card" data-title="MILF — Demo Trailer" data-meta="Cine · Demo Trailer" data-desc="MILF — Demo Trailer del proyecto cinematográfico." data-type="video" data-src="https://drive.google.com/file/d/109vcRDq1g2IkFUytRI1qt-6OVGSHGSr9/preview">
-    <span class="card-pill">Video</span>
-    <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=109vcRDq1g2IkFUytRI1qt-6OVGSHGSr9&sz=w800" alt="MILF — Demo Trailer" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/109vcRDq1g2IkFUytRI1qt-6OVGSHGSr9=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">🎬</div>
-      <div class="card-overlay"></div>
-      <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-    </div>
-    <div class="card-accent accent-rose"></div>
-    <div class="card-body">
-      <div class="card-meta">Cine · Demo Trailer</div>
-      <div class="card-title">MILF — Demo Trailer</div>
-      
-    </div>
-  </button>
-  <button type="button" class="card" data-title="El Último Traje" data-meta="Cine · Largometraje" data-desc="El Último Traje — Participación actoral." data-type="image" data-src="https://drive.google.com/file/d/111jj5JwptmXw3xF7YB-9uOIsGUnvhwgI/preview">
+  <button type="button" class="card"
+    data-title="El Último Traje"
+    data-meta="Cine · Largometraje"
+    data-desc="El Último Traje — Participación actoral."
+    data-type="image"
+    data-src="https://drive.google.com/file/d/111jj5JwptmXw3xF7YB-9uOIsGUnvhwgI/preview">
     <span class="card-pill">Foto</span>
     <div class="card-thumb-wrap">
       <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=111jj5JwptmXw3xF7YB-9uOIsGUnvhwgI&sz=w800" alt="El Último Traje" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/111jj5JwptmXw3xF7YB-9uOIsGUnvhwgI=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">🎬</div>
@@ -1387,157 +1469,218 @@
       <div class="card-title">El Último Traje</div>
       <div class="card-desc">Participación actoral</div>
     </div>
-  </button></div>
-
-<h3 class="section-subsection">Galería de fotos</h3>
-<div class="cards-grid">
-  <button type="button" class="card is-placeholder" >
-    <span class="card-pill">⚠ Pegar ID</span>
+  </button>
+  <button type="button" class="card"
+    data-title="MILF"
+    data-meta="Cine · Demo Trailer"
+    data-desc="MILF — Demo trailer del proyecto cinematográfico."
+    data-type="video"
+    data-src="https://drive.google.com/file/d/109vcRDq1g2IkFUytRI1qt-6OVGSHGSr9/preview">
+    <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
-      <div class="card-thumb-placeholder placeholder-pending">📸</div>
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=109vcRDq1g2IkFUytRI1qt-6OVGSHGSr9&sz=w800" alt="MILF" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/109vcRDq1g2IkFUytRI1qt-6OVGSHGSr9=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">🎬</div>
       <div class="card-overlay"></div>
-      
+      <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
     </div>
     <div class="card-accent accent-rose"></div>
     <div class="card-body">
-      <div class="card-meta">Galería · Portada</div>
-      <div class="card-title">Galería de fotos</div>
-      <div class="card-desc">Todas las obras</div>
-    </div>
-  </button></div>
-
-<h3 class="section-subsection">Publicidad y TV</h3>
-<div class="cards-grid">
-  <button type="button" class="card is-placeholder" >
-    <span class="card-pill">⚠ Pegar ID</span>
-    <div class="card-thumb-wrap">
-      <div class="card-thumb-placeholder placeholder-pending">📺</div>
-      <div class="card-overlay"></div>
-      
-    </div>
-    <div class="card-accent accent-rose"></div>
-    <div class="card-body">
-      <div class="card-meta">Publicidad · TV</div>
-      <div class="card-title">Tulipán — Trailer TV</div>
-      
+      <div class="card-meta">Cine · Demo Trailer</div>
+      <div class="card-title">MILF</div>
+      <div class="card-desc">Demo trailer</div>
     </div>
   </button>
-  <button type="button" class="card is-placeholder" >
-    <span class="card-pill">⚠ Pegar ID</span>
+  <a class="card card-as-link" href="https://drive.google.com/drive/folders/1g0dfjDiThL6TBAz3vwyFqY7Tfb3NrdPb" target="_blank" rel="noopener noreferrer"
+    aria-label="Abrir Dulce de Leche en Google Drive">
+    <span class="card-pill">Carpeta</span>
     <div class="card-thumb-wrap">
-      <div class="card-thumb-placeholder placeholder-pending">📺</div>
+      <div class="card-thumb-placeholder">🎬</div>
       <div class="card-overlay"></div>
-      
+      <div class="card-play card-play-folder" aria-label="Abrir en Drive"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></div>
     </div>
     <div class="card-accent accent-rose"></div>
     <div class="card-body">
-      <div class="card-meta">Publicidad · TV</div>
-      <div class="card-title">VER — Trailer TV</div>
+      <div class="card-meta">Cine · Largometraje</div>
+      <div class="card-title">Dulce de Leche</div>
       
     </div>
-  </button></div>
+  </a></div>
 
 <h3 class="section-subsection">Prensa</h3>
 <div class="press-grid">
-  <button type="button" class="press-card" data-title="La crisis de los 30" data-meta="Clarín · 2014" data-desc="Entrevista en Clarín sobre el unipersonal «Mujer de 30 desesperada, busca»." data-type="pdf" data-src="https://drive.google.com/file/d/1wgP_A3C4xSG5_Gqm9OXrPhTmSokS-1yC/preview">
+  <button type="button" class="press-card"
+    data-title="La crisis de los 30"
+    data-meta="Clarín · 2014"
+    data-desc="Entrevista en Clarín sobre el unipersonal «Mujer de 30 desesperada, busca»."
+    data-type="pdf"
+    data-src="https://drive.google.com/file/d/1wgP_A3C4xSG5_Gqm9OXrPhTmSokS-1yC/preview">
     <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1wgP_A3C4xSG5_Gqm9OXrPhTmSokS-1yC&sz=w400" alt="" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1wgP_A3C4xSG5_Gqm9OXrPhTmSokS-1yC=w400'}else{this.style.display='none'}"><div class="press-card-icon" style="background:rgba(var(--rose-rgb),0.08)">📰</div></div>
     <div class="press-card-body">
       <div class="press-card-title">La crisis de los 30</div>
       <div class="press-card-source">Clarín · 2014</div>
     </div>
   </button>
-  <button type="button" class="press-card" data-title="La neurosis de las tres décadas" data-meta="Los Andes · 2017" data-desc="Cobertura de la función en el Teatro Selectro, Mendoza." data-type="pdf" data-src="https://drive.google.com/file/d/1bf1Eb6w6A7VB9Mm_q6xGSFZ0vlckksE4/preview">
+  <button type="button" class="press-card"
+    data-title="La neurosis de las tres décadas"
+    data-meta="Los Andes · 2017"
+    data-desc="Cobertura de la función en el Teatro Selectro, Mendoza."
+    data-type="pdf"
+    data-src="https://drive.google.com/file/d/1bf1Eb6w6A7VB9Mm_q6xGSFZ0vlckksE4/preview">
     <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1bf1Eb6w6A7VB9Mm_q6xGSFZ0vlckksE4&sz=w400" alt="" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1bf1Eb6w6A7VB9Mm_q6xGSFZ0vlckksE4=w400'}else{this.style.display='none'}"><div class="press-card-icon" style="background:rgba(var(--rose-rgb),0.08)">📰</div></div>
     <div class="press-card-body">
       <div class="press-card-title">La neurosis de las tres décadas</div>
       <div class="press-card-source">Los Andes · 2017</div>
     </div>
   </button>
-  <button type="button" class="press-card" data-title="Reconciliación a través de la risa" data-meta="ABC Color · PY · 2014" data-desc="Cobertura de la gira en ABC Color, Paraguay." data-type="pdf" data-src="https://drive.google.com/file/d/1v--jXDB3s7Fxzu-WGxBRf2momhUiUmIX/preview">
+  <button type="button" class="press-card"
+    data-title="Reconciliación a través de la risa"
+    data-meta="ABC Color · PY · 2014"
+    data-desc="Cobertura de la gira en ABC Color, Paraguay."
+    data-type="pdf"
+    data-src="https://drive.google.com/file/d/1v--jXDB3s7Fxzu-WGxBRf2momhUiUmIX/preview">
     <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1v--jXDB3s7Fxzu-WGxBRf2momhUiUmIX&sz=w400" alt="" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1v--jXDB3s7Fxzu-WGxBRf2momhUiUmIX=w400'}else{this.style.display='none'}"><div class="press-card-icon" style="background:rgba(var(--rose-rgb),0.08)">📰</div></div>
     <div class="press-card-body">
       <div class="press-card-title">Reconciliación a través de la risa</div>
       <div class="press-card-source">ABC Color · PY · 2014</div>
     </div>
   </button>
-  <button type="button" class="press-card" data-title="La crisis de los 30 tomada con humor" data-meta="Última Hora · PY · 2014" data-desc="Cobertura en Última Hora de Paraguay." data-type="pdf" data-src="https://drive.google.com/file/d/1JbqQVcMmhQE621azvmcWUqIqdZ9txc_x/preview">
+  <button type="button" class="press-card"
+    data-title="La crisis de los 30 tomada con humor"
+    data-meta="Última Hora · PY · 2014"
+    data-desc="Cobertura en Última Hora de Paraguay."
+    data-type="pdf"
+    data-src="https://drive.google.com/file/d/1JbqQVcMmhQE621azvmcWUqIqdZ9txc_x/preview">
     <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1JbqQVcMmhQE621azvmcWUqIqdZ9txc_x&sz=w400" alt="" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1JbqQVcMmhQE621azvmcWUqIqdZ9txc_x=w400'}else{this.style.display='none'}"><div class="press-card-icon" style="background:rgba(var(--rose-rgb),0.08)">📰</div></div>
     <div class="press-card-body">
       <div class="press-card-title">La crisis de los 30 tomada con humor</div>
       <div class="press-card-source">Última Hora · PY · 2014</div>
     </div>
   </button>
-  <button type="button" class="press-card" data-title="Standaperas" data-meta="El Guardian · 2012" data-desc="Mariel Rosciano entre las comediantas que se destacan en el stand up." data-type="image" data-src="https://drive.google.com/file/d/1-Y4jNYbBDnrYyvYzmYSUnGg-QBu9cNaM/preview">
+  <button type="button" class="press-card"
+    data-title="Standaperas"
+    data-meta="El Guardian · 2012"
+    data-desc="Mariel Rosciano entre las comediantas que se destacan en el stand up."
+    data-type="image"
+    data-src="https://drive.google.com/file/d/1-Y4jNYbBDnrYyvYzmYSUnGg-QBu9cNaM/preview">
     <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1-Y4jNYbBDnrYyvYzmYSUnGg-QBu9cNaM&sz=w400" alt="Standaperas" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1-Y4jNYbBDnrYyvYzmYSUnGg-QBu9cNaM=w400'}else{this.style.display='none';this.parentElement.classList.add('no-image')}"></div>
     <div class="press-card-body">
       <div class="press-card-title">Standaperas</div>
       <div class="press-card-source">El Guardian · 2012</div>
     </div>
   </button>
-  <button type="button" class="press-card" data-title="Humor femenino y stand up" data-meta="El Guardian · 2012" data-desc="Nota completa sobre las mujeres en el stand up." data-type="image" data-src="https://drive.google.com/file/d/1tEBXR2jC0WN0ZBjKzvOW4DqJkLhK_72I/preview">
+  <button type="button" class="press-card"
+    data-title="Humor femenino y stand up"
+    data-meta="El Guardian · 2012"
+    data-desc="Nota completa sobre las mujeres en el stand up."
+    data-type="image"
+    data-src="https://drive.google.com/file/d/1tEBXR2jC0WN0ZBjKzvOW4DqJkLhK_72I/preview">
     <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1tEBXR2jC0WN0ZBjKzvOW4DqJkLhK_72I&sz=w400" alt="Humor femenino y stand up" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1tEBXR2jC0WN0ZBjKzvOW4DqJkLhK_72I=w400'}else{this.style.display='none';this.parentElement.classList.add('no-image')}"></div>
     <div class="press-card-body">
       <div class="press-card-title">Humor femenino y stand up</div>
       <div class="press-card-source">El Guardian · 2012</div>
     </div>
   </button>
-  <button type="button" class="press-card" data-title="En el nombre de Raquel" data-meta="Télam · 2012" data-desc="Reseña de «En el nombre de Raquel» en Télam." data-type="image" data-src="https://drive.google.com/file/d/16FPXcJziBL5-YSxxbIgqBBiwHU1ZTei6/preview">
+  <button type="button" class="press-card"
+    data-title="En el nombre de Raquel"
+    data-meta="Télam · 2012"
+    data-desc="Reseña de «En el nombre de Raquel» en Télam."
+    data-type="image"
+    data-src="https://drive.google.com/file/d/16FPXcJziBL5-YSxxbIgqBBiwHU1ZTei6/preview">
     <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=16FPXcJziBL5-YSxxbIgqBBiwHU1ZTei6&sz=w400" alt="En el nombre de Raquel" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/16FPXcJziBL5-YSxxbIgqBBiwHU1ZTei6=w400'}else{this.style.display='none';this.parentElement.classList.add('no-image')}"></div>
     <div class="press-card-body">
       <div class="press-card-title">En el nombre de Raquel</div>
       <div class="press-card-source">Télam · 2012</div>
     </div>
   </button>
-  <button type="button" class="press-card" data-title="En el nombre de Raquel" data-meta="Agencia NaN · 2012" data-desc="Reseña en Agencia NaN." data-type="image" data-src="https://drive.google.com/file/d/1cm57ILx12cDZp6EXINnPsuGr-OypTU2Y/preview">
+  <button type="button" class="press-card"
+    data-title="En el nombre de Raquel"
+    data-meta="Agencia NaN · 2012"
+    data-desc="Reseña en Agencia NaN."
+    data-type="image"
+    data-src="https://drive.google.com/file/d/1cm57ILx12cDZp6EXINnPsuGr-OypTU2Y/preview">
     <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1cm57ILx12cDZp6EXINnPsuGr-OypTU2Y&sz=w400" alt="En el nombre de Raquel" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1cm57ILx12cDZp6EXINnPsuGr-OypTU2Y=w400'}else{this.style.display='none';this.parentElement.classList.add('no-image')}"></div>
     <div class="press-card-body">
       <div class="press-card-title">En el nombre de Raquel</div>
       <div class="press-card-source">Agencia NaN · 2012</div>
     </div>
   </button>
-  <button type="button" class="press-card" data-title="La polaca más valiente" data-meta="El Abasto · 2013" data-desc="Nota sobre la obra en El Abasto." data-type="image" data-src="https://drive.google.com/file/d/18IpbvthVKibj1euMM0TP457VcqtsdUCD/preview">
+  <button type="button" class="press-card"
+    data-title="La polaca más valiente"
+    data-meta="El Abasto · 2013"
+    data-desc="Nota sobre la obra en El Abasto."
+    data-type="image"
+    data-src="https://drive.google.com/file/d/18IpbvthVKibj1euMM0TP457VcqtsdUCD/preview">
     <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=18IpbvthVKibj1euMM0TP457VcqtsdUCD&sz=w400" alt="La polaca más valiente" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/18IpbvthVKibj1euMM0TP457VcqtsdUCD=w400'}else{this.style.display='none';this.parentElement.classList.add('no-image')}"></div>
     <div class="press-card-body">
       <div class="press-card-title">La polaca más valiente</div>
       <div class="press-card-source">El Abasto · 2013</div>
     </div>
   </button>
-  <button type="button" class="press-card" data-title="Raquel habla claro sobre la trata" data-meta="La Nación · CR · 2012" data-desc="Cobertura de la gira por Costa Rica." data-type="image" data-src="https://drive.google.com/file/d/12GHR9qxpFD5FGxfP1rWc5Ro9UvbO7RKO/preview">
+  <button type="button" class="press-card"
+    data-title="Raquel habla claro sobre la trata"
+    data-meta="La Nación · CR · 2012"
+    data-desc="Cobertura de la gira por Costa Rica."
+    data-type="image"
+    data-src="https://drive.google.com/file/d/12GHR9qxpFD5FGxfP1rWc5Ro9UvbO7RKO/preview">
     <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=12GHR9qxpFD5FGxfP1rWc5Ro9UvbO7RKO&sz=w400" alt="Raquel habla claro sobre la trata" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/12GHR9qxpFD5FGxfP1rWc5Ro9UvbO7RKO=w400'}else{this.style.display='none';this.parentElement.classList.add('no-image')}"></div>
     <div class="press-card-body">
       <div class="press-card-title">Raquel habla claro sobre la trata</div>
       <div class="press-card-source">La Nación · CR · 2012</div>
     </div>
   </button>
-  <button type="button" class="press-card" data-title="En el nombre de Raquel" data-meta="El Tribuno · Jujuy · 2013" data-desc="Gira por el norte argentino." data-type="image" data-src="https://drive.google.com/file/d/1vSDvxJrnmnk3nzqu3UJy-0YiBlN3Rn1j/preview">
+  <button type="button" class="press-card"
+    data-title="En el nombre de Raquel"
+    data-meta="El Tribuno · Jujuy · 2013"
+    data-desc="Gira por el norte argentino."
+    data-type="image"
+    data-src="https://drive.google.com/file/d/1vSDvxJrnmnk3nzqu3UJy-0YiBlN3Rn1j/preview">
     <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1vSDvxJrnmnk3nzqu3UJy-0YiBlN3Rn1j&sz=w400" alt="En el nombre de Raquel" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1vSDvxJrnmnk3nzqu3UJy-0YiBlN3Rn1j=w400'}else{this.style.display='none';this.parentElement.classList.add('no-image')}"></div>
     <div class="press-card-body">
       <div class="press-card-title">En el nombre de Raquel</div>
       <div class="press-card-source">El Tribuno · Jujuy · 2013</div>
     </div>
   </button>
-  <button type="button" class="press-card" data-title="Denuncia al delito de trata" data-meta="Primera Edición · Misiones · 2013" data-desc="Una fuerte denuncia al delito de trata por medio del teatro." data-type="image" data-src="https://drive.google.com/file/d/1NYEdHK1C2Jm4Jav65SB2CefubfvLBUo6/preview">
+  <button type="button" class="press-card"
+    data-title="Denuncia al delito de trata"
+    data-meta="Primera Edición · Misiones · 2013"
+    data-desc="Una fuerte denuncia al delito de trata por medio del teatro."
+    data-type="image"
+    data-src="https://drive.google.com/file/d/1NYEdHK1C2Jm4Jav65SB2CefubfvLBUo6/preview">
     <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1NYEdHK1C2Jm4Jav65SB2CefubfvLBUo6&sz=w400" alt="Denuncia al delito de trata" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1NYEdHK1C2Jm4Jav65SB2CefubfvLBUo6=w400'}else{this.style.display='none';this.parentElement.classList.add('no-image')}"></div>
     <div class="press-card-body">
       <div class="press-card-title">Denuncia al delito de trata</div>
       <div class="press-card-source">Primera Edición · Misiones · 2013</div>
     </div>
   </button>
-  <button type="button" class="press-card" data-title="En el nombre de la mujer" data-meta="Diario El Sol · Marzo 2013" data-desc="Presentación en el Teatro Municipal de Lomas de Zamora." data-type="image" data-src="https://drive.google.com/file/d/1ws39l8RCX-LyZ1ygVIYAc7icOYPUrCfp/preview">
+  <button type="button" class="press-card"
+    data-title="En el nombre de la mujer"
+    data-meta="Diario El Sol · Marzo 2013"
+    data-desc="Presentación en el Teatro Municipal de Lomas de Zamora."
+    data-type="image"
+    data-src="https://drive.google.com/file/d/1ws39l8RCX-LyZ1ygVIYAc7icOYPUrCfp/preview">
     <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1ws39l8RCX-LyZ1ygVIYAc7icOYPUrCfp&sz=w400" alt="En el nombre de la mujer" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1ws39l8RCX-LyZ1ygVIYAc7icOYPUrCfp=w400'}else{this.style.display='none';this.parentElement.classList.add('no-image')}"></div>
     <div class="press-card-body">
       <div class="press-card-title">En el nombre de la mujer</div>
       <div class="press-card-source">Diario El Sol · Marzo 2013</div>
     </div>
   </button>
-  <button type="button" class="press-card" data-title="Teatro contra la trata" data-meta="Diario El Sol · 15 marzo 2013" data-desc="Cobertura de la obra en gira nacional." data-type="image" data-src="https://drive.google.com/file/d/1kZpGIkuGtO34o0SXPcpPlyaCGMQrY37D/preview">
+  <button type="button" class="press-card"
+    data-title="Teatro contra la trata"
+    data-meta="Diario El Sol · 15 marzo 2013"
+    data-desc="Cobertura de la obra en gira nacional."
+    data-type="image"
+    data-src="https://drive.google.com/file/d/1kZpGIkuGtO34o0SXPcpPlyaCGMQrY37D/preview">
     <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1kZpGIkuGtO34o0SXPcpPlyaCGMQrY37D&sz=w400" alt="Teatro contra la trata" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1kZpGIkuGtO34o0SXPcpPlyaCGMQrY37D=w400'}else{this.style.display='none';this.parentElement.classList.add('no-image')}"></div>
     <div class="press-card-body">
       <div class="press-card-title">Teatro contra la trata</div>
       <div class="press-card-source">Diario El Sol · 15 marzo 2013</div>
     </div>
   </button>
-  <button type="button" class="press-card" data-title="El teatro es un grito visceral" data-meta="La Voz del Pueblo · 2013" data-desc="Entrevista con Mariel Rosciano." data-type="image" data-src="https://drive.google.com/file/d/14Ft_ZeTyQHVTx_E40qhoDSUlKiytKZPx/preview">
+  <button type="button" class="press-card"
+    data-title="El teatro es un grito visceral"
+    data-meta="La Voz del Pueblo · 2013"
+    data-desc="Entrevista con Mariel Rosciano."
+    data-type="image"
+    data-src="https://drive.google.com/file/d/14Ft_ZeTyQHVTx_E40qhoDSUlKiytKZPx/preview">
     <div class="press-card-img-wrap"><img loading="lazy" src="https://drive.google.com/thumbnail?id=14Ft_ZeTyQHVTx_E40qhoDSUlKiytKZPx&sz=w400" alt="El teatro es un grito visceral" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/14Ft_ZeTyQHVTx_E40qhoDSUlKiytKZPx=w400'}else{this.style.display='none';this.parentElement.classList.add('no-image')}"></div>
     <div class="press-card-body">
       <div class="press-card-title">El teatro es un grito visceral</div>
@@ -1556,9 +1699,32 @@
     </header>
 
 ```
-<div class="geo-label geo-py" aria-label="Producciones en Paraguay">🇵🇾 Paraguay</div>
+<h3 class="section-subsection">Teatro</h3>
+<div class="geo-label geo-ar" aria-label="Argentina">🇦🇷 Argentina</div>
 <div class="cards-grid">
-  <button type="button" class="card" data-title="Fuerza Urbana" data-meta="Dirección Artística · Paraguay" data-desc="Dirección artística del proyecto Fuerza Urbana en Paraguay." data-type="video" data-src="https://drive.google.com/file/d/1NfDbSgYy-4CaVQnscHcI9vXjbnO2R6MQ/preview">
+  <a class="card card-as-link" href="https://drive.google.com/drive/folders/12QH-AwaPtX4RLZCV8vL6ITjwzBEJmefR" target="_blank" rel="noopener noreferrer"
+    aria-label="Abrir Por su culpa en Google Drive">
+    <span class="card-pill">Video</span>
+    <div class="card-thumb-wrap">
+      <div class="card-thumb-placeholder">🎭</div>
+      <div class="card-overlay"></div>
+      <div class="card-play card-play-folder" aria-label="Abrir en Drive"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></div>
+    </div>
+    <div class="card-accent accent-gold"></div>
+    <div class="card-body">
+      <div class="card-meta">Dirección · Teatro · Argentina</div>
+      <div class="card-title">Por su culpa</div>
+      
+    </div>
+  </a></div>
+<div class="geo-label geo-py" style="margin-top:32px" aria-label="Paraguay">🇵🇾 Paraguay</div>
+<div class="cards-grid">
+  <button type="button" class="card"
+    data-title="Fuerza Urbana"
+    data-meta="Dirección Artística · Paraguay"
+    data-desc="Fuerza Urbana — Dirección Artística en Paraguay."
+    data-type="video"
+    data-src="https://drive.google.com/file/d/1NfDbSgYy-4CaVQnscHcI9vXjbnO2R6MQ/preview">
     <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
       <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1NfDbSgYy-4CaVQnscHcI9vXjbnO2R6MQ&sz=w800" alt="Fuerza Urbana" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1NfDbSgYy-4CaVQnscHcI9vXjbnO2R6MQ=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">🎨</div>
@@ -1569,24 +1735,45 @@
     <div class="card-body">
       <div class="card-meta">Dirección Artística · Paraguay</div>
       <div class="card-title">Fuerza Urbana</div>
-      <div class="card-desc">Producción artística — Paraguay</div>
+      <div class="card-desc">Producción artística</div>
     </div>
   </button>
-  <button type="button" class="card" data-title="Cuatro Colas y un Funeral" data-meta="Dirección · Paraguay" data-desc="Dirección de Cuatro Colas y un Funeral en Paraguay." data-type="video" data-src="https://drive.google.com/file/d/1VznC2hzD9cyjJsjqi1s6mudLMnrJt_xf/preview">
+  <a class="card card-as-link" href="https://drive.google.com/drive/folders/1H4LvIAqHEZrC0gUhGgJ9xMkde5dRpnWV" target="_blank" rel="noopener noreferrer"
+    aria-label="Abrir La joda es bella en Google Drive">
     <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1VznC2hzD9cyjJsjqi1s6mudLMnrJt_xf&sz=w800" alt="Cuatro Colas y un Funeral" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1VznC2hzD9cyjJsjqi1s6mudLMnrJt_xf=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">🎬</div>
+      <div class="card-thumb-placeholder">🎬</div>
       <div class="card-overlay"></div>
-      <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+      <div class="card-play card-play-folder" aria-label="Abrir en Drive"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></div>
     </div>
     <div class="card-accent accent-gold"></div>
     <div class="card-body">
       <div class="card-meta">Dirección · Paraguay</div>
-      <div class="card-title">Cuatro Colas y un Funeral</div>
-      <div class="card-desc">Producción — Paraguay</div>
+      <div class="card-title">La joda es bella</div>
+      
     </div>
-  </button>
-  <button type="button" class="card" data-title="¡Blancanieves y el Príncipe Aventurero!" data-meta="Dirección · Paraguay" data-desc="Dirección de la obra teatral en Paraguay." data-type="video" data-src="https://drive.google.com/file/d/1Ph3k931yepNgzbgA3k-ZzpWu7OC6VVmT/preview">
+  </a>
+  <a class="card card-as-link" href="https://drive.google.com/drive/folders/1H4LvIAqHEZrC0gUhGgJ9xMkde5dRpnWV" target="_blank" rel="noopener noreferrer"
+    aria-label="Abrir Los Pitufos y la pócima secreta en Google Drive">
+    <span class="card-pill">Video</span>
+    <div class="card-thumb-wrap">
+      <div class="card-thumb-placeholder">🎬</div>
+      <div class="card-overlay"></div>
+      <div class="card-play card-play-folder" aria-label="Abrir en Drive"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></div>
+    </div>
+    <div class="card-accent accent-gold"></div>
+    <div class="card-body">
+      <div class="card-meta">Dirección · Paraguay</div>
+      <div class="card-title">Los Pitufos y la pócima secreta</div>
+      
+    </div>
+  </a>
+  <button type="button" class="card"
+    data-title="¡Blancanieves y el Príncipe Aventurero!"
+    data-meta="Dirección · Paraguay"
+    data-desc="Blancanieves y el Príncipe Aventurero — Dirección en Paraguay."
+    data-type="video"
+    data-src="https://drive.google.com/file/d/1Ph3k931yepNgzbgA3k-ZzpWu7OC6VVmT/preview">
     <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
       <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1Ph3k931yepNgzbgA3k-ZzpWu7OC6VVmT&sz=w800" alt="¡Blancanieves y el Príncipe Aventurero!" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1Ph3k931yepNgzbgA3k-ZzpWu7OC6VVmT=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">🎬</div>
@@ -1597,87 +1784,91 @@
     <div class="card-body">
       <div class="card-meta">Dirección · Paraguay</div>
       <div class="card-title">¡Blancanieves y el Príncipe Aventurero!</div>
-      <div class="card-desc">Teatro — Paraguay</div>
+      <div class="card-desc">Teatro infantil</div>
     </div>
   </button>
-  <button type="button" class="card is-placeholder" >
-    <span class="card-pill">⚠ Pegar ID</span>
+  <button type="button" class="card"
+    data-title="Cuatro Colas y un Funeral"
+    data-meta="Dirección · Paraguay"
+    data-desc="Cuatro Colas y un Funeral — Dirección en Paraguay."
+    data-type="video"
+    data-src="https://drive.google.com/file/d/1VznC2hzD9cyjJsjqi1s6mudLMnrJt_xf/preview">
+    <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
-      <div class="card-thumb-placeholder placeholder-pending">🎬</div>
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1VznC2hzD9cyjJsjqi1s6mudLMnrJt_xf&sz=w800" alt="Cuatro Colas y un Funeral" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1VznC2hzD9cyjJsjqi1s6mudLMnrJt_xf=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">🎬</div>
       <div class="card-overlay"></div>
-      
+      <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
     </div>
     <div class="card-accent accent-gold"></div>
     <div class="card-body">
       <div class="card-meta">Dirección · Paraguay</div>
-      <div class="card-title">La joda es bella</div>
+      <div class="card-title">Cuatro Colas y un Funeral</div>
       
-    </div>
-  </button>
-  <button type="button" class="card is-placeholder" >
-    <span class="card-pill">⚠ Pegar ID</span>
-    <div class="card-thumb-wrap">
-      <div class="card-thumb-placeholder placeholder-pending">🎬</div>
-      <div class="card-overlay"></div>
-      
-    </div>
-    <div class="card-accent accent-gold"></div>
-    <div class="card-body">
-      <div class="card-meta">Dirección · Paraguay</div>
-      <div class="card-title">Los Pitufos y la pócima secreta</div>
-      
-    </div>
-  </button></div>
-
-<div class="geo-label geo-ar" style="margin-top:40px" aria-label="Producciones en Argentina">🇦🇷 Argentina</div>
-
-<h3 class="section-subsection">Teatro</h3>
-<div class="cards-grid">
-  <button type="button" class="card is-placeholder" >
-    <span class="card-pill">⚠ Pegar ID</span>
-    <div class="card-thumb-wrap">
-      <div class="card-thumb-placeholder placeholder-pending">🎭</div>
-      <div class="card-overlay"></div>
-      
-    </div>
-    <div class="card-accent accent-gold"></div>
-    <div class="card-body">
-      <div class="card-meta">Dirección · Teatro · Argentina</div>
-      <div class="card-title">Por su culpa</div>
-      <div class="card-desc">Trailer</div>
     </div>
   </button></div>
 
 <h3 class="section-subsection">Video Clips</h3>
 <div class="cards-grid">
-  <button type="button" class="card is-placeholder" >
-    <span class="card-pill">⚠ Pegar ID</span>
+  <a class="card card-as-link" href="https://drive.google.com/drive/folders/162Qw8SGnXrBgIewwLtvGLH1i1nAR0GZn" target="_blank" rel="noopener noreferrer"
+    aria-label="Abrir Modo Avión en Google Drive">
+    <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
-      <div class="card-thumb-placeholder placeholder-pending">🎬</div>
+      <div class="card-thumb-placeholder">🎵</div>
       <div class="card-overlay"></div>
-      
+      <div class="card-play card-play-folder" aria-label="Abrir en Drive"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></div>
     </div>
     <div class="card-accent accent-gold"></div>
     <div class="card-body">
-      <div class="card-meta">Dirección · Video Clip</div>
-      <div class="card-title">Xango</div>
-      <div class="card-desc">Video Clip</div>
+      <div class="card-meta">Video Clip · Dirección</div>
+      <div class="card-title">Modo Avión</div>
+      <div class="card-desc">Leo Qüin</div>
     </div>
-  </button>
-  <button type="button" class="card is-placeholder" >
-    <span class="card-pill">⚠ Pegar ID</span>
+  </a>
+  <a class="card card-as-link" href="https://drive.google.com/drive/folders/162Qw8SGnXrBgIewwLtvGLH1i1nAR0GZn" target="_blank" rel="noopener noreferrer"
+    aria-label="Abrir Amix en Google Drive">
+    <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
-      <div class="card-thumb-placeholder placeholder-pending">🎬</div>
+      <div class="card-thumb-placeholder">🎵</div>
       <div class="card-overlay"></div>
-      
+      <div class="card-play card-play-folder" aria-label="Abrir en Drive"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></div>
     </div>
     <div class="card-accent accent-gold"></div>
     <div class="card-body">
-      <div class="card-meta">Dirección · Video Clip</div>
-      <div class="card-title">Leo Qüin</div>
-      <div class="card-desc">Video Clip</div>
+      <div class="card-meta">Video Clip · Dirección</div>
+      <div class="card-title">Amix</div>
+      <div class="card-desc">Leo Qüin</div>
     </div>
-  </button></div>
+  </a>
+  <a class="card card-as-link" href="https://drive.google.com/drive/folders/162Qw8SGnXrBgIewwLtvGLH1i1nAR0GZn" target="_blank" rel="noopener noreferrer"
+    aria-label="Abrir La Rosa en Google Drive">
+    <span class="card-pill">Video</span>
+    <div class="card-thumb-wrap">
+      <div class="card-thumb-placeholder">🎵</div>
+      <div class="card-overlay"></div>
+      <div class="card-play card-play-folder" aria-label="Abrir en Drive"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></div>
+    </div>
+    <div class="card-accent accent-gold"></div>
+    <div class="card-body">
+      <div class="card-meta">Video Clip · Dirección</div>
+      <div class="card-title">La Rosa</div>
+      <div class="card-desc">Xango Boom</div>
+    </div>
+  </a>
+  <a class="card card-as-link" href="https://drive.google.com/drive/folders/162Qw8SGnXrBgIewwLtvGLH1i1nAR0GZn" target="_blank" rel="noopener noreferrer"
+    aria-label="Abrir Vamo a pegarno en Google Drive">
+    <span class="card-pill">Video</span>
+    <div class="card-thumb-wrap">
+      <div class="card-thumb-placeholder">🎵</div>
+      <div class="card-overlay"></div>
+      <div class="card-play card-play-folder" aria-label="Abrir en Drive"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></div>
+    </div>
+    <div class="card-accent accent-gold"></div>
+    <div class="card-body">
+      <div class="card-meta">Video Clip · Dirección</div>
+      <div class="card-title">Vamo a pegarno</div>
+      <div class="card-desc">Xango Boom</div>
+    </div>
+  </a></div>
 ```
 
   </div>
@@ -1690,9 +1881,14 @@
     </header>
 
 ```
-<h3 class="section-subsection">Cine & series</h3>
+<h3 class="section-subsection">Series</h3>
 <div class="cards-grid">
-  <button type="button" class="card" data-title="Wasted" data-meta="Producción ejecutiva · Serie animada" data-desc="Wasted — Serie animada dirigida por Martín Kovacs. Producción ejecutiva de Mariel Rosciano (No End Projects)." data-type="video" data-src="https://drive.google.com/file/d/1ElIsOjD7ODZ6Ksk6GnvodiAdpXPy1vQ6/preview">
+  <button type="button" class="card"
+    data-title="Wasted"
+    data-meta="Serie animada · Producción Ejecutiva"
+    data-desc="Wasted — Serie animada. Dirección de Martín Kovacs. Producción Ejecutiva: No End Projects (Mariel Rosciano)."
+    data-type="video"
+    data-src="https://drive.google.com/file/d/1ElIsOjD7ODZ6Ksk6GnvodiAdpXPy1vQ6/preview">
     <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
       <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1ElIsOjD7ODZ6Ksk6GnvodiAdpXPy1vQ6&sz=w800" alt="Wasted" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1ElIsOjD7ODZ6Ksk6GnvodiAdpXPy1vQ6=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">🎞</div>
@@ -1701,12 +1897,17 @@
     </div>
     <div class="card-accent accent-teal"></div>
     <div class="card-body">
-      <div class="card-meta">Producción ejecutiva · Serie animada</div>
+      <div class="card-meta">Serie animada · Producción Ejecutiva</div>
       <div class="card-title">Wasted</div>
       <div class="card-desc">Dir. Martín Kovacs · No End Projects</div>
     </div>
   </button>
-  <button type="button" class="card" data-title="MILF" data-meta="Producción ejecutiva · Serie web" data-desc="MILF — Serie web. Producción ejecutiva." data-type="video" data-src="https://drive.google.com/file/d/1PE61xoEOS1wmKc7_QC7OY2XM-tf3PxdY/preview">
+  <button type="button" class="card"
+    data-title="MILF"
+    data-meta="Serie web · Producción Ejecutiva"
+    data-desc="MILF — Serie web. Producción Ejecutiva."
+    data-type="video"
+    data-src="https://drive.google.com/file/d/1PE61xoEOS1wmKc7_QC7OY2XM-tf3PxdY/preview">
     <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
       <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1PE61xoEOS1wmKc7_QC7OY2XM-tf3PxdY&sz=w800" alt="MILF" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1PE61xoEOS1wmKc7_QC7OY2XM-tf3PxdY=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">🎞</div>
@@ -1715,82 +1916,20 @@
     </div>
     <div class="card-accent accent-teal"></div>
     <div class="card-body">
-      <div class="card-meta">Producción ejecutiva · Serie web</div>
+      <div class="card-meta">Serie web · Producción Ejecutiva</div>
       <div class="card-title">MILF</div>
       <div class="card-desc">Serie web</div>
     </div>
-  </button>
-  <button type="button" class="card" data-title="Sudeste" data-meta="Producción · Cine" data-desc="Sudeste — Largometraje. Dirigida por Sergio Bellotti. Producción ejecutiva." data-type="video" data-src="https://drive.google.com/file/d/12mPO0vWa6JgDcuwyqX0os_9Ib_TLGP08/preview">
-    <span class="card-pill">Video</span>
-    <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=12mPO0vWa6JgDcuwyqX0os_9Ib_TLGP08&sz=w800" alt="Sudeste" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/12mPO0vWa6JgDcuwyqX0os_9Ib_TLGP08=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">🎞</div>
-      <div class="card-overlay"></div>
-      <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-    </div>
-    <div class="card-accent accent-teal"></div>
-    <div class="card-body">
-      <div class="card-meta">Producción · Cine</div>
-      <div class="card-title">Sudeste</div>
-      <div class="card-desc">Dir. Sergio Bellotti</div>
-    </div>
-  </button>
-  <button type="button" class="card" data-title="Vagón Fumador" data-meta="Producción · Cine" data-desc="Vagón Fumador — Largometraje. Dirigida por Verónica Chen." data-type="video" data-src="https://drive.google.com/file/d/1y6SfFvET3ZhZJiei15XexeeoC-AY5fgA/preview">
-    <span class="card-pill">Video</span>
-    <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1y6SfFvET3ZhZJiei15XexeeoC-AY5fgA&sz=w800" alt="Vagón Fumador" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1y6SfFvET3ZhZJiei15XexeeoC-AY5fgA=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">🎞</div>
-      <div class="card-overlay"></div>
-      <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-    </div>
-    <div class="card-accent accent-teal"></div>
-    <div class="card-body">
-      <div class="card-meta">Producción · Cine</div>
-      <div class="card-title">Vagón Fumador</div>
-      <div class="card-desc">Dir. Verónica Chen</div>
-    </div>
-  </button>
-  <button type="button" class="card" data-title="Un Día de Suerte" data-meta="Producción · Cine" data-desc="Un Día de Suerte — Largometraje. Dirigida por Sandra Gugliotta." data-type="video" data-src="https://drive.google.com/file/d/1dXQ5y1ugG_vMkXId-45BMTblCmZTWAjp/preview">
-    <span class="card-pill">Video</span>
-    <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1dXQ5y1ugG_vMkXId-45BMTblCmZTWAjp&sz=w800" alt="Un Día de Suerte" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1dXQ5y1ugG_vMkXId-45BMTblCmZTWAjp=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">🎞</div>
-      <div class="card-overlay"></div>
-      <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-    </div>
-    <div class="card-accent accent-teal"></div>
-    <div class="card-body">
-      <div class="card-meta">Producción · Cine</div>
-      <div class="card-title">Un Día de Suerte</div>
-      <div class="card-desc">Dir. Sandra Gugliotta</div>
-    </div>
-  </button>
-  <button type="button" class="card" data-title="El Séptimo Arcángel" data-meta="Producción · Cine" data-desc="Producción de largometraje." data-type="video" data-src="https://drive.google.com/file/d/1BMojCZJYHFKUyxnhpaSvENTyLulgMTj-/preview">
-    <span class="card-pill">Video</span>
-    <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1BMojCZJYHFKUyxnhpaSvENTyLulgMTj-&sz=w800" alt="El Séptimo Arcángel" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1BMojCZJYHFKUyxnhpaSvENTyLulgMTj-=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">🎞</div>
-      <div class="card-overlay"></div>
-      <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-    </div>
-    <div class="card-accent accent-teal"></div>
-    <div class="card-body">
-      <div class="card-meta">Producción · Cine</div>
-      <div class="card-title">El Séptimo Arcángel</div>
-      
-    </div>
-  </button>
-  <button type="button" class="card" data-title="Dulce de Leche" data-meta="Producción · Cine" data-desc="Dulce de Leche de Mariano Galperín. Producción ejecutiva." data-type="video" data-src="https://drive.google.com/file/d/191zc1Plpveqm3QHfBVbmz6WG0nrMvbcN/preview">
-    <span class="card-pill">Video</span>
-    <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=191zc1Plpveqm3QHfBVbmz6WG0nrMvbcN&sz=w800" alt="Dulce de Leche" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/191zc1Plpveqm3QHfBVbmz6WG0nrMvbcN=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">🎞</div>
-      <div class="card-overlay"></div>
-      <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-    </div>
-    <div class="card-accent accent-teal"></div>
-    <div class="card-body">
-      <div class="card-meta">Producción · Cine</div>
-      <div class="card-title">Dulce de Leche</div>
-      <div class="card-desc">Dir. Mariano Galperín</div>
-    </div>
-  </button>
-  <button type="button" class="card" data-title="El Cuenco de las Ciudades Mestizas" data-meta="Producción · Cine" data-desc="Producción ejecutiva." data-type="video" data-src="https://drive.google.com/file/d/1AAvEuBsodC_e7FH4Yq-GRCjIjDaaIAiE/preview">
+  </button></div>
+
+<h3 class="section-subsection">Cine</h3>
+<div class="cards-grid">
+  <button type="button" class="card"
+    data-title="El Cuenco de las Ciudades Mestizas"
+    data-meta="Cine · Producción"
+    data-desc="El Cuenco de las Ciudades Mestizas — Cine. Producción."
+    data-type="video"
+    data-src="https://drive.google.com/file/d/1AAvEuBsodC_e7FH4Yq-GRCjIjDaaIAiE/preview">
     <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
       <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1AAvEuBsodC_e7FH4Yq-GRCjIjDaaIAiE&sz=w800" alt="El Cuenco de las Ciudades Mestizas" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1AAvEuBsodC_e7FH4Yq-GRCjIjDaaIAiE=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">🎞</div>
@@ -1799,15 +1938,115 @@
     </div>
     <div class="card-accent accent-teal"></div>
     <div class="card-body">
-      <div class="card-meta">Producción · Cine</div>
+      <div class="card-meta">Cine · Producción</div>
       <div class="card-title">El Cuenco de las Ciudades Mestizas</div>
       
     </div>
+  </button>
+  <button type="button" class="card"
+    data-title="Dulce de Leche"
+    data-meta="Cine · Producción Ejecutiva"
+    data-desc="Dulce de Leche — Largometraje. Dirección de Mariano Galperín. Producción Ejecutiva."
+    data-type="video"
+    data-src="https://drive.google.com/file/d/191zc1Plpveqm3QHfBVbmz6WG0nrMvbcN/preview">
+    <span class="card-pill">Video</span>
+    <div class="card-thumb-wrap">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=191zc1Plpveqm3QHfBVbmz6WG0nrMvbcN&sz=w800" alt="Dulce de Leche" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/191zc1Plpveqm3QHfBVbmz6WG0nrMvbcN=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">🎞</div>
+      <div class="card-overlay"></div>
+      <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+    </div>
+    <div class="card-accent accent-teal"></div>
+    <div class="card-body">
+      <div class="card-meta">Cine · Producción Ejecutiva</div>
+      <div class="card-title">Dulce de Leche</div>
+      <div class="card-desc">Dir. Mariano Galperín</div>
+    </div>
+  </button>
+  <button type="button" class="card"
+    data-title="El Séptimo Arcángel"
+    data-meta="Cine · Producción"
+    data-desc="El Séptimo Arcángel — Largometraje. Producción."
+    data-type="video"
+    data-src="https://drive.google.com/file/d/1BMojCZJYHFKUyxnhpaSvENTyLulgMTj-/preview">
+    <span class="card-pill">Video</span>
+    <div class="card-thumb-wrap">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1BMojCZJYHFKUyxnhpaSvENTyLulgMTj-&sz=w800" alt="El Séptimo Arcángel" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1BMojCZJYHFKUyxnhpaSvENTyLulgMTj-=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">🎞</div>
+      <div class="card-overlay"></div>
+      <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+    </div>
+    <div class="card-accent accent-teal"></div>
+    <div class="card-body">
+      <div class="card-meta">Cine · Producción</div>
+      <div class="card-title">El Séptimo Arcángel</div>
+      
+    </div>
+  </button>
+  <button type="button" class="card"
+    data-title="Vagón Fumador"
+    data-meta="Cine · Producción"
+    data-desc="Vagón Fumador — Largometraje. Dirección de Verónica Chen. Producción."
+    data-type="video"
+    data-src="https://drive.google.com/file/d/1y6SfFvET3ZhZJiei15XexeeoC-AY5fgA/preview">
+    <span class="card-pill">Video</span>
+    <div class="card-thumb-wrap">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1y6SfFvET3ZhZJiei15XexeeoC-AY5fgA&sz=w800" alt="Vagón Fumador" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1y6SfFvET3ZhZJiei15XexeeoC-AY5fgA=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">🎞</div>
+      <div class="card-overlay"></div>
+      <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+    </div>
+    <div class="card-accent accent-teal"></div>
+    <div class="card-body">
+      <div class="card-meta">Cine · Producción</div>
+      <div class="card-title">Vagón Fumador</div>
+      <div class="card-desc">Dir. Verónica Chen</div>
+    </div>
+  </button>
+  <button type="button" class="card"
+    data-title="Un Día de Suerte"
+    data-meta="Cine · Producción"
+    data-desc="Un Día de Suerte — Largometraje. Dirección de Sandra Gugliotta. Producción."
+    data-type="video"
+    data-src="https://drive.google.com/file/d/1dXQ5y1ugG_vMkXId-45BMTblCmZTWAjp/preview">
+    <span class="card-pill">Video</span>
+    <div class="card-thumb-wrap">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1dXQ5y1ugG_vMkXId-45BMTblCmZTWAjp&sz=w800" alt="Un Día de Suerte" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1dXQ5y1ugG_vMkXId-45BMTblCmZTWAjp=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">🎞</div>
+      <div class="card-overlay"></div>
+      <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+    </div>
+    <div class="card-accent accent-teal"></div>
+    <div class="card-body">
+      <div class="card-meta">Cine · Producción</div>
+      <div class="card-title">Un Día de Suerte</div>
+      <div class="card-desc">Dir. Sandra Gugliotta</div>
+    </div>
+  </button>
+  <button type="button" class="card"
+    data-title="Sudeste"
+    data-meta="Cine · Producción"
+    data-desc="Sudeste — Largometraje. Dirección de Sergio Bellotti. Producción."
+    data-type="video"
+    data-src="https://drive.google.com/file/d/12mPO0vWa6JgDcuwyqX0os_9Ib_TLGP08/preview">
+    <span class="card-pill">Video</span>
+    <div class="card-thumb-wrap">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=12mPO0vWa6JgDcuwyqX0os_9Ib_TLGP08&sz=w800" alt="Sudeste" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/12mPO0vWa6JgDcuwyqX0os_9Ib_TLGP08=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">🎞</div>
+      <div class="card-overlay"></div>
+      <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+    </div>
+    <div class="card-accent accent-teal"></div>
+    <div class="card-body">
+      <div class="card-meta">Cine · Producción</div>
+      <div class="card-title">Sudeste</div>
+      <div class="card-desc">Dir. Sergio Bellotti</div>
+    </div>
   </button></div>
 
-<h3 class="section-subsection">Festivales & Eventos</h3>
+<h3 class="section-subsection">Festivales y Eventos</h3>
 <div class="cards-grid">
-  <button type="button" class="card" data-title="Festival Martha Argerich" data-meta="Festival · Producción ejecutiva · 2004" data-desc="Producción ejecutiva del histórico Festival Martha Argerich 2004." data-type="image" data-src="https://drive.google.com/file/d/1OXBg9wJ2uVOtYLHt5yZPYFiHy2eEJ5ce/preview">
+  <button type="button" class="card"
+    data-title="Festival Martha Argerich"
+    data-meta="Festival · Producción Ejecutiva · 2004"
+    data-desc="Festival Martha Argerich 2004 — Producción ejecutiva del histórico festival de piano."
+    data-type="image"
+    data-src="https://drive.google.com/file/d/1OXBg9wJ2uVOtYLHt5yZPYFiHy2eEJ5ce/preview">
     <span class="card-pill">Foto</span>
     <div class="card-thumb-wrap">
       <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1OXBg9wJ2uVOtYLHt5yZPYFiHy2eEJ5ce&sz=w800" alt="Festival Martha Argerich" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1OXBg9wJ2uVOtYLHt5yZPYFiHy2eEJ5ce=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">🎹</div>
@@ -1816,25 +2055,26 @@
     </div>
     <div class="card-accent accent-teal"></div>
     <div class="card-body">
-      <div class="card-meta">Festival · Producción ejecutiva · 2004</div>
+      <div class="card-meta">Festival · Producción Ejecutiva · 2004</div>
       <div class="card-title">Festival Martha Argerich</div>
-      <div class="card-desc">Producción ejecutiva del histórico festival de piano</div>
+      <div class="card-desc">Producción ejecutiva</div>
     </div>
   </button>
-  <button type="button" class="card is-placeholder" >
-    <span class="card-pill">⚠ Pegar ID</span>
+  <a class="card card-as-link" href="https://drive.google.com/drive/folders/1mkKP63mxMpeU5UbbIljNZKpXikpg0uTC" target="_blank" rel="noopener noreferrer"
+    aria-label="Abrir BA Playas en Google Drive">
+    <span class="card-pill">Carpeta</span>
     <div class="card-thumb-wrap">
-      <div class="card-thumb-placeholder placeholder-pending">🌊</div>
+      <div class="card-thumb-placeholder">🌊</div>
       <div class="card-overlay"></div>
-      
+      <div class="card-play card-play-folder" aria-label="Abrir en Drive"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></div>
     </div>
     <div class="card-accent accent-teal"></div>
     <div class="card-body">
-      <div class="card-meta">Festival · Producción</div>
-      <div class="card-title">Festival Playas</div>
-      <div class="card-desc">Producción</div>
+      <div class="card-meta">Evento · Producción · 2021</div>
+      <div class="card-title">BA Playas</div>
+      <div class="card-desc">Buenos Aires · 2021</div>
     </div>
-  </button></div>
+  </a></div>
 ```
 
   </div>
@@ -1848,7 +2088,31 @@
 
 ```
 <div class="cards-grid">
-  <button type="button" class="card" data-title="Yo, abolicionista" data-meta="Documental · Cine.ar Play · 2019" data-desc="Documental disponible en Cine.ar Play. Fondo Nacional de las Artes, 2019. Aborda la prostitución desde el abolicionismo, con testimonios de mujeres en primera persona." data-type="video" data-src="https://drive.google.com/file/d/1z2wmNZBNPjh3DBOxZ2OfPz1vge8x94QV/preview">
+  <button type="button" class="card"
+    data-title="Rota"
+    data-meta="Docuserie · Mecenazgo GCBA · 2021"
+    data-desc="Rota — Docuserie producida con Mecenazgo GCBA, 2021. Mujeres durante el ASPO."
+    data-type="video"
+    data-src="https://drive.google.com/file/d/1zL5fBe1qSTICazXBTNIqw_3O1g3RGKOa/preview">
+    <span class="card-pill">Video</span>
+    <div class="card-thumb-wrap">
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1zL5fBe1qSTICazXBTNIqw_3O1g3RGKOa&sz=w800" alt="Rota" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1zL5fBe1qSTICazXBTNIqw_3O1g3RGKOa=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">📽</div>
+      <div class="card-overlay"></div>
+      <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+    </div>
+    <div class="card-accent accent-violet"></div>
+    <div class="card-body">
+      <div class="card-meta">Docuserie · Mecenazgo GCBA · 2021</div>
+      <div class="card-title">Rota</div>
+      <div class="card-desc">Mujeres en cuarentena</div>
+    </div>
+  </button>
+  <button type="button" class="card"
+    data-title="Yo, abolicionista"
+    data-meta="Documental · Cine.ar Play · 2019"
+    data-desc="Yo, abolicionista — Documental disponible en Cine.ar Play. Fondo Nacional de las Artes, 2019. Aborda la prostitución desde el abolicionismo, con testimonios de mujeres en primera persona."
+    data-type="video"
+    data-src="https://drive.google.com/file/d/1z2wmNZBNPjh3DBOxZ2OfPz1vge8x94QV/preview">
     <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
       <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1z2wmNZBNPjh3DBOxZ2OfPz1vge8x94QV&sz=w800" alt="Yo, abolicionista" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1z2wmNZBNPjh3DBOxZ2OfPz1vge8x94QV=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">📽</div>
@@ -1862,21 +2126,12 @@
       <div class="card-desc">Fondo Nacional de las Artes</div>
     </div>
   </button>
-  <button type="button" class="card" data-title="Rota, mujeres en cuarentena" data-meta="Docuserie · Mecenazgo GCBA · 2021" data-desc="Docuserie producida con Mecenazgo GCBA, 2021. Mujeres durante el ASPO." data-type="video" data-src="https://drive.google.com/file/d/1zL5fBe1qSTICazXBTNIqw_3O1g3RGKOa/preview">
-    <span class="card-pill">Video</span>
-    <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1zL5fBe1qSTICazXBTNIqw_3O1g3RGKOa&sz=w800" alt="Rota, mujeres en cuarentena" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1zL5fBe1qSTICazXBTNIqw_3O1g3RGKOa=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">📽</div>
-      <div class="card-overlay"></div>
-      <div class="card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-    </div>
-    <div class="card-accent accent-violet"></div>
-    <div class="card-body">
-      <div class="card-meta">Docuserie · Mecenazgo GCBA · 2021</div>
-      <div class="card-title">Rota, mujeres en cuarentena</div>
-      <div class="card-desc">Mujeres durante el ASPO</div>
-    </div>
-  </button>
-  <button type="button" class="card" data-title="Sandra Mihanovich — 40 años en la música" data-meta="Documental · Sony / DBN · 2017" data-desc="Documental producido para Sony / DBN. 40 años de la trayectoria musical de Sandra Mihanovich." data-type="image" data-src="https://drive.google.com/file/d/1a54bm7tT32T8L8aEzzXQmCo3JLO5UFFc/preview">
+  <button type="button" class="card"
+    data-title="Sandra Mihanovich — 40 años en la música"
+    data-meta="Documental · Sony / DBN · 2017"
+    data-desc="Sandra Mihanovich — 40 años en la música. Documental producido para Sony / DBN."
+    data-type="image"
+    data-src="https://drive.google.com/file/d/1a54bm7tT32T8L8aEzzXQmCo3JLO5UFFc/preview">
     <span class="card-pill">Foto</span>
     <div class="card-thumb-wrap">
       <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1a54bm7tT32T8L8aEzzXQmCo3JLO5UFFc&sz=w800" alt="Sandra Mihanovich — 40 años en la música" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1a54bm7tT32T8L8aEzzXQmCo3JLO5UFFc=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">🎵</div>
@@ -1904,113 +2159,50 @@
 ```
 <h3 class="section-subsection">Cine y series</h3>
 <div class="cards-grid">
-  <button type="button" class="card is-placeholder" >
-    <span class="card-pill">⚠ Pegar ID</span>
-    <div class="card-thumb-wrap">
-      <div class="card-thumb-placeholder placeholder-pending">🎬</div>
-      <div class="card-overlay"></div>
-      
-    </div>
-    <div class="card-accent accent-green"></div>
-    <div class="card-body">
-      <div class="card-meta">Coach artística · Largometraje</div>
-      <div class="card-title">El Hijo</div>
-      <div class="card-desc">Largometraje · Coaching actoral</div>
-    </div>
-  </button>
-  <button type="button" class="card is-placeholder" >
-    <span class="card-pill">⚠ Pegar ID</span>
-    <div class="card-thumb-wrap">
-      <div class="card-thumb-placeholder placeholder-pending">🎬</div>
-      <div class="card-overlay"></div>
-      
-    </div>
-    <div class="card-accent accent-green"></div>
-    <div class="card-body">
-      <div class="card-meta">Dirección de casting</div>
-      <div class="card-title">Dulce de Leche</div>
-      <div class="card-desc">Dirección de casting</div>
-    </div>
-  </button>
-  <button type="button" class="card is-placeholder" >
-    <span class="card-pill">⚠ Pegar ID</span>
-    <div class="card-thumb-wrap">
-      <div class="card-thumb-placeholder placeholder-pending">🎬</div>
-      <div class="card-overlay"></div>
-      
-    </div>
-    <div class="card-accent accent-green"></div>
-    <div class="card-body">
-      <div class="card-meta">Dirección de casting</div>
-      <div class="card-title">Caño Dorado</div>
-      <div class="card-desc">Dirección de casting</div>
-    </div>
-  </button>
-  <button type="button" class="card" data-title="En el Barro — María Becerra" data-meta="Coach artística · María Becerra" data-desc="María Becerra — En el Barro. Día 2 de rodaje. Mariel Rosciano como coach artística y media trainer." data-type="image" data-src="https://drive.google.com/file/d/1GRPqo5ElMYEmCYFhrAwuvT59yXGdANgH/preview">
+  <button type="button" class="card"
+    data-title="María Becerra para «En el Barro»"
+    data-meta="Coach artística · María Becerra"
+    data-desc="María Becerra — En el Barro. Mariel Rosciano como coach artística y media trainer."
+    data-type="image"
+    data-src="https://drive.google.com/file/d/1GRPqo5ElMYEmCYFhrAwuvT59yXGdANgH/preview">
     <span class="card-pill">Foto</span>
     <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1GRPqo5ElMYEmCYFhrAwuvT59yXGdANgH&sz=w800" alt="En el Barro — María Becerra" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1GRPqo5ElMYEmCYFhrAwuvT59yXGdANgH=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">📷</div>
+      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1GRPqo5ElMYEmCYFhrAwuvT59yXGdANgH&sz=w800" alt="María Becerra para «En el Barro»" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1GRPqo5ElMYEmCYFhrAwuvT59yXGdANgH=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">📷</div>
       <div class="card-overlay"></div>
       
     </div>
     <div class="card-accent accent-green"></div>
     <div class="card-body">
       <div class="card-meta">Coach artística · María Becerra</div>
-      <div class="card-title">En el Barro — María Becerra</div>
-      <div class="card-desc">Coaching y media training</div>
-    </div>
-  </button>
-  <button type="button" class="card" data-title="En el Barro — Plano 99" data-meta="Coach artística · María Becerra" data-desc="María Becerra — En el Barro. Día 2 de rodaje." data-type="image" data-src="https://drive.google.com/file/d/1HxrfT8IVFaiH6VYfhijLLDKVuuVvtPgR/preview">
-    <span class="card-pill">Foto</span>
-    <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1HxrfT8IVFaiH6VYfhijLLDKVuuVvtPgR&sz=w800" alt="En el Barro — Plano 99" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1HxrfT8IVFaiH6VYfhijLLDKVuuVvtPgR=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">📷</div>
-      <div class="card-overlay"></div>
-      
-    </div>
-    <div class="card-accent accent-green"></div>
-    <div class="card-body">
-      <div class="card-meta">Coach artística · María Becerra</div>
-      <div class="card-title">En el Barro — Plano 99</div>
-      <div class="card-desc">Coaching y media training</div>
-    </div>
-  </button>
-  <button type="button" class="card" data-title="En el Barro — Producción" data-meta="Coach artística · María Becerra" data-desc="María Becerra — En el Barro. Fotografía de producción." data-type="image" data-src="https://drive.google.com/file/d/1dphWB8rH1BgYkAyKTYoicDDi8dwtv3PM/preview">
-    <span class="card-pill">Foto</span>
-    <div class="card-thumb-wrap">
-      <img class="card-thumb" loading="lazy" src="https://drive.google.com/thumbnail?id=1dphWB8rH1BgYkAyKTYoicDDi8dwtv3PM&sz=w800" alt="En el Barro — Producción" onload="this.parentElement.classList.add('has-image')" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='https://lh3.googleusercontent.com/d/1dphWB8rH1BgYkAyKTYoicDDi8dwtv3PM=w800'}else{this.parentElement.classList.add('no-image');this.style.display='none'}"><div class="card-thumb-placeholder">📷</div>
-      <div class="card-overlay"></div>
-      
-    </div>
-    <div class="card-accent accent-green"></div>
-    <div class="card-body">
-      <div class="card-meta">Coach artística · María Becerra</div>
-      <div class="card-title">En el Barro — Producción</div>
+      <div class="card-title">María Becerra para «En el Barro»</div>
       <div class="card-desc">Coaching y media training</div>
     </div>
   </button></div>
 
-<h3 class="section-subsection">Artistas — Videos</h3>
+<h3 class="section-subsection">Artistas</h3>
 <div class="cards-grid">
-  <button type="button" class="card is-placeholder" >
-    <span class="card-pill">⚠ Pegar ID</span>
+  <a class="card card-as-link" href="https://drive.google.com/drive/folders/1fES2Nao8EV1fdNgMtsvPp9d-X3H6ALfw" target="_blank" rel="noopener noreferrer"
+    aria-label="Abrir Leo Qüin en Google Drive">
+    <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
-      <div class="card-thumb-placeholder placeholder-pending">✨</div>
+      <div class="card-thumb-placeholder">✨</div>
       <div class="card-overlay"></div>
-      
+      <div class="card-play card-play-folder" aria-label="Abrir en Drive"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></div>
     </div>
     <div class="card-accent accent-green"></div>
     <div class="card-body">
       <div class="card-meta">Coach artística · Artista</div>
-      <div class="card-title">Leo</div>
+      <div class="card-title">Leo Qüin</div>
       <div class="card-desc">Desarrollo artístico</div>
     </div>
-  </button>
-  <button type="button" class="card is-placeholder" >
-    <span class="card-pill">⚠ Pegar ID</span>
+  </a>
+  <a class="card card-as-link" href="https://drive.google.com/drive/folders/1fES2Nao8EV1fdNgMtsvPp9d-X3H6ALfw" target="_blank" rel="noopener noreferrer"
+    aria-label="Abrir Joelle en Google Drive">
+    <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
-      <div class="card-thumb-placeholder placeholder-pending">✨</div>
+      <div class="card-thumb-placeholder">✨</div>
       <div class="card-overlay"></div>
-      
+      <div class="card-play card-play-folder" aria-label="Abrir en Drive"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></div>
     </div>
     <div class="card-accent accent-green"></div>
     <div class="card-body">
@@ -2018,13 +2210,14 @@
       <div class="card-title">Joelle</div>
       <div class="card-desc">Desarrollo artístico</div>
     </div>
-  </button>
-  <button type="button" class="card is-placeholder" >
-    <span class="card-pill">⚠ Pegar ID</span>
+  </a>
+  <a class="card card-as-link" href="https://drive.google.com/drive/folders/1fES2Nao8EV1fdNgMtsvPp9d-X3H6ALfw" target="_blank" rel="noopener noreferrer"
+    aria-label="Abrir Morena en Google Drive">
+    <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
-      <div class="card-thumb-placeholder placeholder-pending">✨</div>
+      <div class="card-thumb-placeholder">✨</div>
       <div class="card-overlay"></div>
-      
+      <div class="card-play card-play-folder" aria-label="Abrir en Drive"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></div>
     </div>
     <div class="card-accent accent-green"></div>
     <div class="card-body">
@@ -2032,13 +2225,14 @@
       <div class="card-title">Morena</div>
       <div class="card-desc">Desarrollo artístico</div>
     </div>
-  </button>
-  <button type="button" class="card is-placeholder" >
-    <span class="card-pill">⚠ Pegar ID</span>
+  </a>
+  <a class="card card-as-link" href="https://drive.google.com/drive/folders/1fES2Nao8EV1fdNgMtsvPp9d-X3H6ALfw" target="_blank" rel="noopener noreferrer"
+    aria-label="Abrir Vicky Masuelli en Google Drive">
+    <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
-      <div class="card-thumb-placeholder placeholder-pending">✨</div>
+      <div class="card-thumb-placeholder">✨</div>
       <div class="card-overlay"></div>
-      
+      <div class="card-play card-play-folder" aria-label="Abrir en Drive"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></div>
     </div>
     <div class="card-accent accent-green"></div>
     <div class="card-body">
@@ -2046,13 +2240,14 @@
       <div class="card-title">Vicky Masuelli</div>
       <div class="card-desc">Desarrollo artístico</div>
     </div>
-  </button>
-  <button type="button" class="card is-placeholder" >
-    <span class="card-pill">⚠ Pegar ID</span>
+  </a>
+  <a class="card card-as-link" href="https://drive.google.com/drive/folders/1fES2Nao8EV1fdNgMtsvPp9d-X3H6ALfw" target="_blank" rel="noopener noreferrer"
+    aria-label="Abrir Beyla en Google Drive">
+    <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
-      <div class="card-thumb-placeholder placeholder-pending">✨</div>
+      <div class="card-thumb-placeholder">✨</div>
       <div class="card-overlay"></div>
-      
+      <div class="card-play card-play-folder" aria-label="Abrir en Drive"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></div>
     </div>
     <div class="card-accent accent-green"></div>
     <div class="card-body">
@@ -2060,76 +2255,88 @@
       <div class="card-title">Beyla</div>
       <div class="card-desc">Desarrollo artístico</div>
     </div>
-  </button>
-  <button type="button" class="card is-placeholder" >
-    <span class="card-pill">⚠ Pegar ID</span>
+  </a>
+  <a class="card card-as-link" href="https://drive.google.com/drive/folders/1fES2Nao8EV1fdNgMtsvPp9d-X3H6ALfw" target="_blank" rel="noopener noreferrer"
+    aria-label="Abrir Alberee en Google Drive">
+    <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
-      <div class="card-thumb-placeholder placeholder-pending">✨</div>
+      <div class="card-thumb-placeholder">✨</div>
       <div class="card-overlay"></div>
-      
+      <div class="card-play card-play-folder" aria-label="Abrir en Drive"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></div>
     </div>
     <div class="card-accent accent-green"></div>
     <div class="card-body">
       <div class="card-meta">Coach artística · Artista</div>
-      <div class="card-title">Salas</div>
+      <div class="card-title">Alberee</div>
       <div class="card-desc">Desarrollo artístico</div>
     </div>
-  </button>
-  <button type="button" class="card is-placeholder" >
-    <span class="card-pill">⚠ Pegar ID</span>
+  </a>
+  <a class="card card-as-link" href="https://drive.google.com/drive/folders/1fES2Nao8EV1fdNgMtsvPp9d-X3H6ALfw" target="_blank" rel="noopener noreferrer"
+    aria-label="Abrir Salastakbron en Google Drive">
+    <span class="card-pill">Video</span>
     <div class="card-thumb-wrap">
-      <div class="card-thumb-placeholder placeholder-pending">✨</div>
+      <div class="card-thumb-placeholder">✨</div>
       <div class="card-overlay"></div>
-      
+      <div class="card-play card-play-folder" aria-label="Abrir en Drive"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></div>
     </div>
     <div class="card-accent accent-green"></div>
     <div class="card-body">
       <div class="card-meta">Coach artística · Artista</div>
-      <div class="card-title">Xango</div>
+      <div class="card-title">Salastakbron</div>
       <div class="card-desc">Desarrollo artístico</div>
     </div>
-  </button></div>
+  </a></div>
 
-<h3 class="section-subsection">Artistas — Galería de fotos</h3>
+<h3 class="section-subsection">Dirección de Casting</h3>
 <div class="cards-grid">
-  <button type="button" class="card is-placeholder" >
-    <span class="card-pill">⚠ Pegar ID</span>
+  <a class="card card-as-link" href="https://drive.google.com/drive/folders/1TzltHOU0frdWwHf8N7T_Zla5GWWRZzjm" target="_blank" rel="noopener noreferrer"
+    aria-label="Abrir Dulce de Leche en Google Drive">
+    <span class="card-pill">Carpeta</span>
     <div class="card-thumb-wrap">
-      <div class="card-thumb-placeholder placeholder-pending">📸</div>
+      <div class="card-thumb-placeholder">🎬</div>
       <div class="card-overlay"></div>
-      
+      <div class="card-play card-play-folder" aria-label="Abrir en Drive"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></div>
     </div>
     <div class="card-accent accent-green"></div>
     <div class="card-body">
-      <div class="card-meta">Galería · Portada</div>
-      <div class="card-title">Galería de Fotos · Artistas</div>
-      <div class="card-desc">Todas las artistas</div>
+      <div class="card-meta">Dirección de Casting</div>
+      <div class="card-title">Dulce de Leche</div>
+      
     </div>
-  </button></div>
+  </a>
+  <a class="card card-as-link" href="https://drive.google.com/drive/folders/1TzltHOU0frdWwHf8N7T_Zla5GWWRZzjm" target="_blank" rel="noopener noreferrer"
+    aria-label="Abrir Caño Dorado en Google Drive">
+    <span class="card-pill">Carpeta</span>
+    <div class="card-thumb-wrap">
+      <div class="card-thumb-placeholder">🎬</div>
+      <div class="card-overlay"></div>
+      <div class="card-play card-play-folder" aria-label="Abrir en Drive"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></div>
+    </div>
+    <div class="card-accent accent-green"></div>
+    <div class="card-body">
+      <div class="card-meta">Dirección de Casting</div>
+      <div class="card-title">Caño Dorado</div>
+      
+    </div>
+  </a></div>
 
-<h3 class="section-subsection">Gráfica</h3>
-<div class="press-grid">
-  <button type="button" class="press-card is-placeholder" >
-    <div class="press-card-img-wrap"><div class="press-card-icon placeholder-pending" style="background:rgba(var(--green-rgb),0.08)">⚠</div></div>
-    <div class="press-card-body">
-      <div class="press-card-title">Gráfica 1</div>
-      <div class="press-card-source">—</div>
+<h3 class="section-subsection">Baby Wrangler</h3>
+<div class="cards-grid">
+  <a class="card card-as-link" href="https://drive.google.com/drive/folders/1S2Fi3Iki_ZNKGvZHAjERelMr2RB9d4oz" target="_blank" rel="noopener noreferrer"
+    aria-label="Abrir El Hijo en Google Drive">
+    <span class="card-pill">Carpeta</span>
+    <div class="card-thumb-wrap">
+      <div class="card-thumb-placeholder">👶</div>
+      <div class="card-overlay"></div>
+      <div class="card-play card-play-folder" aria-label="Abrir en Drive"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></div>
     </div>
-  </button>
-  <button type="button" class="press-card is-placeholder" >
-    <div class="press-card-img-wrap"><div class="press-card-icon placeholder-pending" style="background:rgba(var(--green-rgb),0.08)">⚠</div></div>
-    <div class="press-card-body">
-      <div class="press-card-title">Gráfica 2</div>
-      <div class="press-card-source">—</div>
+    <div class="card-accent accent-green"></div>
+    <div class="card-body">
+      <div class="card-meta">Baby Wrangler</div>
+      <div class="card-title">El Hijo</div>
+      <div class="card-desc">Largometraje</div>
     </div>
-  </button>
-  <button type="button" class="press-card is-placeholder" >
-    <div class="press-card-img-wrap"><div class="press-card-icon placeholder-pending" style="background:rgba(var(--green-rgb),0.08)">⚠</div></div>
-    <div class="press-card-body">
-      <div class="press-card-title">Gráfica 3</div>
-      <div class="press-card-source">—</div>
-    </div>
-  </button></div>
+  </a></div>
 ```
 
   </div>
