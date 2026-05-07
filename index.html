@@ -250,10 +250,10 @@
 
   /* HERO */
   .hero {
-    min-height: auto;
-    display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+    min-height: 0;
+    display: block;
     text-align: center; position: relative;
-    padding: 60px clamp(20px, 4vw, 48px) 60px;
+    padding: 110px clamp(20px, 4vw, 48px) 80px;
     overflow: hidden;
   }
   .hero-bg {
@@ -289,7 +289,7 @@
     display: inline-block;
   }
   .hero-subtitle {
-    margin-top: 36px;
+    margin: 36px auto 0;
     font-family: var(--font-mono);
     font-size: clamp(0.85rem, 1.1vw, 0.95rem);
     font-weight: 300;
@@ -301,7 +301,7 @@
     animation: fadeUp 1s 0.3s var(--ease-out) both;
   }
   .hero-tags {
-    margin-top: 48px;
+    margin: 48px auto 0;
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 14px;
